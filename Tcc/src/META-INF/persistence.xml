@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.com.tcc.DomainModel.Pessoa</class>
     <class>br.com.tcc.DomainModel.Cidade</class>
+    <class>br.com.tcc.DomainModel.FormasDePagamento</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/beautySystem?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>

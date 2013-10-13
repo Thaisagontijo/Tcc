@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 @Entity
 public class Cidade implements Serializable {
