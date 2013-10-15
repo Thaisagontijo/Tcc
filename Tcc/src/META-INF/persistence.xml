@@ -12,6 +12,7 @@
     <class>br.com.tcc.DomainModel.Funcionario</class>
     <class>br.com.tcc.DomainModel.Produto</class>
     <class>br.com.tcc.DomainModel.Fornecedor</class>
+    <class>br.com.tcc.DomainModel.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/beautySystem?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>
