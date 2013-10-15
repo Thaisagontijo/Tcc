@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 @Entity
 @Table(name="Vendas")
@@ -123,6 +123,17 @@ public class Venda implements Serializable {
     public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
     }
+    
+    
+    /*
+    public float valorTotalVenda(){
+        float valor = 0;
+        
+        for(Produto p : produtos){
+            valor+= p.getPrecoVenda();
+        }
+    }
+    * */
 
     @Override
     public int hashCode() {
