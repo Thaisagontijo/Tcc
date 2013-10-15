@@ -20,13 +20,13 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="Fornecedores")
-public class Fornecedores implements Serializable {
+public class Fornecedor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Fornecedores() {
+    public Fornecedor() {
         dataCadastro = new Date();
     }
     
@@ -217,7 +217,7 @@ public class Fornecedores implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Fornecedores other = (Fornecedores) obj;
+        final Fornecedor other = (Fornecedor) obj;
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
