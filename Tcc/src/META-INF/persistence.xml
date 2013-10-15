@@ -4,15 +4,16 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.com.tcc.DomainModel.Pessoa</class>
     <class>br.com.tcc.DomainModel.Cidade</class>
-    <class>br.com.tcc.DomainModel.FormasDePagamento</class>
     <class>br.com.tcc.DomainModel.TipoProduto</class>
     <class>br.com.tcc.DomainModel.Cargo</class>
-    <class>br.com.tcc.DomainModel.Servicos</class>
     <class>br.com.tcc.DomainModel.Cliente</class>
     <class>br.com.tcc.DomainModel.Funcionario</class>
     <class>br.com.tcc.DomainModel.Produto</class>
     <class>br.com.tcc.DomainModel.Fornecedor</class>
     <class>br.com.tcc.DomainModel.Usuario</class>
+    <class>br.com.tcc.DomainModel.Servico</class>
+    <class>br.com.tcc.DomainModel.FormaDePagamento</class>
+    <class>br.com.tcc.DomainModel.Agendamento</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/beautySystem?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>

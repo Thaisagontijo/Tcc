@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Servicos")
-public class Servicos implements Serializable {
+public class Servico implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,7 +98,7 @@ public class Servicos implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Servicos other = (Servicos) obj;
+        final Servico other = (Servico) obj;
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }

@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="FormasDePagamento")
-public class FormasDePagamento implements Serializable {
+public class FormaDePagamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,7 +58,7 @@ public class FormasDePagamento implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final FormasDePagamento other = (FormasDePagamento) obj;
+        final FormaDePagamento other = (FormaDePagamento) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
