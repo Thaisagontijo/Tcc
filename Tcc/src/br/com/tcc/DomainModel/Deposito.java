@@ -17,29 +17,27 @@ import javax.persistence.Temporal;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 @Entity
-@Table(name="Retiradas")
-public class Retirada implements Serializable {
+@Table(name="Depositos")
+public class Deposito implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-     public Retirada(){
+    public Deposito(){
         dataHora = new Date();
         funcionario = new Funcionario();
     }
 
-   private String descricao;
-   private float valor;
-   
+    private String observacao;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-   private Date dataHora;
-    
-   @ManyToOne
-   private Funcionario funcionario;
+    private Date dataHora;
+    private float valor;
+    @ManyToOne
+    private Funcionario funcionario;
 
     public Long getId() {
         return id;
@@ -49,20 +47,12 @@ public class Retirada implements Serializable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public Date getDataHora() {
@@ -71,6 +61,14 @@ public class Retirada implements Serializable {
 
     public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
     public Funcionario getFuncionario() {
@@ -83,12 +81,12 @@ public class Retirada implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.descricao);
-        hash = 79 * hash + Float.floatToIntBits(this.valor);
-        hash = 79 * hash + Objects.hashCode(this.dataHora);
-        hash = 79 * hash + Objects.hashCode(this.funcionario);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.observacao);
+        hash = 47 * hash + Objects.hashCode(this.dataHora);
+        hash = 47 * hash + Float.floatToIntBits(this.valor);
+        hash = 47 * hash + Objects.hashCode(this.funcionario);
         return hash;
     }
 
@@ -100,14 +98,14 @@ public class Retirada implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Retirada other = (Retirada) obj;
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor)) {
+        final Deposito other = (Deposito) obj;
+        if (!Objects.equals(this.observacao, other.observacao)) {
             return false;
         }
         if (!Objects.equals(this.dataHora, other.dataHora)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor)) {
             return false;
         }
         if (!Objects.equals(this.funcionario, other.funcionario)) {
@@ -118,7 +116,8 @@ public class Retirada implements Serializable {
 
     @Override
     public String toString() {
-        return "Retirada{" + "descricao=" + descricao + ", valor=" + valor + '}';
+        return "Deposito{" + "observacao=" + observacao + ", valor=" + valor + '}';
     }
+    
     
 }
