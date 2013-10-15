@@ -16,6 +16,7 @@
     <class>br.com.tcc.DomainModel.Agendamento</class>
     <class>br.com.tcc.DomainModel.Retirada</class>
     <class>br.com.tcc.DomainModel.Deposito</class>
+    <class>br.com.tcc.DomainModel.Venda</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/beautySystem?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>

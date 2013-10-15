@@ -41,6 +41,8 @@ public class Produto implements Serializable {
     private TipoProduto tipoProduto;
     @ManyToMany //vreificar
     private Fornecedor fornecedor;
+    
+    private int qtdVenda;
 
     public Long getId() {
         return id;
@@ -105,6 +107,16 @@ public class Produto implements Serializable {
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
+
+    public int getQtdVenda() {
+        return qtdVenda;
+    }
+
+    public void setQtdVenda(int qtdVenda) {
+        this.qtdVenda = qtdVenda;
+    }
+    
+    
 
     @Override
     public int hashCode() {
