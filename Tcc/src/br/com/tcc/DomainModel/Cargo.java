@@ -64,7 +64,6 @@ public class Cargo implements Serializable {
     public int hashCode() {
         int hash = 3;
         hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nome);
         hash = 79 * hash + Float.floatToIntBits(this.valorSalario);
         hash = 79 * hash + Objects.hashCode(this.descricao);
         return hash;
@@ -85,12 +84,11 @@ public class Cargo implements Serializable {
         if (Float.floatToIntBits(this.valorSalario) != Float.floatToIntBits(other.valorSalario)) {
             return false;
         }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return nome;
-    }
-   
+    
 }

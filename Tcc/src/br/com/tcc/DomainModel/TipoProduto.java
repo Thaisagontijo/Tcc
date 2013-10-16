@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Thaisa
+ * @author Modric
  */
 @Entity
 @Table(name="TiposProduto")
@@ -23,7 +23,7 @@ public class TipoProduto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    
     private String nome;
 
     public Long getId() {
@@ -44,9 +44,9 @@ public class TipoProduto implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.nome);
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 19 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -59,9 +59,6 @@ public class TipoProduto implements Serializable {
             return false;
         }
         final TipoProduto other = (TipoProduto) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -72,7 +69,5 @@ public class TipoProduto implements Serializable {
     public String toString() {
         return nome;
     }
-    
-    
-    
+
 }

@@ -5,6 +5,9 @@
 package br.com.tcc.DataAccess;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -13,19 +16,28 @@ import javax.persistence.EntityManager;
 public class DAOGenerico<T> {
     
     protected EntityManager manager;
+    private EntityManagerFactory factory;
     private Class tipo;
+    
     public DAOGenerico (Class t) {
+        factory = Persistence.createEntityManagerFactory("TccPU");
+        manager = factory.createEntityManager();
         tipo = t;
+        
     }
     
   
     public boolean Salvar(T obj) {
+         EntityTransaction transacao = manager.getTransaction();
         try{
             //salva o objeto
-            manager.merge(obj);
+            transacao.begin();
+            manager.persist(obj);
+            transacao.commit();
             return true;
         }catch (Exception ex){
         System.out.println(ex.getMessage());
+        ex.printStackTrace();
         return false;
         }
     }
@@ -34,8 +46,11 @@ public class DAOGenerico<T> {
     
 
     public T Abrir(Long id) {
+         EntityTransaction transacao = manager.getTransaction();
         try {
+            transacao.begin();
             T obj = (T) manager.find(tipo, id);
+            transacao.commit();
             return obj;
             //abrir
         } catch (Exception ex) {
@@ -45,8 +60,11 @@ public class DAOGenerico<T> {
     
 
     public boolean Apagar(T obj) {
+        EntityTransaction transacao = manager.getTransaction();
         try {
+            transacao.begin();
             manager.remove(manager.merge(obj));
+            transacao.commit();
             return true;
         } catch (Exception ex) {
             return false;

@@ -21,7 +21,7 @@ import javax.persistence.Temporal;
  * @author Thaisa
  */
 @Entity
-@Table(name="pessoas")
+@Table(name="Pessoas")
 @Inheritance(strategy= InheritanceType.JOINED)
 public class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -33,12 +33,7 @@ public class Pessoa implements Serializable {
         dataNascimento = new Date();
     }
     
-    
-    
-    
-    
-    
-
+ 
     private String nome;
     private String rg;
     private String cpf;

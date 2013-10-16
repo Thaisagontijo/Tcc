@@ -10,13 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 @Entity
 @Table(name="Produtos")
@@ -37,9 +37,12 @@ public class Produto implements Serializable {
     private float precoCusto;
     private float precoVenda;
     private int qtdEstoque;
-    @OneToOne // Verificar
+    
+   @ManyToOne
     private TipoProduto tipoProduto;
-    @ManyToMany //vreificar
+   
+   // @OneToMany //vreificar
+    @ManyToOne
     private Fornecedor fornecedor;
     
     private int qtdVenda;
@@ -127,7 +130,7 @@ public class Produto implements Serializable {
         hash = 79 * hash + Float.floatToIntBits(this.precoCusto);
         hash = 79 * hash + Float.floatToIntBits(this.precoVenda);
         hash = 79 * hash + this.qtdEstoque;
-        hash = 79 * hash + Objects.hashCode(this.tipoProduto);
+         hash = 79 * hash + Objects.hashCode(this.tipoProduto);
         hash = 79 * hash + Objects.hashCode(this.fornecedor);
         return hash;
     }
