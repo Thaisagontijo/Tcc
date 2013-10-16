@@ -32,9 +32,9 @@ public class frmCadastroServicos extends javax.swing.JDialog {
         
         model.addColumn("ID");
         model.addColumn("NOME");
-        model.addColumn("VALOR");
-        model.addColumn("DURAÇÃO MÁXIMA");
-        model.addColumn("DESCONTO MÁXIMO");
+        model.addColumn("VALOR R$");
+        model.addColumn("DURAÇÃO MÁXIMA (Min)");
+        model.addColumn("DESCONTO MÁXIMO (%)");
         model.addColumn("DESCRIÇÃO");
         
         ServicoDAO dao = new ServicoDAO();
@@ -265,7 +265,7 @@ public class frmCadastroServicos extends javax.swing.JDialog {
         if(txtDesconto.getText().isEmpty() && txtDescricao.getText().isEmpty() 
                && txtDuracao.getText().isEmpty() && txtNome.getText().isEmpty() && txtValor.getText().isEmpty()){
            JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos !");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Pergunta ","Voçe tem certeza que deseja salvar o servico",JOptionPane.OK_CANCEL_OPTION) == 0){
+       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o servico ","Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
             Servico servico = new Servico();
             ServicoDAO dao = new ServicoDAO();
             

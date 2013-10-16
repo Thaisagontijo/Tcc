@@ -93,6 +93,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemFornecedores);
 
         jMenuItemServicos.setText("Serviços");
+        jMenuItemServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemServicosActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemServicos);
 
         jMenuItemProdutos.setText("Produtos");
@@ -141,6 +146,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frmCadastroFuncionario teste = new  frmCadastroFuncionario(this, rootPaneCheckingEnabled);
         teste.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
+
+    private void jMenuItemServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemServicosActionPerformed
+        frmCadastroServicos janela = new frmCadastroServicos(this, rootPaneCheckingEnabled);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItemServicosActionPerformed
 
     /**
      * @param args the command line arguments
