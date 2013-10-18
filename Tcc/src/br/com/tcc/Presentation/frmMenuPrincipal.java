@@ -148,7 +148,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
     private void jMenuItemServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemServicosActionPerformed
-        frmCadastroServicos janela = new frmCadastroServicos(this, rootPaneCheckingEnabled);
+        frmCadastroServicosLista janela = new frmCadastroServicosLista(this, rootPaneCheckingEnabled);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemServicosActionPerformed
 

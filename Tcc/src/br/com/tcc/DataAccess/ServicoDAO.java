@@ -28,11 +28,13 @@ public class ServicoDAO extends DAOGenerico<Servico>{
             
              Query query = manager.createQuery(consulta);
              
+             transacao.commit();
              return query.getResultList();
         
             
         }catch(Exception ex){
            ex.printStackTrace();
+           transacao.rollback();
             return null;
         }
     

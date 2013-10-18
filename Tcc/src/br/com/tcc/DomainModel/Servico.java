@@ -102,11 +102,24 @@ public class Servico implements Serializable {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
+        if (this.duracaoAproximada != other.duracaoAproximada) {
+            return false;
+        }
+        if (this.descontoMaximo != other.descontoMaximo) {
+            return false;
+        }
+        if (!Objects.equals(this.descicao, other.descicao)) {
+            return false;
+        }
         if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor)) {
             return false;
         }
         return true;
     }
+
+    
+
+ 
 
     @Override
     public String toString() {

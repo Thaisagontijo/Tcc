@@ -35,6 +35,7 @@ public class DAOGenerico<T> {
             transacao.begin();
             manager.persist(obj);
             transacao.commit();
+        //    manager.flush();
             return true;
         }catch (Exception ex){
         System.out.println(ex.getMessage());
@@ -55,6 +56,8 @@ public class DAOGenerico<T> {
             return obj;
             //abrir
         } catch (Exception ex) {
+            transacao.rollback();
+            ex.printStackTrace();
             return null;
         }
     }
@@ -68,6 +71,8 @@ public class DAOGenerico<T> {
             transacao.commit();
             return true;
         } catch (Exception ex) {
+            ex.printStackTrace();
+            transacao.rollback();
             return false;
         }
     }
