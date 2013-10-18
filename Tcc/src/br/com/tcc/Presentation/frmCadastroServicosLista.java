@@ -6,9 +6,9 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.ServicoDAO;
 import br.com.tcc.DomainModel.Servico;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,8 +25,9 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         super(parent, modal);
         
         initComponents();
-        preencheTabela();
-       // lista = new LinkedList<>();
+       dao = new ServicoDAO();
+       lista = new LinkedList<>();
+       this.setTitle("Lista de Serviços");
     }
     
     protected void preencheTabela(){
@@ -49,26 +50,19 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         
         model.addColumn("ID");
         model.addColumn("NOME");
-        model.addColumn("VALOR R$");
-        model.addColumn("DURAÇÃO MÁXIMA (Min)");
-        model.addColumn("DESCONTO MÁXIMO (%)");
-        model.addColumn("DESCRIÇÃO");
-        
-        dao = new ServicoDAO();
+        model.addColumn("VALOR (R$)");
+        model.addColumn("DURAÇÃO MÁXIMA (Minutos)");
+        model.addColumn("DESCONTO MÁXIMO ");
        
-        if(lista != null)
-            lista.clear();
-        
-        lista = dao.ListarTodos();
         
         for(Servico s : lista){
             Vector v = new Vector();
             v.add(0,s.getId());
             v.add(1,s.getNome());
-            v.add(2,s.getDuracaoAproximada());
-            v.add(3,s.getDescontoMaximo());
-            v.add(4,s.getDescicao());
-            
+            v.add(2,s.getValor());
+            v.add(3,s.getDuracaoAproximada());
+            v.add(4,s.getDescontoMaximo() + "%");
+                   
             model.addRow(v);
         
         }
@@ -76,10 +70,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         tblServicos.setModel(model);
         tblServicos.repaint();
         
-        
-    
-    
-    
+
     }
 
     /**
@@ -98,6 +89,10 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        lblFiltro = new javax.swing.JLabel();
+        txtFiltro = new javax.swing.JTextField();
+        cbxFiltro = new javax.swing.JComboBox();
+        btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -157,6 +152,23 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         });
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
+        lblFiltro.setText("Filtro:");
+
+        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nenhum", "Id", "Nome" }));
+        cbxFiltro.setToolTipText("Filtro");
+
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,22 +178,39 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
                 .addComponent(painelServicosCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 32, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(btnNovo)
-                .addGap(124, 124, 124)
-                .addComponent(btnAlterar)
-                .addGap(87, 87, 87)
-                .addComponent(btnExcluir)
-                .addGap(80, 80, 80)
-                .addComponent(btnSair)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(btnNovo)
+                        .addGap(124, 124, 124)
+                        .addComponent(btnAlterar)
+                        .addGap(87, 87, 87)
+                        .addComponent(btnExcluir)
+                        .addGap(80, 80, 80)
+                        .addComponent(btnSair))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblFiltro)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFiltro)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrar))
+                .addGap(26, 26, 26)
                 .addComponent(painelServicosCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnAlterar)
@@ -213,7 +242,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, qtdCliques);
+                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
                 qtdCliques =0;
             }
         }else {
@@ -230,66 +259,75 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
     }//GEN-LAST:event_tblServicosMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                + " excluir o serviço ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
-            
-            if(dao.Apagar(objSelecionadoNaTabela)){
-                JOptionPane.showMessageDialog(rootPane, "Serviço Apagado com sucesso !");
-                preencheTabela();
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o serviço");
+         if(objSelecionadoNaTabela != null){
+              if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
+                    + " excluir o serviço ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+
+                if(dao.Apagar(objSelecionadoNaTabela)){
+                    JOptionPane.showMessageDialog(rootPane, "Serviço Apagado com sucesso !");
+                    lista.clear();
+                    lista = dao.ListarTodos();
+                    preencheTabela();
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o serviço");
+                }
             }
-        }
+         }else{
+             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+         }
         
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
             frmCadastroServicosCadastroEdicao j = new frmCadastroServicosCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            j.setVisible(rootPaneCheckingEnabled);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroServicosLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroServicosLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroServicosLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroServicosLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                frmCadastroServicosLista dialog = new frmCadastroServicosLista(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        if(cbxFiltro.getSelectedIndex() == 0){
+            /* SE NAO TIVER FILTRO MOSTRA TODOS*/
+            lista.clear();
+            lista = dao.ListarTodos();
+            preencheTabela();
+           
+            
+        }else if(cbxFiltro.getSelectedIndex() == 1){
+            /* SE O FILTRO FOR POR ID*/
+            Servico s = new Servico();
+            try{
+                s.setId(Long.parseLong(txtFiltro.getText()));
+                lista.clear();
+                lista = dao.Buscar(s);
+                preencheTabela();
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(rootPane, "ID Inválido !");
             }
-        });
-    }
+            
+            
+           
+        }else if(cbxFiltro.getSelectedIndex() == 2){
+            /* SE NAO TIVER FILTRO FOR POR NOME*/
+            Servico s = new Servico();
+           try{
+                s.setNome(txtFiltro.getText());
+                 lista.clear();
+                 lista = dao.Buscar(s);
+                 preencheTabela();
+           }catch(NumberFormatException ex){
+               JOptionPane.showMessageDialog(rootPane, "Nome Inválido !");
+           }
+           
+            
+        }
+    }//GEN-LAST:event_btnFiltrarActionPerformed
     
     /*
      
@@ -299,7 +337,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
      */
     
     private int idSelecionadoTabela;
-    private List<Servico> lista;
+    protected List<Servico> lista;
     protected Servico objSelecionadoNaTabela;
     protected ServicoDAO dao;
     private int qtdCliques;
@@ -307,10 +345,14 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSair;
+    private javax.swing.JComboBox cbxFiltro;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblFiltro;
     private javax.swing.JPanel painelServicosCadastrados;
     private javax.swing.JTable tblServicos;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

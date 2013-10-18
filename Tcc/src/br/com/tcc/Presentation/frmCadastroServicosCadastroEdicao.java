@@ -31,9 +31,10 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         
         if(cadastro ==  true){
             this.setTitle("CADASTRO DE SERVICO");
+            System.out.println("verdade");
         }else{
             this.setTitle("EDIÇÃO DE SERVICO");
-            
+            System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
             txtDesconto.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getDescontoMaximo()));
@@ -213,24 +214,56 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         if(txtDesconto.getText().isEmpty() || txtDescricao.getText().isEmpty() 
                || txtDuracao.getText().isEmpty() || txtNome.getText().isEmpty() || txtValor.getText().isEmpty()){
            JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos !");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o servico ","Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o servico ",
+               "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+           
             Servico servico = new Servico();
             janelaPai.dao = new ServicoDAO();
+
+            /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
+            
+            int ok =0; //variavel de validação
             
             servico.setDescicao(txtDescricao.getText());
-            servico.setDescontoMaximo(Integer.parseInt(txtDesconto.getText()));
-            servico.setDuracaoAproximada(Integer.parseInt(txtDuracao.getText()));
+            
+            try{
+                servico.setDescontoMaximo(Integer.parseInt(txtDesconto.getText()));
+                ok++;
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
+            }
+            
+            
+            try{
+                servico.setDuracaoAproximada(Integer.parseInt(txtDuracao.getText()));
+                ok++;
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(rootPane, "Duração Inválida !");
+            }
+            
+            try{
+                servico.setValor(Float.parseFloat(txtValor.getText()));
+                ok++;
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(rootPane, "Valor Inválida !");
+            }
+            
             servico.setNome(txtNome.getText());
-            servico.setValor(Float.parseFloat(txtValor.getText()));
             
-            
-            if(janelaPai.dao.Salvar(servico)){
-                JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso !");
-                txtDesconto.setText(""); txtDescricao.setText("");
-                txtDuracao.setText(""); txtNome.setText(""); txtValor.setText("");
-                janelaPai.preencheTabela();
-                this.dispose();
-                
+            if(ok == 3){//se a validacao está correta
+
+                if(janelaPai.dao.Salvar(servico)){
+                    JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso !");
+                    txtDesconto.setText(""); txtDescricao.setText("");
+                    txtDuracao.setText(""); txtNome.setText(""); txtValor.setText("");
+                    janelaPai.lista.clear();
+                    janelaPai.lista = janelaPai.dao.ListarTodos();
+                    janelaPai.preencheTabela();
+                    this.dispose();
+
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o serviço !");
+                }
             }
        
        }
