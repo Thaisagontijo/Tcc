@@ -4,7 +4,9 @@
  */
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.FormaDePagamentoDAO;
 import br.com.tcc.DataAccess.ServicoDAO;
+import br.com.tcc.DomainModel.FormaDePagamento;
 import br.com.tcc.DomainModel.Servico;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,18 +18,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thaisa
  */
-public class frmCadastroServicosLista extends javax.swing.JDialog {
+public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
 
     /**
      * Creates new form frmCadastroServicosLista
      */
-    public frmCadastroServicosLista(java.awt.Frame parent, boolean modal) {
+    public frmCadastroFormaDePagamentoLista(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
         initComponents();
-       dao = new ServicoDAO();
+       dao = new FormaDePagamentoDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Serviços");
+       this.setTitle("Lista de Formas de Pagamento");
     }
     
     protected void preencheTabela(){
@@ -50,18 +52,12 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         
         model.addColumn("ID");
         model.addColumn("NOME");
-        model.addColumn("VALOR (R$)");
-        model.addColumn("DURAÇÃO MÁXIMA (Minutos)");
-        model.addColumn("DESCONTO MÁXIMO ");
-       
         
-        for(Servico s : lista){
+        
+        for(FormaDePagamento s : lista){
             Vector v = new Vector();
             v.add(0,s.getId());
             v.add(1,s.getNome());
-            v.add(2,s.getValor());
-            v.add(3,s.getDuracaoAproximada());
-            v.add(4,s.getDescontoMaximo() + "%");
                    
             model.addRow(v);
         
@@ -95,8 +91,9 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Formas de Pagamento");
 
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Serviços Cadastrados"));
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Formas De Pagamento Cadastradas"));
 
         tblServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -225,11 +222,9 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-       frmCadastroServicosCadastroEdicao a = new frmCadastroServicosCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
-       
+      frmCadastroFormaDePagamentoCadastroEdicao b = new frmCadastroFormaDePagamentoCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
         //JDialog a = new JDialog
-       a.setVisible(rootPaneCheckingEnabled);
-       
+      b.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void tblServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServicosMouseClicked
@@ -282,9 +277,8 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmCadastroServicosCadastroEdicao j = new frmCadastroServicosCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
-            j.setVisible(rootPaneCheckingEnabled);
-            
+           // frmCadastroFormaDePagamentoCadastroEdicao j = new frmCadastroFormaDePagamentoCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            //j.setVisible(rootPaneCheckingEnabled);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
         }
@@ -304,7 +298,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
             
         }else if(cbxFiltro.getSelectedIndex() == 1){
             /* SE O FILTRO FOR POR ID*/
-            Servico s = new Servico();
+            FormaDePagamento s = new FormaDePagamento();
             try{
                 s.setId(Long.parseLong(txtFiltro.getText()));
                 lista.clear();
@@ -318,7 +312,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
            
         }else if(cbxFiltro.getSelectedIndex() == 2){
             /* SE NAO TIVER FILTRO FOR POR NOME*/
-            Servico s = new Servico();
+            FormaDePagamento s = new FormaDePagamento();
            try{
                 s.setNome(txtFiltro.getText());
                  lista.clear();
@@ -340,9 +334,9 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
      */
     
     private int idSelecionadoTabela;
-    protected List<Servico> lista;
-    protected Servico objSelecionadoNaTabela;
-    protected ServicoDAO dao;
+    protected List<FormaDePagamento> lista;
+    protected FormaDePagamento objSelecionadoNaTabela;
+    protected FormaDePagamentoDAO dao;
     private int qtdCliques;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

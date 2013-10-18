@@ -87,6 +87,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemFuncionarios);
 
         jMenuItemFormasDePagamentos.setText("Formas de Pagamento");
+        jMenuItemFormasDePagamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFormasDePagamentosActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemFormasDePagamentos);
 
         jMenuItemFornecedores.setText("Fornecedores");
@@ -151,6 +156,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frmCadastroServicosLista janela = new frmCadastroServicosLista(this, rootPaneCheckingEnabled);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemServicosActionPerformed
+
+    private void jMenuItemFormasDePagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormasDePagamentosActionPerformed
+        frmCadastroFormaDePagamentoLista janela = new frmCadastroFormaDePagamentoLista(this, rootPaneCheckingEnabled);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItemFormasDePagamentosActionPerformed
 
     /**
      * @param args the command line arguments
