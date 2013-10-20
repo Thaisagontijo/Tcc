@@ -12,7 +12,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 public class ServicoDAO extends DAOGenerico<Servico>{
     public ServicoDAO(){
@@ -43,8 +43,9 @@ public class ServicoDAO extends DAOGenerico<Servico>{
     
      public List<Servico> Buscar(Servico obj) {
         // Corpo da consulta
+         EntityTransaction transacao = manager.getTransaction();
          try{
-                EntityTransaction transacao = manager.getTransaction();
+                
                String consulta = "Select s from Servico s";
 
                // A parte where da consulta
@@ -88,6 +89,7 @@ public class ServicoDAO extends DAOGenerico<Servico>{
          }catch(Exception ex){
            
              ex.printStackTrace();
+             transacao.rollback();
              
              return null;
          }

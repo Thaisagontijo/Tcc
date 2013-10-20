@@ -4,7 +4,7 @@
  */
 package br.com.tcc.DataAccess;
 
-import br.com.tcc.DomainModel.FormaDePagamento;
+import br.com.tcc.DomainModel.TipoProduto;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityTransaction;
@@ -14,20 +14,20 @@ import javax.persistence.Query;
  *
  * @author Thaisa
  */
-public class FormaDePagamentoDAO extends DAOGenerico<FormaDePagamento> {
-
-    public FormaDePagamentoDAO(){
-        super(FormaDePagamento.class);
+public class TipoProdutoDAO extends DAOGenerico<TipoProduto>{
+    
+    public TipoProdutoDAO(){
+        super(TipoProduto.class);
     }
     
     
     
     
-    public List<FormaDePagamento> ListarTodos(){
+    public List<TipoProduto> ListarTodos(){
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Select s from FormaDePagamento s";
+            String consulta = "Select s from TipoProduto s";
             
              Query query = manager.createQuery(consulta);
              
@@ -43,12 +43,12 @@ public class FormaDePagamentoDAO extends DAOGenerico<FormaDePagamento> {
     
     }
     
-     public List<FormaDePagamento> Buscar(FormaDePagamento obj) {
+     public List<TipoProduto> Buscar(TipoProduto obj) {
         // Corpo da consulta
-          EntityTransaction transacao = manager.getTransaction();
+         EntityTransaction transacao = manager.getTransaction();
          try{
-               
-               String consulta = "Select s from FormaDePagamento s";
+                
+               String consulta = "Select s from TipoProduto s";
 
                // A parte where da consulta
                String filtro = "";
@@ -92,9 +92,9 @@ public class FormaDePagamentoDAO extends DAOGenerico<FormaDePagamento> {
            
              ex.printStackTrace();
              transacao.rollback();
+             
              return null;
          }
     }
-    
     
 }
