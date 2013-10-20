@@ -4,9 +4,7 @@
  */
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DataAccess.ServicoDAO;
 import br.com.tcc.DomainModel.FormaDePagamento;
-import br.com.tcc.DomainModel.Servico;
 import javax.swing.JOptionPane;
 
 /**
