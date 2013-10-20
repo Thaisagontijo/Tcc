@@ -5,9 +5,7 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.FormaDePagamentoDAO;
-import br.com.tcc.DataAccess.ServicoDAO;
 import br.com.tcc.DomainModel.FormaDePagamento;
-import br.com.tcc.DomainModel.Servico;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -277,8 +275,8 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-           // frmCadastroFormaDePagamentoCadastroEdicao j = new frmCadastroFormaDePagamentoCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
-            //j.setVisible(rootPaneCheckingEnabled);
+            frmCadastroFormaDePagamentoCadastroEdicao j = new frmCadastroFormaDePagamentoCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            j.setVisible(rootPaneCheckingEnabled);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
         }

@@ -5,6 +5,7 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.ServicoDAO;
+import br.com.tcc.DomainModel.FormaDePagamento;
 import br.com.tcc.DomainModel.Servico;
 import javax.swing.JOptionPane;
 
@@ -31,17 +32,14 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         
         if(cadastro ==  true){
             this.setTitle("CADASTRO DE SERVICO");
-            System.out.println("verdade");
+            //System.out.println("verdade");
         }else{
             this.setTitle("EDIÇÃO DE SERVICO");
-            System.out.println("false");
+            //System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
-            //txtDesconto.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getDescontoMaximo()));
-            //txtDescricao.setText(janelaPai.objSelecionadoNaTabela.getDescicao());
-            //txtDuracao.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getDuracaoAproximada()));
-            //txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
-            //txtValor.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getValor()));
+            txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
+            
             
         }
     }
@@ -57,73 +55,26 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
 
         painelNovoServico = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
-        lblValor = new javax.swing.JLabel();
-        lblDuracaoMaxima = new javax.swing.JLabel();
-        lblDescontoMaximo = new javax.swing.JLabel();
-        lblDescricao = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtDuracao = new javax.swing.JTextField();
-        txtValor = new javax.swing.JTextField();
-        txtDesconto = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtDescricao = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Serviço"));
+        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Forma de Pagamento"));
 
         lblNome.setText("Nome* :");
-
-        lblValor.setText("Valor* :");
-
-        lblDuracaoMaxima.setText("Duração Máxima* :");
-
-        lblDescontoMaximo.setText("Desconto Máximo* :");
-
-        lblDescricao.setText("Descrição* :");
-
-        txtValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorActionPerformed(evt);
-            }
-        });
-
-        txtDescricao.setColumns(20);
-        txtDescricao.setRows(5);
-        jScrollPane1.setViewportView(txtDescricao);
 
         javax.swing.GroupLayout painelNovoServicoLayout = new javax.swing.GroupLayout(painelNovoServico);
         painelNovoServico.setLayout(painelNovoServicoLayout);
         painelNovoServicoLayout.setHorizontalGroup(
             painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addComponent(lblDescricao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(lblValor))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                                .addComponent(lblDuracaoMaxima)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                                .addComponent(lblDescontoMaximo)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(lblNome)
+                .addGap(18, 18, 18)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         painelNovoServicoLayout.setVerticalGroup(
             painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,30 +82,8 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
                 .addContainerGap()
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(lblDuracaoMaxima)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblValor)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(lblDescontoMaximo))
-                            .addComponent(txtDesconto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(lblDescricao))
-                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jButton1.setText("Salvar");
@@ -175,87 +104,54 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(136, 136, 136)
+                .addComponent(jButton2)
+                .addGap(255, 255, 255))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jButton1)
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(29, 29, 29))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
                
         /*Botão salvar*/
         
-        if(txtDesconto.getText().isEmpty() || txtDescricao.getText().isEmpty() 
-               || txtDuracao.getText().isEmpty() || txtNome.getText().isEmpty() || txtValor.getText().isEmpty()){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos !");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o servico ",
+        if(txtNome.getText().isEmpty()){
+           JOptionPane.showMessageDialog(rootPane, "O Campo nome deve ser Preenchido !");
+       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar a Forma de Pagamento ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
-            Servico servico = new Servico();
-       //     janelaPai.dao = new ServicoDAO();
+                FormaDePagamento novaForma = new FormaDePagamento();
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
+                        
             
-            int ok =0; //variavel de validação
-            
-            servico.setDescicao(txtDescricao.getText());
-            
-            try{
-                servico.setDescontoMaximo(Integer.parseInt(txtDesconto.getText()));
-                ok++;
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
-            }
-            
-            
-            try{
-                servico.setDuracaoAproximada(Integer.parseInt(txtDuracao.getText()));
-                ok++;
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Duração Inválida !");
-            }
-            
-            try{
-                servico.setValor(Float.parseFloat(txtValor.getText()));
-                ok++;
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Valor Inválida !");
-            }
-            
-            servico.setNome(txtNome.getText());
-            
-            if(ok == 3){//se a validacao está correta
+            novaForma.setNome(txtNome.getText());
+           
+           
 
-                if(janelaPai.dao.Salvar(null)){
+                if(janelaPai.dao.Salvar(novaForma)){
                     JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso !");
-                    txtDesconto.setText(""); txtDescricao.setText("");
-                    txtDuracao.setText(""); txtNome.setText(""); txtValor.setText("");
+                    txtNome.setText("");
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
                     janelaPai.preencheTabela();
@@ -264,7 +160,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o serviço !");
                 }
-            }
+           
        
        }
   
@@ -279,17 +175,8 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblDescontoMaximo;
-    private javax.swing.JLabel lblDescricao;
-    private javax.swing.JLabel lblDuracaoMaxima;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblValor;
     private javax.swing.JPanel painelNovoServico;
-    private javax.swing.JTextField txtDesconto;
-    private javax.swing.JTextArea txtDescricao;
-    private javax.swing.JTextField txtDuracao;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
