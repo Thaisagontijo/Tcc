@@ -290,7 +290,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             
             if(ok == 3){//se a validacao está correta
 
-                if(janelaPai.dao.Salvar(null)){
+                if(janelaPai.dao.Salvar(produto)){
                     JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso !");
                     txtQuantidade.setText(""); txtDescricao.setText("");
                     txtPrecoVenda.setText(""); txtNome.setText(""); txtPrecoCusto.setText("");
