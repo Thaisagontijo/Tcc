@@ -50,6 +50,7 @@ public class Fornecedor implements Serializable {
     private String enderecoComplemento;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
+    private Cidade enderecoCidade;
 
     public Long getId() {
         return id;
@@ -187,6 +188,15 @@ public class Fornecedor implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
+    public Cidade getEnderecoCidade() {
+        return enderecoCidade;
+    }
+
+    public void setEnderecoCidade(Cidade enderecoCidade) {
+        this.enderecoCidade = enderecoCidade;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 3;

@@ -90,6 +90,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemFormasDePagamentos);
 
         jMenuItemFornecedores.setText("Fornecedores");
+        jMenuItemFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFornecedoresActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemFornecedores);
 
         jMenuItemServicos.setText("Serviços");
@@ -179,6 +184,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frmProdutoLista janela = new frmProdutoLista(this, rootPaneCheckingEnabled);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemProdutosActionPerformed
+
+    private void jMenuItemFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFornecedoresActionPerformed
+        frmFornecedorLista janela = new frmFornecedorLista(this, rootPaneCheckingEnabled);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItemFornecedoresActionPerformed
 
     /**
      * @param args the command line arguments
