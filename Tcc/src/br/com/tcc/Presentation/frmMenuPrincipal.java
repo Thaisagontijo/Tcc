@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
 
@@ -33,11 +33,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         String formattedDate = formato.format(dataAtual); 
         
     
-        
-        
-        
-        
-        
     
     public frmMenuPrincipal() {
         
@@ -106,6 +101,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemServicos);
 
         jMenuItemProdutos.setText("Produtos");
+        jMenuItemProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemProdutosActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemProdutos);
 
         jMenuItem1.setText("Tipo de Produto");
@@ -174,6 +174,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frmTipoProdutoLista janela = new frmTipoProdutoLista(this, rootPaneCheckingEnabled);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItemProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProdutosActionPerformed
+        frmProdutoLista janela = new frmProdutoLista(this, rootPaneCheckingEnabled);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItemProdutosActionPerformed
 
     /**
      * @param args the command line arguments

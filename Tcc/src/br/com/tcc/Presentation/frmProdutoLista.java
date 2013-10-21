@@ -4,8 +4,8 @@
  */
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DataAccess.TipoProdutoDAO;
-import br.com.tcc.DomainModel.TipoProduto;
+import br.com.tcc.DataAccess.ProdutoDAO;
+import br.com.tcc.DomainModel.Produto;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -16,18 +16,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thaisa
  */
-public class frmTipoProdutoLista extends javax.swing.JDialog {
+public class frmProdutoLista extends javax.swing.JDialog {
 
     /**
      * Creates new form frmCadastroServicosLista
      */
-    public frmTipoProdutoLista(java.awt.Frame parent, boolean modal) {
+    public frmProdutoLista(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
         initComponents();
-       dao = new TipoProdutoDAO();
+       dao = new ProdutoDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Tipos de Produto");
+       this.setTitle("Lista de Produtos");
     }
     
     protected void preencheTabela(){
@@ -50,12 +50,18 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
         
         model.addColumn("ID");
         model.addColumn("NOME");
+        model.addColumn("PREÇO VENDA (R$)");
+        model.addColumn("PREÇO CUSTO (R$)");
+        model.addColumn("ESTOQUE (QTD) ");
+       
         
-        
-        for(TipoProduto s : lista){
+        for(Produto p : lista){
             Vector v = new Vector();
-            v.add(0,s.getId());
-            v.add(1,s.getNome());
+            v.add(0,p.getId());
+            v.add(1,p.getNome());
+            v.add(2,p.getPrecoVenda());
+            v.add(3,p.getPrecoCusto());
+            v.add(4,p.getQtdEstoque());
                    
             model.addRow(v);
         
@@ -89,7 +95,6 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista de Formas de Pagamento");
 
         painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos Cadastrados"));
 
@@ -220,9 +225,11 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-      frmTipoProdutoCadastroEdicao b = new frmTipoProdutoCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
+       frmCadastroProduto a = new frmCadastroProduto(null,rootPaneCheckingEnabled, this,true);
+       
         //JDialog a = new JDialog
-      b.setVisible(rootPaneCheckingEnabled);
+       a.setVisible(rootPaneCheckingEnabled);
+       
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void tblServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServicosMouseClicked
@@ -256,15 +263,15 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o Tipo de Produto ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir o Produto ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Tipo de Produto Apagado com sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Produto Apagado com sucesso !");
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o Tipo de Produto");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o Produto");
                 }
             }
          }else{
@@ -275,8 +282,9 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmTipoProdutoCadastroEdicao j = new frmTipoProdutoCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            frmCadastroProduto j = new frmCadastroProduto(null, rootPaneCheckingEnabled, this,false);
             j.setVisible(rootPaneCheckingEnabled);
+            
         }else{
             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
         }
@@ -296,7 +304,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
             
         }else if(cbxFiltro.getSelectedIndex() == 1){
             /* SE O FILTRO FOR POR ID*/
-            TipoProduto s = new TipoProduto();
+            Produto s = new Produto();
             try{
                 s.setId(Long.parseLong(txtFiltro.getText()));
                 lista.clear();
@@ -310,7 +318,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
            
         }else if(cbxFiltro.getSelectedIndex() == 2){
             /* SE NAO TIVER FILTRO FOR POR NOME*/
-            TipoProduto s = new TipoProduto();
+            Produto s = new Produto();
            try{
                 s.setNome(txtFiltro.getText());
                  lista.clear();
@@ -332,9 +340,9 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
      */
     
     private int idSelecionadoTabela;
-    protected List<TipoProduto> lista;
-    protected TipoProduto objSelecionadoNaTabela;
-    protected TipoProdutoDAO dao;
+    protected List<Produto> lista;
+    protected Produto objSelecionadoNaTabela;
+    protected ProdutoDAO dao;
     private int qtdCliques;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

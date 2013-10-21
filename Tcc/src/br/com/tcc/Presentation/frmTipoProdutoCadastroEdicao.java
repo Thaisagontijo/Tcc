@@ -59,7 +59,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Forma de Pagamento"));
+        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Tipo de Produto"));
 
         lblNome.setText("Nome* :");
 
