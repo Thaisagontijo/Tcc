@@ -49,7 +49,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
           * 
           */
          Cidade tmpCidade = new Cidade();
-         tmpCidade.setNome("Selecione");
+         tmpCidade.setNome("Selecione Um Estado");
         
         
          
@@ -65,7 +65,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
           * 
           * PREENCHE COMBOBOX DE CIDADES
           
-          */
+          
          for(Cidade c : listaCidades){
              cbxCidades.addItem(c);
          }
@@ -96,9 +96,19 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
             txtInscricaoMunicipal.setText(janelaPai.objSelecionadoNaTabela.getIncricaoMunicipal());
             txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
             txtRazaoSocial.setText(janelaPai.objSelecionadoNaTabela.getRazaoSocial());
-            
-            cbxCidades.setSelectedItem(janelaPai.objSelecionadoNaTabela.getEnderecoCidade());
+            txtRua.setText(janelaPai.objSelecionadoNaTabela.getEnderecoRua());
+            txtSite.setText(janelaPai.objSelecionadoNaTabela.getSite());
+            txtTelefone.setText(janelaPai.objSelecionadoNaTabela.getTelefone());
+            txtComplemento1.setText(janelaPai.objSelecionadoNaTabela.getEnderecoComplemento());
+            txtCnpj.setText(janelaPai.objSelecionadoNaTabela.getCnpj());
+            txtBairro.setText(janelaPai.objSelecionadoNaTabela.getEnderecoBairro());
+            txtNumero.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getEnderecoNumero()));
+            txtCep.setText(janelaPai.objSelecionadoNaTabela.getEnderecoCep());
+            txtEmail.setText(janelaPai.objSelecionadoNaTabela.getEmail());
             cbxEstados.setSelectedItem(listaEstados.getEstadoPorId(janelaPai.objSelecionadoNaTabela.getEnderecoCidade().getIdEstado()));
+            cbxCidades.setSelectedItem(janelaPai.objSelecionadoNaTabela.getEnderecoCidade());
+            
+            
            
            
             
@@ -294,6 +304,11 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         cbxCidades.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbxEstados.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxEstados.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxEstadosItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -368,10 +383,10 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
                                     .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1))
                                 .addGap(6, 6, 6)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblComplemento)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCep)
-                            .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblComplemento)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(txtComplemento1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -484,25 +499,10 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
             fornecedor.setRazaoSocial(txtRazaoSocial.getText());
             fornecedor.setSite(txtSite.getText());
             fornecedor.setTelefone(txtTelefone.getText());
-            
-            /*
-             
-             * falta pegar  vendedor e o tipo de produto
-             
-             */
-           // Fornecedor fornecedor;
-            /*
-            fornecedor = (Fornecedor) cbxVendedor.getSelectedItem();
-            
-            TipoProduto tipoProduto;
-            tipoProduto = (TipoProduto) cbxTipoProduto.getSelectedItem();
-            
-            produto.setFornecedor(fornecedor);
-            produto.setTipoProduto(tipoProduto);
-            */
-            if(ok == 3){//se a validacao está correta
+          
+            if(ok == 1){//se a validacao está correta
 
-                if(janelaPai.dao.Salvar(null)){
+                if(janelaPai.dao.Salvar(fornecedor)){
                     JOptionPane.showMessageDialog(rootPane, "Fornecedor Salvo com Sucesso !");
                     txtInscricaoEstadual.setText(""); txtObservacao.setText("");
                     txtInscricaoMunicipal.setText(""); txtNome.setText(""); txtRazaoSocial.setText("");
@@ -525,6 +525,20 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
          this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cbxEstadosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEstadosItemStateChanged
+       /*
+        * QUANDO MUDAR O ESTADO MUDAR TABEM AS CIDADES REFERENTES AO ESTADO
+        */
+        
+        estadoSelecionado = cbxEstados.getSelectedIndex();
+        
+        cbxCidades.removeAllItems();
+        for(Cidade c : listaCidades){
+             if(c.getIdEstado() == estadoSelecionado)
+                cbxCidades.addItem(c);
+         }
+    }//GEN-LAST:event_cbxEstadosItemStateChanged
+
     /*
      *  OUTRAS VARIAVEIS
      
@@ -533,6 +547,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
     List<Cidade> listaCidades;
     CidadeDAO daoCidade;
     Estado listaEstados;
+    int estadoSelecionado;
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

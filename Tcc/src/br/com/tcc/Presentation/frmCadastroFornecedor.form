@@ -356,10 +356,10 @@
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblCep" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCep" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="lblComplemento" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -487,6 +487,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxEstadosItemStateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
