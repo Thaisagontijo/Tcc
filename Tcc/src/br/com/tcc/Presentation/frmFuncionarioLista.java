@@ -4,8 +4,8 @@
  */
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DataAccess.TipoProdutoDAO;
-import br.com.tcc.DomainModel.TipoProduto;
+import br.com.tcc.DataAccess.FuncionarioDAO;
+import br.com.tcc.DomainModel.Funcionario;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -16,18 +16,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thaisa
  */
-public class frmTipoProdutoLista extends javax.swing.JDialog {
+public class frmFuncionarioLista extends javax.swing.JDialog {
 
     /**
      * Creates new form frmCadastroServicosLista
      */
-    public frmTipoProdutoLista(java.awt.Frame parent, boolean modal) {
+    public frmFuncionarioLista(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
         initComponents();
-       dao = new TipoProdutoDAO();
+       dao = new FuncionarioDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Tipos de Produto");
+       this.setTitle("Lista de Funionários");
     }
     
     protected void preencheTabela(){
@@ -50,19 +50,25 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
         
         model.addColumn("ID");
         model.addColumn("NOME");
+        model.addColumn("CPF");
+        model.addColumn("RG");
+        model.addColumn("DATA DE NASCIMENTO");
+       
         
-        
-        for(TipoProduto s : lista){
+        for(Funcionario p : lista){
             Vector v = new Vector();
-            v.add(0,s.getId());
-            v.add(1,s.getNome());
+            v.add(0,p.getId());
+            v.add(1,p.getNome());
+            v.add(2,p.getCpf());
+            v.add(3,p.getRg());
+            v.add(4,p.getDataNascimento());
                    
             model.addRow(v);
         
         }
         
-        tblServicos.setModel(model);
-        tblServicos.repaint();
+        tblFuncionario.setModel(model);
+        tblFuncionario.repaint();
         
 
     }
@@ -78,7 +84,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
 
         painelServicosCadastrados = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblServicos = new javax.swing.JTable();
+        tblFuncionario = new javax.swing.JTable();
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -89,11 +95,10 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista de Formas de Pagamento");
 
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos Cadastrados"));
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Funcionários Cadastrados"));
 
-        tblServicos.setModel(new javax.swing.table.DefaultTableModel(
+        tblFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -101,12 +106,12 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
 
             }
         ));
-        tblServicos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblServicosMouseClicked(evt);
+                tblFuncionarioMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tblServicos);
+        jScrollPane2.setViewportView(tblFuncionario);
 
         javax.swing.GroupLayout painelServicosCadastradosLayout = new javax.swing.GroupLayout(painelServicosCadastrados);
         painelServicosCadastrados.setLayout(painelServicosCadastradosLayout);
@@ -220,12 +225,14 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-      frmTipoProdutoCadastroEdicao b = new frmTipoProdutoCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
+        frmCadastroFuncionario a = new frmCadastroFuncionario(null,rootPaneCheckingEnabled, this,true);
+       
         //JDialog a = new JDialog
-      b.setVisible(rootPaneCheckingEnabled);
+       a.setVisible(rootPaneCheckingEnabled);
+       
     }//GEN-LAST:event_btnNovoActionPerformed
 
-    private void tblServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServicosMouseClicked
+    private void tblFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFuncionarioMouseClicked
         
         /*
          * PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
@@ -234,7 +241,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
       //  tblServicos.isCellEditable(tblServicos.getSelectedRow(), tblServicos.getSelectedColumn());
         
         
-        if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
+        if(idSelecionadoTabela == tblFuncionario.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
                 JOptionPane.showMessageDialog(rootPane, "chama a descricao");
@@ -244,27 +251,27 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
             qtdCliques= 1;
         }
         
-        idSelecionadoTabela = tblServicos.getSelectedRow();
+        idSelecionadoTabela = tblFuncionario.getSelectedRow();
         objSelecionadoNaTabela = lista.get(idSelecionadoTabela);
         
         //JOptionPane.showMessageDialog(rootPane,objSelecionadoNaTabela.getNome());
         
         
         
-    }//GEN-LAST:event_tblServicosMouseClicked
+    }//GEN-LAST:event_tblFuncionarioMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o Tipo de Produto ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir o Funcionário ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Tipo de Produto Apagado com sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Funcionário Apagado com sucesso !");
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o Tipo de Produto");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o Funcionário");
                 }
             }
          }else{
@@ -275,8 +282,9 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmTipoProdutoCadastroEdicao j = new frmTipoProdutoCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            frmCadastroFuncionario j = new frmCadastroFuncionario(null, rootPaneCheckingEnabled, this,false);
             j.setVisible(rootPaneCheckingEnabled);
+            
         }else{
             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
         }
@@ -296,7 +304,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
             
         }else if(cbxFiltro.getSelectedIndex() == 1){
             /* SE O FILTRO FOR POR ID*/
-            TipoProduto s = new TipoProduto();
+            Funcionario s = new Funcionario();
             try{
                 s.setId(Long.parseLong(txtFiltro.getText()));
                 lista.clear();
@@ -310,7 +318,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
            
         }else if(cbxFiltro.getSelectedIndex() == 2){
             /* SE NAO TIVER FILTRO FOR POR NOME*/
-            TipoProduto s = new TipoProduto();
+            Funcionario s = new Funcionario();
            try{
                 s.setNome(txtFiltro.getText());
                  lista.clear();
@@ -332,9 +340,9 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
      */
     
     private int idSelecionadoTabela;
-    protected List<TipoProduto> lista;
-    protected TipoProduto objSelecionadoNaTabela;
-    protected TipoProdutoDAO dao;
+    protected List<Funcionario> lista;
+    protected Funcionario objSelecionadoNaTabela;
+    protected FuncionarioDAO dao;
     private int qtdCliques;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -347,7 +355,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFiltro;
     private javax.swing.JPanel painelServicosCadastrados;
-    private javax.swing.JTable tblServicos;
+    private javax.swing.JTable tblFuncionario;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

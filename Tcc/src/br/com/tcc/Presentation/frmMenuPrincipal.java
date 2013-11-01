@@ -4,9 +4,18 @@
  */
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.AgendamentoDAO;
+import br.com.tcc.DomainModel.Agendamento;
+import br.com.tcc.DomainModel.Produto;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,11 +45,99 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     
     public frmMenuPrincipal() {
         
+        /*
+         
+         *  CARREGANDO OBJETOS AO INICIAR
+         * 
+         * 1) Tabela de agendamentos
+         * 2) Tabela de Caixa ou não
+         */
+        
+        daoAgendamento = new AgendamentoDAO();
+        listaAgendamentos = new LinkedList<>();
+        objetoAgendamentoSelecionadoNaTabela = new Agendamento();
+        tblAgenda = new JTable();
+        
+        
+        
+        /*
+         *  PREPARANDO OBJETOS PARA SER MOSTRADOS AO INICIAR O PROGRAMA
+         
+         */
+        
+        Agendamento tmpAgendamento = new Agendamento();
+        tmpAgendamento.setRealizado(false);
+        listaAgendamentos = daoAgendamento.Buscar(tmpAgendamento);
+        
+        /*
+         PREENCHENDO TABELA DE AGENDAMENTOS
+         
+         */
+        preencheTabelaAgendamentos();
+        
+        
+        
+        
         
         initComponents();
     
     }
 
+    
+    private void preencheTabelaAgendamentos(){
+    /*
+         
+         * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
+         * 
+         * http://www.guj.com.br/java/44193-jtable-nao-editavel
+         
+         */
+        
+        
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override  
+          public boolean isCellEditable(int row, int col){   
+                 return false;   
+          }   
+        };
+        
+        model.addColumn("ID");
+        model.addColumn("Funcionário Responsável");
+        model.addColumn("Cliente");
+        model.addColumn("Data");
+        
+       
+        
+        for(Agendamento p : listaAgendamentos){
+            Vector v = new Vector();
+            v.add(0,p.getId());
+            v.add(1,p.getFuncionario().getNome());
+            v.add(2,p.getCliente().getNome());
+            v.add(3,p.getDataHora());
+            
+                   
+            model.addRow(v);
+        
+        }
+        
+        tblAgenda.setModel(model);
+        tblAgenda.repaint();
+    
+    
+    
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +150,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTabbedPanelPrincipal = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAgenda = new javax.swing.JTable();
+        btnNovoAgendamento = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -73,15 +173,53 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jTabbedPanelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
 
+        tblAgenda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblAgenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAgendaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblAgenda);
+
+        btnNovoAgendamento.setText("Novo ");
+        btnNovoAgendamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoAgendamentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addComponent(btnNovoAgendamento)
+                .addGap(139, 139, 139))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(btnNovoAgendamento)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPanelPrincipal.addTab("Agenda", jPanel1);
@@ -110,6 +248,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemClientes);
 
         jMenuItemFuncionarios.setText("Funcionários");
+        jMenuItemFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFuncionariosActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemFuncionarios);
 
         jMenuItemFormasDePagamentos.setText("Formas de Pagamento");
@@ -187,10 +330,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(192, 192, 192)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPanelPrincipal)
+                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -198,7 +341,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
-        frmCadastroFuncionario teste = new  frmCadastroFuncionario(this, rootPaneCheckingEnabled);
+        frmFuncionarioLista teste = new  frmFuncionarioLista(this, rootPaneCheckingEnabled);
         teste.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
@@ -226,6 +369,42 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frmFornecedorLista janela = new frmFornecedorLista(this, rootPaneCheckingEnabled);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemFornecedoresActionPerformed
+
+    private void tblAgendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAgendaMouseClicked
+       
+        /*
+         * PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
+         
+         */
+      //  tblServicos.isCellEditable(tblServicos.getSelectedRow(), tblServicos.getSelectedColumn());
+        
+        
+        if(idItemAgendaSelecionado == tblAgenda.getSelectedRow()){ //se está clicando na mesma linha
+            qtdCliques++;
+            if(qtdCliques == 2){
+                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                qtdCliques =0;
+            }
+        }else {
+            qtdCliques= 1;
+        }
+        
+        idItemAgendaSelecionado = tblAgenda.getSelectedRow();
+        objetoAgendamentoSelecionadoNaTabela = listaAgendamentos.get(idItemAgendaSelecionado);
+        
+        //JOptionPane.showMessageDialog(rootPane,objSelecionadoNaTabela.getNome());
+        
+        
+    }//GEN-LAST:event_tblAgendaMouseClicked
+
+    private void btnNovoAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAgendamentoActionPerformed
+        frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, null, rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnNovoAgendamentoActionPerformed
+
+    private void jMenuItemFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFuncionariosActionPerformed
+        frmFuncionarioLista janela = new frmFuncionarioLista(this, rootPaneCheckingEnabled);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItemFuncionariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,7 +441,18 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    /*
+     *  OUTRAS VARIÁVEIS
+     */
+    
+    protected AgendamentoDAO daoAgendamento;
+    protected List<Agendamento> listaAgendamentos;
+    protected Agendamento objetoAgendamentoSelecionadoNaTabela;
+    protected int idItemAgendaSelecionado;
+    protected int qtdCliques;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNovoAgendamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -280,6 +470,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemServicos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
+    private javax.swing.JTable tblAgenda;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,6 +29,11 @@ public class Agendamento implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public Agendamento(){
+        dataHora = new Date();
+        realizado = false;
+        
+    }
 
     @ManyToOne // verifcar
     private Cliente cliente;
@@ -40,6 +45,16 @@ public class Agendamento implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataHora;
     private String Observacao;
+    private boolean realizado;
+
+    public boolean isRealizado() {
+        return realizado;
+    }
+
+    public void setRealizado(boolean realizado) {
+        this.realizado = realizado;
+    }
+    
     
     public void addServico(Servico s){
         if(!servicos.contains(s)){
