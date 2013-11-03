@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -45,6 +46,8 @@ public class Pessoa implements Serializable {
     private String enderecoBairro;
     private String enderecoComplemento;
     private String enderecoCep;
+    @ManyToOne
+    private Cidade enderecoCidade;
     private int sexo;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
