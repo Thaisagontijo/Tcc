@@ -151,6 +151,7 @@
           <Image iconType="3" name="/br/com/tcc/Presentation/icones/Novo.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Novo"/>
+        <Property name="toolTipText" type="java.lang.String" value="Novo Funcion&#xe1;rio"/>
       </Properties>
       <Events>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnNovoMouseExited"/>
@@ -170,6 +171,7 @@
           <Image iconType="3" name="/br/com/tcc/Presentation/icones/alterar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Alterar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Alterar dados do Funcion&#xe1;rio"/>
       </Properties>
       <Events>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAlterarMouseExited"/>
@@ -189,6 +191,7 @@
           <Image iconType="3" name="/br/com/tcc/Presentation/icones/excluir.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Excluir"/>
+        <Property name="toolTipText" type="java.lang.String" value="Excluir Funcion&#xe1;rio"/>
       </Properties>
       <Events>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnExcluirMouseExited"/>
@@ -254,6 +257,7 @@
           <Image iconType="3" name="/br/com/tcc/Presentation/icones/filtro.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Filtrar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Listar Funcion&#xe1;rios"/>
       </Properties>
       <Events>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFiltrarMouseExited"/>
