@@ -129,7 +129,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         );
 
         btnNovo.setBackground(new java.awt.Color(51, 51, 51));
-        btnNovo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovo.setText("Novo");
         btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -148,7 +148,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         });
 
         btnAlterar.setBackground(new java.awt.Color(51, 51, 51));
-        btnAlterar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -167,7 +167,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         });
 
         btnExcluir.setBackground(new java.awt.Color(51, 51, 51));
-        btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -186,7 +186,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         });
 
         btnSair.setBackground(new java.awt.Color(51, 51, 51));
-        btnSair.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
         btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -204,15 +204,15 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             }
         });
 
-        lblFiltro.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lblFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFiltro.setText("Filtro:");
 
-        cbxFiltro.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        cbxFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Id", "Nome" }));
         cbxFiltro.setToolTipText("Filtro");
 
         btnFiltrar.setBackground(new java.awt.Color(51, 51, 51));
-        btnFiltrar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFiltrar.setText("Filtrar");
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,8 +257,8 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addComponent(btnFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
+                            .addComponent(cbxFiltro)
+                            .addComponent(btnFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(lblFiltro)))
@@ -270,7 +270,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
                     .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
