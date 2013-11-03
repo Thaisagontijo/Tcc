@@ -131,7 +131,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         btnNovo.setBackground(new java.awt.Color(51, 51, 51));
         btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
-        btnNovo.setText("NOVO");
+        btnNovo.setText("Novo");
         btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnNovoMouseExited(evt);
