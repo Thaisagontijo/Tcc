@@ -130,7 +130,8 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
 
         btnNovo.setBackground(new java.awt.Color(51, 51, 51));
         btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnNovo.setText("Novo");
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
+        btnNovo.setText("NOVO");
         btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnNovoMouseExited(evt);
@@ -149,6 +150,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
 
         btnAlterar.setBackground(new java.awt.Color(51, 51, 51));
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -168,6 +170,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
 
         btnExcluir.setBackground(new java.awt.Color(51, 51, 51));
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -207,6 +210,8 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         lblFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFiltro.setText("Filtro:");
 
+        txtFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         cbxFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Id", "Nome" }));
         cbxFiltro.setToolTipText("Filtro");
@@ -214,6 +219,16 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         btnFiltrar.setBackground(new java.awt.Color(51, 51, 51));
         btnFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFiltrar.setText("Filtrar");
+        btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFiltrarMouseExited(evt);
+            }
+        });
+        btnFiltrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnFiltrarMouseMoved(evt);
+            }
+        });
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFiltrarActionPerformed(evt);
@@ -226,28 +241,28 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelServicosCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 47, Short.MAX_VALUE))
+                .addGap(0, 86, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95)
-                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(109, 109, 109)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104)
                         .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblFiltro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(131, Short.MAX_VALUE))
+                        .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,10 +330,10 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o serviço?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir a forma de pagamento cadastrada?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagemnto Apagada com sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagemnto excluída com sucesso!");
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
@@ -415,14 +430,24 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExcluirMouseExited
 
     private void btnSairMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseMoved
-         this.btnNovo.setBackground(Color.BLUE); 
+        this.btnNovo.setBackground(Color.BLUE); 
        this.btnNovo.setForeground(Color.white);
     }//GEN-LAST:event_btnSairMouseMoved
 
     private void btnSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseExited
-        this.btnNovo.setBackground(Color.gray); 
+       this.btnNovo.setBackground(Color.gray); 
        this.btnNovo.setForeground(Color.black);
     }//GEN-LAST:event_btnSairMouseExited
+
+    private void btnFiltrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseMoved
+       this.btnFiltrar.setBackground(Color.BLUE); 
+       this.btnFiltrar.setForeground(Color.white);
+    }//GEN-LAST:event_btnFiltrarMouseMoved
+
+    private void btnFiltrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseExited
+       this.btnFiltrar.setBackground(Color.gray); 
+       this.btnFiltrar.setForeground(Color.black);
+    }//GEN-LAST:event_btnFiltrarMouseExited
     
     /*
      
