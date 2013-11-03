@@ -10,6 +10,7 @@ import br.com.tcc.DataAccess.TipoProdutoDAO;
 import br.com.tcc.DomainModel.Fornecedor;
 import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.TipoProduto;
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -33,6 +34,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         
         initComponents();
         this.janelaPai = janelaPai;
+       
         
         
         listaFornecedores = new LinkedList<>();
@@ -129,68 +131,113 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         cbxVendedor = new javax.swing.JComboBox();
         cbxTipoProduto = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        painelNovoServico.setBackground(new java.awt.Color(255, 255, 255));
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Serviço"));
         painelNovoServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNome.setText("Nome* :");
-        painelNovoServico.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 41, -1, -1));
+        painelNovoServico.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 60, -1));
 
+        lblPrecoCusto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPrecoCusto.setText("Preço Custo* :");
-        painelNovoServico.add(lblPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 75, -1, -1));
+        painelNovoServico.add(lblPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
+        lblPrecoVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPrecoVenda.setText("Preço Venda* :");
-        painelNovoServico.add(lblPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 34, -1, -1));
+        painelNovoServico.add(lblPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
+        lblQuantidade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblQuantidade.setText("Quantidade* :");
-        painelNovoServico.add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+        painelNovoServico.add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
 
+        lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDescricao.setText("Descrição* :");
-        painelNovoServico.add(lblDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 200, -1, -1));
-        painelNovoServico.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 27, 362, 28));
-        painelNovoServico.add(txtPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 27, 180, 28));
+        painelNovoServico.add(lblDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
+        txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        painelNovoServico.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 650, 30));
+
+        txtPrecoVenda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        painelNovoServico.add(txtPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 100, 30));
+
+        txtPrecoCusto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPrecoCusto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecoCustoActionPerformed(evt);
             }
         });
-        painelNovoServico.add(txtPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 68, 189, 28));
-        painelNovoServico.add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 68, 180, 28));
+        painelNovoServico.add(txtPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 100, 30));
+
+        txtQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        painelNovoServico.add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 100, 30));
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
         jScrollPane1.setViewportView(txtDescricao);
 
-        painelNovoServico.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 148, 679, 131));
+        painelNovoServico.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 159, 650, 120));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Vendedor* :");
-        painelNovoServico.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 117, -1, -1));
+        painelNovoServico.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Tipo de Produto* :");
-        painelNovoServico.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
+        painelNovoServico.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
 
-        cbxVendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        painelNovoServico.add(cbxVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 114, 220, -1));
+        cbxVendedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxVendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o fornecedor", "Item 2", "Item 3", "Item 4" }));
+        painelNovoServico.add(cbxVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 170, 30));
 
-        cbxTipoProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        painelNovoServico.add(cbxTipoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 180, -1));
+        cbxTipoProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxTipoProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o tipo do produto", "Item 2", "Item 3", "Item 4" }));
+        painelNovoServico.add(cbxTipoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 200, 30));
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salva.png"))); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.setToolTipText("Salvar novo Serviço");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
+            }
+        });
+        btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseMoved(evt);
+            }
+        });
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setToolTipText("Cancelar cadastro de novo Serviço");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseExited(evt);
+            }
+        });
+        btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseMoved(evt);
+            }
+        });
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -201,25 +248,25 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jButton1)
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(29, 29, 29))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -229,7 +276,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoCustoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
       
                
         /*Botão salvar*/
@@ -307,11 +354,31 @@ public class frmCadastroProduto extends javax.swing.JDialog {
        }
   
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
          this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
+       this.btnCancelar.setBackground(Color.BLUE); 
+       this.btnCancelar.setForeground(Color.white);
+    }//GEN-LAST:event_btnCancelarMouseMoved
+
+    private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
+       this.btnCancelar.setBackground(Color.gray); 
+       this.btnCancelar.setForeground(Color.black);
+    }//GEN-LAST:event_btnCancelarMouseExited
+
+    private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved
+       this.btnSalvar.setBackground(Color.BLUE); 
+       this.btnSalvar.setForeground(Color.white);
+    }//GEN-LAST:event_btnSalvarMouseMoved
+
+    private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
+       this.btnSalvar.setBackground(Color.gray); 
+       this.btnSalvar.setForeground(Color.black);
+    }//GEN-LAST:event_btnSalvarMouseExited
 
     /*
      *  OUTRAS VARIAVEIS
@@ -324,10 +391,10 @@ public class frmCadastroProduto extends javax.swing.JDialog {
     TipoProdutoDAO daoTipoProdutos;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxTipoProduto;
     private javax.swing.JComboBox cbxVendedor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -132,6 +132,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnNovo.setText("Novo");
+        btnNovo.setToolTipText("Nova Forma de Pagamento");
         btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnNovoMouseExited(evt);
@@ -152,6 +153,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
+        btnAlterar.setToolTipText("Alterar Forma de Pagamento");
         btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAlterarMouseExited(evt);
@@ -172,6 +174,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.setToolTipText("Excluir Forma de Pagamento");
         btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnExcluirMouseExited(evt);
@@ -191,6 +194,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         btnSair.setBackground(new java.awt.Color(51, 51, 51));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
+        btnSair.setToolTipText("Fechar Formas de Pagamento");
         btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSairMouseExited(evt);

@@ -6,6 +6,7 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.ServicoDAO;
 import br.com.tcc.DomainModel.Servico;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -67,28 +68,41 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         txtDesconto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        painelNovoServico.setBackground(new java.awt.Color(255, 255, 255));
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Serviço"));
 
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNome.setText("Nome* :");
 
+        lblValor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblValor.setText("Valor* :");
 
+        lblDuracaoMaxima.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDuracaoMaxima.setText("Duração Máxima* :");
 
+        lblDescontoMaximo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDescontoMaximo.setText("Desconto Máximo* :");
 
+        lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDescricao.setText("Descrição* :");
 
+        txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtDuracao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtValorActionPerformed(evt);
             }
         });
+
+        txtDesconto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
@@ -99,75 +113,101 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         painelNovoServicoLayout.setHorizontalGroup(
             painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelNovoServicoLayout.createSequentialGroup()
                         .addComponent(lblDescricao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelNovoServicoLayout.createSequentialGroup()
+                        .addComponent(lblDuracaoMaxima)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDuracao)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblValor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtValor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblDescontoMaximo)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDesconto))
                     .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(lblValor))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                                .addComponent(lblDuracaoMaxima)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                                .addComponent(lblDescontoMaximo)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelNovoServicoLayout.setVerticalGroup(
             painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(lblDuracaoMaxima)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelNovoServicoLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblValor)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblValor)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(lblDescontoMaximo))
-                            .addComponent(txtDesconto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                                    .addGap(14, 14, 14)
+                                    .addComponent(lblDescontoMaximo))
+                                .addComponent(txtDesconto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblDuracaoMaxima)
+                                .addComponent(txtDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(lblDescricao))
-                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDescricao)
+                        .addGap(76, 76, 76))))
         );
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
+            }
+        });
+        btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseMoved(evt);
+            }
+        });
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseExited(evt);
+            }
+        });
+        btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseMoved(evt);
+            }
+        });
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -176,26 +216,25 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jButton1)
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(239, 239, 239))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -206,15 +245,15 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
       
                
         /*Botão salvar*/
         
         if(txtDesconto.getText().isEmpty() || txtDescricao.getText().isEmpty() 
                || txtDuracao.getText().isEmpty() || txtNome.getText().isEmpty() || txtValor.getText().isEmpty()){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos !");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o servico ",
+           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos!");
+       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o serviço?",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
             Servico servico = new Servico();
@@ -230,7 +269,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                 servico.setDescontoMaximo(Integer.parseInt(txtDesconto.getText()));
                 ok++;
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
+                JOptionPane.showMessageDialog(rootPane, "Desconto Inválido!");
             }
             
             
@@ -238,7 +277,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                 servico.setDuracaoAproximada(Integer.parseInt(txtDuracao.getText()));
                 ok++;
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Duração Inválida !");
+                JOptionPane.showMessageDialog(rootPane, "Duração Inválida!");
             }
             
             try{
@@ -269,16 +308,36 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
        }
   
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
          this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved
+       this.btnSalvar.setBackground(Color.BLUE); 
+       this.btnSalvar.setForeground(Color.white);
+    }//GEN-LAST:event_btnSalvarMouseMoved
+
+    private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
+        this.btnSalvar.setBackground(Color.gray); 
+        this.btnSalvar.setForeground(Color.black);
+    }//GEN-LAST:event_btnSalvarMouseExited
+
+    private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
+        this.btnCancelar.setBackground(Color.blue); 
+        this.btnCancelar.setForeground(Color.white);
+    }//GEN-LAST:event_btnCancelarMouseMoved
+
+    private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
+       this.btnSalvar.setBackground(Color.gray); 
+       this.btnSalvar.setForeground(Color.black);
+    }//GEN-LAST:event_btnCancelarMouseExited
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDescontoMaximo;
     private javax.swing.JLabel lblDescricao;
