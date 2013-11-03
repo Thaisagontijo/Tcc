@@ -224,6 +224,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         btnFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/filtro.png"))); // NOI18N
         btnFiltrar.setText("Filtrar");
+        btnFiltrar.setToolTipText("Listar Formas de Pagamento");
         btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnFiltrarMouseExited(evt);

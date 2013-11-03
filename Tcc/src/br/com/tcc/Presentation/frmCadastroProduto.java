@@ -201,7 +201,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
 
         btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salva.png"))); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.setToolTipText("Salvar novo Serviço");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {

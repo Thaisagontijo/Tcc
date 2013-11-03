@@ -269,6 +269,7 @@
           <Image iconType="3" name="/br/com/tcc/Presentation/icones/filtro.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Filtrar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Listar Formas de Pagamento"/>
       </Properties>
       <Events>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFiltrarMouseExited"/>
