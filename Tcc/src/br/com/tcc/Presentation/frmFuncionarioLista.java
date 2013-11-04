@@ -136,6 +136,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnNovo.setText("Novo");
+        btnNovo.setToolTipText("Novo Funcionário");
         btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnNovoMouseExited(evt);
@@ -156,6 +157,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
+        btnAlterar.setToolTipText("Alterar dados do Funcionário");
         btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAlterarMouseExited(evt);
@@ -176,6 +178,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.setToolTipText("Excluir Funcionário");
         btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnExcluirMouseExited(evt);
@@ -224,6 +227,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         btnFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/filtro.png"))); // NOI18N
         btnFiltrar.setText("Filtrar");
+        btnFiltrar.setToolTipText("Listar Funcionários");
         btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnFiltrarMouseExited(evt);
