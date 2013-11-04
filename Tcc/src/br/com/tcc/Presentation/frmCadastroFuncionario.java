@@ -4,11 +4,14 @@
  */
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DataAccess.FornecedorDAO;
+import br.com.tcc.DataAccess.CidadeDAO;
+import br.com.tcc.DataAccess.FuncionarioDAO;
 import br.com.tcc.DomainModel.Cidade;
-import br.com.tcc.DomainModel.Fornecedor;
+import br.com.tcc.DomainModel.Estado;
 import br.com.tcc.DomainModel.Funcionario;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +27,83 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
     public frmCadastroFuncionario(java.awt.Frame parent, boolean modal, frmFuncionarioLista janelaPai, boolean cadastro) {
         super(parent, modal);
         initComponents();
+        
+        this.janelaPai = janelaPai;
+        
+        listaCidades = new LinkedList<>();
+        listaEstados = new Estado();
+        daoCidade = new CidadeDAO();
+        
+        cbxCidade.removeAllItems();
+        cbxEstado.removeAllItems();
+        cbxSexo.removeAllItems();
+        
+        /*
+         
+         * SETAND VALORES PARA COMBOBOX
+         
+         */
+        
+         Cidade tmpCidade = new Cidade();
+         tmpCidade.setNome("Selecione Um Estado");
+        
+        
+         
+         cbxCidade.addItem(tmpCidade);
+         
+                   
+         listaCidades = daoCidade.ListarTodos();
+         
+         /*
+          * 
+          * PREENCHE COMBOBOX DE ESTADOS
+          
+          */
+         for(String f : listaEstados.getEstados()){
+             cbxEstado.addItem(f);
+         }
+         
+         /*
+          * 
+          * PREENCHE COMBOBOX DE SEXO
+          
+          */
+         
+         String [] tmpSexo = {"Selecione","Masculino","Feminino"};
+         for(String s : tmpSexo){
+             cbxSexo.addItem(s);
+         }
+         
+         
+         //continuar a parte de edicao
+         
+         if(cadastro){
+              this.setTitle("CADASTRO DE FUNCIONÁRIOS");
+         }else{
+              this.setTitle("EDIÇÃO DE FUNCIONÁRIOS");
+              
+              txtBairro.setText(janelaPai.objSelecionadoNaTabela.getEnderecoBairro());
+              txtCelular.setText(janelaPai.objSelecionadoNaTabela.getCelular());
+              txtCep.setText(janelaPai.objSelecionadoNaTabela.getEnderecoCep());
+              txtComplemento.setText(janelaPai.objSelecionadoNaTabela.getEnderecoComplemento());
+              txtCpf.setText(janelaPai.objSelecionadoNaTabela.getCpf());
+              txtData.setText(janelaPai.objSelecionadoNaTabela.getDataNascimento().toString());
+              txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
+              txtNumero.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getEnderecoNumero()));
+              txtRg.setText(janelaPai.objSelecionadoNaTabela.getRg());
+              txtRua.setText(janelaPai.objSelecionadoNaTabela.getEnderecoRua());
+              txtTelefone.setText(janelaPai.objSelecionadoNaTabela.getTelefone());
+              cbxEstado.setSelectedIndex(janelaPai.objSelecionadoNaTabela.getEnderecoCidade().getIdEstado());
+              cbxCidade.setSelectedItem(janelaPai.objSelecionadoNaTabela.getEnderecoCidade());
+              cbxSexo.setSelectedIndex(janelaPai.objSelecionadoNaTabela.getSexo());
+              
+              
+         }
+         
+         
+        
+        
+        
     }
 
     /**
@@ -130,13 +210,14 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblnome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDataNascimento)
-                    .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRg)
-                    .addComponent(txtData))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtData, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblDataNascimento)
+                        .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRg)))
                 .addContainerGap())
         );
 
@@ -157,6 +238,11 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         lblCidade.setText("Cidade*:");
 
         cbxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxEstado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxEstadoItemStateChanged(evt);
+            }
+        });
 
         cbxCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -306,7 +392,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                        
         /*Botão salvar*/
         
-        if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 1) || txtData.getText().isEmpty() || 
+        if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || txtData.getText().isEmpty() || 
                 txtCpf.getText().isEmpty() || txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
                 txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty()){
            JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos !");
@@ -314,7 +400,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
             Funcionario funcionario = new Funcionario();
-            //janelaPai.dao = new FornecedorDAO();
+           janelaPai.dao = new FuncionarioDAO();
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
             
@@ -332,34 +418,32 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
             funcionario.setNome(txtNome.getText());
             Date d = new Date();
             funcionario.setDataAdmissao(d);
+            funcionario.setObservacao(" ");
+            funcionario.setDataNascimento(d);//mudar
             
             funcionario.setEnderecoBairro(txtBairro.getText());
             funcionario.setEnderecoCep(txtCep.getText());
             funcionario.setEnderecoCidade((Cidade) cbxCidade.getSelectedItem());
-            fornecedor.setEnderecoComplemento(txtComplemento1.getText());
-            fornecedor.setEnderecoNumero(Integer.parseInt(txtNumero.getText()));
-            fornecedor.setEnderecoRua(txtRua.getText());
-            fornecedor.setIncricaoMunicipal(txtInscricaoMunicipal.getText());
-            fornecedor.setInscricaoEstadual(txtInscricaoEstadual.getText());
-            fornecedor.setNome(txtNome.getText());
-            fornecedor.setObservacoes(txtObservacao.getText());
-            fornecedor.setRazaoSocial(txtRazaoSocial.getText());
-            fornecedor.setSite(txtSite.getText());
-            fornecedor.setTelefone(txtTelefone.getText());
+            funcionario.setEnderecoComplemento(txtComplemento.getText());
+            funcionario.setCpf(txtCpf.getText());
+            funcionario.setRg(txtRg.getText());
+            funcionario.setSexo(cbxSexo.getSelectedIndex());
+            funcionario.setCelular(txtCelular.getText());
+            funcionario.setEnderecoRua(txtRua.getText());
+            funcionario.setTelefone(txtTelefone.getText());
+            
           
             if(ok == 1){//se a validacao está correta
 
-                if(janelaPai.dao.Salvar(fornecedor)){
-                    JOptionPane.showMessageDialog(rootPane, "Fornecedor Salvo com Sucesso !");
-                    txtInscricaoEstadual.setText(""); txtObservacao.setText("");
-                    txtInscricaoMunicipal.setText(""); txtNome.setText(""); txtRazaoSocial.setText("");
+                if(janelaPai.dao.Salvar(funcionario)){
+                    JOptionPane.showMessageDialog(rootPane, "Funcionário Salvo com Sucesso !");
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
                     janelaPai.preencheTabela();
                     this.dispose();
 
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Fornecedor !");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Funcionário !");
                 }
             }
        
@@ -367,8 +451,27 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void cbxEstadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEstadoItemStateChanged
+     /*
+        * QUANDO MUDAR O ESTADO MUDAR TABEM AS CIDADES REFERENTES AO ESTADO
+        */
+        
+        estadoSelecionado = cbxEstado.getSelectedIndex();
+        
+        cbxCidade.removeAllItems();
+        for(Cidade c : listaCidades){
+             if(c.getIdEstado() == estadoSelecionado)
+                cbxCidade.addItem(c);
+         }
+        
+        
+    }//GEN-LAST:event_cbxEstadoItemStateChanged
+
     
-    
+    private List<Cidade> listaCidades;
+    private CidadeDAO daoCidade;
+    private Estado listaEstados;
+    private int estadoSelecionado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;

@@ -32,6 +32,7 @@ public class Pessoa implements Serializable {
 
     public Pessoa() {
         dataNascimento = new Date();
+        enderecoCidade = new Cidade();
     }
     
  
@@ -163,6 +164,16 @@ public class Pessoa implements Serializable {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+
+    public Cidade getEnderecoCidade() {
+        return enderecoCidade;
+    }
+
+    public void setEnderecoCidade(Cidade enderecoCidade) {
+        this.enderecoCidade = enderecoCidade;
+    }
+    
+    
 
     @Override
     public int hashCode() {

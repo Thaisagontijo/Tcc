@@ -114,13 +114,15 @@
                       <Component id="lblnome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtRg" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbxSexo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="lblRg" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtData" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRg" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbxSexo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="lblRg" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -328,6 +330,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxEstadoItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbxCidade">
           <Properties>

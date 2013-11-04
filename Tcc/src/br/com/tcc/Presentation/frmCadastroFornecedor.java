@@ -45,7 +45,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
          
          /*
           * 
-          * VALOR PADRAO DOS COMBOBOX
+          * SETANDO VALOR PADRAO DOS COMBOBOX
           * 
           */
          Cidade tmpCidade = new Cidade();
@@ -82,7 +82,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
          
          
          
-        if(cadastro ==  true){
+        if(cadastro){
             this.setTitle("CADASTRO DE FORNECEDORES");
            // System.out.println("verdade");
         }else{
