@@ -73,7 +73,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        painelNovoServico.setBackground(new java.awt.Color(255, 255, 255));
+        painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Serviço"));
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -171,11 +171,14 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                         .addGap(76, 76, 76))))
         );
 
-        btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setBackground(new java.awt.Color(239, 239, 239));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseExited(evt);
             }
@@ -191,11 +194,14 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
             }
         });
 
-        btnCancelar.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancelar.setBackground(new java.awt.Color(239, 239, 239));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseExited(evt);
             }
@@ -218,24 +224,24 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114)
+                .addGap(105, 105, 105)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(239, 239, 239))
+                .addGap(267, 267, 267))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -315,24 +321,34 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved
-       this.btnSalvar.setBackground(Color.BLUE); 
-       this.btnSalvar.setForeground(Color.white);
+      // this.btnSalvar.setBackground(Color.BLUE); 
+       //this.btnSalvar.setForeground(Color.white);
     }//GEN-LAST:event_btnSalvarMouseMoved
 
     private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
-        this.btnSalvar.setBackground(Color.gray); 
-        this.btnSalvar.setForeground(Color.black);
+         Color minhaCor = new Color(239,239,239);
+        this.btnSalvar.setBackground(minhaCor);
     }//GEN-LAST:event_btnSalvarMouseExited
 
     private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
-        this.btnCancelar.setBackground(Color.blue); 
-        this.btnCancelar.setForeground(Color.white);
+       // this.btnCancelar.setBackground(Color.blue); 
+        //this.btnCancelar.setForeground(Color.white);
     }//GEN-LAST:event_btnCancelarMouseMoved
 
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
-       this.btnSalvar.setBackground(Color.gray); 
-       this.btnSalvar.setForeground(Color.black);
+        Color minhaCor = new Color(239,239,239);
+        this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseExited
+
+    private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnSalvar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSalvarMouseEntered
+
+    private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnCancelar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnCancelarMouseEntered
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

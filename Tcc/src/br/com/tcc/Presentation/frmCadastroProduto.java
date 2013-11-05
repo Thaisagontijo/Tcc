@@ -136,7 +136,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        painelNovoServico.setBackground(new java.awt.Color(255, 255, 255));
+        painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Serviço"));
         painelNovoServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -199,12 +199,15 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         cbxTipoProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o tipo do produto", "Item 2", "Item 3", "Item 4" }));
         painelNovoServico.add(cbxTipoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 200, 30));
 
-        btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setBackground(new java.awt.Color(239, 239, 239));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.setToolTipText("Salvar novo Serviço");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseExited(evt);
             }
@@ -220,12 +223,15 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             }
         });
 
-        btnCancelar.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancelar.setBackground(new java.awt.Color(239, 239, 239));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setToolTipText("Cancelar cadastro de novo Serviço");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseExited(evt);
             }
@@ -251,9 +257,9 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
+                        .addGap(230, 230, 230)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 136, 136)
+                        .addGap(133, 133, 133)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -262,11 +268,11 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -361,24 +367,34 @@ public class frmCadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
-       this.btnCancelar.setBackground(Color.BLUE); 
-       this.btnCancelar.setForeground(Color.white);
+       //this.btnCancelar.setBackground(Color.BLUE); 
+       //this.btnCancelar.setForeground(Color.white);
     }//GEN-LAST:event_btnCancelarMouseMoved
 
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
-       this.btnCancelar.setBackground(Color.gray); 
-       this.btnCancelar.setForeground(Color.black);
+       Color minhaCor = new Color(239,239,239);
+       this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved
-       this.btnSalvar.setBackground(Color.BLUE); 
-       this.btnSalvar.setForeground(Color.white);
+     //  this.btnSalvar.setBackground(Color.BLUE); 
+       //this.btnSalvar.setForeground(Color.white);
     }//GEN-LAST:event_btnSalvarMouseMoved
 
     private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
-       this.btnSalvar.setBackground(Color.gray); 
-       this.btnSalvar.setForeground(Color.black);
+       Color minhaCor = new Color(239,239,239);
+       this.btnSalvar.setBackground(minhaCor);
     }//GEN-LAST:event_btnSalvarMouseExited
+
+    private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnSalvar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSalvarMouseEntered
+
+    private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
+         Color minhaCor = new Color(115,183,253);
+        this.btnCancelar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnCancelarMouseEntered
 
     /*
      *  OUTRAS VARIAVEIS

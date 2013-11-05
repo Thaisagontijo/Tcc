@@ -25,6 +25,9 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
     public frmCadastroFormaDePagamentoLista(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
+       Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
+        
         initComponents();
        dao = new FormaDePagamentoDAO();
        lista = new LinkedList<>();
@@ -92,8 +95,8 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Formas de Pagamento");
 
-        painelServicosCadastrados.setBackground(new java.awt.Color(255, 255, 255));
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Formas De Pagamento Cadastradas"));
+        painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formas de Pagamento Cadastradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 16), new java.awt.Color(228, 228, 228))); // NOI18N
         painelServicosCadastrados.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         tblServicos.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,6 +107,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
 
             }
         ));
+        tblServicos.setGridColor(new java.awt.Color(255, 0, 51));
         tblServicos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblServicosMouseClicked(evt);
@@ -118,7 +122,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             .addGroup(painelServicosCadastradosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelServicosCadastradosLayout.setVerticalGroup(
             painelServicosCadastradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,12 +132,15 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        btnNovo.setBackground(new java.awt.Color(51, 51, 51));
+        btnNovo.setBackground(new java.awt.Color(239, 239, 239));
         btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnNovo.setText("Novo");
         btnNovo.setToolTipText("Nova Forma de Pagamento");
         btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNovoMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnNovoMouseExited(evt);
             }
@@ -149,12 +156,15 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             }
         });
 
-        btnAlterar.setBackground(new java.awt.Color(51, 51, 51));
+        btnAlterar.setBackground(new java.awt.Color(239, 239, 239));
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setToolTipText("Alterar Forma de Pagamento");
         btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAlterarMouseExited(evt);
             }
@@ -170,12 +180,15 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             }
         });
 
-        btnExcluir.setBackground(new java.awt.Color(51, 51, 51));
+        btnExcluir.setBackground(new java.awt.Color(239, 239, 239));
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setToolTipText("Excluir Forma de Pagamento");
         btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExcluirMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnExcluirMouseExited(evt);
             }
@@ -191,11 +204,14 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             }
         });
 
-        btnSair.setBackground(new java.awt.Color(51, 51, 51));
+        btnSair.setBackground(new java.awt.Color(239, 239, 239));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
         btnSair.setToolTipText("Fechar Formas de Pagamento");
         btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSairMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSairMouseExited(evt);
             }
@@ -211,21 +227,25 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             }
         });
 
+        lblFiltro.setBackground(new java.awt.Color(0, 0, 0));
         lblFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFiltro.setText("Filtro:");
 
         txtFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         cbxFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Id", "Nome" }));
+        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nenhum", "Id", "Nome" }));
         cbxFiltro.setToolTipText("Filtro");
 
-        btnFiltrar.setBackground(new java.awt.Color(51, 51, 51));
+        btnFiltrar.setBackground(new java.awt.Color(239, 239, 239));
         btnFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/filtro.png"))); // NOI18N
         btnFiltrar.setText("Filtrar");
         btnFiltrar.setToolTipText("Listar Formas de Pagamento");
         btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFiltrarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnFiltrarMouseExited(evt);
             }
@@ -246,9 +266,6 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(painelServicosCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 86, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
@@ -260,38 +277,37 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
                         .addGap(104, 104, 104)
                         .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(27, 27, 27)
                         .addComponent(lblFiltro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(painelServicosCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxFiltro)
-                            .addComponent(btnFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(lblFiltro)))
-                .addGap(26, 26, 26)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFiltro)
+                    .addComponent(btnFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFiltro))
+                .addGap(29, 29, 29)
                 .addComponent(painelServicosCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -403,57 +419,82 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
             
         }
     }//GEN-LAST:event_btnFiltrarActionPerformed
-
+    
     private void btnNovoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoMouseMoved
-           this.btnNovo.setBackground(Color.BLUE); 
-           this.btnNovo.setForeground(Color.white); 
+//           this.btnNovo.setBackground(Color.BLUE); 
+  //         this.btnNovo.setForeground(Color.white); 
 
     }//GEN-LAST:event_btnNovoMouseMoved
 
     private void btnNovoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoMouseExited
-         this.btnNovo.setBackground(Color.gray); 
-         this.btnNovo.setForeground(Color.black); 
+        Color minhaCor = new Color(239,239,239);
+        this.btnNovo.setBackground(minhaCor); 
     }//GEN-LAST:event_btnNovoMouseExited
 
     private void btnAlterarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseMoved
-       this.btnNovo.setBackground(Color.BLUE); 
-       this.btnNovo.setForeground(Color.white);
+    //   this.btnNovo.setBackground(Color.BLUE); 
+      // this.btnNovo.setForeground(Color.white);
     }//GEN-LAST:event_btnAlterarMouseMoved
 
     private void btnAlterarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseExited
-        this.btnNovo.setBackground(Color.gray); 
-        this.btnNovo.setForeground(Color.black);
+        Color minhaCor = new Color(239,239,239);
+        this.btnAlterar.setBackground(minhaCor);
     }//GEN-LAST:event_btnAlterarMouseExited
 
     private void btnExcluirMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseMoved
-        this.btnNovo.setBackground(Color.BLUE); 
-       this.btnNovo.setForeground(Color.white);
+        //this.btnNovo.setBackground(Color.BLUE); 
+       //this.btnNovo.setForeground(Color.white);
     }//GEN-LAST:event_btnExcluirMouseMoved
 
     private void btnExcluirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseExited
-         this.btnNovo.setBackground(Color.gray); 
-       this.btnNovo.setForeground(Color.black);
+        Color minhaCor = new Color(239,239,239);
+        this.btnExcluir.setBackground(minhaCor);
     }//GEN-LAST:event_btnExcluirMouseExited
 
     private void btnSairMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseMoved
-        this.btnNovo.setBackground(Color.BLUE); 
-       this.btnNovo.setForeground(Color.white);
+        //this.btnNovo.setBackground(Color.BLUE); 
+       //this.btnNovo.setForeground(Color.white);
     }//GEN-LAST:event_btnSairMouseMoved
 
     private void btnSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseExited
-       this.btnNovo.setBackground(Color.gray); 
-       this.btnNovo.setForeground(Color.black);
+        Color minhaCor = new Color(239,239,239);
+        this.btnSair.setBackground(minhaCor);
     }//GEN-LAST:event_btnSairMouseExited
 
     private void btnFiltrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseMoved
-       this.btnFiltrar.setBackground(Color.BLUE); 
-       this.btnFiltrar.setForeground(Color.white);
+       //this.btnFiltrar.setBackground(Color.BLUE); 
+       //this.btnFiltrar.setForeground(Color.white);
     }//GEN-LAST:event_btnFiltrarMouseMoved
 
     private void btnFiltrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseExited
-       this.btnFiltrar.setBackground(Color.gray); 
-       this.btnFiltrar.setForeground(Color.black);
+        Color minhaCor = new Color(239,239,239);
+        this.btnFiltrar.setBackground(minhaCor);
     }//GEN-LAST:event_btnFiltrarMouseExited
+
+    private void btnNovoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnNovo.setBackground(minhaCor); 
+    }//GEN-LAST:event_btnNovoMouseEntered
+
+    private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnAlterar.setBackground(minhaCor); 
+    }//GEN-LAST:event_btnAlterarMouseEntered
+
+    private void btnExcluirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnExcluir.setBackground(minhaCor); 
+    }//GEN-LAST:event_btnExcluirMouseEntered
+
+    private void btnSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseEntered
+Color minhaCor = new Color(115,183,253);
+        this.btnSair.setBackground(minhaCor); 
+    }//GEN-LAST:event_btnSairMouseEntered
+
+    private void btnFiltrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnFiltrar.setBackground(minhaCor); 
+    }//GEN-LAST:event_btnFiltrarMouseEntered
     
     /*
      

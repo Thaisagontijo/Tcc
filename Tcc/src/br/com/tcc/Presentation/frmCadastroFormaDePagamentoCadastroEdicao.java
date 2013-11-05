@@ -25,15 +25,17 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
     public frmCadastroFormaDePagamentoCadastroEdicao(java.awt.Frame parent, boolean modal, frmCadastroFormaDePagamentoLista janelaPai, boolean cadastro) {
        super(parent, modal);
         
+       // Color minhaCor = new Color(230,235,241);
+      //  this.getContentPane().setBackground(minhaCor);
         initComponents();
         this.janelaPai = janelaPai;
        
         
         if(cadastro ==  true){
-            this.setTitle("CADASTRO DE SERVICO");
+            this.setTitle("CADASTRO DE FORMA DE PAGAMENTO");
             //System.out.println("verdade");
         }else{
-            this.setTitle("EDIÇÃO DE SERVICO");
+            this.setTitle("EDIÇÃO DE FORMA DE PAGAMENTO");
             //System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
@@ -59,8 +61,9 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setEnabled(false);
 
-        painelNovoServico.setBackground(new java.awt.Color(255, 255, 255));
+        painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Forma de Pagamento"));
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -89,11 +92,14 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setBackground(new java.awt.Color(239, 239, 239));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseExited(evt);
             }
@@ -109,11 +115,14 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
             }
         });
 
-        btnCancelar.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancelar.setBackground(new java.awt.Color(239, 239, 239));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseExited(evt);
             }
@@ -201,24 +210,34 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved
-       this.btnSalvar.setBackground(Color.BLUE); 
-       this.btnSalvar.setForeground(Color.white);
+       //this.btnSalvar.setBackground(Color.BLUE); 
+       //this.btnSalvar.setForeground(Color.white);
     }//GEN-LAST:event_btnSalvarMouseMoved
 
     private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
-        this.btnCancelar.setBackground(Color.BLUE); 
-        this.btnCancelar.setForeground(Color.white);
+        //this.btnCancelar.setBackground(Color.BLUE); 
+        //this.btnCancelar.setForeground(Color.white);
     }//GEN-LAST:event_btnCancelarMouseMoved
 
     private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
-         this.btnSalvar.setBackground(Color.gray); 
-         this.btnSalvar.setForeground(Color.black);
+         Color minhaCor = new Color(239,239,239);
+         this.btnSalvar.setBackground(minhaCor);
     }//GEN-LAST:event_btnSalvarMouseExited
 
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
-       this.btnCancelar.setBackground(Color.gray); 
-       this.btnCancelar.setForeground(Color.black);
+        Color minhaCor = new Color(239,239,239);
+        this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseExited
+
+    private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnSalvar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSalvarMouseEntered
+
+    private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnCancelar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnCancelarMouseEntered
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

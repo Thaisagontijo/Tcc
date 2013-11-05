@@ -7,6 +7,7 @@ package br.com.tcc.Presentation;
 import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Produto;
+import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form frmMenuPrincipal
      */
@@ -44,7 +46,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     
     
     public frmMenuPrincipal() {
-        
+    
+        this.getContentPane().setBackground(Color.WHITE);
         /*
          
          *  CARREGANDO OBJETOS AO INICIAR

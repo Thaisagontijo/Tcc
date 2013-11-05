@@ -4,6 +4,7 @@
  */
 package br.com.tcc.Presentation;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,7 +33,7 @@ public class frmLogin extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnlogar = new javax.swing.JButton();
         lblIconeCadeado = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
 
@@ -51,11 +52,20 @@ public class frmLogin extends javax.swing.JFrame {
         txtSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSenha.setToolTipText("Senha do Usuário");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Entrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnlogar.setBackground(new java.awt.Color(239, 239, 239));
+        btnlogar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnlogar.setText("Entrar");
+        btnlogar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnlogarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnlogarMouseExited(evt);
+            }
+        });
+        btnlogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnlogarActionPerformed(evt);
             }
         });
 
@@ -72,7 +82,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnlogar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(lblIconeCadeado)
@@ -111,18 +121,28 @@ public class frmLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblIconeCadeado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnlogar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnlogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogarActionPerformed
        if(txtUsuario.getText().isEmpty() && txtSenha.getText().isEmpty()){
            JOptionPane.showMessageDialog(rootPane, "Os Campos devem ser Preenchidos !");
        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnlogarActionPerformed
+
+    private void btnlogarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnlogar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnlogarMouseEntered
+
+    private void btnlogarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogarMouseExited
+       Color minhaCor = new Color(239,239,239);
+       this.btnlogar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnlogarMouseExited
 
     /**
      * @param args the command line arguments
@@ -159,7 +179,7 @@ public class frmLogin extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnlogar;
     private javax.swing.JLabel lblIconeCadeado;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTitulo;
