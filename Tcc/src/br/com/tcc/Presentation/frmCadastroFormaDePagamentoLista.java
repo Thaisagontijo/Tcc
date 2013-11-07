@@ -318,7 +318,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         /*Botão salvar*/
       frmCadastroFormaDePagamentoCadastroEdicao b = new frmCadastroFormaDePagamentoCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
         //JDialog a = new JDialog
-      b.setVisible(rootPaneCheckingEnabled);
+      b.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void tblServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServicosMouseClicked
