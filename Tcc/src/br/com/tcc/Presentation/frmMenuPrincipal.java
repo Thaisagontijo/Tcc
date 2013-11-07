@@ -48,6 +48,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     public frmMenuPrincipal() {
     
         this.getContentPane().setBackground(Color.WHITE);
+        //this.setLocationRelativeTo(null);
         /*
          
          *  CARREGANDO OBJETOS AO INICIAR
@@ -364,32 +365,38 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
-        frmFuncionarioLista teste = new  frmFuncionarioLista(this, rootPaneCheckingEnabled);
-        teste.setVisible(rootPaneCheckingEnabled);
+        frmClienteLista janela = new  frmClienteLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
     private void jMenuItemServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemServicosActionPerformed
         frmCadastroServicosLista janela = new frmCadastroServicosLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemServicosActionPerformed
 
     private void jMenuItemFormasDePagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormasDePagamentosActionPerformed
         frmCadastroFormaDePagamentoLista janela = new frmCadastroFormaDePagamentoLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemFormasDePagamentosActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         frmTipoProdutoLista janela = new frmTipoProdutoLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItemProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProdutosActionPerformed
         frmProdutoLista janela = new frmProdutoLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemProdutosActionPerformed
 
     private void jMenuItemFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFornecedoresActionPerformed
         frmFornecedorLista janela = new frmFornecedorLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemFornecedoresActionPerformed
 
@@ -426,6 +433,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFuncionariosActionPerformed
         frmFuncionarioLista janela = new frmFuncionarioLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemFuncionariosActionPerformed
 

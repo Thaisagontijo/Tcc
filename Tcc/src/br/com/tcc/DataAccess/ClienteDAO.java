@@ -16,7 +16,7 @@ import javax.persistence.Query;
  */
 public class ClienteDAO extends DAOGenerico<Cliente>{
     public ClienteDAO(){
-        super(ClienteDAO.class);
+        super(Cliente.class);
     }
     
     
