@@ -38,7 +38,7 @@ public class Agendamento implements Serializable {
     @ManyToOne // verifcar
     private Cliente cliente;
     @ManyToOne
-    private Funcionario funcionario;
+    private Funcionario funcionario;//funcionário q fez o agendamento
     
     @OneToMany
     private List<Servico> servicos;

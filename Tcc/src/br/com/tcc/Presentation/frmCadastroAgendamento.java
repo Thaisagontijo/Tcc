@@ -115,13 +115,12 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
     private void initComponents() {
 
         painelNovoServico = new javax.swing.JPanel();
-        lblNome = new javax.swing.JLabel();
-        lblPrecoCusto = new javax.swing.JLabel();
-        lblPrecoVenda = new javax.swing.JLabel();
+        lblServicos = new javax.swing.JLabel();
+        lblHora = new javax.swing.JLabel();
+        lblData = new javax.swing.JLabel();
         lblQuantidade = new javax.swing.JLabel();
         lblDescricao = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtPrecoVenda = new javax.swing.JTextField();
         txtPrecoCusto = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -130,56 +129,176 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         cbxCliente = new javax.swing.JComboBox();
         cbxTipoProduto = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblServicos = new javax.swing.JTable();
+        txtData = new javax.swing.JFormattedTextField();
+        txtHora = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Agendamento"));
-        painelNovoServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblNome.setText("Nome* :");
-        painelNovoServico.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        lblServicos.setText("Serviços* :");
 
-        lblPrecoCusto.setText("Preço Custo* :");
-        painelNovoServico.add(lblPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 75, -1, -1));
+        lblHora.setText("Hora *:");
 
-        lblPrecoVenda.setText("Preço Venda* :");
-        painelNovoServico.add(lblPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 34, -1, -1));
+        lblData.setText("Data *:");
 
         lblQuantidade.setText("Quantidade* :");
-        painelNovoServico.add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
 
         lblDescricao.setText("Descrição* :");
-        painelNovoServico.add(lblDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 200, -1, -1));
-        painelNovoServico.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 362, 28));
-        painelNovoServico.add(txtPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 27, 180, 28));
 
         txtPrecoCusto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecoCustoActionPerformed(evt);
             }
         });
-        painelNovoServico.add(txtPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 68, 189, 28));
-        painelNovoServico.add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 68, 180, 28));
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
         jScrollPane1.setViewportView(txtDescricao);
 
-        painelNovoServico.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 148, 679, 131));
-
         jLabel1.setText("Cliente* :");
-        painelNovoServico.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         jLabel2.setText("Tipo de Produto* :");
-        painelNovoServico.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
 
         cbxCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        painelNovoServico.add(cbxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 360, -1));
 
         cbxTipoProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        painelNovoServico.add(cbxTipoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 180, -1));
+
+        tblServicos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tblServicos);
+
+        try {
+            txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jButton3.setText("Adicionar");
+
+        jButton4.setText("Remover");
+
+        javax.swing.GroupLayout painelNovoServicoLayout = new javax.swing.GroupLayout(painelNovoServico);
+        painelNovoServico.setLayout(painelNovoServicoLayout);
+        painelNovoServicoLayout.setHorizontalGroup(
+            painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblData)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                                .addComponent(txtPrecoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(210, 210, 210)
+                                .addComponent(lblQuantidade))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                                .addComponent(lblDescricao)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel2)))
+                        .addGap(458, 458, 458)
+                        .addComponent(cbxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblServicos)
+                    .addComponent(lblHora))
+                .addGap(18, 18, 18)
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)))
+                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        painelNovoServicoLayout.setVerticalGroup(
+            painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblData)
+                            .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1)))
+                .addGap(8, 8, 8)
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(lblHora)
+                        .addGap(69, 69, 69)
+                        .addComponent(lblServicos))
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jButton3)
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton4)))))
+                .addGap(227, 227, 227)
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPrecoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(lblQuantidade))
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2))
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(cbxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
+                        .addComponent(lblDescricao)
+                        .addGap(70, 70, 70))))
+        );
 
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -208,15 +327,15 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 924, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelNovoServico, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -329,19 +448,24 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
     private javax.swing.JComboBox cbxTipoProduto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDescricao;
-    private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblPrecoCusto;
-    private javax.swing.JLabel lblPrecoVenda;
+    private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblQuantidade;
+    private javax.swing.JLabel lblServicos;
     private javax.swing.JPanel painelNovoServico;
+    private javax.swing.JTable tblServicos;
+    private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPrecoCusto;
-    private javax.swing.JTextField txtPrecoVenda;
     private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
 }
