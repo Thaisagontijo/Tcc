@@ -28,6 +28,10 @@ public class Cliente extends Pessoa implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
+    
+    public Cliente(){
+        this.dataCadastro = new Date();
+    }
 
     public Date getDataCadastro() {
         return dataCadastro;

@@ -5,8 +5,10 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.ClienteDAO;
+import br.com.tcc.DataAccess.FuncionarioDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Cliente;
+import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Servico;
 import java.util.Date;
 import java.util.LinkedList;
@@ -53,13 +55,13 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
           * VALOR PADRAO DOS COMBOBOX
           * 
           */
-         Cliente tmpCliente = new Cliente();
-         tmpCliente.setNome("Selecione");
+         //Cliente tmpCliente = new Cliente();
+         //tmpCliente.setNome("Selecione");
          
          
          
        
-        // cbxCliente.addItem(tmpCliente);
+        //cbxCliente.addItem(tmpCliente);
                  
                  
                  
@@ -71,7 +73,9 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
           * PREENCHE COMBOBOX DE FORNECEDORES
           
           */
-         for(Cliente f : listaClientes){
+         
+         FuncionarioDAO asdas = new FuncionarioDAO();
+         for(Cliente f : daoClientes.ListarTodos()){
              cbxCliente.addItem(f);
          }
          
@@ -383,7 +387,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(18, 18, 18)
-                            .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblData)
                             .addGap(18, 18, 18)
