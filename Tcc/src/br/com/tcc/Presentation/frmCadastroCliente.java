@@ -38,6 +38,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         cbxCidade.removeAllItems();
         cbxEstado.removeAllItems();
         cbxSexo.removeAllItems();
+        cbxDia.removeAllItems();
+        cbxMes.removeAllItems();
+        cbxAno.removeAllItems();
         
         /*
          
@@ -76,6 +79,63 @@ public class frmCadastroCliente extends javax.swing.JDialog {
          }
          
          
+          /*
+          * 
+          * PREENCHE COMBOBOX DE DIA
+          
+          */
+         
+          /*
+          * 
+          * PREENCHE COMBOBOX DO DIA
+          
+          */
+         cbxDia.addItem("Dia");
+         for(int i=1;i<32;i++){
+             String tmp;
+             if(i<=9){
+                tmp = "0"+i;
+             }else{
+                 tmp = String.valueOf(i);
+             }
+             cbxDia.addItem(tmp);
+         }
+         
+         
+         /*
+          * 
+          * PREENCHE COMBOBOX DO MES
+          
+          */
+         
+         cbxMes.addItem("Mês");
+         for(int i=1;i<13;i++){
+             String tmp;
+             if(i<=9){
+                tmp = "0"+i;
+             }else{
+                 tmp = String.valueOf(i);
+             }
+             cbxMes.addItem(tmp);
+         }
+         
+         
+         /*
+          * 
+          * PREENCHE COMBOBOX DO ANO
+          
+          */
+         
+         cbxAno.addItem("Ano");
+         Date tmpData = new Date();
+         int anoAtual = tmpData.getYear() + 1900;
+         for(int i=(anoAtual - 90) ;i<=anoAtual;i++){
+             cbxAno.addItem(i);
+         
+         }
+         
+         
+         
          //continuar a parte de edicao
          
          if(cadastro){
@@ -88,7 +148,11 @@ public class frmCadastroCliente extends javax.swing.JDialog {
               txtCep.setText(janelaPai.objSelecionadoNaTabela.getEnderecoCep());
               txtComplemento.setText(janelaPai.objSelecionadoNaTabela.getEnderecoComplemento());
               txtCpf.setText(janelaPai.objSelecionadoNaTabela.getCpf());
-              txtData.setText(janelaPai.objSelecionadoNaTabela.getDataNascimento().toString());
+              //txtData.setText(janelaPai.objSelecionadoNaTabela.getDataNascimento().toString());
+              cbxDia.setSelectedIndex((janelaPai.objSelecionadoNaTabela.getDataNascimento().getDate()) );
+              cbxMes.setSelectedIndex(((janelaPai.objSelecionadoNaTabela.getDataNascimento().getMonth()) + 1));
+              cbxAno.setSelectedItem((janelaPai.objSelecionadoNaTabela.getDataNascimento().getYear()) );
+              
               txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
               txtNumero.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getEnderecoNumero()));
               txtRg.setText(janelaPai.objSelecionadoNaTabela.getRg());
@@ -126,7 +190,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         txtCpf = new javax.swing.JTextField();
         txtRg = new javax.swing.JTextField();
         cbxSexo = new javax.swing.JComboBox();
-        txtData = new javax.swing.JFormattedTextField();
+        cbxDia = new javax.swing.JComboBox();
+        cbxMes = new javax.swing.JComboBox();
+        cbxAno = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -179,11 +245,11 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         cbxSexo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        try {
-            txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        cbxDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbxMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbxAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,23 +260,28 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                     .addComponent(lblnome)
                     .addComponent(lblRg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
+                        .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(lblDataNascimento))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblCpf)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblDataNascimento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblCpf)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxAno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,24 +293,21 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                     .addComponent(lblCpf)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblnome))
+                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDataNascimento)
-                            .addComponent(jLabel4)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblRg)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtData, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                                .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(23, 23, 23))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDataNascimento)
+                        .addComponent(cbxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRg)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(228, 228, 228));
@@ -456,7 +524,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(34, 34, 34)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,7 +532,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -474,8 +542,8 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                        
         /*Botão salvar*/
         
-        if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || txtData.getText().isEmpty() || 
-                txtCpf.getText().isEmpty() || txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
+        if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() ==0 ||
+               cbxAno.getSelectedIndex() == 0||  txtCpf.getText().isEmpty() || txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
                 txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty()){
            JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Funcionário? ",
@@ -498,10 +566,18 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             }
             
             Cliente.setNome(txtNome.getText());
-            Date d = new Date();
-            Cliente.setDataCadastro(d);
+            Date dataCadastro = new Date();
+            Date dataNascimento = new Date();
+            Cliente.setDataCadastro(dataCadastro);
             Cliente.setObservacao(" ");
-            Cliente.setDataNascimento(d);//mudar
+            
+            dataNascimento.setDate(Integer.parseInt((String)cbxDia.getSelectedItem()));
+            int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
+            mes--;
+            dataNascimento.setMonth(mes);
+            dataNascimento.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()));
+            
+            Cliente.setDataNascimento(dataNascimento);//mudar
             
             Cliente.setEnderecoBairro(txtBairro.getText());
             Cliente.setEnderecoCep(txtCep.getText());
@@ -577,8 +653,11 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox cbxAno;
     private javax.swing.JComboBox cbxCidade;
+    private javax.swing.JComboBox cbxDia;
     private javax.swing.JComboBox cbxEstado;
+    private javax.swing.JComboBox cbxMes;
     private javax.swing.JComboBox cbxSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -602,7 +681,6 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     private javax.swing.JTextField txtCep;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JTextField txtCpf;
-    private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtRg;

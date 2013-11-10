@@ -62,7 +62,9 @@ public class frmClienteLista extends javax.swing.JDialog {
             v.add(1,p.getNome());
             v.add(2,p.getCpf());
             v.add(3,p.getRg());
-            v.add(4,p.getDataNascimento());
+            String data = "";
+            data = p.getDataNascimento().getDate()+ "/"+(p.getDataNascimento().getMonth() +1)+"/"+p.getDataNascimento().getYear();
+            v.add(4,data);
                    
             model.addRow(v);
         

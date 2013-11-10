@@ -55,13 +55,13 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
           * VALOR PADRAO DOS COMBOBOX
           * 
           */
-         //Cliente tmpCliente = new Cliente();
-         //tmpCliente.setNome("Selecione");
+         Cliente tmpCliente = new Cliente();
+         tmpCliente.setNome("Selecione");
          
          
          
        
-        //cbxCliente.addItem(tmpCliente);
+        cbxCliente.addItem(tmpCliente);
                  
                  
                  
@@ -536,7 +536,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
 
-        if(cbxAno.getSelectedIndex() == 0  || cbxDia.getSelectedIndex() == 0 ||
+        if(cbxAno.getSelectedIndex() == 0  || cbxDia.getSelectedIndex() == 0 || cbxCliente.getSelectedIndex() ==0 ||
                 cbxHora.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0 || cbxMinuto.getSelectedIndex() == 0 || listaServicos.size() == 0){
             JOptionPane.showMessageDialog(rootPane, "Todos Os campos devem ser preenchidos!");
         
