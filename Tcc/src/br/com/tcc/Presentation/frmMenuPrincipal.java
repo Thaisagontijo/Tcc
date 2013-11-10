@@ -6,7 +6,7 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DomainModel.Agendamento;
-import br.com.tcc.DomainModel.Produto;
+import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,8 +45,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     
     
-    public frmMenuPrincipal() {
+    public frmMenuPrincipal(Usuario usuarioLogado) {
     
+        this.usuarioLogado = usuarioLogado;
         this.getContentPane().setBackground(Color.WHITE);
         //this.setLocationRelativeTo(null);
         /*
@@ -88,7 +89,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }
 
     
-    private void preencheTabelaAgendamentos(){
+    protected void preencheTabelaAgendamentos(){
     /*
          
          * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
@@ -428,7 +429,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tblAgendaMouseClicked
 
     private void btnNovoAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAgendamentoActionPerformed
-        frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, null, rootPaneCheckingEnabled);
+        frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, this, rootPaneCheckingEnabled);
+        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnNovoAgendamentoActionPerformed
 
     private void jMenuItemFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFuncionariosActionPerformed
@@ -437,46 +439,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemFuncionariosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmMenuPrincipal().setVisible(true);
-                   
-            }
-        });
-    }
-    
     /*
      *  OUTRAS VARIÁVEIS
      */
     
+    protected Usuario usuarioLogado;
     protected AgendamentoDAO daoAgendamento;
     protected List<Agendamento> listaAgendamentos;
     protected Agendamento objetoAgendamentoSelecionadoNaTabela;

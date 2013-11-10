@@ -4,6 +4,8 @@
  */
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.UsuarioDAO;
+import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -18,6 +20,8 @@ public class frmLogin extends javax.swing.JFrame {
      */
     public frmLogin() {
         initComponents();
+        dao = new UsuarioDAO();
+        usuario = new Usuario();
     }
 
     /**
@@ -131,6 +135,23 @@ public class frmLogin extends javax.swing.JFrame {
     private void btnlogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogarActionPerformed
        if(txtUsuario.getText().isEmpty() && txtSenha.getText().isEmpty()){
            JOptionPane.showMessageDialog(rootPane, "Os Campos devem ser Preenchidos !");
+       }else{
+           usuario.setNome(txtUsuario.getText());
+           usuario.setSenha(txtSenha.getText());
+           
+           Usuario autenticado = dao.Autenticar(usuario);
+           if(autenticado != null){
+               frmMenuPrincipal janela = new frmMenuPrincipal(autenticado);
+             
+               janela.setLocationRelativeTo(null);
+               janela.setVisible(rootPaneCheckingEnabled);
+               this.dispose();
+           }else{
+               JOptionPane.showMessageDialog(rootPane, "Usuario Inválido !");
+           }
+       
+       
+       
        }
     }//GEN-LAST:event_btnlogarActionPerformed
 
@@ -178,6 +199,9 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
     }
+    
+    UsuarioDAO dao;
+    Usuario usuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnlogar;
     private javax.swing.JLabel lblIconeCadeado;

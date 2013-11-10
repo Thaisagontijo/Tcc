@@ -4,6 +4,15 @@
  */
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.ServicoDAO;
+import br.com.tcc.DomainModel.Servico;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Modric
@@ -13,9 +22,64 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
     /**
      * Creates new form frmListaServicosParaAgenda
      */
-    public frmListaServicosParaAgenda(java.awt.Frame parent, boolean modal) {
+    public frmListaServicosParaAgenda(java.awt.Frame parent, boolean modal,frmCadastroAgendamento janelaPai) {
         super(parent, modal);
+        this.janelaPai = janelaPai;
+        dao = new ServicoDAO();
+        listaServicos = new LinkedList<>();
+        listaServicos= dao.ListarTodos();
+        tblServicos = new JTable();
+        
+        
+        
+        
+        
         initComponents();
+        preencheTabela();
+    }
+    
+    
+    protected void preencheTabela(){
+        
+        /*
+         
+         * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
+         * 
+         * http://www.guj.com.br/java/44193-jtable-nao-editavel
+         
+         */
+        
+        
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override  
+          public boolean isCellEditable(int row, int col){   
+                 return false;   
+          }   
+        };
+        
+        model.addColumn("ID");
+        model.addColumn("NOME");
+        model.addColumn("VALOR (R$)");
+        model.addColumn("DURAÇÃO MÁXIMA (Minutos)");
+        model.addColumn("DESCONTO MÁXIMO ");
+       
+        
+          for(Servico s : listaServicos){
+            Vector v = new Vector();
+            v.add(0,s.getId());
+            v.add(1,s.getNome());
+            v.add(2,s.getValor());
+            v.add(3,s.getDuracaoAproximada());
+            v.add(4,s.getDescontoMaximo() + "%");
+                   
+            model.addRow(v);
+        
+        }
+        
+        tblServicos.setModel(model);
+        tblServicos.repaint();
+        
+
     }
 
     /**
@@ -45,6 +109,11 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
 
             }
         ));
+        tblServicos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblServicosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblServicos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -65,6 +134,11 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
         );
 
         jButton1.setText("Adicionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,47 +167,49 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+    private void tblServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServicosMouseClicked
+   
+        /*
+         * PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
+         
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+      //  tblServicos.isCellEditable(tblServicos.getSelectedRow(), tblServicos.getSelectedColumn());
+        
+        
+        if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
+            qtdCliques++;
+            if(qtdCliques == 2){
+                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                qtdCliques =0;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmListaServicosParaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmListaServicosParaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmListaServicosParaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmListaServicosParaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }else {
+            qtdCliques= 1;
         }
-        //</editor-fold>
+        
+        idSelecionadoTabela = tblServicos.getSelectedRow();
+        objSelecionadoNaTabela = listaServicos.get(idSelecionadoTabela);
+        
+        //JOptionPane.showMessageDialog(rootPane,objSelecionadoNaTabela.getNome());
+                // TODO add your handling code here:
+    }//GEN-LAST:event_tblServicosMouseClicked
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                frmListaServicosParaAgenda dialog = new frmListaServicosParaAgenda(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(objSelecionadoNaTabela == null){
+            JOptionPane.showMessageDialog(rootPane,"Nenhum Servico selecionado !");
+        }else{
+            janelaPai.listaServicos.add(objSelecionadoNaTabela);
+            janelaPai.preencheTabela();
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private ServicoDAO dao;
+    private frmCadastroAgendamento janelaPai;
+    private List<Servico> listaServicos;
+    private int idSelecionadoTabela;
+    private int qtdCliques;
+    private Servico objSelecionadoNaTabela;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
