@@ -78,13 +78,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          PREENCHENDO TABELA DE AGENDAMENTOS
          
          */
-        preencheTabelaAgendamentos();
-        
-        
-        
-        
         
         initComponents();
+            preencheTabelaAgendamentos();
     
     }
 
@@ -109,7 +105,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         model.addColumn("ID");
         model.addColumn("Funcionário Responsável");
         model.addColumn("Cliente");
-        model.addColumn("Data");
+        model.addColumn("Data/Hora");
         
        
         
@@ -118,7 +114,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             v.add(0,p.getId());
             v.add(1,p.getFuncionario().getNome());
             v.add(2,p.getCliente().getNome());
-            v.add(3,p.getDataHora());
+            
+            String data = "";
+            data = p.getDataHora().getDate()+ "/"+ (p.getDataHora().getMonth() + 1) +"/"
+                    +p.getDataHora().getYear()+" às "+p.getDataHora().getHours()+":"+p.getDataHora().getMinutes();
+            v.add(3,data);
             
                    
             model.addRow(v);
@@ -209,8 +209,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(btnNovoAgendamento)
                 .addGap(139, 139, 139))
         );

@@ -42,7 +42,7 @@ public class Agendamento implements Serializable {
     
     @OneToMany
     private List<Servico> servicos;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataHora;
     private String Observacao;
     private boolean realizado;

@@ -5,11 +5,9 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.ClienteDAO;
-import br.com.tcc.DataAccess.TipoProdutoDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Servico;
-import br.com.tcc.DomainModel.TipoProduto;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,7 +59,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
          
          
        
-         cbxCliente.addItem(tmpCliente);
+        // cbxCliente.addItem(tmpCliente);
                  
                  
                  
@@ -77,7 +75,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
              cbxCliente.addItem(f);
          }
          
-         
+    //     cbxCliente.setSelectedIndex(1);//remover
          /*
           * 
           * PREENCHE COMBOBOX DE HORA
@@ -534,7 +532,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
 
-        if(cbxAno.getSelectedIndex() == 0 || cbxCliente.getSelectedIndex() == 0 || cbxDia.getSelectedIndex() == 0 ||
+        if(cbxAno.getSelectedIndex() == 0  || cbxDia.getSelectedIndex() == 0 ||
                 cbxHora.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0 || cbxMinuto.getSelectedIndex() == 0 || listaServicos.size() == 0){
             JOptionPane.showMessageDialog(rootPane, "Todos Os campos devem ser preenchidos!");
         
@@ -549,7 +547,11 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
             dataTmp.setDate(Integer.parseInt((String)cbxDia.getSelectedItem()));
             dataTmp.setHours(Integer.parseInt((String)cbxHora.getSelectedItem()));
             dataTmp.setMinutes(Integer.parseInt((String)cbxMinuto.getSelectedItem()));
-            dataTmp.setMonth(1+Integer.parseInt((String)cbxMes.getSelectedItem()));
+            
+            //JOptionPane.showMessageDialog(rootPane, cbxMes.getSelectedItem().toString());
+            int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
+            mes--;
+            dataTmp.setMonth(mes);
             dataTmp.setYear(Integer.parseInt((String)cbxAno.getSelectedItem()));
             
             agendamento.setDataHora(dataTmp);
@@ -557,7 +559,10 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
           //  agendamento.setRealizado(false);
             if(janelaPai.daoAgendamento.Salvar(agendamento)){
                 JOptionPane.showMessageDialog(rootPane, "Agendamento cadastrado com sucesso !");
+                //janelaPai.listaAgendamentos = janelaPai.daoAgendamento.Buscar(agendamento);
+                janelaPai.listaAgendamentos.add(agendamento);
                 janelaPai.preencheTabelaAgendamentos();
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar agendamento !");
             }

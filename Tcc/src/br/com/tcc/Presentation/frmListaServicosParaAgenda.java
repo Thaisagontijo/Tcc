@@ -122,15 +122,15 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jButton1.setText("Adicionar");
@@ -152,7 +152,7 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(338, 338, 338)
                         .addComponent(jButton1)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,6 +196,8 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(objSelecionadoNaTabela == null){
             JOptionPane.showMessageDialog(rootPane,"Nenhum Servico selecionado !");
+        }else if(janelaPai.listaServicos.contains(objSelecionadoNaTabela)){
+            JOptionPane.showMessageDialog(rootPane, "Serviço já adicionado !");
         }else{
             janelaPai.listaServicos.add(objSelecionadoNaTabela);
             janelaPai.preencheTabela();
