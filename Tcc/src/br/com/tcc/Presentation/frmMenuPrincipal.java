@@ -6,6 +6,9 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DomainModel.Agendamento;
+import br.com.tcc.DomainModel.Caixa;
+import br.com.tcc.DomainModel.Deposito;
+import br.com.tcc.DomainModel.Retirada;
 import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import java.text.DateFormat;
@@ -81,6 +84,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         initComponents();
             preencheTabelaAgendamentos();
+        btnDeposito.setVisible(false);
+        btnRetirada.setVisible(false);
+        btnSaldoCaixa.setVisible(false);
+        btnSaldoCaixaDetalhado.setVisible(false);
     
     }
 
@@ -159,6 +166,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         tblAgenda = new javax.swing.JTable();
         btnNovoAgendamento = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        btnAbrirCaixa = new javax.swing.JButton();
+        btnRetirada = new javax.swing.JButton();
+        btnDeposito = new javax.swing.JButton();
+        btnSaldoCaixa = new javax.swing.JButton();
+        btnSaldoCaixaDetalhado = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
@@ -229,15 +241,69 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jTabbedPanelPrincipal.addTab("Agenda", jPanel1);
 
+        btnAbrirCaixa.setText("Abrir Caixa");
+        btnAbrirCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirCaixaActionPerformed(evt);
+            }
+        });
+
+        btnRetirada.setText("Retirada");
+        btnRetirada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiradaActionPerformed(evt);
+            }
+        });
+
+        btnDeposito.setText("Depósito");
+        btnDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositoActionPerformed(evt);
+            }
+        });
+
+        btnSaldoCaixa.setText("Saldo do Caixa");
+        btnSaldoCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaldoCaixaActionPerformed(evt);
+            }
+        });
+
+        btnSaldoCaixaDetalhado.setText("Saldo Detalhado");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(349, 349, 349))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(311, 311, 311)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         jTabbedPanelPrincipal.addTab("Caixa", jPanel2);
@@ -439,6 +505,45 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemFuncionariosActionPerformed
 
+    private void btnAbrirCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirCaixaActionPerformed
+        
+        
+        try{
+        float entrada = Float.parseFloat(JOptionPane.showInputDialog("Informe a quantia em dinheiro disponivel no caixa"));
+        Deposito depositoEntrada = new Deposito();
+        depositoEntrada.setValor(entrada);
+        depositoEntrada.setFuncionario(usuarioLogado.getFuncionario());
+        depositoEntrada.setObservacao("Deposito inicial de abertura de caixa");
+        caixa = new Caixa();
+        caixa.addDeposito(depositoEntrada);
+        
+        btnDeposito.setVisible(true);
+        btnRetirada.setVisible(true);
+        btnSaldoCaixa.setVisible(true);
+        btnSaldoCaixaDetalhado.setVisible(true);
+        btnAbrirCaixa.setVisible(false);
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(rootPane, "Valor Invalido !");
+        }
+        
+    }//GEN-LAST:event_btnAbrirCaixaActionPerformed
+
+    private void btnSaldoCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoCaixaActionPerformed
+       JOptionPane.showMessageDialog(rootPane, "O saldo atual é: "+caixa.calcularTotalCaixa());
+    }//GEN-LAST:event_btnSaldoCaixaActionPerformed
+
+    private void btnRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiradaActionPerformed
+       frmRetiradaCaixa janela = new frmRetiradaCaixa(this, rootPaneCheckingEnabled, this);
+       janela.setLocationRelativeTo(null);
+       janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnRetiradaActionPerformed
+
+    private void btnDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositoActionPerformed
+       frmDepositoCaixa janela = new frmDepositoCaixa(this, rootPaneCheckingEnabled, this);
+       janela.setLocationRelativeTo(null);
+       janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnDepositoActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -449,8 +554,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     protected Agendamento objetoAgendamentoSelecionadoNaTabela;
     protected int idItemAgendaSelecionado;
     protected int qtdCliques;
+    protected Caixa caixa;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirCaixa;
+    private javax.swing.JButton btnDeposito;
     private javax.swing.JButton btnNovoAgendamento;
+    private javax.swing.JButton btnRetirada;
+    private javax.swing.JButton btnSaldoCaixa;
+    private javax.swing.JButton btnSaldoCaixaDetalhado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

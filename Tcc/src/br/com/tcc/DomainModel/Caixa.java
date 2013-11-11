@@ -158,12 +158,22 @@ public class Caixa implements Serializable {
            valor +=  d.getValor();
         }
         
-        //calculando valor das vendas
-       /* 
-        for(Venda v : vendas){
-            valor += v.g
+        for(Retirada r :retiradas){
+            valor -= r.getValor();
         }
-        */
+        
+        //calculando valor das vendas
+       
+        for(Venda v : vendas){
+            for(Produto p: v.getProdutos()){
+                valor+= p.getPrecoVenda() * p.getQtdVenda();
+            }
+            
+            for(Servico s: v.getServicos()){
+                valor+=s.getValor();
+            }
+        }
+       
         return valor;
     }
 
