@@ -317,7 +317,7 @@
                           <Component id="btnDeposito" max="32767" attributes="0"/>
                           <Component id="btnSaldoCaixaDetalhado" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="275" max="32767" attributes="0"/>
+                      <EmptySpace pref="287" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -376,8 +376,11 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnSaldoCaixaDetalhado">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Saldo Detalhado"/>
+                <Property name="text" type="java.lang.String" value="Extrato Caixa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaldoCaixaDetalhadoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

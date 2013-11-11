@@ -269,7 +269,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnSaldoCaixaDetalhado.setText("Saldo Detalhado");
+        btnSaldoCaixaDetalhado.setText("Extrato Caixa");
+        btnSaldoCaixaDetalhado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaldoCaixaDetalhadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -288,7 +293,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,6 +548,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
        janela.setLocationRelativeTo(null);
        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnDepositoActionPerformed
+
+    private void btnSaldoCaixaDetalhadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoCaixaDetalhadoActionPerformed
+        frmExtratoCaixa janela = new frmExtratoCaixa(this, rootPaneCheckingEnabled, this);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnSaldoCaixaDetalhadoActionPerformed
 
     /*
      *  OUTRAS VARIÁVEIS
