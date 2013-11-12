@@ -6,6 +6,7 @@ package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Usuario;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -24,7 +25,8 @@ public class UsuarioDAO extends DAOGenerico<Usuario>{
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Select s from Usuario s WHERE s.nome like '"+ u.getNome()+"' AND s.senha like '"+u.getSenha()+"'";
+            String consulta = "Select s from Usuario s WHERE s.nome like '"+ u.getNome()+"' AND s.senha like '"+u.getSenha()+"'"
+                    + " AND s.ativo = 1";
             
              Query query = manager.createQuery(consulta);
              
@@ -32,15 +34,14 @@ public class UsuarioDAO extends DAOGenerico<Usuario>{
              tmp =(Usuario) query.getSingleResult();
         
             
-        }catch(Exception ex){
-           ex.printStackTrace();
-           transacao.rollback();
-            return null;
+        }catch(Exception ex ){//coloacr 2 cath
+           
+            //ex.printStackTrace();
+            
+           //transacao.rollback();
+           return null;
+            
         }
-        
-        
-        
-        
         
         if(tmp == null){
             return null;

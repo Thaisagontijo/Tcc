@@ -22,6 +22,7 @@ public class frmLogin extends javax.swing.JFrame {
         initComponents();
         dao = new UsuarioDAO();
         usuario = new Usuario();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -147,7 +148,7 @@ public class frmLogin extends javax.swing.JFrame {
                janela.setVisible(rootPaneCheckingEnabled);
                this.dispose();
            }else{
-               JOptionPane.showMessageDialog(rootPane, "Usuario Inválido !");
+               JOptionPane.showMessageDialog(rootPane, "Login Incorreto !");
            }
        
        

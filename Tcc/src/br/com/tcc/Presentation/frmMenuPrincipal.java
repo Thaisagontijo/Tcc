@@ -287,6 +287,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -621,8 +623,25 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("jMenu6");
+        jMenu6.setText("Sistema");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jMenuItem2.setText("Sair");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem2);
+
+        jMenuItem3.setText("Sobre");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem3);
+
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -821,6 +840,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        this.dispose();
+        frmLogin janela = new frmLogin();
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "BeatuySystem Todos os direitos reservados");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -859,6 +889,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemFormasDePagamentos;
     private javax.swing.JMenuItem jMenuItemFornecedores;
