@@ -6,7 +6,6 @@ package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Usuario;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**

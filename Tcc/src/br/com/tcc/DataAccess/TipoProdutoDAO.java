@@ -48,44 +48,18 @@ public class TipoProdutoDAO extends DAOGenerico<TipoProduto>{
          EntityTransaction transacao = manager.getTransaction();
          try{
                 
-               String consulta = "Select s from TipoProduto s where s.ativo = 1";
-
-               // A parte where da consulta
-               String filtro = "";
-
-               // Guarda a lista de parâmetros da query
-               HashMap<String, Object> parametros = new HashMap<String, Object>();
-
-               // Verifica campo por campo os valores que serão filtrados
-               if (obj.getId() != null) {
-                   filtro = " s.id =:id";
-                   parametros.put("id", obj.getId());
-               }
-
-               if (obj.getNome()!= null) {
-                   if (filtro.length() > 0) {
-                       filtro = filtro + " and ";
-                   }
-                   filtro = " s.nome like :nome";
-                   parametros.put("nome", obj.getNome());
-               }
-
-
-               // Se houver filtros, coloca o "where" na consulta
-           //    if (filtro.length() > 0) {
-             //      consulta = consulta + " where " + filtro;
-               //}
-
+               String consulta = "";
+             if (obj.getId() != null) {
+                 consulta = "Select s from TipoProduto s Where s.ativo = 1 and s.id like '%" + obj.getId() + "%'";
+                 
+             }else if(obj.getNome() != null){
+                 consulta = "Select s from TipoProduto s Where s.ativo = 1 and s.nome like '%" + obj.getNome() + "%'";
+             }
                transacao.begin();
                // Cria a consulta no JPA
                Query query = manager.createQuery(consulta);
 
-               // Aplica os parâmetros da consulta
-               for (String par : parametros.keySet()) {
-                   query.setParameter(par, parametros.get(par));
-               }
-
-               // Executa a consulta
+               
                transacao.commit();
                return query.getResultList();
          }catch(Exception ex){
