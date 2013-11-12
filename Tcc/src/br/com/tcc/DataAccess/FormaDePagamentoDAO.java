@@ -27,7 +27,7 @@ public class FormaDePagamentoDAO extends DAOGenerico<FormaDePagamento> {
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Select s from FormaDePagamento s";
+            String consulta = "Select s from FormaDePagamento s where s.ativo= 1";
             
              Query query = manager.createQuery(consulta);
              
@@ -94,6 +94,26 @@ public class FormaDePagamentoDAO extends DAOGenerico<FormaDePagamento> {
              transacao.rollback();
              return null;
          }
+    }
+
+    @Override
+    public boolean Apagar(FormaDePagamento obj) {
+        EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Update FormaDePagamento s set s.ativo =0 WHERE s.id ="+obj.getId();
+            
+             Query query = manager.createQuery(consulta);
+             
+             transacao.commit();
+             return true;
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return false;
+        }
     }
     
     

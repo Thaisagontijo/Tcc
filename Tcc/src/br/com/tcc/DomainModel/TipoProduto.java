@@ -24,7 +24,22 @@ public class TipoProduto implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    public TipoProduto(){
+        this.ativo = true;
+    }
+    
     private String nome;
+    private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
 
     public Long getId() {
         return id;

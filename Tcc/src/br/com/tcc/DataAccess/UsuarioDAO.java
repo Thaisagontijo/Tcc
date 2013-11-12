@@ -51,4 +51,9 @@ public class UsuarioDAO extends DAOGenerico<Usuario>{
     
     
     }
+
+    @Override
+    public boolean Apagar(Usuario obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

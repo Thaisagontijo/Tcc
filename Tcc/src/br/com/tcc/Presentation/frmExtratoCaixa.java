@@ -4,7 +4,6 @@
  */
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.Retirada;
 import java.util.Vector;
@@ -12,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 public class frmExtratoCaixa extends javax.swing.JDialog {
 
@@ -50,6 +49,7 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
         
         model.addColumn("Data e Hora");
         model.addColumn("Descrição");
+        model.addColumn("Tipo");
         model.addColumn("Envolvido");
         model.addColumn("Valor");
         
@@ -62,8 +62,9 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
                     " - "+ p.getDataHora().getHours()+":"+p.getDataHora().getMinutes();
             v.add(0,data);
             v.add(1,p.getDescricao());
-            v.add(2,p.getFuncionario());
-            v.add(3,p.getValor());
+            v.add(2,"Retirada");
+            v.add(3,p.getFuncionario());
+            v.add(4,p.getValor());
                               
             model.addRow(v);
         
@@ -77,8 +78,9 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
                     " - "+ p.getDataHora().getHours()+":"+p.getDataHora().getMinutes();
             v.add(0,data);
             v.add(1,p.getObservacao());
-            v.add(2,p.getFuncionario());
-            v.add(3,p.getValor());
+            v.add(2,"Deposito");
+            v.add(3,p.getFuncionario());
+            v.add(4,p.getValor());
                               
             model.addRow(v);
         }

@@ -23,8 +23,13 @@ public class FormaDePagamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    public FormaDePagamento(){
+        this.ativo = true;
+    }
 
     private String nome;
+    private boolean ativo;
 
     public Long getId() {
         return id;
@@ -42,11 +47,20 @@ public class FormaDePagamento implements Serializable {
         this.nome = nome;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + Objects.hashCode(this.id);
-        hash = 19 * hash + Objects.hashCode(this.nome);
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.nome);
+        hash = 13 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -65,8 +79,13 @@ public class FormaDePagamento implements Serializable {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         return true;
     }
+
+    
 
     @Override
     public String toString() {

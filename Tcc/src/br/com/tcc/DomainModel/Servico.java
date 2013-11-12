@@ -24,11 +24,25 @@ public class Servico implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public Servico(){
+        this.ativo = true;
+    }
     private String nome;
     private int duracaoAproximada; // em minutos
     private int descontoMaximo; // em porcentagem
     private String descicao;
     private float valor;
+    private float comissao;
+    private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
 
     public Long getId() {
         return id;
@@ -78,6 +92,15 @@ public class Servico implements Serializable {
         this.valor = valor;
     }
 
+    public float getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(float comissao) {
+        this.comissao = comissao;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 7;

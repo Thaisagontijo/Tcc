@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 @Entity
 @Table(name="Retiradas")
@@ -30,10 +30,21 @@ public class Retirada implements Serializable {
      public Retirada(){
         dataHora = new Date();
         funcionario = new Funcionario();
+        this.ativo = true;
     }
 
    private String descricao;
    private float valor;
+   private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
    
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
    private Date dataHora;

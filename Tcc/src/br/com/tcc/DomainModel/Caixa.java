@@ -9,7 +9,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +43,7 @@ public class Caixa implements Serializable {
     
     
 
-    @OneToMany
+     @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Venda> vendas;
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -53,10 +55,10 @@ public class Caixa implements Serializable {
     @ManyToOne
     private Funcionario funcionario;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Deposito> depositos;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Retirada> retiradas;
 
     public Long getId() {

@@ -123,8 +123,30 @@ public class Venda implements Serializable {
     public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
     }
+    public void addServico(Servico s){
+        if(!servicos.contains(s)){
+            servicos.add(s);
+        }
+    }
+    
+    public void removeServico(Servico s){
+        if(servicos.contains(s)){
+            servicos.remove(s);
+        }
+    }
     
     
+    public void addProduto(Produto p){
+        if(!produtos.contains(p)){
+            produtos.add(p);
+        }
+    }
+    
+    public void removeProduto(Produto p){
+        if(produtos.contains(p)){
+            produtos.remove(p);
+        }
+    }
     /*
     public float valorTotalVenda(){
         float valor = 0;

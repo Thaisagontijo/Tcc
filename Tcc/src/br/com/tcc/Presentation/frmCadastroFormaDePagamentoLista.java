@@ -25,10 +25,9 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
     public frmCadastroFormaDePagamentoLista(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
-       Color minhaCor = new Color(239,239,239);
-        this.getContentPane().setBackground(minhaCor);
-        
         initComponents();
+        Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
        dao = new FormaDePagamentoDAO();
        lista = new LinkedList<>();
        this.setTitle("Lista de Formas de Pagamento");
@@ -318,7 +317,8 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         /*Botão salvar*/
       frmCadastroFormaDePagamentoCadastroEdicao b = new frmCadastroFormaDePagamentoCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
         //JDialog a = new JDialog
-      b.setVisible(true);
+      b.setLocationRelativeTo(null);
+      b.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void tblServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServicosMouseClicked

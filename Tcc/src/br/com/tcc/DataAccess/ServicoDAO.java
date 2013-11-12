@@ -94,6 +94,11 @@ public class ServicoDAO extends DAOGenerico<Servico>{
              return null;
          }
     }
+
+    @Override
+    public boolean Apagar(Servico obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

@@ -4,7 +4,6 @@
  */
 package br.com.tcc.DataAccess;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -14,7 +13,8 @@ import javax.persistence.Persistence;
  *
  * @author Thaisa
  */
-public class DAOGenerico<T> {
+public abstract class DAOGenerico<T> {
+    
     
     protected EntityManager manager;
     private EntityManagerFactory factory;
@@ -38,7 +38,7 @@ public class DAOGenerico<T> {
         //    manager.flush();
             return true;
         }catch (Exception ex){
-        System.out.println(ex.getMessage());
+      //  System.out.println(ex.getMessage());
         ex.printStackTrace();
         return false;
         }
@@ -62,7 +62,8 @@ public class DAOGenerico<T> {
         }
     }
     
-
+    public abstract boolean Apagar(T obj);
+/*
     public boolean Apagar(T obj) {
         EntityTransaction transacao = manager.getTransaction();
         try {
@@ -76,6 +77,6 @@ public class DAOGenerico<T> {
             return false;
         }
     }
-    
+  */  
 
 }

@@ -28,7 +28,7 @@ public class Produto implements Serializable {
     public Produto(){
         tipoProduto = new TipoProduto();
         fornecedor = new Fornecedor();
-        
+        ativo = true;
     }
     
     private String nome;
@@ -36,7 +36,7 @@ public class Produto implements Serializable {
     private float precoCusto;
     private float precoVenda;
     private int qtdEstoque;
-    
+        
    @ManyToOne
     private TipoProduto tipoProduto;
    
@@ -45,6 +45,17 @@ public class Produto implements Serializable {
     private Fornecedor fornecedor;
     
     private int qtdVenda;
+    
+    private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
 
     public Long getId() {
         return id;

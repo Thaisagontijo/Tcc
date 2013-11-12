@@ -97,4 +97,9 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
              return null;
          }
     }
+
+    @Override
+    public boolean Apagar(Funcionario obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -24,11 +24,16 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    public Usuario(){
+        this.ativo = true;
+    }
 
     private String nome;
     private String senha;
     @OneToOne
     private Funcionario funcionario;
+    private boolean ativo;
 
     public Long getId() {
         return id;
@@ -61,6 +66,16 @@ public class Usuario implements Serializable {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
 
     @Override
     public int hashCode() {

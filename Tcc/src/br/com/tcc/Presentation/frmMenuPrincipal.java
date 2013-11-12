@@ -5,11 +5,17 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.AgendamentoDAO;
+import br.com.tcc.DataAccess.CaixaDAO;
+import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Caixa;
+import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Deposito;
+import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Retirada;
+import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
+import br.com.tcc.DomainModel.Venda;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -68,6 +74,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         
         
+        
         /*
          *  PREPARANDO OBJETOS PARA SER MOSTRADOS AO INICIAR O PROGRAMA
          
@@ -77,17 +84,50 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         tmpAgendamento.setRealizado(false);
         listaAgendamentos = daoAgendamento.Buscar(tmpAgendamento);
         
+        
+        
+        initComponents();
+        
         /*
          PREENCHENDO TABELA DE AGENDAMENTOS
          
          */
         
-        initComponents();
-            preencheTabelaAgendamentos();
+        preencheTabelaAgendamentos();
+        
+        
         btnDeposito.setVisible(false);
         btnRetirada.setVisible(false);
         btnSaldoCaixa.setVisible(false);
         btnSaldoCaixaDetalhado.setVisible(false);
+        btnFecharCaixa.setVisible(false);
+        
+        /*
+         * PREPARANDO TELA DE VENDAS
+         
+         */
+        cbxCliente.removeAllItems();
+        Cliente clienteTmp = new Cliente();
+        clienteTmp.setNome("Selecione");
+        cbxCliente.addItem(clienteTmp);
+        daoCliente = new ClienteDAO();
+        for(Cliente c:daoCliente.ListarTodos()){
+            cbxCliente.addItem(c);
+        }
+        
+        
+        /*
+         * Ao iniciar o programa as vendas estão bloqueadas até q se inicie uma nova venda
+         
+         */
+        cbxCliente.setEnabled(false);
+        tblVendas.setEnabled(false);
+        btnIncluirItemVenda.setEnabled(false);
+        btnAlterarItemVenda.setEnabled(false);
+        btnExcluirItemVenda.setEnabled(false);
+        btnReceberValorVenda.setEnabled(false);
+        btnCancelarVenda.setEnabled(false);
+        lblCliente.setEnabled(false);
     
     }
 
@@ -110,9 +150,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         };
         
         model.addColumn("ID");
-        model.addColumn("Funcionário Responsável");
-        model.addColumn("Cliente");
-        model.addColumn("Data/Hora");
+        model.addColumn("FUNCIONÁRIO RESPONSÁVEL");
+        model.addColumn("CLIENTE");
+        model.addColumn("DATA/HORA");
         
        
         
@@ -135,10 +175,60 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         tblAgenda.setModel(model);
         tblAgenda.repaint();
     
+    }
     
     
-    
-    
+    protected void preencheTabelaVendas(){
+    /*
+         
+         * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
+         * 
+         * http://www.guj.com.br/java/44193-jtable-nao-editavel
+         
+         */
+        
+        
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override  
+          public boolean isCellEditable(int row, int col){   
+                 return false;   
+          }   
+        };
+        
+        model.addColumn("ID");
+        model.addColumn("DESCRIÇÃO");
+        model.addColumn("QUANTIDADE");
+        model.addColumn("VALOR TOTAL");
+        
+       
+        int i=1;
+        for(Servico s : novaVenda.getServicos()){
+            Vector v = new Vector();
+            
+            v.add(0,i++);
+            v.add(1,"Serviço");
+            v.add(2,"conferir");
+               
+                   
+            model.addRow(v);
+        
+        }
+        
+        for(Produto p : novaVenda.getProdutos()){
+            Vector v = new Vector();
+            
+            v.add(0,i++);
+            v.add(1,"Produto");
+            v.add(2,p.getQtdVenda());
+            v.add(3,(p.getQtdVenda() *p.getPrecoVenda() ));
+               
+                   
+            model.addRow(v);
+        
+        }
+        
+        tblVendas.setModel(model);
+        tblVendas.repaint();
     
     }
     
@@ -171,6 +261,18 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnDeposito = new javax.swing.JButton();
         btnSaldoCaixa = new javax.swing.JButton();
         btnSaldoCaixaDetalhado = new javax.swing.JButton();
+        btnFecharCaixa = new javax.swing.JButton();
+        jPanelVendas = new javax.swing.JPanel();
+        lblCliente = new javax.swing.JLabel();
+        cbxCliente = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblVendas = new javax.swing.JTable();
+        btnIncluirItemVenda = new javax.swing.JButton();
+        btnAlterarItemVenda = new javax.swing.JButton();
+        btnExcluirItemVenda = new javax.swing.JButton();
+        btnReceberValorVenda = new javax.swing.JButton();
+        btnCancelarVenda = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
@@ -276,14 +378,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnFecharCaixa.setText("Fechar Caixa");
+        btnFecharCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFecharCaixaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(311, 311, 311)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -294,6 +399,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(287, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(349, 349, 349))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(409, 409, 409))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,10 +422,113 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         jTabbedPanelPrincipal.addTab("Caixa", jPanel2);
+
+        lblCliente.setText("Cliente*:");
+
+        cbxCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tblVendas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tblVendas);
+
+        btnIncluirItemVenda.setText("Incluir");
+        btnIncluirItemVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirItemVendaActionPerformed(evt);
+            }
+        });
+
+        btnAlterarItemVenda.setText("Alterar");
+
+        btnExcluirItemVenda.setText("Excluir");
+
+        btnReceberValorVenda.setText("Receber");
+
+        btnCancelarVenda.setText("Cancelar");
+        btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarVendaActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Nova");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelVendasLayout = new javax.swing.GroupLayout(jPanelVendas);
+        jPanelVendas.setLayout(jPanelVendasLayout);
+        jPanelVendasLayout.setHorizontalGroup(
+            jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelVendasLayout.createSequentialGroup()
+                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelVendasLayout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelVendasLayout.createSequentialGroup()
+                                .addComponent(lblCliente)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelVendasLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74)
+                                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnIncluirItemVenda)
+                                    .addComponent(btnAlterarItemVenda)
+                                    .addComponent(btnExcluirItemVenda)))))
+                    .addGroup(jPanelVendasLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jButton3)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnReceberValorVenda)
+                        .addGap(54, 54, 54)
+                        .addComponent(btnCancelarVenda)))
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+        jPanelVendasLayout.setVerticalGroup(
+            jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelVendasLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCliente)
+                    .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelVendasLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(btnIncluirItemVenda)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAlterarItemVenda)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExcluirItemVenda))
+                    .addGroup(jPanelVendasLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(48, 48, 48)
+                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReceberValorVenda)
+                    .addComponent(btnCancelarVenda)
+                    .addComponent(jButton3))
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+
+        jTabbedPanelPrincipal.addTab("Vendas", jPanelVendas);
 
         jMenu1.setText("Cadastros");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -527,6 +744,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnSaldoCaixa.setVisible(true);
         btnSaldoCaixaDetalhado.setVisible(true);
         btnAbrirCaixa.setVisible(false);
+        btnFecharCaixa.setVisible(true);
+       
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(rootPane, "Valor Invalido !");
         }
@@ -555,6 +774,53 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnSaldoCaixaDetalhadoActionPerformed
 
+    private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
+        CaixaDAO daoCaixa = new CaixaDAO();
+        if(daoCaixa.Salvar(caixa)){
+            JOptionPane.showMessageDialog(rootPane, "Caixa Fechado com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
+        }
+    }//GEN-LAST:event_btnFecharCaixaActionPerformed
+
+    private void btnIncluirItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirItemVendaActionPerformed
+        frmInclusaoItemVenda janela = new frmInclusaoItemVenda(this, rootPaneCheckingEnabled, this);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnIncluirItemVendaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        cbxCliente.setEnabled(true);
+        tblVendas.setEnabled(true);
+        btnIncluirItemVenda.setEnabled(true);
+        btnAlterarItemVenda.setEnabled(true);
+        btnExcluirItemVenda.setEnabled(true);
+        btnReceberValorVenda.setEnabled(true);
+        btnCancelarVenda.setEnabled(true);
+        lblCliente.setEnabled(true);
+        
+        novaVenda = new Venda();
+        preencheTabelaVendas();
+        novaVenda.setFuncionario(usuarioLogado.getFuncionario());
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
+        cbxCliente.setEnabled(false);
+        tblVendas.setEnabled(false);
+        btnIncluirItemVenda.setEnabled(false);
+        btnAlterarItemVenda.setEnabled(false);
+        btnExcluirItemVenda.setEnabled(false);
+        btnReceberValorVenda.setEnabled(false);
+        btnCancelarVenda.setEnabled(false);
+        lblCliente.setEnabled(false);
+        
+        novaVenda = null;
+        
+    }//GEN-LAST:event_btnCancelarVendaActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -566,13 +832,24 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     protected int idItemAgendaSelecionado;
     protected int qtdCliques;
     protected Caixa caixa;
+    private ClienteDAO daoCliente;
+    protected Venda novaVenda;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;
+    private javax.swing.JButton btnAlterarItemVenda;
+    private javax.swing.JButton btnCancelarVenda;
     private javax.swing.JButton btnDeposito;
+    private javax.swing.JButton btnExcluirItemVenda;
+    private javax.swing.JButton btnFecharCaixa;
+    private javax.swing.JButton btnIncluirItemVenda;
     private javax.swing.JButton btnNovoAgendamento;
+    private javax.swing.JButton btnReceberValorVenda;
     private javax.swing.JButton btnRetirada;
     private javax.swing.JButton btnSaldoCaixa;
     private javax.swing.JButton btnSaldoCaixaDetalhado;
+    private javax.swing.JComboBox cbxCliente;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -590,8 +867,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemServicos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelVendas;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
+    private javax.swing.JLabel lblCliente;
     private javax.swing.JTable tblAgenda;
+    private javax.swing.JTable tblVendas;
     // End of variables declaration//GEN-END:variables
 }

@@ -96,5 +96,10 @@ public class TipoProdutoDAO extends DAOGenerico<TipoProduto>{
              return null;
          }
     }
+
+    @Override
+    public boolean Apagar(TipoProduto obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -61,7 +61,6 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setEnabled(false);
 
         painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Forma de Pagamento"));

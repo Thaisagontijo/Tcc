@@ -95,5 +95,10 @@ public class CidadeDAO extends DAOGenerico<Cidade>{
              return null;
          }
     }
+
+    @Override
+    public boolean Apagar(Cidade obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

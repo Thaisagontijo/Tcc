@@ -80,6 +80,11 @@ public class AgendamentoDAO extends DAOGenerico<Agendamento>{
             return null;
         }
     }
+
+    @Override
+    public boolean Apagar(Agendamento obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 
     

@@ -95,5 +95,10 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor>{
              return null;
          }
     }
+
+    @Override
+    public boolean Apagar(Fornecedor obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -103,4 +103,9 @@ public class ClienteDAO extends DAOGenerico<Cliente>{
             return null;
         }
     }
+
+    @Override
+    public boolean Apagar(Cliente obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

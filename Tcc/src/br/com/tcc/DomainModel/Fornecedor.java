@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -28,6 +29,7 @@ public class Fornecedor implements Serializable {
 
     public Fornecedor() {
         dataCadastro = new Date();
+        ativo = true;
     }
     
     
@@ -50,7 +52,18 @@ public class Fornecedor implements Serializable {
     private String enderecoComplemento;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
+    @ManyToOne
     private Cidade enderecoCidade;
+    private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
 
     public Long getId() {
         return id;
