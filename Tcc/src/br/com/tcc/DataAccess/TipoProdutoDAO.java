@@ -27,7 +27,7 @@ public class TipoProdutoDAO extends DAOGenerico<TipoProduto>{
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Select s from TipoProduto s";
+            String consulta = "Select s from TipoProduto s Where s.ativo = 1";
             
              Query query = manager.createQuery(consulta);
              
