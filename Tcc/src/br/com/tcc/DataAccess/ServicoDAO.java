@@ -97,7 +97,23 @@ public class ServicoDAO extends DAOGenerico<Servico>{
 
     @Override
     public boolean Apagar(Servico obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Update Servico s set s.ativo = 0 WHERE s.id ="+obj.getId();
+            
+             Query query = manager.createQuery(consulta);
+             query.executeUpdate();
+             
+             transacao.commit();
+             return true;
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return false;
+        }
     }
     
     

@@ -98,7 +98,23 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor>{
 
     @Override
     public boolean Apagar(Fornecedor obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Update Fornecedor s set s.ativo = 0 WHERE s.id ="+obj.getId();
+            
+             Query query = manager.createQuery(consulta);
+             query.executeUpdate();
+             
+             transacao.commit();
+             return true;
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return false;
+        }
     }
     
 }

@@ -101,9 +101,10 @@ public class FormaDePagamentoDAO extends DAOGenerico<FormaDePagamento> {
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Update FormaDePagamento s set s.ativo =0 WHERE s.id ="+obj.getId();
+            String consulta = "Update FormaDePagamento s set s.ativo = 0 WHERE s.id ="+obj.getId();
             
              Query query = manager.createQuery(consulta);
+             query.executeUpdate();
              
              transacao.commit();
              return true;

@@ -5,6 +5,8 @@
 package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Caixa;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,6 +19,22 @@ public class CaixaDAO extends DAOGenerico<Caixa>{
 
     @Override
     public boolean Apagar(Caixa obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Update Caixa s set s.ativo = 0 WHERE s.id ="+obj.getId();
+            
+             Query query = manager.createQuery(consulta);
+             query.executeUpdate();
+             
+             transacao.commit();
+             return true;
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return false;
+        }
     }
 }

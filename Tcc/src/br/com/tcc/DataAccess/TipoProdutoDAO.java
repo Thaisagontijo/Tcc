@@ -48,7 +48,7 @@ public class TipoProdutoDAO extends DAOGenerico<TipoProduto>{
          EntityTransaction transacao = manager.getTransaction();
          try{
                 
-               String consulta = "Select s from TipoProduto s";
+               String consulta = "Select s from TipoProduto s where s.ativo = 1";
 
                // A parte where da consulta
                String filtro = "";
@@ -66,15 +66,15 @@ public class TipoProdutoDAO extends DAOGenerico<TipoProduto>{
                    if (filtro.length() > 0) {
                        filtro = filtro + " and ";
                    }
-                   filtro = " s.nome =:nome";
+                   filtro = " s.nome like :nome";
                    parametros.put("nome", obj.getNome());
                }
 
 
                // Se houver filtros, coloca o "where" na consulta
-               if (filtro.length() > 0) {
-                   consulta = consulta + " where " + filtro;
-               }
+           //    if (filtro.length() > 0) {
+             //      consulta = consulta + " where " + filtro;
+               //}
 
                transacao.begin();
                // Cria a consulta no JPA
@@ -99,7 +99,23 @@ public class TipoProdutoDAO extends DAOGenerico<TipoProduto>{
 
     @Override
     public boolean Apagar(TipoProduto obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Update TipoProduto s set s.ativo = 0 WHERE s.id ="+obj.getId();
+            
+             Query query = manager.createQuery(consulta);
+             query.executeUpdate();
+             
+             transacao.commit();
+             return true;
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return false;
+        }
     }
     
 }
