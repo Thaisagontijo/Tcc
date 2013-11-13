@@ -25,14 +25,26 @@ public class Cliente extends Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private boolean ativo;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
     
     public Cliente(){
         this.dataCadastro = new Date();
+        ativo = true;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    
     public Date getDataCadastro() {
         return dataCadastro;
     }
