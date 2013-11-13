@@ -28,9 +28,11 @@ public class Funcionario extends Pessoa implements Serializable {
 
     public Funcionario() {
         this.dataAdmissao = new Date();
+        this.ativo = true;
     
     }
 
+    private boolean ativo;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataAdmissao;
@@ -42,6 +44,16 @@ public class Funcionario extends Pessoa implements Serializable {
     public void setDataAdmissao(Date dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
 
 
     @Override
