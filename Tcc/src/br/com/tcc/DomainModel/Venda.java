@@ -29,6 +29,8 @@ public class Venda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
+    private Caixa caixa;
 
     public Venda() {
         this.funcionario = new Funcionario();

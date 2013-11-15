@@ -39,7 +39,8 @@ public abstract class DAOGenerico<T> {
             return true;
         }catch (Exception ex){
       //  System.out.println(ex.getMessage());
-        ex.printStackTrace();
+            ex.printStackTrace();
+            
         return false;
         }
     }

@@ -19,13 +19,15 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
     /**
      * Creates new form frmCadastroUsuario
      */
-    public frmCadastroUsuario(java.awt.Frame parent, boolean modal) {
+    private frmUsuarioLista janelaPai;
+    public frmCadastroUsuario(java.awt.Frame parent, boolean modal,frmUsuarioLista janelaPai,boolean cadastro) {
         super(parent, modal);
         initComponents();
         
         cbxFuncionario.removeAllItems();
         daoFuncionario = new FuncionarioDAO();
         daoUsuario = new UsuarioDAO();
+        this.janelaPai = janelaPai;
         
         Funcionario tmp = new Funcionario();
         tmp.setNome("Selecione");
@@ -38,7 +40,20 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         
         
         
-        this.setTitle("Cadastro de Usuário");
+        if(cadastro){
+            this.setTitle("Edição de Usuário");
+        
+        }else{
+            
+            this.setTitle("Cadastro de Usuário");
+            cbxFuncionario.setSelectedItem(janelaPai.objSelecionadoNaTabela.getFuncionario());
+            txtUsuario.setText(janelaPai.objSelecionadoNaTabela.getNome());
+        
+        }
+        
+        
+        
+        
     }
 
     /**
@@ -173,53 +188,17 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
             
             if(daoUsuario.Salvar(tmpUsuario)){
                 JOptionPane.showMessageDialog(rootPane, "Usuario salvo com sucesso !");
+                this.janelaPai.lista.clear();
+                this.janelaPai.lista = janelaPai.dao.ListarTodos();
+                this.janelaPai.preencheTabela();
+                this.dispose();
+                
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o usuario!");
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                frmCadastroUsuario dialog = new frmCadastroUsuario(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
     FuncionarioDAO daoFuncionario;
     UsuarioDAO daoUsuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables

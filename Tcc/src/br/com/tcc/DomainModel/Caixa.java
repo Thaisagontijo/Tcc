@@ -43,7 +43,8 @@ public class Caixa implements Serializable {
     
     
 
-     @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+     //@OneToMany(cascade= CascadeType.ALL, mappedBy="venda",targetEntity=ItemVenda.class)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "caixa",targetEntity = Venda.class)
     private List<Venda> vendas;
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -55,10 +56,11 @@ public class Caixa implements Serializable {
     @ManyToOne
     private Funcionario funcionario;
     
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "caixa",targetEntity = Deposito.class)
     private List<Deposito> depositos;
     
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "caixa",targetEntity = Retirada.class)
     private List<Retirada> retiradas;
 
     public Long getId() {

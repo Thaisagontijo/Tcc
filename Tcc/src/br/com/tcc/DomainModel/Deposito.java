@@ -26,6 +26,8 @@ public class Deposito implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
+    private Caixa caixa;
     
     public Deposito(){
         dataHora = new Date();

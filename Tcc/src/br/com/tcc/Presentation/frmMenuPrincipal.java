@@ -7,6 +7,9 @@ package br.com.tcc.Presentation;
 import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DataAccess.CaixaDAO;
 import br.com.tcc.DataAccess.ClienteDAO;
+import br.com.tcc.DataAccess.DepositoDAO;
+import br.com.tcc.DataAccess.RetiradaDAO;
+import br.com.tcc.DataAccess.VendaDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
@@ -276,8 +279,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemServicos = new javax.swing.JMenuItem();
         jMenuItemProdutos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -599,6 +605,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem4.setText("Usuários");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Agenda");
@@ -607,6 +621,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Estoques");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jMenuItem5.setText("Estoque Atual");
+        jMenu3.add(jMenuItem5);
+
+        jMenuItem6.setText("Lançar Compra");
+        jMenu3.add(jMenuItem6);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Caixas");
@@ -789,7 +810,23 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
         CaixaDAO daoCaixa = new CaixaDAO();
-        if(daoCaixa.Salvar(caixa)){
+        daoDeposito = new DepositoDAO();
+        VendaDAO daoVenda = new VendaDAO();
+        RetiradaDAO daoRetirada = new RetiradaDAO();
+/*        
+        for(Deposito d: caixa.getDepositos()){
+            daoDeposito.Salvar(d);
+        }
+        
+        for(Venda d: caixa.getVendas()){
+            daoVenda.Salvar(d);
+        }
+        
+        for(Retirada d: caixa.getRetiradas()){
+            daoRetirada.Salvar(d);
+        }
+  */      
+     if(daoCaixa.Salvar(caixa)){
             JOptionPane.showMessageDialog(rootPane, "Caixa Fechado com sucesso!");
         }else{
             JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
@@ -845,6 +882,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "BeatuySystem Todos os direitos reservados");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+       frmUsuarioLista janela = new frmUsuarioLista(this, rootPaneCheckingEnabled);
+       janela.setLocationRelativeTo(null);
+       janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -858,6 +901,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     protected Caixa caixa;
     private ClienteDAO daoCliente;
     protected Venda novaVenda;
+    private DepositoDAO daoDeposito;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;
@@ -885,6 +929,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemFormasDePagamentos;
     private javax.swing.JMenuItem jMenuItemFornecedores;

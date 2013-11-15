@@ -21,11 +21,14 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="Retiradas")
+
 public class Retirada implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
+    private Caixa caixa;
     
      public Retirada(){
         dataHora = new Date();
