@@ -161,6 +161,21 @@ public class Venda implements Serializable {
         }
     }
 
+    public float calculaValorTotal(){
+        float valorTotal = 0;
+        for(Servico s : servicos){
+            valorTotal+= s.getValor();
+        }
+        
+        for(Produto p : produtos){
+            valorTotal+= (p.getQtdVenda() * p.getPrecoVenda());
+        }
+    
+        return valorTotal;
+    }
+    
+    
+    
     /*
     public float valorTotalVenda(){
     float valor = 0;

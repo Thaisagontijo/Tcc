@@ -460,6 +460,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnExcluirItemVenda.setText("Excluir");
 
         btnReceberValorVenda.setText("Receber");
+        btnReceberValorVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReceberValorVendaActionPerformed(evt);
+            }
+        });
 
         btnCancelarVenda.setText("Cancelar");
         btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -872,6 +877,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         novaVenda = new Venda();
         preencheTabelaVendas();
         novaVenda.setFuncionario(usuarioLogado.getFuncionario());
+        novaVenda.setCaixa(caixa);
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -907,6 +913,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void btnReceberValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberValorVendaActionPerformed
+        frmReceberPagamentoVenda janela = new frmReceberPagamentoVenda(this, rootPaneCheckingEnabled, this);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnReceberValorVendaActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -921,6 +933,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private ClienteDAO daoCliente;
     protected Venda novaVenda;
     private DepositoDAO daoDeposito;
+  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;
