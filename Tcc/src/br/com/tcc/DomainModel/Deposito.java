@@ -32,6 +32,7 @@ public class Deposito implements Serializable {
     public Deposito(){
         dataHora = new Date();
         funcionario = new Funcionario();
+        this.caixa = new Caixa();
     }
 
     private String observacao;
@@ -80,6 +81,15 @@ public class Deposito implements Serializable {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
+    public Caixa getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
+    }
+    
 
     @Override
     public int hashCode() {

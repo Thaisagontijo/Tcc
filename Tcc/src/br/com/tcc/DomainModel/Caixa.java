@@ -226,8 +226,9 @@ public class Caixa implements Serializable {
 
     @Override
     public String toString() {
-        return dataAbertura.toString();
+        return "Caixa{" + "id=" + id + ", vendas=" + vendas + ", dataAbertura=" + dataAbertura + ", dataFechamento=" + dataFechamento + ", funcionario=" + funcionario + ", depositos=" + depositos + ", retiradas=" + retiradas + '}';
     }
- 
+
+   
     
 }

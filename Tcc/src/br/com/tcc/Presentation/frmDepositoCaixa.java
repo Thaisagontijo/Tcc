@@ -129,7 +129,9 @@ public class frmDepositoCaixa extends javax.swing.JDialog {
                 novo.setObservacao(txtDescricao.getText());
                 novo.setValor(Float.parseFloat(txtValor.getText()));
                 novo.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+                novo.setCaixa(janelaPai.caixa);
                 janelaPai.caixa.addDeposito(novo);
+                
                 this.dispose();
             
             }catch(NumberFormatException ex){

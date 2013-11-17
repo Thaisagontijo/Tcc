@@ -34,12 +34,22 @@ public class Retirada implements Serializable {
         dataHora = new Date();
         funcionario = new Funcionario();
         this.ativo = true;
+        this.caixa = new Caixa();
     }
 
    private String descricao;
    private float valor;
    private boolean ativo;
 
+    public Caixa getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
+    }
+
+   
     public boolean isAtivo() {
         return ativo;
     }

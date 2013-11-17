@@ -39,6 +39,7 @@ public class Venda implements Serializable {
         this.formaDePagamento = new FormaDePagamento();
         this.servicos = new LinkedList<>();
         this.dataHora = new Date();
+        this.caixa = new Caixa();
     }
 
    
@@ -61,6 +62,16 @@ public class Venda implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataHora;
+
+    public Caixa getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -149,27 +160,27 @@ public class Venda implements Serializable {
             produtos.remove(p);
         }
     }
+
     /*
     public float valorTotalVenda(){
-        float valor = 0;
-        
-        for(Produto p : produtos){
-            valor+= p.getPrecoVenda();
-        }
+    float valor = 0;
+    for(Produto p : produtos){
+    valor+= p.getPrecoVenda();
     }
-    * */
-
+    }
+     * */
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.id);
-        hash = 11 * hash + Objects.hashCode(this.funcionario);
-        hash = 11 * hash + Objects.hashCode(this.produtos);
-        hash = 11 * hash + Objects.hashCode(this.cliente);
-        hash = 11 * hash + Objects.hashCode(this.formaDePagamento);
-        hash = 11 * hash + Objects.hashCode(this.servicos);
-        hash = 11 * hash + Objects.hashCode(this.Observacao);
-        hash = 11 * hash + Objects.hashCode(this.dataHora);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.caixa);
+        hash = 89 * hash + Objects.hashCode(this.funcionario);
+        hash = 89 * hash + Objects.hashCode(this.produtos);
+        hash = 89 * hash + Objects.hashCode(this.cliente);
+        hash = 89 * hash + Objects.hashCode(this.formaDePagamento);
+        hash = 89 * hash + Objects.hashCode(this.servicos);
+        hash = 89 * hash + Objects.hashCode(this.Observacao);
+        hash = 89 * hash + Objects.hashCode(this.dataHora);
         return hash;
     }
 
@@ -182,6 +193,9 @@ public class Venda implements Serializable {
             return false;
         }
         final Venda other = (Venda) obj;
+        if (!Objects.equals(this.caixa, other.caixa)) {
+            return false;
+        }
         if (!Objects.equals(this.funcionario, other.funcionario)) {
             return false;
         }
@@ -191,19 +205,14 @@ public class Venda implements Serializable {
         if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
-        if (!Objects.equals(this.servicos, other.servicos)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataHora, other.dataHora)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return dataHora.toString();
+        return "eoo";
     }
-    
+
+   
     
 }

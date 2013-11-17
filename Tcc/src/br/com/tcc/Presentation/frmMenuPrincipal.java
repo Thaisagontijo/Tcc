@@ -771,7 +771,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         depositoEntrada.setFuncionario(usuarioLogado.getFuncionario());
         depositoEntrada.setObservacao("Deposito inicial de abertura de caixa");
         caixa = new Caixa();
+        depositoEntrada.setCaixa(caixa);
         caixa.addDeposito(depositoEntrada);
+        caixa.setFuncionario(usuarioLogado.getFuncionario());
         
         btnDeposito.setVisible(true);
         btnRetirada.setVisible(true);
@@ -809,11 +811,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaldoCaixaDetalhadoActionPerformed
 
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
+        
         CaixaDAO daoCaixa = new CaixaDAO();
         daoDeposito = new DepositoDAO();
         VendaDAO daoVenda = new VendaDAO();
         RetiradaDAO daoRetirada = new RetiradaDAO();
-/*        
+        /*
+        
         for(Deposito d: caixa.getDepositos()){
             daoDeposito.Salvar(d);
         }
@@ -825,11 +829,26 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         for(Retirada d: caixa.getRetiradas()){
             daoRetirada.Salvar(d);
         }
-  */      
+        */
+        
+        
+    //      caixa.getDepositos().clear();
+  //     caixa.getRetiradas().clear();
+   //     caixa.getVendas().clear();
+        
+        
+        caixa.setFuncionario(usuarioLogado.getFuncionario());
      if(daoCaixa.Salvar(caixa)){
             JOptionPane.showMessageDialog(rootPane, "Caixa Fechado com sucesso!");
+            
+            btnDeposito.setVisible(false);
+            btnRetirada.setVisible(false);
+            btnSaldoCaixa.setVisible(false);
+            btnSaldoCaixaDetalhado.setVisible(false);
+            btnAbrirCaixa.setVisible(true);
+            btnFecharCaixa.setVisible(false);
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
+            JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!"+ "Usuario :"+ usuarioLogado.getFuncionario() );
         }
     }//GEN-LAST:event_btnFecharCaixaActionPerformed
 

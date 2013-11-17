@@ -129,6 +129,7 @@ public class frmRetiradaCaixa extends javax.swing.JDialog {
                 nova.setDescricao(txtDescricao.getText());
                 nova.setValor(Float.parseFloat(txtValor.getText()));
                 nova.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+                nova.setCaixa(janelaPai.caixa);
                 janelaPai.caixa.addRetirada(nova);
                 this.dispose();
             
