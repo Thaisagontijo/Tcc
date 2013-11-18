@@ -29,11 +29,13 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
      * 
      */
     private frmFornecedorLista janelaPai;
+    private boolean cadastro;
     public frmCadastroFornecedor(java.awt.Frame parent, boolean modal, frmFornecedorLista janelaPai, boolean cadastro) {
        super(parent, modal);
         
         initComponents();
         this.janelaPai = janelaPai;
+        this.cadastro = cadastro;
         
         
         listaCidades = new LinkedList<>();
@@ -558,7 +560,14 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Fornecedor ",
             "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
-        Fornecedor fornecedor  = new Fornecedor();
+            Fornecedor fornecedor  = null;
+            if(cadastro){
+                fornecedor  = new Fornecedor();
+            }else{
+                fornecedor = janelaPai.objSelecionadoNaTabela;
+            }
+            
+        
         janelaPai.dao = new FornecedorDAO();
 
         /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
