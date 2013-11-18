@@ -22,6 +22,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
      * 
      */
     private frmCadastroFormaDePagamentoLista janelaPai;
+    private boolean cadastro;
     public frmCadastroFormaDePagamentoCadastroEdicao(java.awt.Frame parent, boolean modal, frmCadastroFormaDePagamentoLista janelaPai, boolean cadastro) {
        super(parent, modal);
         
@@ -29,6 +30,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
       //  this.getContentPane().setBackground(minhaCor);
         initComponents();
         this.janelaPai = janelaPai;
+        this.cadastro = cadastro;
        
         
         if(cadastro ==  true){
@@ -176,13 +178,22 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
            JOptionPane.showMessageDialog(rootPane, "O Campo nome deve ser Preenchido!");
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja alterar a Forma de Pagamento?",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+          
            
-                FormaDePagamento novaForma = new FormaDePagamento();
+           FormaDePagamento novaForma = null;
+           
+           if(cadastro){
+                novaForma = new FormaDePagamento();
+                novaForma.setNome(txtNome.getText());
+           }else{
+               novaForma = janelaPai.objSelecionadoNaTabela;
+               novaForma.setNome(txtNome.getText());
+           }
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
                         
             
-            novaForma.setNome(txtNome.getText());
+            
            
            
 

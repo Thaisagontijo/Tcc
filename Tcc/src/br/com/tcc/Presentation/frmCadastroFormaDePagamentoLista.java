@@ -343,7 +343,8 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         idSelecionadoTabela = tblServicos.getSelectedRow();
         objSelecionadoNaTabela = lista.get(idSelecionadoTabela);
         
-        //JOptionPane.showMessageDialog(rootPane,objSelecionadoNaTabela.getNome());
+                                 
+                                 //JOptionPane.showMessageDialog(rootPane,objSelecionadoNaTabela.getNome());
         
         
         

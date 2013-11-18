@@ -33,7 +33,7 @@ public abstract class DAOGenerico<T> {
         try{
             //salva o objeto
             transacao.begin();
-            manager.persist(obj);
+            manager.merge(obj);
             transacao.commit();
         //    manager.flush();
             return true;
