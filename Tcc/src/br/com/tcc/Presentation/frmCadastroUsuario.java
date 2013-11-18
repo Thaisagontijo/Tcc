@@ -20,9 +20,11 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
      * Creates new form frmCadastroUsuario
      */
     private frmUsuarioLista janelaPai;
+    private boolean cadastro;
     public frmCadastroUsuario(java.awt.Frame parent, boolean modal,frmUsuarioLista janelaPai,boolean cadastro) {
         super(parent, modal);
         initComponents();
+        this.cadastro = cadastro;
         
         cbxFuncionario.removeAllItems();
         daoFuncionario = new FuncionarioDAO();
@@ -180,7 +182,13 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         }else if(!txtSenha1.getText().equals(txtSenha2.getText()))   {
             JOptionPane.showMessageDialog(rootPane, "As senhas não coincidem !");
         }else{
-            Usuario tmpUsuario = new Usuario();
+            Usuario tmpUsuario = null;
+            
+            if(cadastro){
+                tmpUsuario = new Usuario();
+            }else{
+                tmpUsuario = janelaPai.objSelecionadoNaTabela;
+            }
             
             tmpUsuario.setFuncionario((Funcionario)cbxFuncionario.getSelectedItem());
             tmpUsuario.setNome(txtUsuario.getText());
