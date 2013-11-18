@@ -29,11 +29,13 @@ public class frmCadastroProduto extends javax.swing.JDialog {
      * 
      */
     private frmProdutoLista janelaPai;
+    private boolean cadastro;
     public frmCadastroProduto(java.awt.Frame parent, boolean modal, frmProdutoLista janelaPai, boolean cadastro) {
        super(parent, modal);
         
         initComponents();
         this.janelaPai = janelaPai;
+        this.cadastro = cadastro;
        
         
         
@@ -294,7 +296,13 @@ public class frmCadastroProduto extends javax.swing.JDialog {
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Produto ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
-            Produto produto = new Produto();
+            Produto produto = null;
+            
+            if(cadastro){
+                produto = new Produto();
+            }else{
+                produto = janelaPai.objSelecionadoNaTabela;
+            }
             janelaPai.dao = new ProdutoDAO();
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
