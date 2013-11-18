@@ -25,11 +25,13 @@ public class frmCadastroCliente extends javax.swing.JDialog {
      * Creates new form frmCadastroFuncionario
      */
     private frmClienteLista janelaPai;
+    private boolean cadastro;
     public frmCadastroCliente(java.awt.Frame parent, boolean modal, frmClienteLista janelaPai, boolean cadastro) {
         super(parent, modal);
         initComponents();
         
         this.janelaPai = janelaPai;
+        this.cadastro = cadastro;
         
         listaCidades = new LinkedList<>();
         listaEstados = new Estado();
@@ -549,7 +551,16 @@ public class frmCadastroCliente extends javax.swing.JDialog {
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Funcionário? ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
-            Cliente Cliente = new Cliente();
+           Cliente Cliente = null;
+           
+           if(cadastro){
+               Cliente = new Cliente();
+           
+           }else{
+               Cliente = janelaPai.objSelecionadoNaTabela;
+           }
+           
+           
            janelaPai.dao = new ClienteDAO();
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/

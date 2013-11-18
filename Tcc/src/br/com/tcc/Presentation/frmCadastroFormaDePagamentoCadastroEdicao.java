@@ -184,15 +184,15 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
            
            if(cadastro){
                 novaForma = new FormaDePagamento();
-                novaForma.setNome(txtNome.getText());
+                
            }else{
                novaForma = janelaPai.objSelecionadoNaTabela;
-               novaForma.setNome(txtNome.getText());
+               
            }
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
                         
-            
+            novaForma.setNome(txtNome.getText());
             
            
            
