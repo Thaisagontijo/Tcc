@@ -23,11 +23,13 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
      * 
      */
     private frmCadastroServicosLista janelaPai;
+    private boolean cadastro;
     public frmCadastroServicosCadastroEdicao(java.awt.Frame parent, boolean modal, frmCadastroServicosLista janelaPai, boolean cadastro) {
        super(parent, modal);
         
         initComponents();
         this.janelaPai = janelaPai;
+        this.cadastro = cadastro;
        
         
         if(cadastro ==  true){
@@ -298,7 +300,13 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o serviço?",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
-            Servico servico = new Servico();
+            Servico servico = null;
+            
+            if(cadastro){
+                servico = new Servico();
+            }else{
+                servico = janelaPai.objSelecionadoNaTabela;
+            }
             janelaPai.dao = new ServicoDAO();
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
