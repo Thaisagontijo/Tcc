@@ -28,6 +28,8 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
        super(parent, modal);
         
         initComponents();
+        Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
        
@@ -81,7 +83,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
-        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Serviço"));
+        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Novo Serviço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNome.setText("Nome* :");
@@ -214,11 +216,11 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
             }
         });
         btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -273,7 +275,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -351,7 +353,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                 servico.setValor(Float.parseFloat(txtValor.getText()));
                 ok++;
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Valor Inválida !");
+                JOptionPane.showMessageDialog(rootPane, "Valor Inválida!");
             }
             
             servico.setNome(txtNome.getText());
@@ -359,7 +361,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
             if(ok == 4){//se a validacao está correta
 
                 if(janelaPai.dao.Salvar(servico)){
-                    JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso!");
                     txtDesconto.setText(""); txtDescricao.setText("");
                     txtDuracao.setText(""); txtNome.setText(""); txtValor.setText("");
                     janelaPai.lista.clear();
@@ -368,7 +370,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                     this.dispose();
 
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o serviço !");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o serviço!");
                 }
             }
        
@@ -378,7 +380,9 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         this.dispose();
+         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o cadastro do serviço?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved

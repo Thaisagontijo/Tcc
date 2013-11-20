@@ -65,7 +65,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
-        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Forma de Pagamento"));
+        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nova Forma de Pagamento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNome.setText("Nome* :");
@@ -163,7 +163,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,7 +198,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
            
 
                 if(janelaPai.dao.Salvar(novaForma)){
-                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagamento alterada com sucesso com Sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagamento alterada com sucesso!");
                     txtNome.setText("");
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
@@ -216,7 +216,9 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         this.dispose();
+         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o cadastro da nova forma de pagamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved

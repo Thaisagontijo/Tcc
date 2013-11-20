@@ -8,6 +8,7 @@ import br.com.tcc.DataAccess.FuncionarioDAO;
 import br.com.tcc.DataAccess.UsuarioDAO;
 import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Usuario;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +25,8 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
     public frmCadastroUsuario(java.awt.Frame parent, boolean modal,frmUsuarioLista janelaPai,boolean cadastro) {
         super(parent, modal);
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         this.cadastro = cadastro;
         
         cbxFuncionario.removeAllItems();
@@ -81,15 +84,34 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(228, 228, 228));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+
+        lblFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFuncionario.setText("Funcionário*:");
 
+        cbxFuncionario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxFuncionario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblUsuario.setText("Usuario *:");
 
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+
+        lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblSenha.setText("Senha*:");
 
+        txtSenha1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        lblConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblConfirmar.setText("Confirmar Senha*:");
+
+        txtSenha2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,7 +134,7 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
                         .addComponent(lblConfirmar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSenha2)))
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,22 +142,25 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFuncionario)
-                    .addComponent(cbxFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
-                    .addComponent(txtSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConfirmar)
-                    .addComponent(txtSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
+        btnSalvar.setBackground(new java.awt.Color(239, 239, 239));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +168,15 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
             }
         });
 
+        btnCancelar.setBackground(new java.awt.Color(239, 239, 239));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,14 +185,14 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(101, 101, 101)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(btnSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +201,8 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -178,11 +211,14 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if(cbxFuncionario.getSelectedIndex() == 0 || txtUsuario.getText().isEmpty() || txtSenha1.getText().isEmpty() || txtSenha2.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Todos os campos devem ser preenchidos !");
+            JOptionPane.showMessageDialog(rootPane, "Todos os campos devem ser preenchidos!");
         }else if(!txtSenha1.getText().equals(txtSenha2.getText()))   {
-            JOptionPane.showMessageDialog(rootPane, "As senhas não coincidem !");
+            JOptionPane.showMessageDialog(rootPane, "As senhas não coincidem!");
         }else{
-            Usuario tmpUsuario = null;
+            
+            if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION)==0 ){
+            
+                Usuario tmpUsuario = null;
             
             if(cadastro){
                 tmpUsuario = new Usuario();
@@ -195,7 +231,7 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
             tmpUsuario.setSenha(txtSenha1.getText());
             
             if(daoUsuario.Salvar(tmpUsuario)){
-                JOptionPane.showMessageDialog(rootPane, "Usuario salvo com sucesso !");
+                JOptionPane.showMessageDialog(rootPane, "Usuario salvo com sucesso!");
                 this.janelaPai.lista.clear();
                 this.janelaPai.lista = janelaPai.dao.ListarTodos();
                 this.janelaPai.preencheTabela();
@@ -204,8 +240,20 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o usuario!");
             }
+            }
+            
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+       if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o cadastro do usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     FuncionarioDAO daoFuncionario;
     UsuarioDAO daoUsuario;

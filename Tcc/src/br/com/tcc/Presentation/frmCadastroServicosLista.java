@@ -26,6 +26,8 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         super(parent, modal);
         
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
        dao = new ServicoDAO();
        lista = new LinkedList<>();
        this.setTitle("Lista de Serviços");
@@ -352,10 +354,10 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o serviço ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir o serviço?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Serviço Apagado com sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Serviço Excluído com sucesso!");
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
@@ -364,7 +366,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
                 }
             }
          }else{
-             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
          }
         
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -375,7 +377,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -400,7 +402,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
                 lista = dao.Buscar(s);
                 preencheTabela();
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "ID Inválido !");
+                JOptionPane.showMessageDialog(rootPane, "ID Inválido!");
             }
             
             
@@ -414,7 +416,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
                  lista = dao.Buscar(s);
                  preencheTabela();
            }catch(NumberFormatException ex){
-               JOptionPane.showMessageDialog(rootPane, "Nome Inválido !");
+               JOptionPane.showMessageDialog(rootPane, "Nome Inválido!");
            }
            
             

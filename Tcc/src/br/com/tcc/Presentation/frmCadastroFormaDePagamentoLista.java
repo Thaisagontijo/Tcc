@@ -30,7 +30,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
        dao = new FormaDePagamentoDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Formas de Pagamento");
+       this.setTitle("LISTA DE FORMAS DE PAGAMENTO");
     }
     
     protected void preencheTabela(){
@@ -95,7 +95,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         setTitle("Lista de Formas de Pagamento");
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formas de Pagamento Cadastradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 16), new java.awt.Color(228, 228, 228))); // NOI18N
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formas de Pagamento Cadastradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(228, 228, 228))); // NOI18N
         painelServicosCadastrados.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         tblServicos.setModel(new javax.swing.table.DefaultTableModel(
@@ -306,7 +306,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
                     .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();

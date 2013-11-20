@@ -38,6 +38,8 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         initComponents();
         Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);
+        
+       
         this.janelaPai = janelaPai;
         
         Date dataTmp = new Date();
@@ -179,10 +181,10 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
          
          
         if(cadastro ==  true){
-            this.setTitle("CADASTRO DE Agendamento");
+            this.setTitle("CADASTRO DE AGENDAMENTO");
            // System.out.println("verdade");
         }else{
-            this.setTitle("EDIÇÃO DE Agendamento");
+            this.setTitle("EDIÇÃO DE AGENDAMENTO");
             //System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
@@ -286,6 +288,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
         painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Agendamento"));
 
         lblServicos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -336,7 +339,9 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(tblServicos);
 
+        btnAdicionar.setBackground(new java.awt.Color(239, 239, 239));
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -352,7 +357,9 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
             }
         });
 
+        btnRemover.setBackground(new java.awt.Color(239, 239, 239));
         btnRemover.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnRemover.setText("Remover");
         btnRemover.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -396,7 +403,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         painelNovoServicoLayout.setHorizontalGroup(
             painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(painelNovoServicoLayout.createSequentialGroup()
@@ -422,34 +429,32 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
                                 .addGroup(painelNovoServicoLayout.createSequentialGroup()
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addContainerGap())
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                            .addGap(11, 11, 11)
                             .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                                    .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                                            .addComponent(lblDescricao)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(38, 38, 38)
-                                            .addComponent(jLabel2))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                                            .addComponent(txtPrecoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(210, 210, 210)
-                                            .addComponent(lblQuantidade))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                                            .addComponent(lblObservacao)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(175, 175, 175)))
-                                    .addGap(458, 458, 458)
-                                    .addComponent(cbxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                                    .addComponent(lblObservacao)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                                        .addComponent(lblDescricao)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jLabel2))
+                                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                                        .addComponent(txtPrecoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(210, 210, 210)
+                                        .addComponent(lblQuantidade))))
+                            .addGap(458, 458, 458)
+                            .addComponent(cbxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(painelNovoServicoLayout.createSequentialGroup()
                         .addGap(177, 177, 177)
                         .addComponent(jLabel3))
@@ -487,11 +492,11 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
                             .addComponent(lblHora))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(7, 7, 7)
+                .addGap(18, 18, 18)
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblObservacao)
-                    .addComponent(txtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(226, 226, 226)
+                    .addComponent(txtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblObservacao))
+                .addGap(215, 215, 215)
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPrecoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(painelNovoServicoLayout.createSequentialGroup()
@@ -517,7 +522,9 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
                         .addGap(70, 70, 70))))
         );
 
+        btnSalvar.setBackground(new java.awt.Color(239, 239, 239));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -533,7 +540,9 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
             }
         });
 
+        btnCancelar.setBackground(new java.awt.Color(239, 239, 239));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -557,24 +566,24 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(269, 269, 269)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(85, 85, 85)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 389, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -591,37 +600,42 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
                 cbxHora.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0 || cbxMinuto.getSelectedIndex() == 0 || listaServicos.size() == 0){
             JOptionPane.showMessageDialog(rootPane, "Todos Os campos devem ser preenchidos!");
         
-        }else{
-            Agendamento agendamento = new Agendamento();
-            agendamento.setCliente((Cliente)cbxCliente.getSelectedItem());
-            agendamento.setObservacao(txtObservacao.getText());
-            agendamento.setServicos(listaServicos);
-            
-            Date dataTmp = new Date();
-            
-            dataTmp.setDate(Integer.parseInt((String)cbxDia.getSelectedItem()));
-            dataTmp.setHours(Integer.parseInt((String)cbxHora.getSelectedItem()));
-            dataTmp.setMinutes(Integer.parseInt((String)cbxMinuto.getSelectedItem()));
-            
-            //JOptionPane.showMessageDialog(rootPane, cbxMes.getSelectedItem().toString());
-            int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
-            mes--;
-            dataTmp.setMonth(mes);
-            dataTmp.setYear(Integer.parseInt((String)cbxAno.getSelectedItem()));
-            
-            agendamento.setDataHora(dataTmp);
-            agendamento.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
-          //  agendamento.setRealizado(false);
-            if(janelaPai.daoAgendamento.Salvar(agendamento)){
-                JOptionPane.showMessageDialog(rootPane, "Agendamento cadastrado com sucesso !");
-                //janelaPai.listaAgendamentos = janelaPai.daoAgendamento.Buscar(agendamento);
-                janelaPai.listaAgendamentos.add(agendamento);
-                janelaPai.preencheTabelaAgendamentos();
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar agendamento !");
+        }else {
+
+            if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+
+
+                Agendamento agendamento = new Agendamento();
+                agendamento.setCliente((Cliente) cbxCliente.getSelectedItem());
+                agendamento.setObservacao(txtObservacao.getText());
+                agendamento.setServicos(listaServicos);
+
+                Date dataTmp = new Date();
+
+                dataTmp.setDate(Integer.parseInt((String) cbxDia.getSelectedItem()));
+                dataTmp.setHours(Integer.parseInt((String) cbxHora.getSelectedItem()));
+                dataTmp.setMinutes(Integer.parseInt((String) cbxMinuto.getSelectedItem()));
+
+                //JOptionPane.showMessageDialog(rootPane, cbxMes.getSelectedItem().toString());
+                int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
+                mes--;
+                dataTmp.setMonth(mes);
+                dataTmp.setYear(Integer.parseInt((String) cbxAno.getSelectedItem()));
+
+                agendamento.setDataHora(dataTmp);
+                agendamento.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+                //  agendamento.setRealizado(false);
+                if (janelaPai.daoAgendamento.Salvar(agendamento)) {
+                    JOptionPane.showMessageDialog(rootPane, "Agendamento cadastrado com sucesso !");
+                    //janelaPai.listaAgendamentos = janelaPai.daoAgendamento.Buscar(agendamento);
+                    janelaPai.listaAgendamentos.add(agendamento);
+                    janelaPai.preencheTabelaAgendamentos();
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar agendamento !");
+                }
             }
-            
+
         }
         
         
@@ -705,7 +719,11 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         this.dispose();
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            this.dispose();
+        }
+
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
@@ -764,7 +782,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
 
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
         Color minhaCor = new Color(239,239,239);
-        this.btnSalvar.setBackground(minhaCor);
+        this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnAdicionarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdicionarMouseEntered
@@ -774,17 +792,17 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
 
     private void btnRemoverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseEntered
          Color minhaCor = new Color(115,183,253);
-        this.btnCancelar.setBackground(minhaCor);
+        this.btnRemover.setBackground(minhaCor);
     }//GEN-LAST:event_btnRemoverMouseEntered
 
     private void btnAdicionarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdicionarMouseExited
           Color minhaCor = new Color(239,239,239);
-            this.btnSalvar.setBackground(minhaCor);
+            this.btnAdicionar.setBackground(minhaCor);
     }//GEN-LAST:event_btnAdicionarMouseExited
 
     private void btnRemoverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseExited
          Color minhaCor = new Color(239,239,239);
-         this.btnSalvar.setBackground(minhaCor);
+         this.btnRemover.setBackground(minhaCor);
     }//GEN-LAST:event_btnRemoverMouseExited
 
     /*

@@ -34,6 +34,8 @@ public class frmCadastroProduto extends javax.swing.JDialog {
        super(parent, modal);
         
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
        
@@ -53,9 +55,9 @@ public class frmCadastroProduto extends javax.swing.JDialog {
           * 
           */
          Fornecedor tmpFornecedor = new Fornecedor();
-         tmpFornecedor.setNome("Selecione");
+         tmpFornecedor.setNome("Selecione O Fornecedor");
          TipoProduto tmpTipoProduto = new TipoProduto();
-         tmpTipoProduto.setNome("Selecione");
+         tmpTipoProduto.setNome("Selecione o Tipo do Produto");
          
          cbxTipoProduto.addItem(tmpTipoProduto);
          cbxVendedor.addItem(tmpFornecedor);
@@ -207,11 +209,11 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         btnSalvar.setText("Salvar");
         btnSalvar.setToolTipText("Salvar novo Serviço");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
             }
         });
         btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -292,8 +294,8 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         if(txtQuantidade.getText().isEmpty() || txtDescricao.getText().isEmpty() 
                || txtPrecoVenda.getText().isEmpty() || txtNome.getText().isEmpty() || 
                 txtPrecoCusto.getText().isEmpty() || (cbxTipoProduto.getSelectedIndex() == 0) || (cbxVendedor.getSelectedIndex() == 0) ){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos !");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Produto ",
+           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos!");
+       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o ProdutoW",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
             Produto produto = null;
@@ -315,7 +317,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                 produto.setQtdEstoque(Integer.parseInt(txtQuantidade.getText()));
                 ok++;
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Quantidade Inválida !");
+                JOptionPane.showMessageDialog(rootPane, "Quantidade Inválida!");
             }
             
             
@@ -323,14 +325,14 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                 produto.setPrecoVenda(Float.parseFloat(txtPrecoVenda.getText()));
                 ok++;
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Preço de Venda Inválido !");
+                JOptionPane.showMessageDialog(rootPane, "Preço de Venda Inválido!");
             }
             
             try{
                 produto.setPrecoCusto(Float.parseFloat(txtPrecoCusto.getText()));
                 ok++;
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Preço de Custo Inválido !");
+                JOptionPane.showMessageDialog(rootPane, "Preço de Custo Inválido!");
             }
             
             produto.setNome(txtNome.getText());
@@ -352,7 +354,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             if(ok == 3){//se a validacao está correta
 
                 if(janelaPai.dao.Salvar(produto)){
-                    JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Produto Salvo com Sucesso!");
                     txtQuantidade.setText(""); txtDescricao.setText("");
                     txtPrecoVenda.setText(""); txtNome.setText(""); txtPrecoCusto.setText("");
                     janelaPai.lista.clear();
@@ -361,7 +363,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                     this.dispose();
 
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o serviço !");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o produto!");
                 }
             }
        
@@ -371,7 +373,9 @@ public class frmCadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         this.dispose();
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o cadastro do produto?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
