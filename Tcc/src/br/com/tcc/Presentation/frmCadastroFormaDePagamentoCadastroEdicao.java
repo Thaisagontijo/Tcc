@@ -198,7 +198,8 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
            
 
                 if(janelaPai.dao.Salvar(novaForma)){
-                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagamento alterada com sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagamento Salva com Sucesso!");
+                    janelaPai.objSelecionadoNaTabela = null;
                     txtNome.setText("");
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
@@ -217,6 +218,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
          if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+             //janelaPai.objSelecionadoNaTabela = null;
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed

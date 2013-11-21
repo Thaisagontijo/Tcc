@@ -357,6 +357,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
                     JOptionPane.showMessageDialog(rootPane, "Forma de Pagemnto excluída com sucesso!");
+                    objSelecionadoNaTabela = null;
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
