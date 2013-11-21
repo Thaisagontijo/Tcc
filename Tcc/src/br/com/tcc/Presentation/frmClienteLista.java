@@ -371,6 +371,7 @@ public class frmClienteLista extends javax.swing.JDialog {
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
                     JOptionPane.showMessageDialog(rootPane, "Cliente Excluído com sucesso !");
+                    objSelecionadoNaTabela = null;
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();

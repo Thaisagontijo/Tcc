@@ -326,7 +326,7 @@ public class frmFornecedorLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-       frmCadastroFornecedor a = new frmCadastroFornecedor(null,rootPaneCheckingEnabled, this,true);
+       frmCadastroFornecedor a = new frmCadastroFornecedor(null,rootPaneCheckingEnabled, this,true,false);
        
         //JDialog a = new JDialog
        a.setVisible(rootPaneCheckingEnabled);
@@ -345,7 +345,15 @@ public class frmFornecedorLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                //JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                
+                /*
+                    chama o dialogo de descricao
+                */
+                
+                frmCadastroFornecedor janela = new frmCadastroFornecedor(null, rootPaneCheckingEnabled, this, false, true);
+                janela.setLocationRelativeTo(null);
+                janela.setVisible(rootPaneCheckingEnabled);
                 qtdCliques =0;
             }
         }else {
@@ -367,9 +375,10 @@ public class frmFornecedorLista extends javax.swing.JDialog {
                     + " excluir o Fornecedor?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Fornecedor excluídoÍDO com sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Fornecedor excluído com sucesso !");
                     lista.clear();
                     lista = dao.ListarTodos();
+                    objSelecionadoNaTabela = null;
                     preencheTabela();
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Erro ao Excluir o Fornecedor");
@@ -383,7 +392,7 @@ public class frmFornecedorLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmCadastroFornecedor j = new frmCadastroFornecedor(null, rootPaneCheckingEnabled, this,false);
+            frmCadastroFornecedor j = new frmCadastroFornecedor(null, rootPaneCheckingEnabled, this,false,false);
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{
@@ -396,6 +405,7 @@ public class frmFornecedorLista extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        objSelecionadoNaTabela = null;
         if(cbxFiltro.getSelectedIndex() == 0){
             /* SE NAO TIVER FILTRO MOSTRA TODOS*/
             lista.clear();

@@ -30,7 +30,8 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
      */
     private frmFornecedorLista janelaPai;
     private boolean cadastro;
-    public frmCadastroFornecedor(java.awt.Frame parent, boolean modal, frmFornecedorLista janelaPai, boolean cadastro) {
+    private boolean descricao; 
+    public frmCadastroFornecedor(java.awt.Frame parent, boolean modal, frmFornecedorLista janelaPai, boolean cadastro,boolean descricao) {
        super(parent, modal);
         
         initComponents();
@@ -39,6 +40,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
+        this.descricao = descricao;
         
         
         listaCidades = new LinkedList<>();
@@ -86,13 +88,39 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
          }
         
          
-         
+         btnSair.setVisible(false);
          
         if(cadastro){
             this.setTitle("CADASTRO DE FORNECEDORES");
            // System.out.println("verdade");
         }else{
-            this.setTitle("EDIÇÃO DE FORNECEDORES");
+            
+            if(descricao){
+                this.setTitle("DESCRIÇÃO DE FORNECEDORES");
+                
+                txtBairro.setEditable(false);
+                txtCep.setEditable(false);
+                txtCnpj.setEditable(false);
+                txtComplemento1.setEditable(false);
+                txtEmail.setEditable(false);
+                txtInscricaoEstadual.setEditable(false);
+                txtInscricaoMunicipal.setEditable(false);
+                txtNome.setEditable(false);
+                txtNumero.setEditable(false);
+                txtObservacao.setEditable(false);
+                txtRazaoSocial.setEditable(false);
+                txtRua.setEditable(false);
+                txtSite.setEditable(false);
+                txtTelefone.setEditable(false);
+                cbxCidades.setEnabled(false);
+                cbxEstados.setEnabled(false);
+                
+                btnSair.setVisible(true);
+                btnCancelar.setVisible(false);
+                btnSalvar.setVisible(false);
+            }else{
+                this.setTitle("EDIÇÃO DE FORNECEDORES");
+            }
             //System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
@@ -168,11 +196,12 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         cbxEstados = new javax.swing.JComboBox();
         txtCep = new javax.swing.JFormattedTextField();
         txtTelefone = new javax.swing.JFormattedTextField();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
-        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Novo Fornecedor", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Novo Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNome.setText("Nome* :");
@@ -331,7 +360,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         });
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contato", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblRua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblRua.setText("Rua *:");
@@ -511,6 +540,13 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -525,7 +561,9 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSair)
+                        .addGap(30, 30, 30)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -539,7 +577,8 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -633,6 +672,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
                 txtInscricaoMunicipal.setText(""); txtNome.setText(""); txtRazaoSocial.setText("");
                 janelaPai.lista.clear();
                 janelaPai.lista = janelaPai.dao.ListarTodos();
+                janelaPai.objSelecionadoNaTabela = null;
                 janelaPai.preencheTabela();
                 this.dispose();
 
@@ -665,6 +705,10 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseExited
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
     /*
      *  OUTRAS VARIAVEIS
      
@@ -678,6 +722,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxCidades;
     private javax.swing.JComboBox cbxEstados;
