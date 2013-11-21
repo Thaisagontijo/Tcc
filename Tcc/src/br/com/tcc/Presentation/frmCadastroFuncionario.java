@@ -26,7 +26,8 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
      */
     private frmFuncionarioLista janelaPai;
     private boolean cadastro;
-    public frmCadastroFuncionario(java.awt.Frame parent, boolean modal, frmFuncionarioLista janelaPai, boolean cadastro) {
+    private boolean descricao;
+    public frmCadastroFuncionario(java.awt.Frame parent, boolean modal, frmFuncionarioLista janelaPai, boolean cadastro,boolean descricao) {
         super(parent, modal);
         initComponents();
          Color minhaCor = new Color(239,239,239);
@@ -34,6 +35,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
+        this.descricao = descricao;
         
         listaCidades = new LinkedList<>();
         listaEstados = new Estado();
@@ -137,7 +139,31 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
          if(cadastro){
               this.setTitle("CADASTRO DE FUNCIONÁRIOS");
          }else{
+             
+             if(descricao){
+                 this.setTitle("DESCRIÇÃO DE FUNCIONÁRIOS");
+                 
+                 txtBairro.setEditable(false);
+                 txtCelular.setEditable(false);
+                 txtCep.setEditable(false);
+                 txtComplemento.setEditable(false);
+                 txtCpf.setEditable(false);
+                 txtNome.setEditable(false);
+                 txtNumero.setEditable(false);
+                 txtRg.setEditable(false);
+                 txtRua.setEditable(false);
+                 txtTelefone.setEditable(false);
+                 cbxAno.setEnabled(false);
+                 cbxCidade.setEnabled(false);
+                 cbxDia.setEnabled(false);
+                 cbxEstado.setEnabled(false);
+                 cbxMes.setEnabled(false);
+                 cbxSexo.setEnabled(false);
+                 
+             }else{
               this.setTitle("EDIÇÃO DE FUNCIONÁRIOS");
+             }
+             
               
               txtBairro.setText(janelaPai.objSelecionadoNaTabela.getEnderecoBairro());
               txtCelular.setText(janelaPai.objSelecionadoNaTabela.getCelular());
@@ -213,7 +239,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Funcionario", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Funcionario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblnome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblnome.setText("Nome* :");
@@ -312,7 +338,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         );
 
         jPanel2.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Rua* :");
@@ -432,7 +458,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         );
 
         jPanel3.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefone.setText("Telefone :");
@@ -611,6 +637,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
 
                 if(janelaPai.dao.Salvar(funcionario)){
                     JOptionPane.showMessageDialog(rootPane, "Funcionário Salvo com Sucesso!");
+                    janelaPai.objSelecionadoNaTabela = null;
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
                     janelaPai.preencheTabela();

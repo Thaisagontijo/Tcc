@@ -65,7 +65,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
             v.add(2,p.getCpf());
             v.add(3,p.getRg());
             String data = "";
-            data = p.getDataNascimento().getDate()+ "/"+(p.getDataNascimento().getMonth() +1)+"/"+p.getDataNascimento().getYear();
+           data = p.getDataNascimento().getDate()+ "/"+(p.getDataNascimento().getMonth() +1)+"/"+p.getDataNascimento().getYear();
             v.add(4,data);
                    
             model.addRow(v);
@@ -318,9 +318,10 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-        frmCadastroFuncionario a = new frmCadastroFuncionario(null,rootPaneCheckingEnabled, this,true);
+        frmCadastroFuncionario a = new frmCadastroFuncionario(null,rootPaneCheckingEnabled, this,true,false);
        
         //JDialog a = new JDialog
+        a.setLocationRelativeTo(null);
        a.setVisible(rootPaneCheckingEnabled);
        
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -337,7 +338,12 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblFuncionario.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                //JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                
+                
+                frmCadastroFuncionario janela = new frmCadastroFuncionario(null, rootPaneCheckingEnabled, this, false, true);
+                janela.setLocationRelativeTo(null);
+                janela.setVisible(rootPaneCheckingEnabled);
                 qtdCliques =0;
             }
         }else {
@@ -360,6 +366,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
                     JOptionPane.showMessageDialog(rootPane, "Funcionário Apagado com sucesso !");
+                    objSelecionadoNaTabela = null;
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
@@ -375,7 +382,8 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmCadastroFuncionario j = new frmCadastroFuncionario(null, rootPaneCheckingEnabled, this,false);
+            frmCadastroFuncionario j = new frmCadastroFuncionario(null, rootPaneCheckingEnabled, this,false,false);
+            j.setLocationRelativeTo(null);
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{
@@ -388,6 +396,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        objSelecionadoNaTabela = null;
         if(cbxFiltro.getSelectedIndex() == 0){
             /* SE NAO TIVER FILTRO MOSTRA TODOS*/
             lista.clear();
