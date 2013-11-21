@@ -6,6 +6,7 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.Retirada;
+import java.awt.Color;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +24,8 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
         super(parent, modal);
         this.janelaPai = janelaPai;
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         preencheTabela();
     }
 
@@ -110,6 +113,8 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(228, 228, 228));
+
         tblExtrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -140,7 +145,7 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        lblTitulo.setText("Extrato do Caixa Aberto às");
+        lblTitulo.setText("EXTRATO DO CAIXA ABERTO ÀS");
 
         lblHoraAbertura.setText("jLabel2");
 
@@ -149,7 +154,7 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(241, 241, 241)
+                .addGap(223, 223, 223)
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblHoraAbertura, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)

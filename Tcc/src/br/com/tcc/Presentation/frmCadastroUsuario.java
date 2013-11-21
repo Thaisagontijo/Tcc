@@ -46,11 +46,11 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         
         
         if(cadastro){
-            this.setTitle("Edição de Usuário");
+            this.setTitle("EDIÇÃO DE USUÁRIO");
         
         }else{
             
-            this.setTitle("Cadastro de Usuário");
+            this.setTitle("CADASTRO DE USUÁRIO");
             cbxFuncionario.setSelectedItem(janelaPai.objSelecionadoNaTabela.getFuncionario());
             txtUsuario.setText(janelaPai.objSelecionadoNaTabela.getNome());
         
@@ -250,7 +250,7 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o cadastro do usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+       if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed

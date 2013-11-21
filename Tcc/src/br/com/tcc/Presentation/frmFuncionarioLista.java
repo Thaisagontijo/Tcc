@@ -26,6 +26,8 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         super(parent, modal);
         
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
        dao = new FuncionarioDAO();
        lista = new LinkedList<>();
        this.setTitle("Lista de Funionários");
@@ -100,7 +102,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Funcionários Cadastrados"));
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funcionários Cadastrados", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         tblFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -307,7 +309,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
                     .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();

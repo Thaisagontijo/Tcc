@@ -23,6 +23,8 @@ public class frmUsuarioLista extends javax.swing.JDialog {
         super(parent, modal);
         
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
        dao = new UsuarioDAO();
        lista = new LinkedList<>();
        this.setTitle("Lista de Produtos");
@@ -317,19 +319,19 @@ public class frmUsuarioLista extends javax.swing.JDialog {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o Produto ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir o Usuário?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Produto Apagado com sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Usuário excluído com sucesso !");
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o Produto");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Usuário");
                 }
             }
          }else{
-             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
          }
         
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -341,7 +343,7 @@ public class frmUsuarioLista extends javax.swing.JDialog {
           janela.setVisible(rootPaneCheckingEnabled);
             
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

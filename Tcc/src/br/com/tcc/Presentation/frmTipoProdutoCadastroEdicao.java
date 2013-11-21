@@ -26,6 +26,8 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
        super(parent, modal);
         
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         this.janelaPai = janelaPai;
        
         
@@ -172,7 +174,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
         /*Botão salvar*/
         
         if(txtNome.getText().isEmpty()){
-           JOptionPane.showMessageDialog(rootPane, "O Campo nome deve ser Preenchido !");
+           JOptionPane.showMessageDialog(rootPane, "O Campo nome deve ser Preenchido!");
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Tipo de Produto ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
@@ -186,7 +188,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
            
 
                 if(janelaPai.dao.Salvar(novoTipo)){
-                    JOptionPane.showMessageDialog(rootPane, "Tipo de Produto Salvo com Sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Tipo de Produto Salvo com Sucesso!");
                     txtNome.setText("");
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
@@ -194,7 +196,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
                     this.dispose();
 
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Tipo de Produto !");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Tipo de Produto!");
                 }
            
        
@@ -204,7 +206,9 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         this.dispose();
+         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseMoved

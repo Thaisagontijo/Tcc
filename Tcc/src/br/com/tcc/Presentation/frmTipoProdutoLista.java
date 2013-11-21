@@ -26,9 +26,11 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
         super(parent, modal);
         
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
        dao = new TipoProdutoDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Tipos de Produto");
+       this.setTitle("LISTA DE TIPOS DE PRODUTO");
     }
     
     protected void preencheTabela(){

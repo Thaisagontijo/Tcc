@@ -20,6 +20,8 @@ public class frmLogin extends javax.swing.JFrame {
      */
     public frmLogin() {
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         dao = new UsuarioDAO();
         usuario = new Usuario();
         this.setLocationRelativeTo(null);

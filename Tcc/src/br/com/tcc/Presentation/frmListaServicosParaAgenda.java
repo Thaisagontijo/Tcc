@@ -6,6 +6,7 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.ServicoDAO;
 import br.com.tcc.DomainModel.Servico;
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -35,6 +36,8 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
         
         
         initComponents();
+        Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         preencheTabela();
     }
     
@@ -98,6 +101,8 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(228, 228, 228));
+
         tblServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -133,6 +138,8 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         jButton1.setText("Adicionar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,14 +152,13 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(338, 338, 338)
-                        .addComponent(jButton1)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(319, 319, 319))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,8 +166,8 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,9 +201,9 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(objSelecionadoNaTabela == null){
-            JOptionPane.showMessageDialog(rootPane,"Nenhum Servico selecionado !");
+            JOptionPane.showMessageDialog(rootPane,"Nenhum Servico selecionado!");
         }else if(janelaPai.listaServicos.contains(objSelecionadoNaTabela)){
-            JOptionPane.showMessageDialog(rootPane, "Serviço já adicionado !");
+            JOptionPane.showMessageDialog(rootPane, "Serviço já adicionado!");
         }else{
             janelaPai.listaServicos.add(objSelecionadoNaTabela);
             janelaPai.preencheTabela();

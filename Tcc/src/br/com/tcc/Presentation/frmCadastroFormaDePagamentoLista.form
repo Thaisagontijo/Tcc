@@ -89,7 +89,6 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Formas de Pagamento Cadastradas">
               <Font PropertyName="font" name="Segoe UI" size="14" style="1"/>
-              <Color PropertyName="color" blue="e4" green="e4" red="e4" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>

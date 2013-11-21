@@ -213,7 +213,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Funcionario"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Funcionario", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblnome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblnome.setText("Nome* :");
@@ -246,11 +246,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         cbxAno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        try {
-            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         txtCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -312,7 +308,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         );
 
         jPanel2.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Rua* :");
@@ -354,11 +350,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         cbxCidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        try {
-            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         txtCep.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -432,7 +424,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         );
 
         jPanel3.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Contatos"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefone.setText("Telefone :");
@@ -539,7 +531,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -662,7 +654,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o cadastro do funcionário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed

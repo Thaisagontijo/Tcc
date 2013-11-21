@@ -26,6 +26,8 @@ public class frmClienteLista extends javax.swing.JDialog {
         super(parent, modal);
         
         initComponents();
+        Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
        dao = new ClienteDAO();
        lista = new LinkedList<>();
        this.setTitle("Lista de Clientes");
@@ -355,19 +357,19 @@ public class frmClienteLista extends javax.swing.JDialog {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o Cliente ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir o Cliente?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Cliente Apagado com sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Cliente Excluído com sucesso !");
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o Cliente");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Cliente");
                 }
             }
          }else{
-             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
          }
         
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -378,7 +380,7 @@ public class frmClienteLista extends javax.swing.JDialog {
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -403,7 +405,7 @@ public class frmClienteLista extends javax.swing.JDialog {
                 lista = dao.Buscar(s);
                 preencheTabela();
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "ID Inválido !");
+                JOptionPane.showMessageDialog(rootPane, "ID Inválido!");
             }
             
             
@@ -417,7 +419,7 @@ public class frmClienteLista extends javax.swing.JDialog {
                  lista = dao.Buscar(s);
                  preencheTabela();
            }catch(NumberFormatException ex){
-               JOptionPane.showMessageDialog(rootPane, "Nome Inválido !");
+               JOptionPane.showMessageDialog(rootPane, "Nome Inválido!");
            }
            
             

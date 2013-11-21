@@ -90,6 +90,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         
         initComponents();
+         Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
         
         /*
          PREENCHENDO TABELA DE AGENDAMENTOS
@@ -293,6 +295,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPanelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
+
+        jPanel1.setBackground(new java.awt.Color(228, 228, 228));
 
         tblAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

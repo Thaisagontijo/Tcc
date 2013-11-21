@@ -380,7 +380,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar o cadastro do serviço?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed

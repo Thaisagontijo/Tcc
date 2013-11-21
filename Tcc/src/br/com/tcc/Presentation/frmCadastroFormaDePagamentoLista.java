@@ -95,7 +95,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         setTitle("Lista de Formas de Pagamento");
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formas de Pagamento Cadastradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(228, 228, 228))); // NOI18N
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formas de Pagamento Cadastradas", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         painelServicosCadastrados.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         tblServicos.setModel(new javax.swing.table.DefaultTableModel(
