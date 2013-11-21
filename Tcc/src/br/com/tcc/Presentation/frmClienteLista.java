@@ -318,7 +318,7 @@ public class frmClienteLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-        frmCadastroCliente a = new frmCadastroCliente(null,rootPaneCheckingEnabled, this,true);
+        frmCadastroCliente a = new frmCadastroCliente(null,rootPaneCheckingEnabled, this,true,false);
        
         //JDialog a = new JDialog
         a.setLocationRelativeTo(null);
@@ -338,7 +338,17 @@ public class frmClienteLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblCliente.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+             //   JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                /*
+                    CHAMA O FORMULARIO DE CADASTROMCOM OS CAMPOS INATIVOS
+                */
+                
+                frmCadastroCliente janela = 
+                        new frmCadastroCliente(null, rootPaneCheckingEnabled, this, false, true);
+                janela.setLocationRelativeTo(null);
+                janela.setVisible(rootPaneCheckingEnabled);
+                
+                
                 qtdCliques =0;
             }
         }else {
@@ -376,7 +386,7 @@ public class frmClienteLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmCadastroCliente j = new frmCadastroCliente(null, rootPaneCheckingEnabled, this,false);
+            frmCadastroCliente j = new frmCadastroCliente(null, rootPaneCheckingEnabled, this,false,false);
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{
@@ -389,6 +399,7 @@ public class frmClienteLista extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        objSelecionadoNaTabela = null;
         if(cbxFiltro.getSelectedIndex() == 0){
             /* SE NAO TIVER FILTRO MOSTRA TODOS*/
             lista.clear();

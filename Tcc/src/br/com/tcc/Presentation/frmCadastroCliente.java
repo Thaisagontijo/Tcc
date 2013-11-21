@@ -26,7 +26,8 @@ public class frmCadastroCliente extends javax.swing.JDialog {
      */
     private frmClienteLista janelaPai;
     private boolean cadastro;
-    public frmCadastroCliente(java.awt.Frame parent, boolean modal, frmClienteLista janelaPai, boolean cadastro) {
+    private boolean descricao;
+    public frmCadastroCliente(java.awt.Frame parent, boolean modal, frmClienteLista janelaPai, boolean cadastro,boolean descricao) {
         super(parent, modal);
         initComponents();
         
@@ -35,6 +36,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
+        this.descricao = descricao;
         
         listaCidades = new LinkedList<>();
         listaEstados = new Estado();
@@ -125,6 +127,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
          }
          
          
+         btnSair.setVisible(false);
          /*
           * 
           * PREENCHE COMBOBOX DO ANO
@@ -141,12 +144,56 @@ public class frmCadastroCliente extends javax.swing.JDialog {
          
          
          
+         /*
+            CODIGO PARA DESCRICAO
+         
+         */
+         
+         
+         
+         
+         
          //continuar a parte de edicao
          
          if(cadastro){
               this.setTitle("CADASTRO DE CLIENTE");
          }else{
-              this.setTitle("EDIÇÃO DE CLIENTE");
+              
+             if(descricao){
+                 this.setTitle("DESCRIÇÃO DE CLIENTE");
+                 
+                 txtBairro.setEditable(false);
+                 txtCelular.setEditable(false);
+                 txtCep.setEditable(false);
+                 txtComplemento.setEditable(false);
+                 txtCpf.setEditable(false);
+                 txtNome.setEditable(false);
+                 txtNumero.setEditable(false);
+                 txtRg.setEditable(false);
+                 txtRua.setEditable(false);
+                 txtTelefone.setEditable(false);
+                 cbxAno.setEnabled(false);
+                 cbxCidade.setEnabled(false);
+                 cbxDia.setEnabled(false);
+                 cbxEstado.setEnabled(false);
+                 cbxMes.setEnabled(false);
+                 cbxSexo.setEditable(false);
+                 btnCancelar.setVisible(false);
+                 btnSalvar.setVisible(false);
+                 btnSair.setVisible(true);
+                 
+                 /*
+                 txtBairro.setBackground(Color.WHITE);
+                 txtCelular.setBackground(Color.WHITE);
+                 txtCelular.setForeground(Color.black);
+                 
+                 txtNome.setEditable(false);
+                 txtNome.setForeground(Color.BLACK);
+                 */
+                 
+             }else{
+                 this.setTitle("EDIÇÃO DE CLIENTE");
+             }
               
               txtBairro.setText(janelaPai.objSelecionadoNaTabela.getEnderecoBairro());
               txtCelular.setText(janelaPai.objSelecionadoNaTabela.getCelular());
@@ -221,6 +268,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         txtCelular = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -538,6 +586,13 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             }
         });
 
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -554,7 +609,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(289, 289, 289)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSair)
+                        .addGap(25, 25, 25)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -570,7 +627,8 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -703,6 +761,10 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
     
     private List<Cidade> listaCidades;
     private CidadeDAO daoCidade;
@@ -710,6 +772,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     private int estadoSelecionado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxAno;
     private javax.swing.JComboBox cbxCidade;
