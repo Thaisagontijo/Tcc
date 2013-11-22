@@ -100,7 +100,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Serviços Cadastrados"));
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Serviços Cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         tblServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -307,7 +307,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
                     .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -362,7 +362,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
                     lista = dao.ListarTodos();
                     preencheTabela();
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o serviço");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o serviço");
                 }
             }
          }else{

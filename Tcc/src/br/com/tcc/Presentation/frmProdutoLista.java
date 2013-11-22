@@ -100,7 +100,7 @@ public class frmProdutoLista extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos Cadastrados"));
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos Cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         tblServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -278,7 +278,7 @@ public class frmProdutoLista extends javax.swing.JDialog {
                     .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
