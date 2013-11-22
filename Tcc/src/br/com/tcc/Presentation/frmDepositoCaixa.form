@@ -105,7 +105,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Valor *:"/>
+            <Property name="text" type="java.lang.String" value="Valor *: R$"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtValor">
@@ -162,9 +162,6 @@
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Ana Luiza\Documents\NetBeansProjects\NovoTcc\Tcc\Tcc\src\br\com\tcc\Presentation\icones\Fechar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>

@@ -51,7 +51,7 @@ public class frmRetiradaCaixa extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
 
         lblvalor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblvalor.setText("Valor *:");
+        lblvalor.setText("Valor *: R$");
 
         txtValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 

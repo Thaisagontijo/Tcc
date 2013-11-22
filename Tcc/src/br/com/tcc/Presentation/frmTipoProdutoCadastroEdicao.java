@@ -189,6 +189,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
 
                 if(janelaPai.dao.Salvar(novoTipo)){
                     JOptionPane.showMessageDialog(rootPane, "Tipo de Produto Salvo com Sucesso!");
+                    janelaPai.objSelecionadoNaTabela = null;
                     txtNome.setText("");
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();

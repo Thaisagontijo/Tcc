@@ -7,6 +7,8 @@ package br.com.tcc.Presentation;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.Retirada;
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,8 +29,15 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
          Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);
         preencheTabela();
+        lblHoraAbertura.setText(horaAberturaCaixa());
+        
     }
 
+    private String horaAberturaCaixa(){
+        DateFormat formato = new SimpleDateFormat("HH:mm:ss");  
+        String formattedDate = formato.format(janelaPai.caixa.getDataAbertura()); 
+        return formattedDate;
+    }
     
     
     

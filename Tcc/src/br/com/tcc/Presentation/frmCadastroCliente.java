@@ -177,7 +177,8 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                  cbxDia.setEnabled(false);
                  cbxEstado.setEnabled(false);
                  cbxMes.setEnabled(false);
-                 cbxSexo.setEditable(false);
+                 cbxSexo.setEnabled(false);
+                
                  btnCancelar.setVisible(false);
                  btnSalvar.setVisible(false);
                  btnSair.setVisible(true);

@@ -29,7 +29,7 @@ public class Servico implements Serializable {
     }
     private String nome;
     private int duracaoAproximada; // em minutos
-    private int descontoMaximo; // em porcentagem
+    private float descontoMaximo; // em porcentagem
     private String descicao;
     private float valor;
     private float comissao;
@@ -68,11 +68,11 @@ public class Servico implements Serializable {
         this.duracaoAproximada = duracaoAproximada;
     }
 
-    public int getDescontoMaximo() {
+    public float getDescontoMaximo() {
         return descontoMaximo;
     }
 
-    public void setDescontoMaximo(int descontoMaximo) {
+    public void setDescontoMaximo(float descontoMaximo) {
         this.descontoMaximo = descontoMaximo;
     }
 
@@ -100,16 +100,14 @@ public class Servico implements Serializable {
         this.comissao = comissao;
     }
 
-    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + this.duracaoAproximada;
-        hash = 79 * hash + this.descontoMaximo;
-        hash = 79 * hash + Objects.hashCode(this.descicao);
-        hash = 79 * hash + Float.floatToIntBits(this.valor);
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.nome);
+        hash = 31 * hash + this.duracaoAproximada;
+        hash = 31 * hash + Float.floatToIntBits(this.descontoMaximo);
+        hash = 31 * hash + Float.floatToIntBits(this.valor);
         return hash;
     }
 
@@ -122,16 +120,16 @@ public class Servico implements Serializable {
             return false;
         }
         final Servico other = (Servico) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (this.duracaoAproximada != other.duracaoAproximada) {
             return false;
         }
-        if (this.descontoMaximo != other.descontoMaximo) {
-            return false;
-        }
-        if (!Objects.equals(this.descicao, other.descicao)) {
+        if (Float.floatToIntBits(this.descontoMaximo) != Float.floatToIntBits(other.descontoMaximo)) {
             return false;
         }
         if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor)) {
@@ -140,6 +138,8 @@ public class Servico implements Serializable {
         return true;
     }
 
+    
+  
     
 
  

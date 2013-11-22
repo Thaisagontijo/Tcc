@@ -323,6 +323,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
                     JOptionPane.showMessageDialog(rootPane, "Tipo de Produto Apagado com sucesso !");
+                    objSelecionadoNaTabela = null;
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
@@ -350,6 +351,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        objSelecionadoNaTabela = null;
         if(cbxFiltro.getSelectedIndex() == 0){
             /* SE NAO TIVER FILTRO MOSTRA TODOS*/
             lista.clear();

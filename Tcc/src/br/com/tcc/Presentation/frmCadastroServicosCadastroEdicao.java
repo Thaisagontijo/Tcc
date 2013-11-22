@@ -318,10 +318,10 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
             servico.setDescicao(txtDescricao.getText());
             
             try{
-                if(Integer.parseInt(txtDesconto.getText()) > 100 || Integer.parseInt(txtDesconto.getText()) <0){
+                if(Float.parseFloat(txtDesconto.getText()) > 100 || Float.parseFloat(txtDesconto.getText()) <0){
                    servico.setDescontoMaximo(Integer.parseInt("ldkadçl"));//forçando o erro
                 }else{
-                    servico.setDescontoMaximo(Integer.parseInt(txtDesconto.getText()));
+                    servico.setDescontoMaximo(Float.parseFloat(txtDesconto.getText()));
                 }
                 
                 ok++;

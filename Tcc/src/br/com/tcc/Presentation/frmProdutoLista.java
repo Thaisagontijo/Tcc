@@ -287,7 +287,8 @@ public class frmProdutoLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-       frmCadastroProduto a = new frmCadastroProduto(null,rootPaneCheckingEnabled, this,true);
+       frmCadastroProduto a = new frmCadastroProduto(null,rootPaneCheckingEnabled, this,true,false);
+       a.setLocationRelativeTo(null);
        
         //JDialog a = new JDialog
        a.setVisible(rootPaneCheckingEnabled);
@@ -306,7 +307,11 @@ public class frmProdutoLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                //JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                
+                frmCadastroProduto janela = new frmCadastroProduto(null, rootPaneCheckingEnabled, this, false, true);
+                janela.setLocationRelativeTo(null);
+                janela.setVisible(rootPaneCheckingEnabled);
                 qtdCliques =0;
             }
         }else {
@@ -332,6 +337,7 @@ public class frmProdutoLista extends javax.swing.JDialog {
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
+                    objSelecionadoNaTabela = null;
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Produto");
                 }
@@ -344,7 +350,8 @@ public class frmProdutoLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmCadastroProduto j = new frmCadastroProduto(null, rootPaneCheckingEnabled, this,false);
+            frmCadastroProduto j = new frmCadastroProduto(null, rootPaneCheckingEnabled, this,false,false);
+            j.setLocationRelativeTo(null);
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{
@@ -357,6 +364,7 @@ public class frmProdutoLista extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        objSelecionadoNaTabela = null;
         if(cbxFiltro.getSelectedIndex() == 0){
             /* SE NAO TIVER FILTRO MOSTRA TODOS*/
             lista.clear();

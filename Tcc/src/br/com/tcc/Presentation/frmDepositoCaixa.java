@@ -51,7 +51,7 @@ public class frmDepositoCaixa extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
 
         lblvalor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblvalor.setText("Valor *:");
+        lblvalor.setText("Valor *: R$");
 
         txtValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -109,7 +109,6 @@ public class frmDepositoCaixa extends javax.swing.JDialog {
 
         btnCancelar.setBackground(new java.awt.Color(239, 239, 239));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ana Luiza\\Documents\\NetBeansProjects\\NovoTcc\\Tcc\\Tcc\\src\\br\\com\\tcc\\Presentation\\icones\\Fechar.png")); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {

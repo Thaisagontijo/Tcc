@@ -30,7 +30,8 @@ public class frmCadastroProduto extends javax.swing.JDialog {
      */
     private frmProdutoLista janelaPai;
     private boolean cadastro;
-    public frmCadastroProduto(java.awt.Frame parent, boolean modal, frmProdutoLista janelaPai, boolean cadastro) {
+    private boolean descricao;
+    public frmCadastroProduto(java.awt.Frame parent, boolean modal, frmProdutoLista janelaPai, boolean cadastro, boolean descricao) {
        super(parent, modal);
         
         initComponents();
@@ -38,6 +39,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
+        this.descricao = descricao;
        
         
         
@@ -86,13 +88,29 @@ public class frmCadastroProduto extends javax.swing.JDialog {
          }
         
          
-         
+         btnSair.setVisible(false);
          
         if(cadastro ==  true){
             this.setTitle("CADASTRO DE PRODUTO");
            // System.out.println("verdade");
         }else{
-            this.setTitle("EDIÇÃO DE PRODUTO");
+            
+            if(descricao){
+                this.setTitle("DESCRIÇÃO DE PRODUTO");
+                txtDescricao.setEditable(false);
+                txtNome.setEditable(false);
+                txtPrecoCusto.setEditable(false);
+                txtPrecoVenda.setEditable(false);
+                txtQuantidade.setEditable(false);
+                cbxTipoProduto.setEnabled(false);
+                cbxVendedor.setEnabled(false);
+                btnCancelar.setVisible(false);
+                btnSair.setVisible(true);
+                btnSalvar.setVisible(false);
+            }else{
+                this.setTitle("EDIÇÃO DE PRODUTO");
+            }
+            
             //System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
@@ -137,11 +155,12 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         cbxTipoProduto = new javax.swing.JComboBox();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
-        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Serviço"));
+        painelNovoServico.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
         painelNovoServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -209,11 +228,11 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         btnSalvar.setText("Salvar");
         btnSalvar.setToolTipText("Salvar novo Serviço");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
             }
         });
         btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -251,6 +270,8 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             }
         });
 
+        btnSair.setText("Sair");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -263,7 +284,9 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(230, 230, 230)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSair)
+                        .addGap(42, 42, 42)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -275,7 +298,8 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -295,7 +319,11 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                || txtPrecoVenda.getText().isEmpty() || txtNome.getText().isEmpty() || 
                 txtPrecoCusto.getText().isEmpty() || (cbxTipoProduto.getSelectedIndex() == 0) || (cbxVendedor.getSelectedIndex() == 0) ){
            JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos!");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o ProdutoW",
+       }else if (Float.parseFloat(txtPrecoCusto.getText()) > Float.parseFloat(txtPrecoVenda.getText())){
+           
+           JOptionPane.showMessageDialog(rootPane, "O preço de venda não pode ser menor que o preço de custo !");
+           
+       }else if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o ProdutoW",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
             Produto produto = null;
@@ -360,6 +388,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
                     janelaPai.preencheTabela();
+                    janelaPai.objSelecionadoNaTabela = null;
                     this.dispose();
 
                 }else{
@@ -420,6 +449,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxTipoProduto;
     private javax.swing.JComboBox cbxVendedor;

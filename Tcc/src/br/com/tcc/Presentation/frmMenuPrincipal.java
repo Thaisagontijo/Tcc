@@ -15,7 +15,6 @@ import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.Produto;
-import br.com.tcc.DomainModel.Retirada;
 import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
@@ -52,7 +51,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          */
         private Date dataAtual = new Date();
         
-        DateFormat formato = new SimpleDateFormat("HH:mm:ss.SSS");  
+        DateFormat formato = new SimpleDateFormat("HH:mm:ss");  
         String formattedDate = formato.format(dataAtual); 
         
     
@@ -133,7 +132,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnReceberValorVenda.setEnabled(false);
         btnCancelarVenda.setEnabled(false);
         lblCliente.setEnabled(false);
-    
     }
 
     
@@ -363,7 +361,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnDeposito.setText("Depósito");
+        btnDeposito.setText("Entrada");
         btnDeposito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDepositoActionPerformed(evt);
