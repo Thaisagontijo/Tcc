@@ -353,21 +353,23 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir a forma de pagamento cadastrada?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir a Forma de Pagamento?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagemnto excluída com sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Forma de Pagamento excluída com sucesso!");
                     objSelecionadoNaTabela = null;
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar a forma de pagamento");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir a Forma de Pagamento");
                 }
             }
          }else{
              JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
-         }
+         }      
+        
+       
         
     }//GEN-LAST:event_btnExcluirActionPerformed
 

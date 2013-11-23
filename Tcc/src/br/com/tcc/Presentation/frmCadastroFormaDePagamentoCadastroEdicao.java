@@ -176,7 +176,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         
         if(txtNome.getText().isEmpty()){
            JOptionPane.showMessageDialog(rootPane, "O Campo nome deve ser Preenchido!");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja alterar a Forma de Pagamento?",
+       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar a Forma de Pagamento?",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
           
            

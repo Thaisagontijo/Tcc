@@ -30,7 +30,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
        dao = new FuncionarioDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Funionários");
+       this.setTitle("LISTA DE FUNCIONÁRIOS");
     }
     
     protected void preencheTabela(){
@@ -362,20 +362,20 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
          if(objSelecionadoNaTabela != null){
               if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o Funcionário ?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                    + " excluir o Funcionário?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
 
                 if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Funcionário Apagado com sucesso !");
+                    JOptionPane.showMessageDialog(rootPane, "Funcionário excluído com sucesso!");
                     objSelecionadoNaTabela = null;
                     lista.clear();
                     lista = dao.ListarTodos();
                     preencheTabela();
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao apagar o Funcionário");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Funcionário");
                 }
             }
          }else{
-             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");
+             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
          }
         
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -413,7 +413,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
                 lista = dao.Buscar(s);
                 preencheTabela();
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "ID Inválido !");
+                JOptionPane.showMessageDialog(rootPane, "ID Inválido!");
             }
             
             
@@ -427,7 +427,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
                  lista = dao.Buscar(s);
                  preencheTabela();
            }catch(NumberFormatException ex){
-               JOptionPane.showMessageDialog(rootPane, "Nome Inválido !");
+               JOptionPane.showMessageDialog(rootPane, "Nome Inválido!");
            }
            
             
