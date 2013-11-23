@@ -5,11 +5,13 @@
 package br.com.tcc.DomainModel;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -28,7 +30,15 @@ public class Compra implements Serializable {
     @ManyToOne
     private Funcionario funcionario;
     
-
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date data;
+    
+    private double valor;
+    private int quantidade;
+    
+    @ManyToOne
+    private FormaDePagamento formaDePagamento;
+    
     public Long getId() {
         return id;
     }
@@ -37,6 +47,54 @@ public class Compra implements Serializable {
         this.id = id;
     }
 
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public FormaDePagamento getFormaDePagamento() {
+        return formaDePagamento;
+    }
+
+    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
