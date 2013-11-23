@@ -216,6 +216,11 @@ public class frmCadastroProduto extends javax.swing.JDialog {
 
         cbxVendedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxVendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o fornecedor", "Item 2", "Item 3", "Item 4" }));
+        cbxVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxVendedorActionPerformed(evt);
+            }
+        });
         painelNovoServico.add(cbxVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 170, 30));
 
         cbxTipoProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -456,6 +461,10 @@ public class frmCadastroProduto extends javax.swing.JDialog {
          Color minhaCor = new Color(115,183,253);
         this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnSairMouseExited
+
+    private void cbxVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxVendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxVendedorActionPerformed
 
     /*
      *  OUTRAS VARIAVEIS
