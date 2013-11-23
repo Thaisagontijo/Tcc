@@ -280,6 +280,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemProdutos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -298,11 +299,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnAbrirCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAbrirCaixa.setText("Abrir Caixa");
         btnAbrirCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAbrirCaixaMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAbrirCaixaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAbrirCaixaMouseEntered(evt);
             }
         });
         btnAbrirCaixa.addActionListener(new java.awt.event.ActionListener() {
@@ -349,11 +350,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnSaldoCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSaldoCaixa.setText("Saldo do Caixa");
         btnSaldoCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSaldoCaixaMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSaldoCaixaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaldoCaixaMouseEntered(evt);
             }
         });
         btnSaldoCaixa.addActionListener(new java.awt.event.ActionListener() {
@@ -687,6 +688,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem4);
+
+        jMenuItem7.setText("Compra");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
 
         jMenuBar1.add(jMenu1);
 
@@ -1050,6 +1059,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         this.btnFecharCaixa.setBackground(minhaCor);
     }//GEN-LAST:event_btnFecharCaixaMouseExited
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        frmCadastroCompra janela = new frmCadastroCompra(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(this);
+        janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1095,6 +1111,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemFormasDePagamentos;
     private javax.swing.JMenuItem jMenuItemFornecedores;
