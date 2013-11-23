@@ -47,7 +47,7 @@ public class Venda implements Serializable {
     private Funcionario funcionario;
     
     @ManyToMany
-    private List<Produto> produtos;
+    private List<ItemVendaProduto> produtos;
     
     @ManyToOne
     private Cliente cliente;
@@ -56,7 +56,7 @@ public class Venda implements Serializable {
     private FormaDePagamento formaDePagamento;
     
     @ManyToMany
-    private List<Servico> servicos;
+    private List<ItemVendaServico> servicos;
     
     private String Observacao;
     
@@ -92,11 +92,11 @@ public class Venda implements Serializable {
         this.funcionario = funcionario;
     }
 
-    public List<Produto> getProdutos() {
+    public List<ItemVendaProduto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(List<ItemVendaProduto> produtos) {
         this.produtos = produtos;
     }
 
@@ -116,11 +116,11 @@ public class Venda implements Serializable {
         this.formaDePagamento = formaDePagamento;
     }
 
-    public List<Servico> getServicos() {
+    public List<ItemVendaServico> getServicos() {
         return servicos;
     }
 
-    public void setServicos(List<Servico> servicos) {
+    public void setServicos(List<ItemVendaServico> servicos) {
         this.servicos = servicos;
     }
 
@@ -139,26 +139,26 @@ public class Venda implements Serializable {
     public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
     }
-    public void addServico(Servico s){
+    public void addServico(ItemVendaServico s){
         if(!servicos.contains(s)){
             servicos.add(s);
         }
     }
     
-    public void removeServico(Servico s){
+    public void removeServico(ItemVendaServico s){
         if(servicos.contains(s)){
             servicos.remove(s);
         }
     }
     
     
-    public void addProduto(Produto p){
+    public void addProduto(ItemVendaProduto p){
         if(!produtos.contains(p)){
             produtos.add(p);
         }
     }
     
-    public void removeProduto(Produto p){
+    public void removeProduto(ItemVendaProduto p){
         if(produtos.contains(p)){
             produtos.remove(p);
         }
@@ -166,12 +166,12 @@ public class Venda implements Serializable {
 
     public float calculaValorTotal(){
         float valorTotal = 0;
-        for(Servico s : servicos){
+        for(ItemVendaServico s : servicos){
             valorTotal+= s.getValor();
         }
         
-        for(Produto p : produtos){
-            valorTotal+= (p.getQtdVenda() * p.getPrecoVenda());
+        for(ItemVendaProduto p : produtos){
+            valorTotal+= (p.getQtd() * p.getProduto().getPrecoVenda());
         }
     
         return valorTotal;
@@ -187,18 +187,15 @@ public class Venda implements Serializable {
     }
     }
      * */
+  
+
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.caixa);
-        hash = 89 * hash + Objects.hashCode(this.funcionario);
-        hash = 89 * hash + Objects.hashCode(this.produtos);
-        hash = 89 * hash + Objects.hashCode(this.cliente);
-        hash = 89 * hash + Objects.hashCode(this.formaDePagamento);
-        hash = 89 * hash + Objects.hashCode(this.servicos);
-        hash = 89 * hash + Objects.hashCode(this.Observacao);
-        hash = 89 * hash + Objects.hashCode(this.dataHora);
+        public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.funcionario);
+        hash = 37 * hash + Objects.hashCode(this.Observacao);
+        hash = 37 * hash + Objects.hashCode(this.dataHora);
         return hash;
     }
 
@@ -211,20 +208,32 @@ public class Venda implements Serializable {
             return false;
         }
         final Venda other = (Venda) obj;
-        if (!Objects.equals(this.caixa, other.caixa)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.funcionario, other.funcionario)) {
             return false;
         }
-        if (!Objects.equals(this.produtos, other.produtos)) {
+        if (!Objects.equals(this.Observacao, other.Observacao)) {
             return false;
         }
-        if (!Objects.equals(this.cliente, other.cliente)) {
+        if (!Objects.equals(this.dataHora, other.dataHora)) {
             return false;
         }
         return true;
     }
+
+  
+
+        public float getValorVenda() {
+        return valorVenda;
+    }
+
+    public void setValorVenda(float valorVenda) {
+        this.valorVenda = valorVenda;
+    }
+
+  
 
     @Override
     public String toString() {

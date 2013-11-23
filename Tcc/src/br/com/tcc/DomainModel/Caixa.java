@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -167,7 +166,8 @@ public class Caixa implements Serializable {
         }
         
         //calculando valor das vendas
-       
+    
+        /*
         for(Venda v : vendas){
             for(Produto p: v.getProdutos()){
                 valor+= p.getPrecoVenda() * p.getQtdVenda();
@@ -178,7 +178,7 @@ public class Caixa implements Serializable {
                 valor+=s.getValor();
             }
         }
-       
+       */
         return valor;
     }
 

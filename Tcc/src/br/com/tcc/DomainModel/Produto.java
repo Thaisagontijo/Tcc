@@ -44,7 +44,7 @@ public class Produto implements Serializable {
     @ManyToOne
     private Fornecedor fornecedor;
     
-    private int qtdVenda;
+   
     
     private boolean ativo;
 
@@ -121,15 +121,7 @@ public class Produto implements Serializable {
         this.fornecedor = fornecedor;
     }
 
-    public int getQtdVenda() {
-        return qtdVenda;
-    }
-
-    public void setQtdVenda(int qtdVenda) {
-        this.qtdVenda = qtdVenda;
-    }
-    
-    
+      
 
     @Override
     public int hashCode() {

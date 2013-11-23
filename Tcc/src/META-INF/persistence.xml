@@ -19,6 +19,8 @@
     <class>br.com.tcc.DomainModel.Venda</class>
     <class>br.com.tcc.DomainModel.Caixa</class>
     <class>br.com.tcc.DomainModel.Compra</class>
+    <class>br.com.tcc.DomainModel.ItemVendaProduto</class>
+    <class>br.com.tcc.DomainModel.ItemVendaServico</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/beautySystem?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>
