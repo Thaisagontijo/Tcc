@@ -9,12 +9,13 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -33,10 +34,10 @@ public class Venda implements Serializable {
     private Caixa caixa;
 
     public Venda() {
-        this.funcionario = new Funcionario();
+        this.funcionario = null;
         this.produtos = new LinkedList<>();
-        this.cliente = new Cliente();
-        this.formaDePagamento = new FormaDePagamento();
+        this.cliente = null;
+        this.formaDePagamento = null;
         this.servicos = new LinkedList<>();
         this.dataHora = new Date();
         this.caixa = new Caixa();
@@ -46,7 +47,7 @@ public class Venda implements Serializable {
     @ManyToOne
     private Funcionario funcionario;
     
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "Venda",targetEntity = ItemVendaProduto.class)
     private List<ItemVendaProduto> produtos;
     
     @ManyToOne
@@ -55,7 +56,7 @@ public class Venda implements Serializable {
     @ManyToOne
     private FormaDePagamento formaDePagamento;
     
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "Venda",targetEntity = ItemVendaServico.class)
     private List<ItemVendaServico> servicos;
     
     private String Observacao;

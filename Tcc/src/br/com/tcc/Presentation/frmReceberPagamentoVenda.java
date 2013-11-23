@@ -4,8 +4,11 @@
  */
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DomainModel.Servico;
+import br.com.tcc.DataAccess.FormaDePagamentoDAO;
+import br.com.tcc.DataAccess.VendaDAO;
+import br.com.tcc.DomainModel.FormaDePagamento;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +30,22 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
         
         CalculaValorAPagar();
+        carregaFormaDePagamento();
+    }
+    
+    
+    private void carregaFormaDePagamento(){
+        FormaDePagamentoDAO daoFormaDePagamento = new FormaDePagamentoDAO();
+        
+        FormaDePagamento tmp = new FormaDePagamento();
+        tmp.setNome("Selecione");
+        
+        cbxFormaDePagamento.removeAllItems();
+        cbxFormaDePagamento.addItem(tmp);
+        
+        for(FormaDePagamento f: daoFormaDePagamento.ListarTodos()){
+            cbxFormaDePagamento.addItem(f);
+        }
     }
 
     
@@ -51,6 +70,10 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         cbxFormaDePagamento = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         lblTotalAPagar = new javax.swing.JLabel();
+        txtValor = new javax.swing.JTextField();
+        lblValor = new javax.swing.JLabel();
+        btnPagar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,6 +94,8 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         lblTotalAPagar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTotalAPagar.setForeground(new java.awt.Color(0, 0, 102));
 
+        lblValor.setText("Valor*:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -79,44 +104,70 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblFormaDePagamento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbxFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(lblTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(319, 319, 319)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblFormaDePagamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblValor)
+                        .addGap(56, 56, 56)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(270, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(61, 61, 61)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(73, 73, 73))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblValor)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)))
-                .addGap(87, 87, 87))
+                        .addGap(24, 24, 24))))
         );
+
+        btnPagar.setText("Pagar");
+        btnPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(btnPagar)
+                        .addGap(89, 89, 89)
+                        .addComponent(btnCancelar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,18 +175,46 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPagar)
+                    .addComponent(btnCancelar))
+                .addGap(47, 47, 47))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        if(Float.parseFloat(txtValor.getText()) >= (Float.parseFloat(lblTotalAPagar.getText()))){
+            VendaDAO daoVenda = new VendaDAO();
+            janelaPai.novaVenda.setCaixa(janelaPai.caixa);
+            janelaPai.novaVenda.setFormaDePagamento((FormaDePagamento)cbxFormaDePagamento.getSelectedItem());
+            janelaPai.novaVenda.setValorVenda(Float.parseFloat(txtValor.getText()));
+            janelaPai.novaVenda.setCliente(janelaPai.clienteCOmboVenda);
+            
+            
+            if(daoVenda.Salvar(janelaPai.novaVenda)){
+                JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
+            }else{
+             JOptionPane.showMessageDialog(rootPane, "erro ao salvar a venda");
+            }
+                
+                
+                    
+        }
+    }//GEN-LAST:event_btnPagarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnPagar;
     private javax.swing.JComboBox cbxFormaDePagamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFormaDePagamento;
     private javax.swing.JLabel lblTotalAPagar;
+    private javax.swing.JLabel lblValor;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

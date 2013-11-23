@@ -8,6 +8,8 @@ import br.com.tcc.DataAccess.FuncionarioDAO;
 import br.com.tcc.DataAccess.ProdutoDAO;
 import br.com.tcc.DataAccess.ServicoDAO;
 import br.com.tcc.DomainModel.Funcionario;
+import br.com.tcc.DomainModel.ItemVendaProduto;
+import br.com.tcc.DomainModel.ItemVendaServico;
 import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Servico;
 import java.awt.Color;
@@ -342,16 +344,38 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxProdutosServicosItemStateChanged
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-       
-        
-        
-        if(opcaoRadioButton == 1){
-           janelaPai.novaVenda.addServico(tmpServico);
-           janelaPai.preencheTabelaVendas();
+       if(opcaoRadioButton == 1){
+            ItemVendaServico servico = new ItemVendaServico();
+            servico.setFuncionario((Funcionario)cbxProfissional.getSelectedItem());
+            float valor =0;
+            
+            
+            //calculando o valor do desconto
+           try {
+               valor = tmpServico.getValor() * (Float.parseFloat(txtDesconto.getText()) / 100);
+
+               valor -= tmpServico.getValor();
+               tmpServico.setValor(valor);
+
+               servico.setServico(tmpServico);
+               //conferir
+               servico.setVenda(janelaPai.novaVenda);
+
+               janelaPai.novaVenda.addServico(servico);
+               janelaPai.preencheTabelaVendas();
+
+           } catch (NumberFormatException ex) {
+               JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
+           }
+            
            this.dispose();
        }else if(opcaoRadioButton == 2){
-           tmpProduto.setQtdVenda(Integer.parseInt(spnQuantidade.getValue().toString()));
-           janelaPai.novaVenda.addProduto(tmpProduto);
+           ItemVendaProduto produto = new ItemVendaProduto();
+           produto.setProduto(tmpProduto);
+           produto.setVenda(janelaPai.novaVenda);
+           
+           produto.setQtd(Integer.parseInt(spnQuantidade.getValue().toString()));
+           janelaPai.novaVenda.addProduto(produto);
            janelaPai.preencheTabelaVendas();
            this.dispose();
        }

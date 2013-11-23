@@ -226,8 +226,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPanelPrincipal" min="-2" pref="715" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+              <Component id="jTabbedPanelPrincipal" min="-2" pref="818" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -299,7 +299,7 @@
                               <Component id="btnFecharCaixa" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="159" max="32767" attributes="0"/>
+                      <EmptySpace pref="262" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -337,8 +337,8 @@
                 <Property name="text" type="java.lang.String" value="Abrir Caixa"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAbrirCaixaMouseExited"/>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAbrirCaixaMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAbrirCaixaMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbrirCaixaActionPerformed"/>
               </Events>
             </Component>

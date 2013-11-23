@@ -34,8 +34,8 @@ public class Caixa implements Serializable {
     public Caixa() {
         this.vendas = new LinkedList<>();
         this.dataAbertura = new Date();
-        this.dataFechamento = new Date();
-        this.funcionario = new Funcionario();
+        this.dataFechamento = null;
+        this.funcionario = null;
         this.depositos = new LinkedList<>();
         this.retiradas = new LinkedList<>();
     }
