@@ -31,7 +31,7 @@ public class Compra implements Serializable {
     private Funcionario funcionario;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date data;
+    private Date dataCompra;
     
     private double valor;
     private int quantidade;
@@ -63,12 +63,12 @@ public class Compra implements Serializable {
         this.funcionario = funcionario;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataCompra() {
+        return dataCompra;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataCompra(Date dataCompra) {
+        this.dataCompra = dataCompra;
     }
 
     public double getValor() {
