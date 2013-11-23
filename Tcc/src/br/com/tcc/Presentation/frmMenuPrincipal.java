@@ -14,6 +14,8 @@ import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Deposito;
+import br.com.tcc.DomainModel.ItemVendaProduto;
+import br.com.tcc.DomainModel.ItemVendaServico;
 import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
@@ -205,7 +207,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
        
         int i=1;
-        for(Servico s : novaVenda.getServicos()){
+        for(ItemVendaServico s : novaVenda.getServicos()){
             Vector v = new Vector();
             
             v.add(0,i++);
@@ -217,13 +219,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         }
         
-        for(Produto p : novaVenda.getProdutos()){
+        for(ItemVendaProduto p : novaVenda.getProdutos()){
             Vector v = new Vector();
             
             v.add(0,i++);
             v.add(1,"Produto");
-            v.add(2,p.getQtdVenda());
-            v.add(3,(p.getQtdVenda() *p.getPrecoVenda() ));
+            v.add(2,p.getQtd());
+            v.add(3,(p.getQtd()*p.getProduto().getPrecoVenda() ));
                
                    
             model.addRow(v);
@@ -349,11 +351,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnSaldoCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSaldoCaixa.setText("Saldo do Caixa");
         btnSaldoCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSaldoCaixaMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSaldoCaixaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaldoCaixaMouseEntered(evt);
             }
         });
         btnSaldoCaixa.addActionListener(new java.awt.event.ActionListener() {
@@ -418,7 +420,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(281, 281, 281)
                         .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,8 +744,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256)
+                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -850,6 +852,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         depositoEntrada.setCaixa(caixa);
         caixa.addDeposito(depositoEntrada);
         caixa.setFuncionario(usuarioLogado.getFuncionario());
+        CaixaDAO daoCaixa = new CaixaDAO();
+        daoCaixa.Salvar(caixa);
         
         btnDeposito.setVisible(true);
         btnRetirada.setVisible(true);
@@ -857,6 +861,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnSaldoCaixaDetalhado.setVisible(true);
         btnAbrirCaixa.setVisible(false);
         btnFecharCaixa.setVisible(true);
+        
        
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(rootPane, "Valor Invalido !");
@@ -950,6 +955,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         novaVenda.setFuncionario(usuarioLogado.getFuncionario());
         novaVenda.setCaixa(caixa);
         
+        VendaDAO a = new VendaDAO();
+        a.Salvar(novaVenda);
+        
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -987,7 +995,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void btnReceberValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberValorVendaActionPerformed
         frmReceberPagamentoVenda janela = new frmReceberPagamentoVenda(this, rootPaneCheckingEnabled, this);
         janela.setLocationRelativeTo(null);
+       clienteCOmboVenda = (Cliente)cbxCliente.getSelectedItem();
+       // JOptionPane.showMessageDialog(rootPane, cbxCliente.getSelectedItem());
         janela.setVisible(rootPaneCheckingEnabled);
+        
     }//GEN-LAST:event_btnReceberValorVendaActionPerformed
 
     private void btnAbrirCaixaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCaixaMouseEntered
@@ -1064,7 +1075,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private ClienteDAO daoCliente;
     protected Venda novaVenda;
     private DepositoDAO daoDeposito;
-  
+  protected Cliente clienteCOmboVenda;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;
