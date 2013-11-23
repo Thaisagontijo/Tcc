@@ -62,6 +62,9 @@ public class Venda implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataHora;
+    
+    
+    private float valorVenda;
 
     public Caixa getCaixa() {
         return caixa;

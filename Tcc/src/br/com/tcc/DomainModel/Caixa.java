@@ -171,6 +171,7 @@ public class Caixa implements Serializable {
         for(Venda v : vendas){
             for(Produto p: v.getProdutos()){
                 valor+= p.getPrecoVenda() * p.getQtdVenda();
+                
             }
             
             for(Servico s: v.getServicos()){
