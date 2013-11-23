@@ -917,7 +917,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
   //     caixa.getRetiradas().clear();
    //     caixa.getVendas().clear();
         
-        
+        caixa.setDataFechamento(new Date());
         caixa.setFuncionario(usuarioLogado.getFuncionario());
      if(daoCaixa.Salvar(caixa)){
             JOptionPane.showMessageDialog(rootPane, "Caixa Fechado com sucesso!");
@@ -955,8 +955,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         novaVenda.setFuncionario(usuarioLogado.getFuncionario());
         novaVenda.setCaixa(caixa);
         
-        VendaDAO a = new VendaDAO();
-        a.Salvar(novaVenda);
+      //  VendaDAO a = new VendaDAO();
+        //a.Salvar(novaVenda);
         
         
     }//GEN-LAST:event_jButton3ActionPerformed

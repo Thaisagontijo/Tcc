@@ -344,18 +344,30 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxProdutosServicosItemStateChanged
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-       
-        
-        
-        if(opcaoRadioButton == 1){
+       if(opcaoRadioButton == 1){
             ItemVendaServico servico = new ItemVendaServico();
             servico.setFuncionario((Funcionario)cbxProfissional.getSelectedItem());
-            servico.setServico(tmpServico);
-            //conferir
-            servico.setVenda(janelaPai.novaVenda);
+            float valor =0;
             
-           janelaPai.novaVenda.addServico(servico);
-           janelaPai.preencheTabelaVendas();
+            
+            //calculando o valor do desconto
+           try {
+               valor = tmpServico.getValor() * (Float.parseFloat(txtDesconto.getText()) / 100);
+
+               valor -= tmpServico.getValor();
+               tmpServico.setValor(valor);
+
+               servico.setServico(tmpServico);
+               //conferir
+               servico.setVenda(janelaPai.novaVenda);
+
+               janelaPai.novaVenda.addServico(servico);
+               janelaPai.preencheTabelaVendas();
+
+           } catch (NumberFormatException ex) {
+               JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
+           }
+            
            this.dispose();
        }else if(opcaoRadioButton == 2){
            ItemVendaProduto produto = new ItemVendaProduto();
