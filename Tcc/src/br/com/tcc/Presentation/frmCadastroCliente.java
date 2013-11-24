@@ -284,7 +284,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         lblCpf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblCpf.setText("CPF:");
+        lblCpf.setText("CPF: *");
 
         lblRg.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblRg.setText("RG :");
@@ -606,9 +606,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 907, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -643,10 +643,18 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                        
         /*Botão salvar*/
         
+        
+        
+        
         if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() ==0 ||
                cbxAno.getSelectedIndex() == 0||  txtCpf.getText().isEmpty() || txtCelular.getText().isEmpty()||txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
-                txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty()){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
+                txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty() ){
+           
+            JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
+       }else if(txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty()){
+         
+           JOptionPane.showMessageDialog(txtComplemento, "Pelo Menos um telefone é requirido");
+       
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            

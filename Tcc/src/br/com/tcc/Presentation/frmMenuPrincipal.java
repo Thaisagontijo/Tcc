@@ -290,7 +290,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItemEstoque = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -714,13 +714,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Estoques");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jMenuItem5.setText("Estoque Atual");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemEstoque.setText("Estoque Atual");
+        jMenuItemEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItemEstoqueActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(jMenuItemEstoque);
 
         jMenuItem6.setText("Lançar Compra");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -1084,8 +1084,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblVendasMouseClicked
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        try {
+    private void jMenuItemEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstoqueActionPerformed
+       try {
             //Arquivo do Relatorio
             String relatorio = System.getProperty("user.dir") + "/relatorio/relatorioEstoque.jasper";
 
@@ -1105,11 +1105,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }catch(JRException e){
             System.out.println("Erro ao gerar relatorio: " + e.getMessage());
         }
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMenuItemEstoqueActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+                                         
 
     /*
      *  OUTRAS VARIÁVEIS
@@ -1155,9 +1153,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemEstoque;
     private javax.swing.JMenuItem jMenuItemFormasDePagamentos;
     private javax.swing.JMenuItem jMenuItemFornecedores;
     private javax.swing.JMenuItem jMenuItemFuncionarios;
