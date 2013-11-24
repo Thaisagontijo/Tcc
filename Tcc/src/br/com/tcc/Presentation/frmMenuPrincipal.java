@@ -927,29 +927,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
         
         CaixaDAO daoCaixa = new CaixaDAO();
-        daoDeposito = new DepositoDAO();
-        VendaDAO daoVenda = new VendaDAO();
-        RetiradaDAO daoRetirada = new RetiradaDAO();
-        /*
-        
-        for(Deposito d: caixa.getDepositos()){
-            daoDeposito.Salvar(d);
-        }
-        
-        for(Venda d: caixa.getVendas()){
-            daoVenda.Salvar(d);
-        }
-        
-        for(Retirada d: caixa.getRetiradas()){
-            daoRetirada.Salvar(d);
-        }
-        */
-        
-        
-    //      caixa.getDepositos().clear();
-  //     caixa.getRetiradas().clear();
-   //     caixa.getVendas().clear();
-        
+    //    daoDeposito = new DepositoDAO();
+    
         caixa.setDataFechamento(new Date());
         caixa.setFuncionario(usuarioLogado.getFuncionario());
      if(daoCaixa.Salvar(caixa)){
@@ -963,7 +942,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             btnFecharCaixa.setVisible(false);
             caixa = null;
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!"+ "Usuario :"+ usuarioLogado.getFuncionario() );
+            JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
         }
     }//GEN-LAST:event_btnFecharCaixaActionPerformed
 

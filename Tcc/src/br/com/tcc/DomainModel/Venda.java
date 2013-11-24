@@ -168,7 +168,7 @@ public class Venda implements Serializable {
     public float calculaValorTotal(){
         float valorTotal = 0;
         for(ItemVendaServico s : servicos){
-            valorTotal+= s.getValor();
+            valorTotal = s.getValor() + valorTotal;
             
         }
         

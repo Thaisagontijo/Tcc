@@ -361,7 +361,7 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
                    valor = tmpServico.getValor();
                }
               
-               tmpServico.setValor(valor);
+               servico.setValor(valor);
 
                servico.setServico(tmpServico);
                //conferir

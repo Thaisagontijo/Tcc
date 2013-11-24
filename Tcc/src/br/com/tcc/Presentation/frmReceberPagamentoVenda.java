@@ -4,8 +4,10 @@
  */
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.FormaDePagamentoDAO;
 import br.com.tcc.DataAccess.VendaDAO;
+import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.FormaDePagamento;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -189,24 +191,42 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         if(Float.parseFloat(txtValor.getText()) >= (Float.parseFloat(lblTotalAPagar.getText()))){
-            VendaDAO daoVenda = new VendaDAO();
-            janelaPai.novaVenda.setCaixa(janelaPai.caixa);
-            janelaPai.novaVenda.setFormaDePagamento((FormaDePagamento)cbxFormaDePagamento.getSelectedItem());
-            janelaPai.novaVenda.setValorVenda(Float.parseFloat(txtValor.getText()));
-            janelaPai.novaVenda.setCliente(janelaPai.clienteCOmboVenda);
             
+            if(cbxFormaDePagamento.getSelectedIndex() != 0){   //se o o objeto selecionado nao for a opcao "selecione"
             
-            if(daoVenda.Salvar(janelaPai.novaVenda)){
-                JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
-                janelaPai.desativarVenda();
+                /*
                 
-                this.dispose();
-            }else{
-             JOptionPane.showMessageDialog(rootPane, "erro ao salvar a venda");
-            }
+                        Ver as opcoes de à prazo
+                */
                 
-                
+                VendaDAO daoVenda = new VendaDAO();
+                janelaPai.novaVenda.setCaixa(janelaPai.caixa);
+                janelaPai.novaVenda.setFormaDePagamento((FormaDePagamento) cbxFormaDePagamento.getSelectedItem());
+                janelaPai.novaVenda.setValorVenda(Float.parseFloat(txtValor.getText()));
+                janelaPai.novaVenda.setCliente(janelaPai.clienteCOmboVenda);
+
+                if (daoVenda.Salvar(janelaPai.novaVenda)) {
+                    JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
                     
+                    Deposito tmp = new Deposito();
+                    DepositoDAO daoTmp = new DepositoDAO();
+                    tmp.setCaixa(janelaPai.caixa);
+                    tmp.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+                    tmp.setValor(janelaPai.novaVenda.getValorVenda());//teste
+                    tmp.setObservacao("Pagamento de venda ");
+
+                    daoTmp.Salvar(tmp);
+                    janelaPai.caixa.addDeposito(tmp);
+                    janelaPai.desativarVenda();
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda");
+                }
+    
+            }
+                    
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "O valor pago é menor que o valor da venda !");
         }
     }//GEN-LAST:event_btnPagarActionPerformed
 
