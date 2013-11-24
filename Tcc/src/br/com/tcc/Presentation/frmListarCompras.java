@@ -12,6 +12,7 @@ import br.com.tcc.DataAccess.ProdutoDAO;
 import br.com.tcc.DomainModel.Compra;
 import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Produto;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -42,12 +43,12 @@ public class frmListarCompras extends javax.swing.JDialog {
         listaCompra = dao.ListarTodos();
         cbxFiltro.removeAllItems();
         cbxFiltro.addItem("NENHUM");
-        cbxFiltro.addItem("ID");
-        //cbxFiltro.addItem("VALOR");
+        cbxFiltro.addItem("ID");     
+        
+        //cbxFiltro.addItem("DATA");
+        txtFiltro.setVisible(true);
         
         preencheTabela();
-        
-     
         
     }
     
@@ -62,19 +63,32 @@ public class frmListarCompras extends javax.swing.JDialog {
         };
         
         model.addColumn("ID");
+        model.addColumn("PRODUTO");
+        model.addColumn("FUNCIONARIO");
         model.addColumn("DATA");
         model.addColumn("QTD");
         model.addColumn("VALOR");
        
-        
+        ProdutoDAO daoP = new ProdutoDAO();
+         FuncionarioDAO daoF = new FuncionarioDAO();
         for(Compra c : listaCompra){
+            
+            Produto p = new Produto();
+            Funcionario f = new Funcionario();
+            
             Vector v = new Vector();
             v.add(0,c.getId());
+            p = daoP.Abrir(c.getProduto().getId());
+            v.add(1, p.getNome());
+            
+            f = daoF.Abrir(c.getFuncionario().getId());
+            v.add(2, f.getNome());
+            
             String data = "";
             data = c.getDataCompra().getDate()+ "/"+(c.getDataCompra().getMonth() +1)+"/"+c.getDataCompra().getYear();
-            v.add(1,data);
-            v.add(2, c.getQuantidade());
-            v.add(3, c.getValor());
+            v.add(3,data);
+            v.add(4, c.getQuantidade());
+            v.add(5, c.getValor());
             
                    
             model.addRow(v);
@@ -188,10 +202,10 @@ public class frmListarCompras extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnFiltrar)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -235,6 +249,7 @@ public class frmListarCompras extends javax.swing.JDialog {
         
          //objSelecionadoNaTabela = null;
         if(cbxFiltro.getSelectedIndex() == 0){
+            
             /* SE NAO TIVER FILTRO MOSTRA TODOS*/
             listaCompra.clear();
             listaCompra = dao.ListarTodos();
@@ -243,9 +258,9 @@ public class frmListarCompras extends javax.swing.JDialog {
             
         }else if(cbxFiltro.getSelectedIndex() == 1){
             /* SE O FILTRO FOR POR ID*/
-          
             try{
                 compra.setId(Long.parseLong(txtFiltro.getText()));
+                
                 listaCompra.clear();
                 listaCompra = dao.Buscar(compra);
                 preencheTabela();
@@ -253,19 +268,21 @@ public class frmListarCompras extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "ID Inválido!");
             }
         }
-        /*
-        else if(cbxFiltro.getSelectedIndex() == 2){
+        
+        /*else if(cbxFiltro.getSelectedIndex() == 2){
            // SE NAO TIVER FILTRO FOR POR NOME
+                     
            Compra c = new Compra();
            try{
+               
                  c.setValor(Double.parseDouble(txtFiltro.getText()));
                  listaCompra.clear();
                  listaCompra = dao.Buscar(compra);
                  preencheTabela();
            }catch(NumberFormatException ex){
-               JOptionPane.showMessageDialog(rootPane, "Valor Inválido!");
+               JOptionPane.showMessageDialog(rootPane, "Data Inválido!");
            }
-        }*/ 
+        } */
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void tblComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblComprasMouseClicked

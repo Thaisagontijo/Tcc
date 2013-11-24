@@ -39,10 +39,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFiltro" min="-2" pref="280" max="-2" attributes="0"/>
+                      <Component id="txtFiltro" min="-2" pref="352" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cbxFiltro" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnFiltrar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
