@@ -575,12 +575,48 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                        
         /*Botão salvar*/
         
+         if(txtBairro.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
+        }else if(txtCep.getText().trim().length() < 9){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o cep");
+        }else if(txtCpf.getText().trim().length() < 11){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o cpf");
+        }else if(txtNome.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
+        }else if(txtNumero.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
+        }else if(txtRg.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Rg");
+        }else if(txtRua.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
+        }else if(cbxAno.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
+        }else if(cbxEstado.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
+        }else if(cbxDia.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Dia");
+        }else if(cbxMes.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Mês");
+        }else if((txtCelular.getText().trim().length() <= 9  ) && txtTelefone.getText().trim().length() <= 9){
+            JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
+        }
+        
+        
+        
+        /*
+        
+        
+        
+        
+        
         if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || 
                 cbxMes.getSelectedIndex() ==0 || cbxAno.getSelectedIndex() == 0|| txtCpf.getText().isEmpty() ||
                 txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || txtNumero.getText().isEmpty() ||
                 txtBairro.getText().isEmpty() || txtCep.getText().isEmpty()){
                 JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Funcionário? ",
+       }
+         */
+         else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Funcionário? ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
            
