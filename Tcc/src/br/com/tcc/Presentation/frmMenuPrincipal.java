@@ -738,6 +738,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuItem5.setText("Estoque Atual");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setText("Lançar Compra");
@@ -1109,6 +1114,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_tblVendasMouseClicked
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+       
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /*
      *  OUTRAS VARIÁVEIS
