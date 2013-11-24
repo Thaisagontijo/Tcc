@@ -54,6 +54,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
         
         cbxCompraFuncionario.removeAllItems();
         cbxCompraProduto.removeAllItems();
+        cbxCompraPagamento.removeAllItems();
         cbxDia.removeAllItems();
         cbxMes.removeAllItems();
         cbxAno.removeAllItems();
@@ -171,7 +172,6 @@ public class frmCadastroCompra extends javax.swing.JDialog {
         cbxCompraPagamento = new javax.swing.JComboBox();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -240,7 +240,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
                                 .addComponent(cbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cbxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +265,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblValorVenda)
                     .addComponent(txtVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         btnSalvar.setText("Salvar");
@@ -282,13 +282,6 @@ public class frmCadastroCompra extends javax.swing.JDialog {
             }
         });
 
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -298,25 +291,22 @@ public class frmCadastroCompra extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(245, 245, 245)
                 .addComponent(btnSalvar)
-                .addGap(73, 73, 73)
-                .addComponent(btnEditar)
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnEditar))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(btnCancelar))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -327,7 +317,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
         if(txtQuantidade.getText().isEmpty() || (cbxCompraFuncionario.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || 
                 cbxMes.getSelectedIndex() ==0 || cbxAno.getSelectedIndex() == 0|| txtVenda.getText().isEmpty() || cbxCompraProduto.getSelectedIndex() == 0){
                 JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Funcionário? ",
+       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar a Compra? ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
            Compra compra = new Compra();
@@ -359,21 +349,17 @@ public class frmCadastroCompra extends javax.swing.JDialog {
            
            
            if(dao.Salvar(compra)){
-                    JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
+                    JOptionPane.showMessageDialog(rootPane,"Compra Salvo com Sucesso!");
 
                     this.dispose();
 
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Compra!");
                 }
             }
        
        
     }//GEN-LAST:event_btnSalvarActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
@@ -384,7 +370,6 @@ public class frmCadastroCompra extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxAno;
     private javax.swing.JComboBox cbxCompraFuncionario;
