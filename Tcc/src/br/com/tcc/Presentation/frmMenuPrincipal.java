@@ -20,6 +20,8 @@ import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
 import java.awt.Color;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -1087,8 +1089,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         try {
             //Arquivo do Relatorio
-            String relatorio = System.getProperty("user.dir") + "/relatorio/relatorioEstoque.jasper";
-
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioEstoque.jasper");
             //Lista a ser exibida no relatorio
             ProdutoDAO produtoDAO = new ProdutoDAO();
             List<Produto> produtos = produtoDAO.ListarTodos();
@@ -1103,7 +1105,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
             jasperViewer.setVisible(true);
         }catch(JRException e){
-            System.out.println("Erro ao gerar relatorio: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
