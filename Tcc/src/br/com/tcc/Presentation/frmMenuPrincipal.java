@@ -19,15 +19,20 @@ import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
+import com.mysql.jdbc.Connection;
 import java.awt.Color;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -1127,25 +1132,32 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                          
 
     private void relatorioAgendamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioAgendamentosActionPerformed
+        
         try {
             //Arquivo do Relatorio
-            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioEstoque.jasper");
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/agendamentos.jasper");
             //Lista a ser exibida no relatorio
-            ProdutoDAO produtoDAO = new ProdutoDAO();
-            List<Produto> produtos = produtoDAO.ListarTodos();
+//            ProdutoDAO produtoDAO = new ProdutoDAO();
+//            List<Produto> produtos = produtoDAO.ListarTodos();
 
             //Fonte de dados
-            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(produtos);
+//            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(produtos);
 
             //Gera o Relatorio
-            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+            //JasperPrint relatorioGerado = JasperFillManager.;
 
             //Exibe o Relatorio
-            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            Connection con;
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/beautySystem","root","");
+            
+            JasperPrint rel = JasperFillManager.fillReport(relatorio, null, con);
+            
+            JasperViewer jasperViewer = new JasperViewer(rel, false);
             jasperViewer.setVisible(true);
         }catch(JRException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_relatorioAgendamentosActionPerformed
