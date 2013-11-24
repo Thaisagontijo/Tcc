@@ -1063,7 +1063,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFecharCaixaMouseExited
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        frmCadastroCompra janela = new frmCadastroCompra(this, rootPaneCheckingEnabled, this, false);
+        frmListarCompras janela = new frmListarCompras(this, rootPaneCheckingEnabled, this, false);
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem6ActionPerformed

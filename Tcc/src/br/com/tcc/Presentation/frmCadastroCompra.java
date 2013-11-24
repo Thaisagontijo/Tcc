@@ -30,13 +30,13 @@ public class frmCadastroCompra extends javax.swing.JDialog {
     /**
      * Creates new form frmCadastroCompra
      */
-    private frmMenuPrincipal janelaPai;
+    private frmListarCompras janelaPai;
     private boolean descricao;
     private List<Funcionario> listaF;
     private List<Produto> listaP;
     private List<FormaDePagamento> listaFo;
     
-    public frmCadastroCompra(java.awt.Frame parent, boolean modal, frmMenuPrincipal janelaPai, boolean descricao) {
+    public frmCadastroCompra(java.awt.Frame parent, boolean modal, frmListarCompras janelaPai, boolean descricao) {
         super(parent, modal);
         initComponents();
         
