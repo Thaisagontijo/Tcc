@@ -26,9 +26,11 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
      * Creates new form frmInclusaoItemVenda
      */
     private frmMenuPrincipal janelaPai;
-    public frmInclusaoItemVenda(java.awt.Frame parent, boolean modal,frmMenuPrincipal janelaPai) {
+    private boolean cadastro;
+    public frmInclusaoItemVenda(java.awt.Frame parent, boolean modal,frmMenuPrincipal janelaPai,boolean cadastros) {
         super(parent, modal);
         this.janelaPai = janelaPai;
+        this.cadastro = cadastros;
                 
         initComponents();
         Color minhaCor = new Color(239,239,239);
@@ -40,6 +42,15 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
         cbxProfissional.setVisible(false);
         txtDesconto.setText("0");
         spnQuantidade.setValue(1);
+        
+        if(cadastros){
+            this.setTitle("Incluir Item");
+        }else{
+            this.setTitle("Editar Item");
+            
+            
+            //janelaPai.
+        }
     }
 
     /**

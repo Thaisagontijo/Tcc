@@ -33,7 +33,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         this.cadastro = cadastro;
        
         
-        if(cadastro ==  true){
+        if(cadastro){
             this.setTitle("CADASTRO DE FORMA DE PAGAMENTO");
             //System.out.println("verdade");
         }else{

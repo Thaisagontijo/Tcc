@@ -332,7 +332,7 @@ public class frmClienteLista extends javax.swing.JDialog {
          * PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
          
          */
-      //  tblServicos.isCellEditable(tblServicos.getSelectedRow(), tblServicos.getSelectedColumn());
+        //  tblServicos.isCellEditable(tblServicos.getSelectedRow(), tblServicos.getSelectedColumn());
         
         
         if(idSelecionadoTabela == tblCliente.getSelectedRow()){ //se está clicando na mesma linha
