@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e7daf6b-32f6-49b2-8ce3-5d95f3f28819">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Estoque" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e7daf6b-32f6-49b2-8ce3-5d95f3f28819">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="qtdEstoque" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -12,7 +18,7 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[Estoque]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="0e234516-553d-47a9-9716-76f0777c5e62"/>
@@ -32,6 +38,18 @@
 			<line>
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="45d9f4a2-be72-4311-9b00-4f000c23463c"/>
 			</line>
+			<staticText>
+				<reportElement x="16" y="1" width="100" height="20" uuid="47d45156-172e-480c-b350-7c9c8a399e83"/>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="1" width="100" height="20" uuid="a86fcc8a-ba76-43b0-b11c-effa31e1d2f8"/>
+				<text><![CDATA[descricao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="1" width="100" height="20" uuid="2ad604bc-080f-4efc-a920-8a1399147b6a"/>
+				<text><![CDATA[qtdEstoque]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -39,6 +57,18 @@
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="fad99750-544e-4451-ab3c-b311df228ff2"/>
 			</line>
+			<textField>
+				<reportElement x="16" y="0" width="100" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="0" width="100" height="20" uuid="3b549dc2-dbda-4677-87c2-2251f17d37d8"/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="0" width="100" height="20" uuid="8ef8e4aa-6f96-4d64-8a84-b8116909bb92"/>
+				<textFieldExpression><![CDATA[$F{qtdEstoque}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -49,7 +79,7 @@
 			<textField>
 				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="11690135-03af-40c0-8210-bd36ecebfd9e"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="a1314ea7-62e3-4052-997e-cf36378d4532"/>
