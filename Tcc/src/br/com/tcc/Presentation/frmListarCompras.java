@@ -66,7 +66,7 @@ public class frmListarCompras extends javax.swing.JDialog {
         model.addColumn("PRODUTO");
         model.addColumn("FUNCIONARIO");
         model.addColumn("DATA");
-        model.addColumn("QTD");
+        model.addColumn("QUANTIDADE");
         model.addColumn("VALOR");
        
         ProdutoDAO daoP = new ProdutoDAO();
