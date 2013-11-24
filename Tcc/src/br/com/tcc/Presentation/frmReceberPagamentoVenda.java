@@ -29,7 +29,7 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
          Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);
         
-        CalculaValorAPagar();
+        calculaValorAPagar();
         carregaFormaDePagamento();
     }
     
@@ -49,11 +49,9 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
     }
 
     
-    public void CalculaValorAPagar(){
-    lblTotalAPagar.setText(String.valueOf(janelaPai.novaVenda.calculaValorTotal()));
-    
-    
-        
+    private void calculaValorAPagar(){
+      lblTotalAPagar.setText(String.valueOf(janelaPai.novaVenda.calculaValorTotal()));
+      
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,7 +135,6 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblValor)
                         .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -153,6 +150,11 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,6 +198,9 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
             
             if(daoVenda.Salvar(janelaPai.novaVenda)){
                 JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
+                janelaPai.desativarVenda();
+                
+                this.dispose();
             }else{
              JOptionPane.showMessageDialog(rootPane, "erro ao salvar a venda");
             }
@@ -204,6 +209,10 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                     
         }
     }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

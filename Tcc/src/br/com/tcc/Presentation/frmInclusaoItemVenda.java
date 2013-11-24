@@ -347,14 +347,20 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
        if(opcaoRadioButton == 1){
             ItemVendaServico servico = new ItemVendaServico();
             servico.setFuncionario((Funcionario)cbxProfissional.getSelectedItem());
-            float valor =0;
+            
             
             
             //calculando o valor do desconto
            try {
-               valor = tmpServico.getValor() * (Float.parseFloat(txtDesconto.getText()) / 100);
-
-               valor -= tmpServico.getValor();
+               float valor = 0;
+               
+               if(Float.parseFloat(txtDesconto.getText()) > 0){
+                   valor = tmpServico.getValor() * (Float.parseFloat(txtDesconto.getText()) / 100);
+                   valor = tmpServico.getValor() - valor;
+               }else{
+                   valor = tmpServico.getValor();
+               }
+              
                tmpServico.setValor(valor);
 
                servico.setServico(tmpServico);
@@ -370,14 +376,23 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
             
            this.dispose();
        }else if(opcaoRadioButton == 2){
-           ItemVendaProduto produto = new ItemVendaProduto();
-           produto.setProduto(tmpProduto);
-           produto.setVenda(janelaPai.novaVenda);
            
-           produto.setQtd(Integer.parseInt(spnQuantidade.getValue().toString()));
-           janelaPai.novaVenda.addProduto(produto);
-           janelaPai.preencheTabelaVendas();
-           this.dispose();
+           //Verificando disponibilidade no estoque
+           
+           if (tmpProduto.getQtdEstoque() > Integer.parseInt(spnQuantidade.getValue().toString())) {
+               JOptionPane.showMessageDialog(rootPane, "A quantidade do produto é maior do que o valor de estque !");
+
+           } else {
+
+               ItemVendaProduto produto = new ItemVendaProduto();
+               produto.setProduto(tmpProduto);
+               produto.setVenda(janelaPai.novaVenda);
+
+               produto.setQtd(Integer.parseInt(spnQuantidade.getValue().toString()));
+               janelaPai.novaVenda.addProduto(produto);
+               janelaPai.preencheTabelaVendas();
+               this.dispose();
+           }
        }
     }//GEN-LAST:event_btnOkActionPerformed
 

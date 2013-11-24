@@ -16,8 +16,6 @@ import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.ItemVendaProduto;
 import br.com.tcc.DomainModel.ItemVendaServico;
-import br.com.tcc.DomainModel.Produto;
-import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
 import java.awt.Color;
@@ -111,7 +109,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         /*
          * PREPARANDO TELA DE VENDAS
          
-         */
+         
         cbxCliente.removeAllItems();
         Cliente clienteTmp = new Cliente();
         clienteTmp.setNome("Selecione");
@@ -120,7 +118,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         for(Cliente c:daoCliente.ListarTodos()){
             cbxCliente.addItem(c);
         }
+        */
         
+        preencheComboClientes();
         
         /*
          * Ao iniciar o programa as vendas estão bloqueadas até q se inicie uma nova venda
@@ -136,6 +136,21 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         lblCliente.setEnabled(false);
     }
 
+    
+    protected void preencheComboClientes(){
+         cbxCliente.removeAllItems();
+        Cliente clienteTmp = new Cliente();
+        clienteTmp.setNome("Selecione");
+        cbxCliente.addItem(clienteTmp);
+        daoCliente = new ClienteDAO();
+        for(Cliente c:daoCliente.ListarTodos()){
+            cbxCliente.addItem(c);
+        }
+    
+    
+    }
+    
+    
     
     protected void preencheTabelaAgendamentos(){
     /*
@@ -235,6 +250,20 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         tblVendas.setModel(model);
         tblVendas.repaint();
     
+    }
+    
+    protected void desativarVenda() {
+        cbxCliente.setEnabled(false);
+        tblVendas.setEnabled(false);
+        btnIncluirItemVenda.setEnabled(false);
+        btnAlterarItemVenda.setEnabled(false);
+        btnExcluirItemVenda.setEnabled(false);
+        btnReceberValorVenda.setEnabled(false);
+        btnCancelarVenda.setEnabled(false);
+        lblCliente.setEnabled(false);
+
+        novaVenda = null;
+
     }
     
    
@@ -402,10 +431,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(226, 226, 226))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -419,7 +444,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                             .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(281, 281, 281)
-                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(253, 253, 253)
+                        .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(262, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -933,6 +961,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             btnSaldoCaixaDetalhado.setVisible(false);
             btnAbrirCaixa.setVisible(true);
             btnFecharCaixa.setVisible(false);
+            caixa = null;
         }else{
             JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!"+ "Usuario :"+ usuarioLogado.getFuncionario() );
         }
@@ -946,37 +975,36 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        cbxCliente.setEnabled(true);
-        tblVendas.setEnabled(true);
-        btnIncluirItemVenda.setEnabled(true);
-        btnAlterarItemVenda.setEnabled(true);
-        btnExcluirItemVenda.setEnabled(true);
-        btnReceberValorVenda.setEnabled(true);
-        btnCancelarVenda.setEnabled(true);
-        lblCliente.setEnabled(true);
-        
-        novaVenda = new Venda();
-        preencheTabelaVendas();
-        novaVenda.setFuncionario(usuarioLogado.getFuncionario());
-        novaVenda.setCaixa(caixa);
-        
+        //Validando venda 
+        if (caixa == null) {
+            JOptionPane.showMessageDialog(rootPane, "Para realzar a venda o caixa deve ser aberto !");
+        } else {
+
+            cbxCliente.setEnabled(true);
+            tblVendas.setEnabled(true);
+            btnIncluirItemVenda.setEnabled(true);
+            btnAlterarItemVenda.setEnabled(true);
+            btnExcluirItemVenda.setEnabled(true);
+            btnReceberValorVenda.setEnabled(true);
+            btnCancelarVenda.setEnabled(true);
+            lblCliente.setEnabled(true);
+
+            novaVenda = new Venda();
+            preencheTabelaVendas();
+            novaVenda.setFuncionario(usuarioLogado.getFuncionario());
+            novaVenda.setCaixa(caixa);
+            preencheComboClientes();
+
       //  VendaDAO a = new VendaDAO();
-        //a.Salvar(novaVenda);
-        
-        
+            //a.Salvar(novaVenda);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
-        cbxCliente.setEnabled(false);
-        tblVendas.setEnabled(false);
-        btnIncluirItemVenda.setEnabled(false);
-        btnAlterarItemVenda.setEnabled(false);
-        btnExcluirItemVenda.setEnabled(false);
-        btnReceberValorVenda.setEnabled(false);
-        btnCancelarVenda.setEnabled(false);
-        lblCliente.setEnabled(false);
-        
-        novaVenda = null;
+        if (JOptionPane.showConfirmDialog(rootPane, "Pergunta", "Você tem certeza que deseja cancelar a compra?", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            desativarVenda();
+
+        }
         
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
 
