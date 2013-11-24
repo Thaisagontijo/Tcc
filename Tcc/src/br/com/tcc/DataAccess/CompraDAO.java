@@ -52,8 +52,8 @@ public class CompraDAO extends DAOGenerico<Compra>{
                  consulta = "Select s from Compra s Where s.id like '%" + obj.getId() + "%'";
                  
              }
-             //else if(obj.getValor() != null){
-             //consulta = "Select s from Compra s Where s.valor like '%" + obj.getValor()+ "%'";
+             //else if(obj.getDataCompra()!= null){
+             //consulta = "Select s from Compra s Where s.datacompra like '%" + obj.getDataCompra()+ "%'";
              //}
 
              
