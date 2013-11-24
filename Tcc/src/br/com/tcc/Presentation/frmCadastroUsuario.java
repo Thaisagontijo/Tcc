@@ -10,6 +10,7 @@ import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import promepe.utilitarios.CryptographyTripleDES;
 
 /**
  *
@@ -22,43 +23,39 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
      */
     private frmUsuarioLista janelaPai;
     private boolean cadastro;
-    public frmCadastroUsuario(java.awt.Frame parent, boolean modal,frmUsuarioLista janelaPai,boolean cadastro) {
+
+    public frmCadastroUsuario(java.awt.Frame parent, boolean modal, frmUsuarioLista janelaPai, boolean cadastro) {
         super(parent, modal);
         initComponents();
-         Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.getContentPane().setBackground(minhaCor);
         this.cadastro = cadastro;
-        
+
         cbxFuncionario.removeAllItems();
         daoFuncionario = new FuncionarioDAO();
         daoUsuario = new UsuarioDAO();
         this.janelaPai = janelaPai;
-        
+
         Funcionario tmp = new Funcionario();
         tmp.setNome("Selecione");
-        
+
         cbxFuncionario.addItem(tmp);
-        
-        for(Funcionario f : daoFuncionario.ListarTodos()){
+
+        for (Funcionario f : daoFuncionario.ListarTodos()) {
             cbxFuncionario.addItem(f);
         }
-        
-        
-        
-        if(cadastro){
+
+        if (cadastro) {
             this.setTitle("EDIÇÃO DE USUÁRIO");
-        
-        }else{
-            
+
+        } else {
+
             this.setTitle("CADASTRO DE USUÁRIO");
             cbxFuncionario.setSelectedItem(janelaPai.objSelecionadoNaTabela.getFuncionario());
             txtUsuario.setText(janelaPai.objSelecionadoNaTabela.getNome());
-        
+
         }
-        
-        
-        
-        
+
     }
 
     /**
@@ -210,38 +207,44 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if(cbxFuncionario.getSelectedIndex() == 0 || txtUsuario.getText().isEmpty() || txtSenha1.getText().isEmpty() || txtSenha2.getText().isEmpty()){
+        if (cbxFuncionario.getSelectedIndex() == 0 || txtUsuario.getText().isEmpty() || txtSenha1.getText().isEmpty() || txtSenha2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Todos os campos devem ser preenchidos!");
-        }else if(!txtSenha1.getText().equals(txtSenha2.getText()))   {
+        } else if (!txtSenha1.getText().equals(txtSenha2.getText())) {
             JOptionPane.showMessageDialog(rootPane, "As senhas não coincidem!");
-        }else{
-            
-            if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION)==0 ){
-            
+        } else {
+
+            if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+
                 Usuario tmpUsuario = null;
-            
-            if(cadastro){
-                tmpUsuario = new Usuario();
-            }else{
-                tmpUsuario = janelaPai.objSelecionadoNaTabela;
+
+                if (cadastro) {
+                    tmpUsuario = new Usuario();
+                } else {
+                    tmpUsuario = janelaPai.objSelecionadoNaTabela;
+                }
+
+                try {
+                    CryptographyTripleDES criptografia = CryptographyTripleDES.newInstance();
+
+                    tmpUsuario.setFuncionario((Funcionario) cbxFuncionario.getSelectedItem());
+                    tmpUsuario.setNome(txtUsuario.getText());
+                    tmpUsuario.setSenha(criptografia.encrypt(txtSenha1.getText()));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                }
+
+                if (daoUsuario.Salvar(tmpUsuario)) {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario salvo com sucesso!");
+                    this.janelaPai.lista.clear();
+                    this.janelaPai.lista = janelaPai.dao.ListarTodos();
+                    this.janelaPai.preencheTabela();
+                    this.dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o usuario!");
+                }
             }
-            
-            tmpUsuario.setFuncionario((Funcionario)cbxFuncionario.getSelectedItem());
-            tmpUsuario.setNome(txtUsuario.getText());
-            tmpUsuario.setSenha(txtSenha1.getText());
-            
-            if(daoUsuario.Salvar(tmpUsuario)){
-                JOptionPane.showMessageDialog(rootPane, "Usuario salvo com sucesso!");
-                this.janelaPai.lista.clear();
-                this.janelaPai.lista = janelaPai.dao.ListarTodos();
-                this.janelaPai.preencheTabela();
-                this.dispose();
-                
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o usuario!");
-            }
-            }
-            
+
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -250,7 +253,7 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed

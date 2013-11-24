@@ -166,6 +166,9 @@ public class frmListarCompras extends javax.swing.JDialog {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
+        frmCadastroCompra janela = new frmCadastroCompra(null,rootPaneCheckingEnabled, this, false);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnNovoActionPerformed
 
 
