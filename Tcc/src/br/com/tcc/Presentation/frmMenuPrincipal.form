@@ -289,7 +289,7 @@
                               <Component id="btnFecharCaixa" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                               <Component id="btnAbrirCaixa" min="-2" pref="219" max="-2" attributes="0"/>
                           </Group>
                       </Group>

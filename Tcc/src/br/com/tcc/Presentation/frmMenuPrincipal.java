@@ -8,8 +8,6 @@ import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DataAccess.CaixaDAO;
 import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DataAccess.DepositoDAO;
-import br.com.tcc.DataAccess.RetiradaDAO;
-import br.com.tcc.DataAccess.VendaDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
@@ -446,7 +444,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                         .addGap(281, 281, 281)
                         .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(253, 253, 253)
+                        .addGap(243, 243, 243)
                         .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(262, Short.MAX_VALUE))
         );
