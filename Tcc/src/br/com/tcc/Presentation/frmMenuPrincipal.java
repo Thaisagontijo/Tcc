@@ -296,6 +296,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        relatorioAgendamentos = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -740,6 +741,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Relatórios");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        relatorioAgendamentos.setText("Agendamentos");
+        relatorioAgendamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatorioAgendamentosActionPerformed(evt);
+            }
+        });
+        jMenu5.add(relatorioAgendamentos);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Sistema");
@@ -1109,6 +1119,30 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void relatorioAgendamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioAgendamentosActionPerformed
+        try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioEstoque.jasper");
+            //Lista a ser exibida no relatorio
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            List<Produto> produtos = produtoDAO.ListarTodos();
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(produtos);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            jasperViewer.setVisible(true);
+        }catch(JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_relatorioAgendamentosActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1168,6 +1202,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
     private javax.swing.JLabel lblCliente;
+    private javax.swing.JMenuItem relatorioAgendamentos;
     private javax.swing.JTable tblAgenda;
     private javax.swing.JTable tblVendas;
     // End of variables declaration//GEN-END:variables
