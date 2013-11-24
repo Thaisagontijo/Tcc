@@ -135,6 +135,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
          
          
          //continuar a parte de edicao
+         btnSair.setVisible(false);
          
          if(cadastro){
               this.setTitle("CADASTRO DE FUNCIONÁRIOS");
@@ -159,6 +160,9 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                  cbxEstado.setEnabled(false);
                  cbxMes.setEnabled(false);
                  cbxSexo.setEnabled(false);
+                 btnCancelar.setVisible(false);
+                 btnSalvar.setVisible(false);
+                 btnSair.setVisible(true);
                  
              }else{
               this.setTitle("EDIÇÃO DE FUNCIONÁRIOS");
@@ -235,6 +239,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         txtCelular = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -533,6 +538,13 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
             }
         });
 
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -542,7 +554,9 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(291, 291, 291)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSair)
+                        .addGap(27, 27, 27)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -564,7 +578,8 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -655,6 +670,21 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
             mes--;
             dataNascimento.setMonth(mes);
             dataNascimento.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()));
+            
+             Date tmp = dataNascimento;
+            tmp.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()) - 1900);
+            
+            if(tmp.after(new Date())){
+                JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
+                
+            }else if((tmp.getDate() == new Date().getDate()) && (tmp.getMonth() == new Date().getMonth() && tmp.getYear() == new Date().getYear())){
+                JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
+            }else{
+                ok++;
+            }
+            
+            
+            
             funcionario.setDataNascimento(dataNascimento);//mudar
             
             funcionario.setEnderecoBairro(txtBairro.getText());
@@ -669,7 +699,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
             funcionario.setTelefone(txtTelefone.getText());
             
           
-            if(ok == 1){//se a validacao está correta
+            if(ok == 2){//se a validacao está correta
 
                 if(janelaPai.dao.Salvar(funcionario)){
                     JOptionPane.showMessageDialog(rootPane, "Funcionário Salvo com Sucesso!");
@@ -730,6 +760,10 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
     
     private List<Cidade> listaCidades;
     private CidadeDAO daoCidade;
@@ -737,6 +771,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
     private int estadoSelecionado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxAno;
     private javax.swing.JComboBox cbxCidade;

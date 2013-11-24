@@ -848,7 +848,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         if (idItemAgendaSelecionado == tblAgenda.getSelectedRow()) { //se está clicando na mesma linha
             qtdCliques++;
             if (qtdCliques == 2) {
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                
+                frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, this, false, true);
+                janela.setLocationRelativeTo(null);
+                janela.setVisible(rootPaneCheckingEnabled);
+
+                //JOptionPane.showMessageDialog(rootPane, "chama a descricao");
                 qtdCliques = 0;
             }
         } else {
@@ -863,7 +868,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tblAgendaMouseClicked
 
     private void btnNovoAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAgendamentoActionPerformed
-        frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, this, rootPaneCheckingEnabled);
+        frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, this, rootPaneCheckingEnabled,false);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnNovoAgendamentoActionPerformed
 

@@ -388,6 +388,7 @@ public class frmClienteLista extends javax.swing.JDialog {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
             frmCadastroCliente j = new frmCadastroCliente(null, rootPaneCheckingEnabled, this,false,false);
+            j.setLocationRelativeTo(null);
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{

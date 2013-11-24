@@ -32,7 +32,8 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
      * 
      */
     private frmMenuPrincipal janelaPai;
-    public frmCadastroAgendamento(java.awt.Frame parent, boolean modal, frmMenuPrincipal janelaPai, boolean cadastro) {
+    private boolean descricao;
+    public frmCadastroAgendamento(java.awt.Frame parent, boolean modal, frmMenuPrincipal janelaPai, boolean cadastro,boolean descricao) {
        super(parent, modal);
         
         initComponents();
@@ -41,6 +42,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         
        
         this.janelaPai = janelaPai;
+        this.descricao = descricao;
         
         Date dataTmp = new Date();
         listaClientes = new LinkedList<>();
@@ -184,21 +186,43 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
             this.setTitle("CADASTRO DE AGENDAMENTO");
            // System.out.println("verdade");
         }else{
-            this.setTitle("EDIÇÃO DE AGENDAMENTO");
+            
+            if(descricao){
+                this.setTitle("DESCRIÇÃO DE AGENDAMENTO");
+                cbxAno.setEnabled(false);
+                cbxCliente.setEnabled(false);
+                cbxDia.setEnabled(false);
+                cbxHora.setEnabled(false);
+                cbxMes.setEnabled(false);
+                cbxMinuto.setEnabled(false);
+                txtDescricao.setEditable(false);
+                txtNome.setEditable(false);
+                btnAdicionar.setVisible(false);
+                btnRemover.setVisible(false);
+                btnSalvar.setVisible(false);
+                
+                
+                //txtPrecoCusto.set
+            }else{
+                this.setTitle("EDIÇÃO DE AGENDAMENTO");
+            }
+            
             //System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
-          //  txtQuantidade.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getQtdEstoque()));
-           // txtDescricao.setText(janelaPai.objSelecionadoNaTabela.getDescricao());
-           // txtPrecoVenda.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getPrecoVenda()));
-            //txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
-            //txtPrecoCusto.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getPrecoCusto()));
+            cbxDia.setSelectedIndex((janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getDate()) );
+            cbxMes.setSelectedIndex(((janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getMonth()) + 1));
+            cbxAno.setSelectedItem((janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getYear()) );
             
-           // cbxTipoProduto.setSelectedItem(janelaPai.objSelecionadoNaTabela.getTipoProduto());
-            //cbxCliente.setSelectedItem(janelaPai.objSelecionadoNaTabela.getFornecedor());
-           
+            cbxCliente.setSelectedItem(janelaPai.objetoAgendamentoSelecionadoNaTabela.getCliente());
+            cbxHora.setSelectedItem("0"+String.valueOf(janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getHours()));
+            cbxMinuto.setSelectedItem(String.valueOf(janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getMinutes()));
             
-            
+            listaServicos = janelaPai.objetoAgendamentoSelecionadoNaTabela.getServicos();
+              txtDescricao.setText(janelaPai.objetoAgendamentoSelecionadoNaTabela.getObservacao());
+            preencheTabela();
+          
+         
         }
     }
     
@@ -753,7 +777,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+               // JOptionPane.showMessageDialog(rootPane, "chama a descricao");
                 qtdCliques =0;
             }
         }else {

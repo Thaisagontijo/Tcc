@@ -24,7 +24,8 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
      */
     private frmCadastroServicosLista janelaPai;
     private boolean cadastro;
-    public frmCadastroServicosCadastroEdicao(java.awt.Frame parent, boolean modal, frmCadastroServicosLista janelaPai, boolean cadastro) {
+    private boolean descricao;
+    public frmCadastroServicosCadastroEdicao(java.awt.Frame parent, boolean modal, frmCadastroServicosLista janelaPai, boolean cadastro, boolean descricao) {
        super(parent, modal);
         
         initComponents();
@@ -32,13 +33,29 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
+        this.descricao = descricao;
        
-        
-        if(cadastro ==  true){
+        btnSair.setVisible(false);
+        if(cadastro){
             this.setTitle("CADASTRO DE SERVICO");
             System.out.println("verdade");
         }else{
-            this.setTitle("EDIÇÃO DE SERVICO");
+            
+            if(descricao){
+                this.setTitle("DESCRIÇÃO DE SERVICO");
+                txtComissao.setEditable(false);
+                txtDesconto.setEditable(false);
+                txtDescricao.setEditable(false);
+                txtDuracao.setEditable(false);
+                txtNome.setEditable(false);
+                txtValor.setEditable(false);
+                btnCancelar.setVisible(false);
+                btnSalvar.setVisible(false);
+                btnSair.setVisible(true);
+            }else{
+                this.setTitle("EDIÇÃO DE SERVICO");
+            }
+            
             System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
@@ -79,6 +96,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -216,11 +234,11 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
             }
         });
         btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -239,11 +257,11 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
             }
         });
         btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -254,6 +272,13 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
             }
         });
 
@@ -268,7 +293,9 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105)
+                .addGap(14, 14, 14)
+                .addComponent(btnSair)
+                .addGap(18, 18, 18)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(267, 267, 267))
         );
@@ -280,7 +307,8 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair))
                 .addGap(20, 20, 20))
         );
 
@@ -415,9 +443,14 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseEntered
 
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

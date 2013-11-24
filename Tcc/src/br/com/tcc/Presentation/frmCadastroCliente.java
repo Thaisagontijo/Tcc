@@ -743,6 +743,20 @@ for(char c : cliente.toCharArray())
             dataNascimento.setMonth(mes);
             dataNascimento.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()));
             
+            Date tmp = dataNascimento;
+            tmp.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()) - 1900);
+            
+            
+            if(tmp.after(new Date())){
+                JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
+                
+            }else if((tmp.getDate() == new Date().getDate()) && (tmp.getMonth() == new Date().getMonth() && tmp.getYear() == new Date().getYear())){
+                JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
+            }else{
+                ok++;
+            }
+            
+            
             Cliente.setDataNascimento(dataNascimento);//mudar
             
             Cliente.setEnderecoBairro(txtBairro.getText());
@@ -757,7 +771,7 @@ for(char c : cliente.toCharArray())
             Cliente.setTelefone(txtTelefone.getText());
             
           
-            if(ok == 1){//se a validacao está correta
+            if(ok == 2){//se a validacao está correta
 
                 if(janelaPai.dao.Salvar(Cliente)){
                     JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");

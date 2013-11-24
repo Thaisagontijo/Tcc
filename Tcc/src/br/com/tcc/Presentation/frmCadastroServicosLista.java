@@ -316,7 +316,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
        
         /*Botão salvar*/
-       frmCadastroServicosCadastroEdicao a = new frmCadastroServicosCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
+       frmCadastroServicosCadastroEdicao a = new frmCadastroServicosCadastroEdicao(null,rootPaneCheckingEnabled, this,true,false);
        
         //JDialog a = new JDialog
        a.setVisible(rootPaneCheckingEnabled);
@@ -335,7 +335,12 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                
+                frmCadastroServicosCadastroEdicao janela = new frmCadastroServicosCadastroEdicao(null, rootPaneCheckingEnabled, this, false, true);
+                janela.setLocationRelativeTo(null);
+                janela.setVisible(rootPaneCheckingEnabled);
+
+                //JOptionPane.showMessageDialog(rootPane, "chama a descricao");
                 qtdCliques =0;
             }
         }else {
@@ -373,7 +378,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
-            frmCadastroServicosCadastroEdicao j = new frmCadastroServicosCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            frmCadastroServicosCadastroEdicao j = new frmCadastroServicosCadastroEdicao(null, rootPaneCheckingEnabled, this,false,false);
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{
