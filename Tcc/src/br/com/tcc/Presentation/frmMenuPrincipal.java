@@ -8,6 +8,7 @@ import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DataAccess.CaixaDAO;
 import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DataAccess.DepositoDAO;
+import br.com.tcc.DataAccess.ProdutoDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
@@ -28,6 +29,11 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -35,7 +41,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form frmMenuPrincipal
      */
@@ -44,20 +49,16 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
      * Pegando a data/hora do sistema ... vai ser usada em todos os cadastros
      
      */
-        
-    
     /*
-         * Criando objeto data e formatando a data/hora
-         */
-        private Date dataAtual = new Date();
-        
-        DateFormat formato = new SimpleDateFormat("HH:mm:ss");  
-        String formattedDate = formato.format(dataAtual); 
-        
-    
-    
+     * Criando objeto data e formatando a data/hora
+     */
+    private Date dataAtual = new Date();
+
+    DateFormat formato = new SimpleDateFormat("HH:mm:ss");
+    String formattedDate = formato.format(dataAtual);
+
     public frmMenuPrincipal(Usuario usuarioLogado) {
-    
+
         this.usuarioLogado = usuarioLogado;
         this.getContentPane().setBackground(Color.WHITE);
         //this.setLocationRelativeTo(null);
@@ -68,60 +69,51 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          * 1) Tabela de agendamentos
          * 2) Tabela de Caixa ou não
          */
-        
+
         daoAgendamento = new AgendamentoDAO();
         listaAgendamentos = new LinkedList<>();
         objetoAgendamentoSelecionadoNaTabela = new Agendamento();
         tblAgenda = new JTable();
-        
-        
-        
-        
+
         /*
          *  PREPARANDO OBJETOS PARA SER MOSTRADOS AO INICIAR O PROGRAMA
          
          */
-        
         Agendamento tmpAgendamento = new Agendamento();
         tmpAgendamento.setRealizado(false);
         listaAgendamentos = daoAgendamento.Buscar(tmpAgendamento);
-        
-        
-        
+
         initComponents();
-         Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.getContentPane().setBackground(minhaCor);
-        
+
         /*
          PREENCHENDO TABELA DE AGENDAMENTOS
          
          */
-        
         preencheTabelaAgendamentos();
-        
-        
+
         btnDeposito.setVisible(false);
         btnRetirada.setVisible(false);
         btnSaldoCaixa.setVisible(false);
         btnSaldoCaixaDetalhado.setVisible(false);
         btnFecharCaixa.setVisible(false);
-        
+
         /*
          * PREPARANDO TELA DE VENDAS
          
          
-        cbxCliente.removeAllItems();
-        Cliente clienteTmp = new Cliente();
-        clienteTmp.setNome("Selecione");
-        cbxCliente.addItem(clienteTmp);
-        daoCliente = new ClienteDAO();
-        for(Cliente c:daoCliente.ListarTodos()){
-            cbxCliente.addItem(c);
-        }
-        */
-        
+         cbxCliente.removeAllItems();
+         Cliente clienteTmp = new Cliente();
+         clienteTmp.setNome("Selecione");
+         cbxCliente.addItem(clienteTmp);
+         daoCliente = new ClienteDAO();
+         for(Cliente c:daoCliente.ListarTodos()){
+         cbxCliente.addItem(c);
+         }
+         */
         preencheComboClientes();
-        
+
         /*
          * Ao iniciar o programa as vendas estão bloqueadas até q se inicie uma nova venda
          
@@ -136,122 +128,109 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         lblCliente.setEnabled(false);
     }
 
-    
-    protected void preencheComboClientes(){
-         cbxCliente.removeAllItems();
+    protected void preencheComboClientes() {
+        cbxCliente.removeAllItems();
         Cliente clienteTmp = new Cliente();
         clienteTmp.setNome("Selecione");
         cbxCliente.addItem(clienteTmp);
         daoCliente = new ClienteDAO();
-        for(Cliente c:daoCliente.ListarTodos()){
+        for (Cliente c : daoCliente.ListarTodos()) {
             cbxCliente.addItem(c);
         }
-    
-    
+
     }
-    
-    
-    
-    protected void preencheTabelaAgendamentos(){
-    /*
+
+    protected void preencheTabelaAgendamentos() {
+        /*
          
          * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
          * 
          * http://www.guj.com.br/java/44193-jtable-nao-editavel
          
          */
-        
-        
-        DefaultTableModel model = new DefaultTableModel(){
-            @Override  
-          public boolean isCellEditable(int row, int col){   
-                 return false;   
-          }   
+
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
         };
-        
+
         model.addColumn("ID");
         model.addColumn("FUNCIONÁRIO RESPONSÁVEL");
         model.addColumn("CLIENTE");
         model.addColumn("DATA/HORA");
-        
-       
-        
-        for(Agendamento p : listaAgendamentos){
+
+        for (Agendamento p : listaAgendamentos) {
             Vector v = new Vector();
-            v.add(0,p.getId());
-            v.add(1,p.getFuncionario().getNome());
-            v.add(2,p.getCliente().getNome());
-            
+            v.add(0, p.getId());
+            v.add(1, p.getFuncionario().getNome());
+            v.add(2, p.getCliente().getNome());
+
             String data = "";
-            data = p.getDataHora().getDate()+ "/"+ (p.getDataHora().getMonth() + 1) +"/"
-                    +p.getDataHora().getYear()+" às "+p.getDataHora().getHours()+":"+p.getDataHora().getMinutes();
-            v.add(3,data);
-            
-                   
+            data = p.getDataHora().getDate() + "/" + (p.getDataHora().getMonth() + 1) + "/"
+                    + p.getDataHora().getYear() + " às " + p.getDataHora().getHours() + ":" + p.getDataHora().getMinutes();
+            v.add(3, data);
+
             model.addRow(v);
-        
+
         }
-        
+
         tblAgenda.setModel(model);
         tblAgenda.repaint();
-    
+
     }
-    
-    
-    protected void preencheTabelaVendas(){
-    /*
+
+    protected void preencheTabelaVendas() {
+        /*
          
          * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
          * 
          * http://www.guj.com.br/java/44193-jtable-nao-editavel
          
          */
-        
-        
-        DefaultTableModel model = new DefaultTableModel(){
-            @Override  
-          public boolean isCellEditable(int row, int col){   
-                 return false;   
-          }   
+
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
         };
-        
+
         model.addColumn("ID");
         model.addColumn("DESCRIÇÃO");
         model.addColumn("QUANTIDADE");
         model.addColumn("VALOR TOTAL");
-        
-       
-        int i=1;
-        for(ItemVendaServico s : novaVenda.getServicos()){
+
+        int i = 1;
+        for (ItemVendaServico s : novaVenda.getServicos()) {
             Vector v = new Vector();
-            
-            v.add(0,i++);
-            v.add(1,"Serviço");
-            v.add(2,"conferir");
-               
-                   
+
+            v.add(0, i++);
+            v.add(1, "Serviço");
+            v.add(2, "conferir");
+
             model.addRow(v);
-        
+
         }
-        
-        for(ItemVendaProduto p : novaVenda.getProdutos()){
+
+        for (ItemVendaProduto p : novaVenda.getProdutos()) {
             Vector v = new Vector();
-            
-            v.add(0,i++);
-            v.add(1,"Produto");
-            v.add(2,p.getQtd());
-            v.add(3,(p.getQtd()*p.getProduto().getPrecoVenda() ));
-               
-                   
+
+            v.add(0, i++);
+            v.add(1, "Produto");
+            v.add(2, p.getQtd());
+            v.add(3, (p.getQtd() * p.getProduto().getPrecoVenda()));
+
             model.addRow(v);
-        
+
         }
-        
+
         tblVendas.setModel(model);
         tblVendas.repaint();
-    
+
     }
-    
+
     protected void desativarVenda() {
         cbxCliente.setEnabled(false);
         tblVendas.setEnabled(false);
@@ -265,9 +244,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         novaVenda = null;
 
     }
-    
-   
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -738,6 +715,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuItem5.setText("Estoque Atual");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setText("Lançar Compra");
@@ -809,7 +791,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
-        frmClienteLista janela = new  frmClienteLista(this, rootPaneCheckingEnabled);
+        frmClienteLista janela = new frmClienteLista(this, rootPaneCheckingEnabled);
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
@@ -845,30 +827,27 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemFornecedoresActionPerformed
 
     private void tblAgendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAgendaMouseClicked
-       
+
         /*
          * PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
          
          */
       //  tblServicos.isCellEditable(tblServicos.getSelectedRow(), tblServicos.getSelectedColumn());
-        
-        
-        if(idItemAgendaSelecionado == tblAgenda.getSelectedRow()){ //se está clicando na mesma linha
+        if (idItemAgendaSelecionado == tblAgenda.getSelectedRow()) { //se está clicando na mesma linha
             qtdCliques++;
-            if(qtdCliques == 2){
+            if (qtdCliques == 2) {
                 JOptionPane.showMessageDialog(rootPane, "chama a descricao");
-                qtdCliques =0;
+                qtdCliques = 0;
             }
-        }else {
-            qtdCliques= 1;
+        } else {
+            qtdCliques = 1;
         }
-        
+
         idItemAgendaSelecionado = tblAgenda.getSelectedRow();
         objetoAgendamentoSelecionadoNaTabela = listaAgendamentos.get(idItemAgendaSelecionado);
-        
+
         //JOptionPane.showMessageDialog(rootPane,objSelecionadoNaTabela.getNome());
-        
-        
+
     }//GEN-LAST:event_tblAgendaMouseClicked
 
     private void btnNovoAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAgendamentoActionPerformed
@@ -883,49 +862,47 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemFuncionariosActionPerformed
 
     private void btnAbrirCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirCaixaActionPerformed
-        
-        
-        try{
-        float entrada = Float.parseFloat(JOptionPane.showInputDialog("Informe o valor para troco a inserir no caixa"));
-        Deposito depositoEntrada = new Deposito();
-        depositoEntrada.setValor(entrada);
-        depositoEntrada.setFuncionario(usuarioLogado.getFuncionario());
-        depositoEntrada.setObservacao("Deposito inicial de abertura de caixa");
-        caixa = new Caixa();
-        depositoEntrada.setCaixa(caixa);
-        caixa.addDeposito(depositoEntrada);
-        caixa.setFuncionario(usuarioLogado.getFuncionario());
-        CaixaDAO daoCaixa = new CaixaDAO();
-        daoCaixa.Salvar(caixa);
-        
-        btnDeposito.setVisible(true);
-        btnRetirada.setVisible(true);
-        btnSaldoCaixa.setVisible(true);
-        btnSaldoCaixaDetalhado.setVisible(true);
-        btnAbrirCaixa.setVisible(false);
-        btnFecharCaixa.setVisible(true);
-        
-       
-        }catch(NumberFormatException ex){
+
+        try {
+            float entrada = Float.parseFloat(JOptionPane.showInputDialog("Informe o valor para troco a inserir no caixa"));
+            Deposito depositoEntrada = new Deposito();
+            depositoEntrada.setValor(entrada);
+            depositoEntrada.setFuncionario(usuarioLogado.getFuncionario());
+            depositoEntrada.setObservacao("Deposito inicial de abertura de caixa");
+            caixa = new Caixa();
+            depositoEntrada.setCaixa(caixa);
+            caixa.addDeposito(depositoEntrada);
+            caixa.setFuncionario(usuarioLogado.getFuncionario());
+            CaixaDAO daoCaixa = new CaixaDAO();
+            daoCaixa.Salvar(caixa);
+
+            btnDeposito.setVisible(true);
+            btnRetirada.setVisible(true);
+            btnSaldoCaixa.setVisible(true);
+            btnSaldoCaixaDetalhado.setVisible(true);
+            btnAbrirCaixa.setVisible(false);
+            btnFecharCaixa.setVisible(true);
+
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "Valor Invalido !");
         }
-        
+
     }//GEN-LAST:event_btnAbrirCaixaActionPerformed
 
     private void btnSaldoCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoCaixaActionPerformed
-       JOptionPane.showMessageDialog(rootPane, "O saldo atual é R$ "+caixa.calcularTotalCaixa());
+        JOptionPane.showMessageDialog(rootPane, "O saldo atual é R$ " + caixa.calcularTotalCaixa());
     }//GEN-LAST:event_btnSaldoCaixaActionPerformed
 
     private void btnRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiradaActionPerformed
-       frmRetiradaCaixa janela = new frmRetiradaCaixa(this, rootPaneCheckingEnabled, this);
-       janela.setLocationRelativeTo(null);
-       janela.setVisible(rootPaneCheckingEnabled);
+        frmRetiradaCaixa janela = new frmRetiradaCaixa(this, rootPaneCheckingEnabled, this);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnRetiradaActionPerformed
 
     private void btnDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositoActionPerformed
-       frmDepositoCaixa janela = new frmDepositoCaixa(this, rootPaneCheckingEnabled, this);
-       janela.setLocationRelativeTo(null);
-       janela.setVisible(rootPaneCheckingEnabled);
+        frmDepositoCaixa janela = new frmDepositoCaixa(this, rootPaneCheckingEnabled, this);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnDepositoActionPerformed
 
     private void btnSaldoCaixaDetalhadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoCaixaDetalhadoActionPerformed
@@ -935,15 +912,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaldoCaixaDetalhadoActionPerformed
 
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
-        
+
         CaixaDAO daoCaixa = new CaixaDAO();
     //    daoDeposito = new DepositoDAO();
-    
+
         caixa.setDataFechamento(new Date());
         caixa.setFuncionario(usuarioLogado.getFuncionario());
-     if(daoCaixa.Salvar(caixa)){
+        if (daoCaixa.Salvar(caixa)) {
             JOptionPane.showMessageDialog(rootPane, "Caixa Fechado com sucesso!");
-            
+
             btnDeposito.setVisible(false);
             btnRetirada.setVisible(false);
             btnSaldoCaixa.setVisible(false);
@@ -951,13 +928,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             btnAbrirCaixa.setVisible(true);
             btnFecharCaixa.setVisible(false);
             caixa = null;
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
         }
     }//GEN-LAST:event_btnFecharCaixaActionPerformed
 
     private void btnIncluirItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirItemVendaActionPerformed
-        frmInclusaoItemVenda janela = new frmInclusaoItemVenda(this, rootPaneCheckingEnabled, this,false);
+        frmInclusaoItemVenda janela = new frmInclusaoItemVenda(this, rootPaneCheckingEnabled, this, false);
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnIncluirItemVendaActionPerformed
@@ -984,7 +961,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             novaVenda.setCaixa(caixa);
             preencheComboClientes();
 
-      //  VendaDAO a = new VendaDAO();
+            //  VendaDAO a = new VendaDAO();
             //a.Salvar(novaVenda);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -994,7 +971,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             desativarVenda();
 
         }
-        
+
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -1009,77 +986,77 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       frmUsuarioLista janela = new frmUsuarioLista(this, rootPaneCheckingEnabled);
-       janela.setLocationRelativeTo(null);
-       janela.setVisible(rootPaneCheckingEnabled);
+        frmUsuarioLista janela = new frmUsuarioLista(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnReceberValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberValorVendaActionPerformed
         frmReceberPagamentoVenda janela = new frmReceberPagamentoVenda(this, rootPaneCheckingEnabled, this);
         janela.setLocationRelativeTo(null);
-       clienteCOmboVenda = (Cliente)cbxCliente.getSelectedItem();
-       // JOptionPane.showMessageDialog(rootPane, cbxCliente.getSelectedItem());
+        clienteCOmboVenda = (Cliente) cbxCliente.getSelectedItem();
+        // JOptionPane.showMessageDialog(rootPane, cbxCliente.getSelectedItem());
         janela.setVisible(rootPaneCheckingEnabled);
-        
+
     }//GEN-LAST:event_btnReceberValorVendaActionPerformed
 
     private void btnAbrirCaixaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCaixaMouseEntered
-        Color minhaCor = new Color(115,183,253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnAbrirCaixa.setBackground(minhaCor);
     }//GEN-LAST:event_btnAbrirCaixaMouseEntered
 
     private void btnRetiradaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetiradaMouseEntered
-        Color minhaCor = new Color(115,183,253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnRetirada.setBackground(minhaCor);
     }//GEN-LAST:event_btnRetiradaMouseEntered
 
     private void btnDepositoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositoMouseEntered
-     Color minhaCor = new Color(115,183,253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnDeposito.setBackground(minhaCor);
     }//GEN-LAST:event_btnDepositoMouseEntered
 
     private void btnSaldoCaixaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaldoCaixaMouseEntered
-       Color minhaCor = new Color(115,183,253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnSaldoCaixa.setBackground(minhaCor);
     }//GEN-LAST:event_btnSaldoCaixaMouseEntered
 
     private void btnFecharCaixaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharCaixaMouseEntered
-        Color minhaCor = new Color(115,183,253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnFecharCaixa.setBackground(minhaCor);
     }//GEN-LAST:event_btnFecharCaixaMouseEntered
 
     private void btnAbrirCaixaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCaixaMouseExited
-        Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.btnAbrirCaixa.setBackground(minhaCor);
     }//GEN-LAST:event_btnAbrirCaixaMouseExited
 
     private void btnRetiradaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetiradaMouseExited
-        Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.btnRetirada.setBackground(minhaCor);
     }//GEN-LAST:event_btnRetiradaMouseExited
 
     private void btnDepositoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDepositoMouseExited
-        Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.btnDeposito.setBackground(minhaCor);
     }//GEN-LAST:event_btnDepositoMouseExited
 
     private void btnSaldoCaixaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaldoCaixaMouseExited
-        Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.btnSaldoCaixa.setBackground(minhaCor);
     }//GEN-LAST:event_btnSaldoCaixaMouseExited
 
     private void btnSaldoCaixaDetalhadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaldoCaixaDetalhadoMouseEntered
-        Color minhaCor = new Color(115,183,253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnSaldoCaixaDetalhado.setBackground(minhaCor);
     }//GEN-LAST:event_btnSaldoCaixaDetalhadoMouseEntered
 
     private void btnSaldoCaixaDetalhadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaldoCaixaDetalhadoMouseExited
-      Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.btnSaldoCaixaDetalhado.setBackground(minhaCor);
     }//GEN-LAST:event_btnSaldoCaixaDetalhadoMouseExited
 
     private void btnFecharCaixaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharCaixaMouseExited
-       Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.btnFecharCaixa.setBackground(minhaCor);
     }//GEN-LAST:event_btnFecharCaixaMouseExited
 
@@ -1090,30 +1067,49 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void btnAlterarItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarItemVendaActionPerformed
-        if(objetoAgendamentoSelecionadoNaTabela != null){
-            frmInclusaoItemVenda janela = new frmInclusaoItemVenda(this, rootPaneCheckingEnabled, this,true);
+        if (objetoAgendamentoSelecionadoNaTabela != null) {
+            frmInclusaoItemVenda janela = new frmInclusaoItemVenda(this, rootPaneCheckingEnabled, this, true);
             janela.setLocationRelativeTo(null);
             janela.setVisible(rootPaneCheckingEnabled);
         }
-    
+
     }//GEN-LAST:event_btnAlterarItemVendaActionPerformed
 
     private void tblVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendasMouseClicked
-        
-         /*
+
+        /*
          *      PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
          
          */
-        
-        
-        
-        
+
     }//GEN-LAST:event_tblVendasMouseClicked
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        try {
+            //Arquivo do Relatorio
+            String relatorio = System.getProperty("user.dir") + "/relatorio/relatorioEstoque.jasper";
+
+            //Lista a ser exibida no relatorio
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            List<Produto> produtos = produtoDAO.ListarTodos();
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(produtos);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            jasperViewer.setVisible(true);
+        }catch(JRException e){
+            System.out.println("Erro ao gerar relatorio: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /*
      *  OUTRAS VARIÁVEIS
      */
-    
     protected Usuario usuarioLogado;
     protected AgendamentoDAO daoAgendamento;
     protected List<Agendamento> listaAgendamentos;
@@ -1127,7 +1123,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     protected Cliente clienteCOmboVenda;
     protected Servico objetoServicoSelecionadoNaTabela;
     protected Produto objetoProdutoSelecionadoNaTabela;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;
     private javax.swing.JButton btnAlterarItemVenda;
