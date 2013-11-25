@@ -704,6 +704,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/user.png"))); // NOI18N
         jMenuItem4.setText("Usuários");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -754,7 +755,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItemCompras);
 
-        jMenuItemAniversariantes.setText("Clientes Aniversariantes do Dia");
+        jMenuItemAniversariantes.setText("Clientes Aniversariantes do Mês");
         jMenuItemAniversariantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAniversariantesActionPerformed(evt);
