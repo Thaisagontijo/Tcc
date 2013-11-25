@@ -19,15 +19,20 @@ import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
+import com.mysql.jdbc.Connection;
 import java.awt.Color;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -292,10 +297,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItemEstoque = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        relatorioAgendamentos = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -716,13 +722,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Estoques");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jMenuItem5.setText("Estoque Atual");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemEstoque.setText("Estoque Atual");
+        jMenuItemEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItemEstoqueActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(jMenuItemEstoque);
 
         jMenuItem6.setText("Lançar Compra");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -740,6 +746,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Relatórios");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        relatorioAgendamentos.setText("Agendamentos");
+        relatorioAgendamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatorioAgendamentosActionPerformed(evt);
+            }
+        });
+        jMenu5.add(relatorioAgendamentos);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Sistema");
@@ -1086,8 +1101,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblVendasMouseClicked
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        try {
+    private void jMenuItemEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstoqueActionPerformed
+       try {
             //Arquivo do Relatorio
             //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
             InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioEstoque.jasper");
@@ -1107,7 +1122,40 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }catch(JRException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMenuItemEstoqueActionPerformed
+
+                                         
+
+    private void relatorioAgendamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioAgendamentosActionPerformed
+        
+        try {
+            //Arquivo do Relatorio
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/agendamentos.jasper");
+            //Lista a ser exibida no relatorio
+//            ProdutoDAO produtoDAO = new ProdutoDAO();
+//            List<Produto> produtos = produtoDAO.ListarTodos();
+
+            //Fonte de dados
+//            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(produtos);
+
+            //Gera o Relatorio
+            //JasperPrint relatorioGerado = JasperFillManager.;
+
+            //Exibe o Relatorio
+            Connection con;
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/beautySystem","root","");
+            
+            JasperPrint rel = JasperFillManager.fillReport(relatorio, null, con);
+            
+            JasperViewer jasperViewer = new JasperViewer(rel, false);
+            jasperViewer.setVisible(true);
+        }catch(JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_relatorioAgendamentosActionPerformed
 
     /*
      *  OUTRAS VARIÁVEIS
@@ -1153,9 +1201,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemEstoque;
     private javax.swing.JMenuItem jMenuItemFormasDePagamentos;
     private javax.swing.JMenuItem jMenuItemFornecedores;
     private javax.swing.JMenuItem jMenuItemFuncionarios;
@@ -1168,6 +1216,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
     private javax.swing.JLabel lblCliente;
+    private javax.swing.JMenuItem relatorioAgendamentos;
     private javax.swing.JTable tblAgenda;
     private javax.swing.JTable tblVendas;
     // End of variables declaration//GEN-END:variables

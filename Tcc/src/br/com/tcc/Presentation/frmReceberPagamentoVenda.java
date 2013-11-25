@@ -206,7 +206,6 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                 janelaPai.novaVenda.setCliente(janelaPai.clienteCOmboVenda);
 
                 if (daoVenda.Salvar(janelaPai.novaVenda)) {
-                    JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
                     
                     Deposito tmp = new Deposito();
                     DepositoDAO daoTmp = new DepositoDAO();
@@ -217,6 +216,14 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
 
                     daoTmp.Salvar(tmp);
                     janelaPai.caixa.addDeposito(tmp);
+                    
+                    
+                    
+                    JOptionPane.showMessageDialog(rootPane, "Valor do Troco " + (Float.valueOf(txtValor.getText()) - janelaPai.novaVenda.calculaValorTotal()));
+                    
+                    JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
+                    
+             
                     janelaPai.desativarVenda();
                     this.dispose();
                 } else {

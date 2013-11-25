@@ -284,7 +284,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         lblCpf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblCpf.setText("CPF:");
+        lblCpf.setText("CPF: *");
 
         lblRg.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblRg.setText("RG :");
@@ -606,9 +606,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 907, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -643,11 +643,47 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                        
         /*Botão salvar*/
         
+        
+        
+        
+        if(txtBairro.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
+        }else if(txtCep.getText().trim().length() < 9){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o cep");
+        }else if(txtCpf.getText().trim().length() < 11){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o cpf");
+        }else if(txtNome.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
+        }else if(txtNumero.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
+        }else if(txtRg.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Rg");
+        }else if(txtRua.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
+        }else if(cbxAno.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
+        }else if(cbxEstado.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
+        }else if(cbxDia.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Dia");
+        }else if(cbxMes.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Mês");
+        }else if((txtCelular.getText().trim().length() <= 9  ) && txtTelefone.getText().trim().length() <= 9){
+            JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
+        }
+        
+        
+        /*
         if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() ==0 ||
                cbxAno.getSelectedIndex() == 0||  txtCpf.getText().isEmpty() || txtCelular.getText().isEmpty()||txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
-                txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty()){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
+                txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty() ){
+           
+            JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
+       }else if(txtTelefone.getText().isEmpty() && txtCelular.getText().isEmpty()){
+         
+           JOptionPane.showMessageDialog(txtComplemento, "Pelo Menos um telefone é requirido");
+       */
+       else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
            Cliente Cliente = null;
@@ -675,11 +711,31 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Número Endereço Inválido!");
             }
             
-            Cliente.setNome(txtNome.getText());
+            
+            
+             Cliente.setNome(txtNome.getText());
+
+          
+            
+            /*
+                    só conter letras
+            
+            String cliente = clienteTextField.getText();  
+for(char c : cliente.toCharArray())  
+{  
+    if (c.isDigit())  
+   {  
+      System.out.println("O campo cliente deve conter somente letras!");  
+   }  
+}  
+            
+            */
+            
             Date dataCadastro = new Date();
             Date dataNascimento = new Date();
             Cliente.setDataCadastro(dataCadastro);
             Cliente.setObservacao(" ");
+            
             
             dataNascimento.setDate(Integer.parseInt((String)cbxDia.getSelectedItem()));
             int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());

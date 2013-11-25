@@ -8,6 +8,7 @@ import br.com.tcc.DataAccess.UsuarioDAO;
 import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import promepe.utilitarios.CryptographyTripleDES;
 
 /**
  *
@@ -20,7 +21,7 @@ public class frmLogin extends javax.swing.JFrame {
      */
     public frmLogin() {
         initComponents();
-         Color minhaCor = new Color(239,239,239);
+        Color minhaCor = new Color(239, 239, 239);
         this.getContentPane().setBackground(minhaCor);
         dao = new UsuarioDAO();
         usuario = new Usuario();
@@ -136,36 +137,41 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnlogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogarActionPerformed
-       if(txtUsuario.getText().isEmpty() && txtSenha.getText().isEmpty()){
-           JOptionPane.showMessageDialog(rootPane, "Os Campos devem ser Preenchidos !");
-       }else{
-           usuario.setNome(txtUsuario.getText());
-           usuario.setSenha(txtSenha.getText());
-           
-           Usuario autenticado = dao.Autenticar(usuario);
-           if(autenticado != null){
-               frmMenuPrincipal janela = new frmMenuPrincipal(autenticado);
-             
-               janela.setLocationRelativeTo(null);
-               janela.setVisible(rootPaneCheckingEnabled);
-               this.dispose();
-           }else{
-               JOptionPane.showMessageDialog(rootPane, "Login Incorreto !");
-           }
-       
-       
-       
-       }
+        try {
+            
+            CryptographyTripleDES criptografia = CryptographyTripleDES.newInstance();
+
+            if (txtUsuario.getText().isEmpty() && txtSenha.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Os Campos devem ser Preenchidos !");
+            } else {
+                usuario.setNome(txtUsuario.getText());
+                usuario.setSenha(criptografia.encrypt(txtSenha.getText()));
+
+                Usuario autenticado = dao.Autenticar(usuario);
+                if (autenticado != null) {
+                    frmMenuPrincipal janela = new frmMenuPrincipal(autenticado);
+
+                    janela.setLocationRelativeTo(null);
+                    janela.setVisible(rootPaneCheckingEnabled);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Login Incorreto !");
+                }
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_btnlogarActionPerformed
 
     private void btnlogarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogarMouseEntered
-        Color minhaCor = new Color(115,183,253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnlogar.setBackground(minhaCor);
     }//GEN-LAST:event_btnlogarMouseEntered
 
     private void btnlogarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogarMouseExited
-       Color minhaCor = new Color(239,239,239);
-       this.btnlogar.setBackground(minhaCor);
+        Color minhaCor = new Color(239, 239, 239);
+        this.btnlogar.setBackground(minhaCor);
     }//GEN-LAST:event_btnlogarMouseExited
 
     /**
@@ -202,7 +208,7 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
     }
-    
+
     UsuarioDAO dao;
     Usuario usuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables

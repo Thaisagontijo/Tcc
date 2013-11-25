@@ -48,11 +48,54 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
         }else{
             this.setTitle("Editar Item");
             
+            if(janelaPai.objetoServicoSelecionadoNaTabela != null){//
+                preencheComboServicos();
+                //txtDesconto.setText(String.valueOf(janelaPai.objetoServicoSelecionadoNaTabela.get));
+                
+            }else{
             
-            //janelaPai.
+            
+            }
+            
+            
         }
     }
 
+    
+    private void preencheComboProfissionais(){
+    
+        cbxProfissional.removeAllItems();
+        FuncionarioDAO daoFuncionario = new FuncionarioDAO();
+        
+        cbxProfissional.removeAllItems();
+        Funcionario tmpFuncionario = new Funcionario();
+        tmpFuncionario.setNome("Selecione");
+        cbxProfissional.addItem(tmpFuncionario);
+        for(Funcionario f: daoFuncionario.ListarTodos()){
+            cbxProfissional.addItem(f);
+        }
+    
+    }
+    
+    private void preencheComboServicos(){
+        ServicoDAO daoServico = new ServicoDAO();
+        cbxProdutosServicos.removeAllItems();
+        Servico tmp = new Servico();
+        tmp.setNome("Selecione");
+        cbxProdutosServicos.addItem(tmp);
+        for(Servico s :daoServico.ListarTodos()){
+            cbxProdutosServicos.addItem(s);
+        }
+        lblProfissional.setVisible(true);
+        cbxProfissional.setVisible(true);
+        lblServicos.setVisible(true);
+        lblProdutos.setVisible(false);
+        spnQuantidade.setValue(1);
+        opcaoRadioButton = 1;
+    
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -280,32 +323,8 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
 
 
     private void rbtnServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnServicosMouseClicked
-        ServicoDAO daoServico = new ServicoDAO();
-        cbxProdutosServicos.removeAllItems();
-        Servico tmp = new Servico();
-        tmp.setNome("Selecione");
-        cbxProdutosServicos.addItem(tmp);
-        
-        cbxProfissional.removeAllItems();
-        FuncionarioDAO daoFuncionario = new FuncionarioDAO();
-        
-        cbxProfissional.removeAllItems();
-        Funcionario tmpFuncionario = new Funcionario();
-        tmpFuncionario.setNome("Selecione");
-        cbxProfissional.addItem(tmpFuncionario);
-        for(Funcionario f: daoFuncionario.ListarTodos()){
-            cbxProfissional.addItem(f);
-        }
-        
-        for(Servico s :daoServico.ListarTodos()){
-            cbxProdutosServicos.addItem(s);
-        }
-        lblProfissional.setVisible(true);
-        cbxProfissional.setVisible(true);
-        lblServicos.setVisible(true);
-        lblProdutos.setVisible(false);
-        spnQuantidade.setValue(1);
-        opcaoRadioButton = 1;
+        preencheComboProfissionais();
+        preencheComboServicos();       
     }//GEN-LAST:event_rbtnServicosMouseClicked
 
     private void rbtnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnProdutosMouseClicked
