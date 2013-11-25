@@ -187,7 +187,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
 
         lblQuantidade.setText("Quantidade* :");
 
-        lblDataVenda.setText("Data da Venda* :");
+        lblDataVenda.setText("Data da Compra* :");
 
         cbxDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -291,9 +291,9 @@ public class frmCadastroCompra extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(245, 245, 245)
+                .addGap(224, 224, 224)
                 .addComponent(btnSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -335,7 +335,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
            compra.setFormaDePagamento(pagamento);
            
            compra.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
-           compra.setValor(Integer.parseInt(txtVenda.getText()));
+           compra.setValor(Double.parseDouble(txtVenda.getText()));
            
            Date dataCompra = new Date();
            
@@ -349,10 +349,13 @@ public class frmCadastroCompra extends javax.swing.JDialog {
            
            
            if(dao.Salvar(compra)){
+                    ProdutoDAO daoProduto = new ProdutoDAO();
+                    daoProduto.AtualizarEstoque(produto, compra.getQuantidade());
                     JOptionPane.showMessageDialog(rootPane,"Compra Salvo com Sucesso!");
-
+                    
+                    janelaPai.preencheTabela();
                     this.dispose();
-
+                    
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Compra!");
                 }

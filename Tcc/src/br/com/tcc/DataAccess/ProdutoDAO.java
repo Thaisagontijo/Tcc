@@ -91,4 +91,25 @@ public class ProdutoDAO extends DAOGenerico<Produto>{
             return false;
         }
     }
+    
+  
+    public boolean AtualizarEstoque(Produto obj,int qtd) {
+     EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Update Produto s  set s.qtdEstoque = s.qtdEstoque+"+ qtd +" WHERE s.id = "+obj.getId();
+            
+             Query query = manager.createQuery(consulta);
+             query.executeUpdate();
+             
+             transacao.commit();
+             return true;
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return false;
+        }
+    }
 }
