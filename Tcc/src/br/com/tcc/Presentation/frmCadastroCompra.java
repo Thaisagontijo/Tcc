@@ -187,7 +187,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
 
         lblQuantidade.setText("Quantidade* :");
 
-        lblDataVenda.setText("Data da Venda* :");
+        lblDataVenda.setText("Data da Compra* :");
 
         cbxDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
