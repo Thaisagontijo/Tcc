@@ -162,6 +162,14 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
         btnSair.setBackground(new java.awt.Color(239, 239, 239));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
+        btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSairMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSairMouseEntered(evt);
+            }
+        });
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
@@ -207,6 +215,16 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnSair.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSairMouseEntered
+
+    private void btnSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseExited
+         Color minhaCor = new Color(115,183,253);
+        this.btnSair.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSairMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSair;

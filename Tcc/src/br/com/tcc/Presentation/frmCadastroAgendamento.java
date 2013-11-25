@@ -109,7 +109,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
           
           */
          
-         cbxMinuto.addItem("Minuto");
+         cbxMinuto.addItem("Minutos");
          for(int i= 0 ;i<60; i = i+10){
              String tmp;
              if(i == 0){

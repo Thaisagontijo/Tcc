@@ -540,6 +540,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnSair.setBackground(new java.awt.Color(239, 239, 239));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
         btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
