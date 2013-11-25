@@ -54,6 +54,7 @@ public class frmAniversariantesLista extends javax.swing.JDialog {
         
         model.addColumn("ID");
         model.addColumn("NOME");
+        model.addColumn("DATA DE NASCIMENTO");
         model.addColumn("TELEFONE");
         model.addColumn("CELULAR");
         
@@ -61,13 +62,19 @@ public class frmAniversariantesLista extends javax.swing.JDialog {
        
         
           for (Cliente s : lista) {
-              if ((s.getDataNascimento().getDate() == new Date().getDate()) && (s.getDataNascimento().getMonth() == new Date().getMonth() && s.getDataNascimento().getYear() == new Date().getYear())) {
+              if (s.getDataNascimento().getMonth() == new Date().getMonth() ) {
                   Vector v = new Vector();
 
                   v.add(0, s.getId());
                   v.add(1, s.getNome());
-                  v.add(2, s.getTelefone());
-                  v.add(3, s.getCelular());
+                  String data;
+                  data = s.getDataNascimento().getDate()+ "/"+(s.getDataNascimento().getMonth() +1)+"/"+(s.getDataNascimento().getYear()+ 1900);
+                
+                  v.add(2,data);
+                  
+                  
+                  v.add(3, s.getTelefone());
+                  v.add(4, s.getCelular());
                   
 
                   model.addRow(v);
