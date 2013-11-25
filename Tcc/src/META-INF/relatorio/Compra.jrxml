@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="633" pageHeight="842" columnWidth="593" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5308518-4991-4434-b6eb-e0338158d42a">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="633" pageHeight="842" columnWidth="593" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5308518-4991-4434-b6eb-e0338158d42a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -165,7 +165,7 @@ FROM
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{compra_DATACOMPRA}.getDate()+"/"+($F{compra_DATACOMPRA}.getMonth()+1) +"/"+$F{compra_DATACOMPRA}.getYear() ]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{compra_DATACOMPRA}.getDate()+"/"+($F{compra_DATACOMPRA}.getMonth()+1) +"/"+$F{compra_DATACOMPRA}.getYear()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="162" y="0" width="52" height="20" uuid="871584be-6c7d-428e-b251-7d53a92c6b21"/>

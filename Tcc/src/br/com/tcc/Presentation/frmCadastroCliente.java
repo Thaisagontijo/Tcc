@@ -204,7 +204,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
               //txtData.setText(janelaPai.objSelecionadoNaTabela.getDataNascimento().toString());
               cbxDia.setSelectedIndex((janelaPai.objSelecionadoNaTabela.getDataNascimento().getDate()) );
               cbxMes.setSelectedIndex(((janelaPai.objSelecionadoNaTabela.getDataNascimento().getMonth()) + 1));
-              cbxAno.setSelectedItem((janelaPai.objSelecionadoNaTabela.getDataNascimento().getYear()) );
+              cbxAno.setSelectedItem((janelaPai.objSelecionadoNaTabela.getDataNascimento().getYear())+ 1900 );
               
               txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
               txtNumero.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getEnderecoNumero()));

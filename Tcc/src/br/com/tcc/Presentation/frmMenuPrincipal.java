@@ -7,11 +7,13 @@ package br.com.tcc.Presentation;
 import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DataAccess.CaixaDAO;
 import br.com.tcc.DataAccess.ClienteDAO;
+import br.com.tcc.DataAccess.CompraDAO;
 import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.ProdutoDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
+import br.com.tcc.DomainModel.Compra;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.ItemVendaProduto;
 import br.com.tcc.DomainModel.ItemVendaServico;
@@ -302,6 +304,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         relatorioAgendamentos = new javax.swing.JMenuItem();
+        jMenuItemCompras = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -755,6 +758,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(relatorioAgendamentos);
 
+        jMenuItemCompras.setText("Compras");
+        jMenuItemCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemComprasActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemCompras);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Sistema");
@@ -1162,6 +1173,30 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_relatorioAgendamentosActionPerformed
 
+    private void jMenuItemComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComprasActionPerformed
+ try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/Compra.jasper");
+            //Lista a ser exibida no relatorio
+            CompraDAO compraDao = new CompraDAO();
+            List<Compra> compra = compraDao.ListarTodos();
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(compra);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            jasperViewer.setVisible(true);
+        }catch(JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_jMenuItemComprasActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1208,6 +1243,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemCompras;
     private javax.swing.JMenuItem jMenuItemEstoque;
     private javax.swing.JMenuItem jMenuItemFormasDePagamentos;
     private javax.swing.JMenuItem jMenuItemFornecedores;
