@@ -532,8 +532,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                 .addGap(74, 74, 74)
                                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnIncluirItemVenda)
-                                    .addComponent(btnExcluirItemVenda))))
-                        .addGap(2, 2, 2))
+                                    .addComponent(btnExcluirItemVenda)))))
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -541,7 +540,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(btnReceberValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanelVendasLayout.setVerticalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -748,7 +747,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItemCompras);
 
-        jMenuItemAniversariantes.setText("Aniversariantes");
+        jMenuItemAniversariantes.setText("Clientes Aniversariantes do Dia");
         jMenuItemAniversariantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAniversariantesActionPerformed(evt);
