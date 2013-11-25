@@ -333,7 +333,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+//                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
                 qtdCliques =0;
             }
         }else {

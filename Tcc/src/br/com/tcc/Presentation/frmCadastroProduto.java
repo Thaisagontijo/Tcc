@@ -338,7 +338,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
            
            JOptionPane.showMessageDialog(rootPane, "O preço de venda não pode ser menor que o preço de custo !");
            
-       }else if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o ProdutoW",
+       }else if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Produto",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
             Produto produto = null;

@@ -92,6 +92,8 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
         lblProdutos.setVisible(false);
         spnQuantidade.setValue(1);
         opcaoRadioButton = 1;
+        lblQuantidade.setVisible(false);
+        spnQuantidade.setVisible(false);
     
     
     }
@@ -342,6 +344,9 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
         cbxProfissional.setVisible(false);
         spnQuantidade.setValue(1);
         opcaoRadioButton =2;
+        
+        lblQuantidade.setVisible(true);
+        spnQuantidade.setVisible(true);
     }//GEN-LAST:event_rbtnProdutosMouseClicked
 
     private void cbxProdutosServicosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxProdutosServicosItemStateChanged
@@ -409,12 +414,29 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
            
            //Verificando disponibilidade no estoque
            
-           if (tmpProduto.getQtdEstoque() > Integer.parseInt(spnQuantidade.getValue().toString())) {
+           if (tmpProduto.getQtdEstoque() < Integer.parseInt(spnQuantidade.getValue().toString())) {
                JOptionPane.showMessageDialog(rootPane, "A quantidade do produto é maior do que o valor de estque !");
 
+           }else if(Integer.parseInt(spnQuantidade.getValue().toString()) < 1){
+               JOptionPane.showMessageDialog(rootPane, "A quantidade do produto tem que ser maior que um !");
            } else {
-
+               
                ItemVendaProduto produto = new ItemVendaProduto();
+               float valor = 0;
+               float valorTotal = 0;
+               
+               
+               
+               
+               valorTotal = Integer.parseInt(spnQuantidade.getValue().toString()) * tmpProduto.getPrecoVenda();
+               
+               if(Float.parseFloat(txtDesconto.getText()) > 0){
+                   valor = valorTotal * (Float.parseFloat(txtDesconto.getText()) / 100);
+                   valorTotal = valorTotal - valor;
+               }
+               
+               
+              produto.setValor(valorTotal);
                produto.setProduto(tmpProduto);
                produto.setVenda(janelaPai.novaVenda);
 

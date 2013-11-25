@@ -217,7 +217,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
             v.add(0, i++);
             v.add(1, "Serviço");
-            v.add(2, "conferir");
+            v.add(2, "1");
+            v.add(3,s.getValor());
 
             model.addRow(v);
 
@@ -229,7 +230,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             v.add(0, i++);
             v.add(1, "Produto");
             v.add(2, p.getQtd());
-            v.add(3, (p.getQtd() * p.getProduto().getPrecoVenda()));
+            v.add(3, (p.getValor()));
 
             model.addRow(v);
 
@@ -1000,7 +1001,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Pergunta", "Você tem certeza que deseja cancelar a compra?", JOptionPane.OK_CANCEL_OPTION) == 0) {
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar a compra?", "Pergunta", JOptionPane.OK_CANCEL_OPTION) == 0) {
             desativarVenda();
 
         }

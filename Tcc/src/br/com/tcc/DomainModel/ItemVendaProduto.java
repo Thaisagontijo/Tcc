@@ -31,6 +31,7 @@ public class ItemVendaProduto implements Serializable {
     private int qtd;
     @ManyToOne
     private Venda venda;
+    private float valor;
 
     public ItemVendaProduto() {
         this.produto = new Produto();
@@ -38,6 +39,15 @@ public class ItemVendaProduto implements Serializable {
         this.venda = null;
     }
 
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    
     public Long getId() {
         return id;
     }

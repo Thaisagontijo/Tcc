@@ -6,9 +6,12 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.FormaDePagamentoDAO;
+import br.com.tcc.DataAccess.ProdutoDAO;
 import br.com.tcc.DataAccess.VendaDAO;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.FormaDePagamento;
+import br.com.tcc.DomainModel.ItemVendaProduto;
+import br.com.tcc.DomainModel.Produto;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -223,6 +226,11 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                     
                     JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
                     
+                    ProdutoDAO tmpP = new ProdutoDAO();
+                    
+                    for(ItemVendaProduto p :janelaPai.novaVenda.getProdutos()){
+                        tmpP.AtualizarEstoqueVenda(p.getProduto(), p.getQtd());
+                    }
              
                     janelaPai.desativarVenda();
                     this.dispose();

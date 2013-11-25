@@ -65,7 +65,7 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
             v.add(2,p.getCpf());
             v.add(3,p.getRg());
             String data = "";
-           data = p.getDataNascimento().getDate()+ "/"+(p.getDataNascimento().getMonth() +1)+"/"+p.getDataNascimento().getYear();
+           data = p.getDataNascimento().getDate()+ "/"+(p.getDataNascimento().getMonth() +1)+"/"+(p.getDataNascimento().getYear()+1900);
             v.add(4,data);
                    
             model.addRow(v);

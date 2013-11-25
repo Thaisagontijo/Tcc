@@ -173,7 +173,7 @@ public class Venda implements Serializable {
         }
         
         for(ItemVendaProduto p : produtos){
-            valorTotal+= (p.getQtd() * p.getProduto().getPrecoVenda());
+            valorTotal = p.getValor() + valorTotal;
         }
     
         return valorTotal;
