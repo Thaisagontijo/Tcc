@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="633" pageHeight="842" columnWidth="593" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5308518-4991-4434-b6eb-e0338158d42a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     compra.`ID` AS compra_ID,
+     compra.`DATACOMPRA` AS compra_DATACOMPRA,
+     compra.`QUANTIDADE` AS compra_QUANTIDADE,
+     compra.`VALOR` AS compra_VALOR,
+     compra.`FORMADEPAGAMENTO_ID` AS compra_FORMADEPAGAMENTO_ID,
+     compra.`FUNCIONARIO_ID` AS compra_FUNCIONARIO_ID,
+     compra.`PRODUTO_ID` AS compra_PRODUTO_ID,
+     pessoas.`ID` AS pessoas_ID,
+     pessoas.`DTYPE` AS pessoas_DTYPE,
+     pessoas.`CELULAR` AS pessoas_CELULAR,
+     pessoas.`CPF` AS pessoas_CPF,
+     pessoas.`DATANASCIMENTO` AS pessoas_DATANASCIMENTO,
+     pessoas.`ENDERECOBAIRRO` AS pessoas_ENDERECOBAIRRO,
+     pessoas.`ENDERECOCEP` AS pessoas_ENDERECOCEP,
+     pessoas.`ENDERECOCOMPLEMENTO` AS pessoas_ENDERECOCOMPLEMENTO,
+     pessoas.`ENDERECONUMERO` AS pessoas_ENDERECONUMERO,
+     pessoas.`ENDERECORUA` AS pessoas_ENDERECORUA,
+     pessoas.`NOME` AS pessoas_NOME,
+     pessoas.`OBSERVACAO` AS pessoas_OBSERVACAO,
+     pessoas.`RG` AS pessoas_RG,
+     pessoas.`SEXO` AS pessoas_SEXO,
+     pessoas.`TELEFONE` AS pessoas_TELEFONE,
+     pessoas.`ENDERECOCIDADE_ID` AS pessoas_ENDERECOCIDADE_ID,
+     produtos.`ID` AS produtos_ID,
+     produtos.`ATIVO` AS produtos_ATIVO,
+     produtos.`DESCRICAO` AS produtos_DESCRICAO,
+     produtos.`NOME` AS produtos_NOME,
+     produtos.`PRECOCUSTO` AS produtos_PRECOCUSTO,
+     produtos.`PRECOVENDA` AS produtos_PRECOVENDA,
+     produtos.`QTDESTOQUE` AS produtos_QTDESTOQUE,
+     produtos.`FORNECEDOR_ID` AS produtos_FORNECEDOR_ID,
+     produtos.`TIPOPRODUTO_ID` AS produtos_TIPOPRODUTO_ID,
+     formasdepagamento.`ID` AS formasdepagamento_ID,
+     formasdepagamento.`ATIVO` AS formasdepagamento_ATIVO,
+     formasdepagamento.`NOME` AS formasdepagamento_NOME,
+     fornecedores.`ID` AS fornecedores_ID,
+     fornecedores.`ATIVO` AS fornecedores_ATIVO,
+     fornecedores.`CELULAR` AS fornecedores_CELULAR,
+     fornecedores.`CNPJ` AS fornecedores_CNPJ,
+     fornecedores.`DATACADASTRO` AS fornecedores_DATACADASTRO,
+     fornecedores.`EMAIL` AS fornecedores_EMAIL,
+     fornecedores.`ENDERECOBAIRRO` AS fornecedores_ENDERECOBAIRRO,
+     fornecedores.`ENDERECOCEP` AS fornecedores_ENDERECOCEP,
+     fornecedores.`ENDERECOCOMPLEMENTO` AS fornecedores_ENDERECOCOMPLEMENTO,
+     fornecedores.`ENDERECONUMERO` AS fornecedores_ENDERECONUMERO,
+     fornecedores.`ENDERECORUA` AS fornecedores_ENDERECORUA,
+     fornecedores.`INCRICAOMUNICIPAL` AS fornecedores_INCRICAOMUNICIPAL,
+     fornecedores.`INSCRICAOESTADUAL` AS fornecedores_INSCRICAOESTADUAL,
+     fornecedores.`NOME` AS fornecedores_NOME,
+     fornecedores.`OBSERVACOES` AS fornecedores_OBSERVACOES,
+     fornecedores.`RAZAOSOCIAL` AS fornecedores_RAZAOSOCIAL,
+     fornecedores.`SITE` AS fornecedores_SITE,
+     fornecedores.`TELEFONE` AS fornecedores_TELEFONE,
+     fornecedores.`ENDERECOCIDADE_ID` AS fornecedores_ENDERECOCIDADE_ID
+FROM
+     `pessoas` pessoas INNER JOIN `compra` compra ON pessoas.`ID` = compra.`FUNCIONARIO_ID`
+     INNER JOIN `produtos` produtos ON compra.`PRODUTO_ID` = produtos.`ID`
+     INNER JOIN `formasdepagamento` formasdepagamento ON compra.`FORMADEPAGAMENTO_ID` = formasdepagamento.`ID`
+     INNER JOIN `fornecedores` fornecedores ON produtos.`FORNECEDOR_ID` = fornecedores.`ID`]]>
+	</queryString>
+	<field name="compra_ID" class="java.lang.Long"/>
+	<field name="compra_DATACOMPRA" class="java.sql.Date"/>
+	<field name="compra_QUANTIDADE" class="java.lang.Integer"/>
+	<field name="compra_VALOR" class="java.lang.Double"/>
+	<field name="pessoas_NOME" class="java.lang.String"/>
+	<field name="produtos_NOME" class="java.lang.String"/>
+	<field name="fornecedores_NOME" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="614" height="92" backcolor="#006699" uuid="d7da7532-3eed-49e2-957c-31f45dd5277b"/>
+				<staticText>
+					<reportElement x="20" y="20" width="362" height="43" forecolor="#FFFFFF" uuid="ecf6d0f5-4e72-4c0e-8873-771e531bc81e"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório de Compras]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="41000c8a-660a-49b9-8c31-48631720fe5a"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Compras efetuadas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="0e54b06e-acf6-4853-885e-57f8f2449980"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="42" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="82b085d5-4352-4bc5-950a-488f79fa4347"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="41" y="0" width="95" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="03c943e7-1431-4761-ba09-c7995eca8d70"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="135" y="0" width="97" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="39786049-3420-4325-aba9-6767d39420ec"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="231" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="79fe2b4e-4638-43a7-9c79-fc8655637315"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="309" y="0" width="90" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a98d7991-8bbd-4c7f-8e66-ddba9dbbf809"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="398" y="0" width="113" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c53bc550-1506-44d0-8b98-0e7824e8e9d1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORNECEDOR]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="1af89b5d-d764-477d-b743-892630d85f9b"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="16" y="0" width="27" height="20" uuid="9cc41895-b98c-4a08-aa81-3b71884de02f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_ID}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="61" y="0" width="70" height="20" uuid="7b66b0e5-f5ac-43d9-b5ef-1c1711d6afd1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_DATACOMPRA}.getDate()+"/"+($F{compra_DATACOMPRA}.getMonth()+1) +"/"+$F{compra_DATACOMPRA}.getYear() ]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="162" y="0" width="52" height="20" uuid="871584be-6c7d-428e-b251-7d53a92c6b21"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_QUANTIDADE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="252" y="0" width="57" height="20" uuid="4dacbe61-252f-4f54-b0ca-0cb2fae717ad"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_VALOR}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="323" y="0" width="84" height="20" uuid="7306f753-1256-484b-967c-2473b2eb7e15"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produtos_NOME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="409" y="0" width="106" height="20" uuid="aa41db5c-b91b-4a5e-965f-3e0552aa1727"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fornecedores_NOME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="c37d12b8-5763-45ca-bcf9-04057fe0e0ad"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="128c187c-0201-40e8-ae57-0c6681f953bc"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="d74ae605-289d-4d88-a2fd-964952fe2f7d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
