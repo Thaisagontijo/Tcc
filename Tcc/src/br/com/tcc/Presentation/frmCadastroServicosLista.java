@@ -317,7 +317,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
        
         /*Botão salvar*/
        frmCadastroServicosCadastroEdicao a = new frmCadastroServicosCadastroEdicao(null,rootPaneCheckingEnabled, this,true,false);
-       
+       a.setLocationRelativeTo(null);
         //JDialog a = new JDialog
        a.setVisible(rootPaneCheckingEnabled);
        
@@ -379,6 +379,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
             frmCadastroServicosCadastroEdicao j = new frmCadastroServicosCadastroEdicao(null, rootPaneCheckingEnabled, this,false,false);
+            j.setLocationRelativeTo(null);
             j.setVisible(rootPaneCheckingEnabled);
             
         }else{

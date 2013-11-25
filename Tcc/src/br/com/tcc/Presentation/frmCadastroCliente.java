@@ -224,6 +224,222 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         
     }
 
+    
+    /*
+    
+        CONSTRUTOR SOBRECARREGADO
+    */
+    
+    private frmAniversariantesLista janelaPai1;
+    public frmCadastroCliente(java.awt.Frame parent, boolean modal, frmAniversariantesLista janelaPai1, boolean descricao) {
+        super(parent, modal);
+        initComponents();
+        
+        Color minhaCor = new Color(239,239,239);
+        this.getContentPane().setBackground(minhaCor);
+        
+        this.janelaPai1 = janelaPai1;
+       
+        this.descricao = descricao;
+        
+        listaCidades = new LinkedList<>();
+        listaEstados = new Estado();
+        daoCidade = new CidadeDAO();
+        
+        cbxCidade.removeAllItems();
+        cbxEstado.removeAllItems();
+        cbxSexo.removeAllItems();
+        cbxDia.removeAllItems();
+        cbxMes.removeAllItems();
+        cbxAno.removeAllItems();
+        
+        /*
+         
+         * SETAND VALORES PARA COMBOBOX
+         
+         */
+        
+         Cidade tmpCidade = new Cidade();
+         tmpCidade.setNome("Selecione Um Estado");
+        
+        
+         
+         cbxCidade.addItem(tmpCidade);
+         
+                   
+         listaCidades = daoCidade.ListarTodos();
+         
+         /*
+          * 
+          * PREENCHE COMBOBOX DE ESTADOS
+          
+          */
+         for(String f : listaEstados.getEstados()){
+             cbxEstado.addItem(f);
+         }
+         
+         /*
+          * 
+          * PREENCHE COMBOBOX DE SEXO
+          
+          */
+         
+         String [] tmpSexo = {"Selecione","Masculino","Feminino"};
+         for(String s : tmpSexo){
+             cbxSexo.addItem(s);
+         }
+         
+         
+          /*
+          * 
+          * PREENCHE COMBOBOX DE DIA
+          
+          */
+         
+          /*
+          * 
+          * PREENCHE COMBOBOX DO DIA
+          
+          */
+         cbxDia.addItem("Dia");
+         for(int i=1;i<32;i++){
+             String tmp;
+             if(i<=9){
+                tmp = "0"+i;
+             }else{
+                 tmp = String.valueOf(i);
+             }
+             cbxDia.addItem(tmp);
+         }
+         
+         
+         /*
+          * 
+          * PREENCHE COMBOBOX DO MES
+          
+          */
+         
+         cbxMes.addItem("Mês");
+         for(int i=1;i<13;i++){
+             String tmp;
+             if(i<=9){
+                tmp = "0"+i;
+             }else{
+                 tmp = String.valueOf(i);
+             }
+             cbxMes.addItem(tmp);
+         }
+         
+         
+         btnSair.setVisible(false);
+         /*
+          * 
+          * PREENCHE COMBOBOX DO ANO
+          
+          */
+         
+         cbxAno.addItem("Ano");
+         Date tmpData = new Date();
+         int anoAtual = tmpData.getYear() + 1900;
+         for(int i=(anoAtual - 90) ;i<=anoAtual;i++){
+             cbxAno.addItem(i);
+         
+         }
+         
+         
+         
+         /*
+            CODIGO PARA DESCRICAO
+         
+         */
+         
+         
+         
+         
+         
+         //continuar a parte de edicao
+         
+         if(cadastro){
+              this.setTitle("CADASTRO DE CLIENTE");
+         }else{
+              
+             if(descricao){
+                 this.setTitle("DESCRIÇÃO DE CLIENTE");
+                 
+                 txtBairro.setEditable(false);
+                 txtCelular.setEditable(false);
+                 txtCep.setEditable(false);
+                 txtComplemento.setEditable(false);
+                 txtCpf.setEditable(false);
+                 txtNome.setEditable(false);
+                 txtNumero.setEditable(false);
+                 txtRg.setEditable(false);
+                 txtRua.setEditable(false);
+                 txtTelefone.setEditable(false);
+                 cbxAno.setEnabled(false);
+                 cbxCidade.setEnabled(false);
+                 cbxDia.setEnabled(false);
+                 cbxEstado.setEnabled(false);
+                 cbxMes.setEnabled(false);
+                 cbxSexo.setEnabled(false);
+                
+                 btnCancelar.setVisible(false);
+                 btnSalvar.setVisible(false);
+                 btnSair.setVisible(true);
+                 
+                 /*
+                 txtBairro.setBackground(Color.WHITE);
+                 txtCelular.setBackground(Color.WHITE);
+                 txtCelular.setForeground(Color.black);
+                 
+                 txtNome.setEditable(false);
+                 txtNome.setForeground(Color.BLACK);
+                 */
+                 
+             }else{
+                 this.setTitle("EDIÇÃO DE CLIENTE");
+             }
+              
+              txtBairro.setText(janelaPai1.objSelecionadoNaTabela.getEnderecoBairro());
+              txtCelular.setText(janelaPai1.objSelecionadoNaTabela.getCelular());
+              txtCep.setText(janelaPai1.objSelecionadoNaTabela.getEnderecoCep());
+              txtComplemento.setText(janelaPai1.objSelecionadoNaTabela.getEnderecoComplemento());
+              txtCpf.setText(janelaPai1.objSelecionadoNaTabela.getCpf());
+              //txtData.setText(janelaPai.objSelecionadoNaTabela.getDataNascimento().toString());
+              cbxDia.setSelectedIndex((janelaPai1.objSelecionadoNaTabela.getDataNascimento().getDate()) );
+              cbxMes.setSelectedIndex(((janelaPai1.objSelecionadoNaTabela.getDataNascimento().getMonth()) + 1));
+              cbxAno.setSelectedItem((janelaPai1.objSelecionadoNaTabela.getDataNascimento().getYear())+ 1900 );
+              
+              txtNome.setText(janelaPai1.objSelecionadoNaTabela.getNome());
+              txtNumero.setText(String.valueOf(janelaPai1.objSelecionadoNaTabela.getEnderecoNumero()));
+              txtRg.setText(janelaPai1.objSelecionadoNaTabela.getRg());
+              txtRua.setText(janelaPai1.objSelecionadoNaTabela.getEnderecoRua());
+              txtTelefone.setText(janelaPai1.objSelecionadoNaTabela.getTelefone());
+              cbxEstado.setSelectedIndex(janelaPai1.objSelecionadoNaTabela.getEnderecoCidade().getIdEstado());
+              cbxCidade.setSelectedItem(janelaPai1.objSelecionadoNaTabela.getEnderecoCidade());
+              cbxSexo.setSelectedIndex(janelaPai1.objSelecionadoNaTabela.getSexo());
+              
+              
+         }
+         
+         
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

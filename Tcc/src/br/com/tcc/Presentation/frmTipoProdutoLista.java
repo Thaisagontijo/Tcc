@@ -285,6 +285,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
         /*Botão salvar*/
       frmTipoProdutoCadastroEdicao b = new frmTipoProdutoCadastroEdicao(null,rootPaneCheckingEnabled, this,true);
         //JDialog a = new JDialog
+      b.setLocationRelativeTo(null);
       b.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnNovoActionPerformed
 
@@ -340,6 +341,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
             frmTipoProdutoCadastroEdicao j = new frmTipoProdutoCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            j.setLocationRelativeTo(null);
             j.setVisible(rootPaneCheckingEnabled);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista !");

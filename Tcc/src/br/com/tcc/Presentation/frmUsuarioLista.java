@@ -282,7 +282,7 @@ public class frmUsuarioLista extends javax.swing.JDialog {
        
         /*Botão salvar*/
        frmCadastroUsuario a = new frmCadastroUsuario(null,rootPaneCheckingEnabled, this,true);
-       
+       a.setLocationRelativeTo(null);
         //JDialog a = new JDialog
        a.setVisible(rootPaneCheckingEnabled);
        

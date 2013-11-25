@@ -130,7 +130,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         cbxCliente.setEnabled(false);
         tblVendas.setEnabled(false);
         btnIncluirItemVenda.setEnabled(false);
-        btnAlterarItemVenda.setEnabled(false);
+       
         btnExcluirItemVenda.setEnabled(false);
         btnReceberValorVenda.setEnabled(false);
         btnCancelarVenda.setEnabled(false);
@@ -245,7 +245,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         cbxCliente.setEnabled(false);
         tblVendas.setEnabled(false);
         btnIncluirItemVenda.setEnabled(false);
-        btnAlterarItemVenda.setEnabled(false);
+    
         btnExcluirItemVenda.setEnabled(false);
         btnReceberValorVenda.setEnabled(false);
         btnCancelarVenda.setEnabled(false);
@@ -279,7 +279,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
         btnIncluirItemVenda = new javax.swing.JButton();
-        btnAlterarItemVenda = new javax.swing.JButton();
         btnExcluirItemVenda = new javax.swing.JButton();
         btnReceberValorVenda = new javax.swing.JButton();
         btnCancelarVenda = new javax.swing.JButton();
@@ -298,14 +297,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemProdutos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemEstoque = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         relatorioAgendamentos = new javax.swing.JMenuItem();
         jMenuItemCompras = new javax.swing.JMenuItem();
+        jMenuItemAniversariantes = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -490,13 +488,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnAlterarItemVenda.setText("Alterar");
-        btnAlterarItemVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarItemVendaActionPerformed(evt);
-            }
-        });
-
         btnExcluirItemVenda.setText("Excluir");
 
         btnReceberValorVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -541,8 +532,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                 .addGap(74, 74, 74)
                                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnIncluirItemVenda)
-                                    .addComponent(btnExcluirItemVenda)
-                                    .addComponent(btnAlterarItemVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(btnExcluirItemVenda))))
+                        .addGap(2, 2, 2))
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -563,9 +554,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(btnIncluirItemVenda)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAlterarItemVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(59, 59, 59)
                         .addComponent(btnExcluirItemVenda))
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -719,10 +708,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Agenda");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuBar1.add(jMenu2);
-
         jMenu3.setText("Estoques");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -744,10 +729,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Caixas");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuBar1.add(jMenu4);
-
         jMenu5.setText("Relatórios");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -766,6 +747,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItemCompras);
+
+        jMenuItemAniversariantes.setText("Aniversariantes");
+        jMenuItemAniversariantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAniversariantesActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemAniversariantes);
 
         jMenuBar1.add(jMenu5);
 
@@ -886,6 +875,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void btnNovoAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAgendamentoActionPerformed
         frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, this, rootPaneCheckingEnabled,false);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnNovoAgendamentoActionPerformed
 
@@ -983,7 +973,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             cbxCliente.setEnabled(true);
             tblVendas.setEnabled(true);
             btnIncluirItemVenda.setEnabled(true);
-            btnAlterarItemVenda.setEnabled(true);
+            
             btnExcluirItemVenda.setEnabled(true);
             btnReceberValorVenda.setEnabled(true);
             btnCancelarVenda.setEnabled(true);
@@ -1100,15 +1090,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void btnAlterarItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarItemVendaActionPerformed
-        if (objetoAgendamentoSelecionadoNaTabela != null) {
-            frmInclusaoItemVenda janela = new frmInclusaoItemVenda(this, rootPaneCheckingEnabled, this, true);
-            janela.setLocationRelativeTo(null);
-            janela.setVisible(rootPaneCheckingEnabled);
-        }
-
-    }//GEN-LAST:event_btnAlterarItemVendaActionPerformed
-
     private void tblVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendasMouseClicked
 
         /*
@@ -1198,6 +1179,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItemComprasActionPerformed
 
+    private void jMenuItemAniversariantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAniversariantesActionPerformed
+       frmAniversariantesLista janela = new frmAniversariantesLista(this, rootPaneCheckingEnabled);
+       janela.setLocationRelativeTo(null);
+       janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItemAniversariantesActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1217,7 +1204,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;
-    private javax.swing.JButton btnAlterarItemVenda;
     private javax.swing.JButton btnCancelarVenda;
     private javax.swing.JButton btnDeposito;
     private javax.swing.JButton btnExcluirItemVenda;
@@ -1232,9 +1218,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1243,6 +1227,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItemAniversariantes;
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemCompras;
     private javax.swing.JMenuItem jMenuItemEstoque;

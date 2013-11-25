@@ -66,7 +66,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
         
         tblServicos.setModel(model);
         tblServicos.repaint();
-        
+            tblServicos.setAutoCreateRowSorter(true);
 
     }
 
@@ -376,6 +376,7 @@ public class frmCadastroFormaDePagamentoLista extends javax.swing.JDialog {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(objSelecionadoNaTabela != null){
             frmCadastroFormaDePagamentoCadastroEdicao j = new frmCadastroFormaDePagamentoCadastroEdicao(null, rootPaneCheckingEnabled, this,false);
+            j.setLocationRelativeTo(null);
             j.setVisible(rootPaneCheckingEnabled);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
