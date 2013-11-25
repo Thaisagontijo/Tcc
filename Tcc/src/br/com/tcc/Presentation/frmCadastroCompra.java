@@ -349,6 +349,8 @@ public class frmCadastroCompra extends javax.swing.JDialog {
            
            
            if(dao.Salvar(compra)){
+                    ProdutoDAO daoProduto = new ProdutoDAO();
+                    daoProduto.AtualizarEstoque(produto, compra.getQuantidade());
                     JOptionPane.showMessageDialog(rootPane,"Compra Salvo com Sucesso!");
                     
                     janelaPai.preencheTabela();
