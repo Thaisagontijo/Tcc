@@ -37,7 +37,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario>{
             
         }catch(Exception ex ){//coloacr 2 cath
            
-            //ex.printStackTrace();
+            ex.printStackTrace();
             
            //transacao.rollback();
            return null;

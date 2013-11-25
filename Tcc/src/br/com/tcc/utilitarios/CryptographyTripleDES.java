@@ -1,4 +1,4 @@
-package promepe.utilitarios;
+package br.com.tcc.utilitarios;
  
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

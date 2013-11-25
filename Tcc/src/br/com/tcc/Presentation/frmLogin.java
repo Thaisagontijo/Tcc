@@ -8,7 +8,7 @@ import br.com.tcc.DataAccess.UsuarioDAO;
 import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import promepe.utilitarios.CryptographyTripleDES;
+import br.com.tcc.utilitarios.CryptographyTripleDES;
 
 /**
  *
@@ -161,6 +161,7 @@ public class frmLogin extends javax.swing.JFrame {
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage());
+            e.printStackTrace();
         }
     }//GEN-LAST:event_btnlogarActionPerformed
 

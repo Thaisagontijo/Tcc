@@ -675,7 +675,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemFornecedores);
 
         jMenuItemServicos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItemServicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/servico.png"))); // NOI18N
+        jMenuItemServicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/servicos.png"))); // NOI18N
         jMenuItemServicos.setText("Serviços");
         jMenuItemServicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -685,7 +685,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemServicos);
 
         jMenuItemProdutos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItemProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/produto.png"))); // NOI18N
+        jMenuItemProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/produtos.png"))); // NOI18N
         jMenuItemProdutos.setText("Produtos");
         jMenuItemProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -695,7 +695,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemProdutos);
 
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/tipoproduto.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/tiposproduto.png"))); // NOI18N
         jMenuItem1.setText("Tipo de Produto");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

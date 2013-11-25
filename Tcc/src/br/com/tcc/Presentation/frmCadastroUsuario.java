@@ -10,7 +10,7 @@ import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import promepe.utilitarios.CryptographyTripleDES;
+import br.com.tcc.utilitarios.CryptographyTripleDES;
 
 /**
  *
