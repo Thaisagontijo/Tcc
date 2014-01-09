@@ -24,7 +24,6 @@ import br.com.tcc.DomainModel.Venda;
 import com.mysql.jdbc.Connection;
 import java.awt.Color;
 import java.io.InputStream;
-import java.net.URL;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -38,6 +37,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;

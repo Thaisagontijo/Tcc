@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 4.0.7
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: Nov 23, 2013 as 06:29 PM
--- Versão do Servidor: 5.5.8
--- Versão do PHP: 5.3.5
+-- Tempo de Geração: 09/01/2014 às 20:08
+-- Versão do servidor: 5.5.33-MariaDB
+-- Versão do PHP: 5.4.20
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,13 +17,59 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Banco de Dados: `beautysystem`
+-- Banco de dados: `beautysystem`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Cidades`
+-- Estrutura para tabela `Agendamentos`
+--
+
+CREATE TABLE IF NOT EXISTS `Agendamentos` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `OBSERVACAO` varchar(255) DEFAULT NULL,
+  `DATAHORA` datetime DEFAULT NULL,
+  `REALIZADO` tinyint(1) DEFAULT '0',
+  `CLIENTE_ID` bigint(20) DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Agendamentos_FUNCIONARIO_ID` (`FUNCIONARIO_ID`),
+  KEY `FK_Agendamentos_CLIENTE_ID` (`CLIENTE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Agendamentos_Servicos`
+--
+
+CREATE TABLE IF NOT EXISTS `Agendamentos_Servicos` (
+  `Agendamento_ID` bigint(20) NOT NULL,
+  `servicos_ID` bigint(20) NOT NULL,
+  PRIMARY KEY (`Agendamento_ID`,`servicos_ID`),
+  KEY `FK_Agendamentos_Servicos_servicos_ID` (`servicos_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Caixas`
+--
+
+CREATE TABLE IF NOT EXISTS `Caixas` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DATAABERTURA` datetime DEFAULT NULL,
+  `DATAFECHAMENTO` datetime DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Caixas_FUNCIONARIO_ID` (`FUNCIONARIO_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Cidades`
 --
 
 CREATE TABLE IF NOT EXISTS `Cidades` (
@@ -30,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `Cidades` (
   `IDESTADO` int(11) DEFAULT NULL,
   `NOME` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `Cidades`
+-- Fazendo dump de dados para tabela `Cidades`
 --
 
 INSERT INTO `Cidades` (`ID`, `IDESTADO`, `NOME`) VALUES
@@ -9755,3 +9802,440 @@ INSERT INTO `Cidades` (`ID`, `IDESTADO`, `NOME`) VALUES
 (9712, 27, 'Venus'),
 (9713, 27, 'Wanderlandia'),
 (9714, 27, 'Xambioa');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Clientes`
+--
+
+CREATE TABLE IF NOT EXISTS `Clientes` (
+  `ID` bigint(20) NOT NULL,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `DATACADASTRO` date DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Compras`
+--
+
+CREATE TABLE IF NOT EXISTS `Compras` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DATACOMPRA` date DEFAULT NULL,
+  `QUANTIDADE` int(11) DEFAULT NULL,
+  `VALOR` double DEFAULT NULL,
+  `FORMADEPAGAMENTO_ID` bigint(20) DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  `PRODUTO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Compras_FORMADEPAGAMENTO_ID` (`FORMADEPAGAMENTO_ID`),
+  KEY `FK_Compras_FUNCIONARIO_ID` (`FUNCIONARIO_ID`),
+  KEY `FK_Compras_PRODUTO_ID` (`PRODUTO_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Depositos`
+--
+
+CREATE TABLE IF NOT EXISTS `Depositos` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DATAHORA` datetime DEFAULT NULL,
+  `OBSERVACAO` varchar(255) DEFAULT NULL,
+  `VALOR` float DEFAULT NULL,
+  `CAIXA_ID` bigint(20) DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Depositos_CAIXA_ID` (`CAIXA_ID`),
+  KEY `FK_Depositos_FUNCIONARIO_ID` (`FUNCIONARIO_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `FormasDePagamento`
+--
+
+CREATE TABLE IF NOT EXISTS `FormasDePagamento` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `NOME` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Fazendo dump de dados para tabela `FormasDePagamento`
+--
+
+INSERT INTO `FormasDePagamento` (`ID`, `ATIVO`, `NOME`) VALUES
+(1, 1, 'À Prazo');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Fornecedores`
+--
+
+CREATE TABLE IF NOT EXISTS `Fornecedores` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `CELULAR` varchar(255) DEFAULT NULL,
+  `CNPJ` varchar(255) DEFAULT NULL,
+  `DATACADASTRO` date DEFAULT NULL,
+  `EMAIL` varchar(255) DEFAULT NULL,
+  `ENDERECOBAIRRO` varchar(255) DEFAULT NULL,
+  `ENDERECOCEP` varchar(255) DEFAULT NULL,
+  `ENDERECOCOMPLEMENTO` varchar(255) DEFAULT NULL,
+  `ENDERECONUMERO` int(11) DEFAULT NULL,
+  `ENDERECORUA` varchar(255) DEFAULT NULL,
+  `INCRICAOMUNICIPAL` varchar(255) DEFAULT NULL,
+  `INSCRICAOESTADUAL` varchar(255) DEFAULT NULL,
+  `NOME` varchar(255) DEFAULT NULL,
+  `OBSERVACOES` varchar(255) DEFAULT NULL,
+  `RAZAOSOCIAL` varchar(255) DEFAULT NULL,
+  `SITE` varchar(255) DEFAULT NULL,
+  `TELEFONE` varchar(255) DEFAULT NULL,
+  `ENDERECOCIDADE_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Fornecedores_ENDERECOCIDADE_ID` (`ENDERECOCIDADE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Funcionarios`
+--
+
+CREATE TABLE IF NOT EXISTS `Funcionarios` (
+  `ID` bigint(20) NOT NULL,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `DATAADMISSAO` date DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `Funcionarios`
+--
+
+INSERT INTO `Funcionarios` (`ID`, `ATIVO`, `DATAADMISSAO`) VALUES
+(1, 1, '2014-01-09');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `ItensVendaProduto`
+--
+
+CREATE TABLE IF NOT EXISTS `ItensVendaProduto` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `QTD` int(11) DEFAULT NULL,
+  `VALOR` float DEFAULT NULL,
+  `PRODUTO_ID` bigint(20) DEFAULT NULL,
+  `VENDA_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_ItensVendaProduto_PRODUTO_ID` (`PRODUTO_ID`),
+  KEY `FK_ItensVendaProduto_VENDA_ID` (`VENDA_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `ItensVendaServico`
+--
+
+CREATE TABLE IF NOT EXISTS `ItensVendaServico` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `VALOR` float DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  `SERVICO_ID` bigint(20) DEFAULT NULL,
+  `VENDA_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_ItensVendaServico_VENDA_ID` (`VENDA_ID`),
+  KEY `FK_ItensVendaServico_SERVICO_ID` (`SERVICO_ID`),
+  KEY `FK_ItensVendaServico_FUNCIONARIO_ID` (`FUNCIONARIO_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Pessoas`
+--
+
+CREATE TABLE IF NOT EXISTS `Pessoas` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DTYPE` varchar(31) DEFAULT NULL,
+  `CELULAR` varchar(255) DEFAULT NULL,
+  `CPF` varchar(255) DEFAULT NULL,
+  `DATANASCIMENTO` date DEFAULT NULL,
+  `ENDERECOBAIRRO` varchar(255) DEFAULT NULL,
+  `ENDERECOCEP` varchar(255) DEFAULT NULL,
+  `ENDERECOCOMPLEMENTO` varchar(255) DEFAULT NULL,
+  `ENDERECONUMERO` int(11) DEFAULT NULL,
+  `ENDERECORUA` varchar(255) DEFAULT NULL,
+  `NOME` varchar(255) DEFAULT NULL,
+  `OBSERVACAO` varchar(255) DEFAULT NULL,
+  `RG` varchar(255) DEFAULT NULL,
+  `SEXO` int(11) DEFAULT NULL,
+  `TELEFONE` varchar(255) DEFAULT NULL,
+  `ENDERECOCIDADE_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Pessoas_ENDERECOCIDADE_ID` (`ENDERECOCIDADE_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Fazendo dump de dados para tabela `Pessoas`
+--
+
+INSERT INTO `Pessoas` (`ID`, `DTYPE`, `CELULAR`, `CPF`, `DATANASCIMENTO`, `ENDERECOBAIRRO`, `ENDERECOCEP`, `ENDERECOCOMPLEMENTO`, `ENDERECONUMERO`, `ENDERECORUA`, `NOME`, `OBSERVACAO`, `RG`, `SEXO`, `TELEFONE`, `ENDERECOCIDADE_ID`) VALUES
+(1, 'Funcionario', '1', '1', '2014-01-07', '34', '34', '34', 34, '45', '45', '45', '45', 4, '45', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Produtos`
+--
+
+CREATE TABLE IF NOT EXISTS `Produtos` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `DESCRICAO` varchar(255) DEFAULT NULL,
+  `NOME` varchar(255) DEFAULT NULL,
+  `PRECOCUSTO` float DEFAULT NULL,
+  `PRECOVENDA` float DEFAULT NULL,
+  `QTDESTOQUE` int(11) DEFAULT NULL,
+  `FORNECEDOR_ID` bigint(20) DEFAULT NULL,
+  `TIPOPRODUTO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Produtos_TIPOPRODUTO_ID` (`TIPOPRODUTO_ID`),
+  KEY `FK_Produtos_FORNECEDOR_ID` (`FORNECEDOR_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Retiradas`
+--
+
+CREATE TABLE IF NOT EXISTS `Retiradas` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `DATAHORA` datetime DEFAULT NULL,
+  `DESCRICAO` varchar(255) DEFAULT NULL,
+  `VALOR` float DEFAULT NULL,
+  `CAIXA_ID` bigint(20) DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Retiradas_CAIXA_ID` (`CAIXA_ID`),
+  KEY `FK_Retiradas_FUNCIONARIO_ID` (`FUNCIONARIO_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `SEQUENCE`
+--
+
+CREATE TABLE IF NOT EXISTS `SEQUENCE` (
+  `SEQ_NAME` varchar(50) NOT NULL,
+  `SEQ_COUNT` decimal(38,0) DEFAULT NULL,
+  PRIMARY KEY (`SEQ_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `SEQUENCE`
+--
+
+INSERT INTO `SEQUENCE` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
+('SEQ_GEN', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Servicos`
+--
+
+CREATE TABLE IF NOT EXISTS `Servicos` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `COMISSAO` float DEFAULT NULL,
+  `DESCICAO` varchar(255) DEFAULT NULL,
+  `DESCONTOMAXIMO` float DEFAULT NULL,
+  `DURACAOAPROXIMADA` int(11) DEFAULT NULL,
+  `NOME` varchar(255) DEFAULT NULL,
+  `VALOR` float DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `TiposProduto`
+--
+
+CREATE TABLE IF NOT EXISTS `TiposProduto` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `NOME` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Usuarios`
+--
+
+CREATE TABLE IF NOT EXISTS `Usuarios` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ATIVO` tinyint(1) DEFAULT '0',
+  `NOME` varchar(255) DEFAULT NULL,
+  `SENHA` varchar(255) DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Usuarios_FUNCIONARIO_ID` (`FUNCIONARIO_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Fazendo dump de dados para tabela `Usuarios`
+--
+
+INSERT INTO `Usuarios` (`ID`, `ATIVO`, `NOME`, `SENHA`, `FUNCIONARIO_ID`) VALUES
+(1, 1, 'Admin', 'aju3rg10Fz8=', 1),
+(2, 1, 'a', 'JSMVmOpf2c4=', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Vendas`
+--
+
+CREATE TABLE IF NOT EXISTS `Vendas` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `OBSERVACAO` varchar(255) DEFAULT NULL,
+  `DATAHORA` datetime DEFAULT NULL,
+  `VALORVENDA` float DEFAULT NULL,
+  `CAIXA_ID` bigint(20) DEFAULT NULL,
+  `CLIENTE_ID` bigint(20) DEFAULT NULL,
+  `FORMADEPAGAMENTO_ID` bigint(20) DEFAULT NULL,
+  `FUNCIONARIO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Vendas_FORMADEPAGAMENTO_ID` (`FORMADEPAGAMENTO_ID`),
+  KEY `FK_Vendas_CLIENTE_ID` (`CLIENTE_ID`),
+  KEY `FK_Vendas_CAIXA_ID` (`CAIXA_ID`),
+  KEY `FK_Vendas_FUNCIONARIO_ID` (`FUNCIONARIO_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Restrições para dumps de tabelas
+--
+
+--
+-- Restrições para tabelas `Agendamentos`
+--
+ALTER TABLE `Agendamentos`
+  ADD CONSTRAINT `FK_Agendamentos_CLIENTE_ID` FOREIGN KEY (`CLIENTE_ID`) REFERENCES `Pessoas` (`ID`),
+  ADD CONSTRAINT `FK_Agendamentos_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`);
+
+--
+-- Restrições para tabelas `Agendamentos_Servicos`
+--
+ALTER TABLE `Agendamentos_Servicos`
+  ADD CONSTRAINT `FK_Agendamentos_Servicos_Agendamento_ID` FOREIGN KEY (`Agendamento_ID`) REFERENCES `Agendamentos` (`ID`),
+  ADD CONSTRAINT `FK_Agendamentos_Servicos_servicos_ID` FOREIGN KEY (`servicos_ID`) REFERENCES `Servicos` (`ID`);
+
+--
+-- Restrições para tabelas `Caixas`
+--
+ALTER TABLE `Caixas`
+  ADD CONSTRAINT `FK_Caixas_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`);
+
+--
+-- Restrições para tabelas `Clientes`
+--
+ALTER TABLE `Clientes`
+  ADD CONSTRAINT `FK_Clientes_ID` FOREIGN KEY (`ID`) REFERENCES `Pessoas` (`ID`);
+
+--
+-- Restrições para tabelas `Compras`
+--
+ALTER TABLE `Compras`
+  ADD CONSTRAINT `FK_Compras_PRODUTO_ID` FOREIGN KEY (`PRODUTO_ID`) REFERENCES `Produtos` (`ID`),
+  ADD CONSTRAINT `FK_Compras_FORMADEPAGAMENTO_ID` FOREIGN KEY (`FORMADEPAGAMENTO_ID`) REFERENCES `FormasDePagamento` (`ID`),
+  ADD CONSTRAINT `FK_Compras_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`);
+
+--
+-- Restrições para tabelas `Depositos`
+--
+ALTER TABLE `Depositos`
+  ADD CONSTRAINT `FK_Depositos_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`),
+  ADD CONSTRAINT `FK_Depositos_CAIXA_ID` FOREIGN KEY (`CAIXA_ID`) REFERENCES `Caixas` (`ID`);
+
+--
+-- Restrições para tabelas `Fornecedores`
+--
+ALTER TABLE `Fornecedores`
+  ADD CONSTRAINT `FK_Fornecedores_ENDERECOCIDADE_ID` FOREIGN KEY (`ENDERECOCIDADE_ID`) REFERENCES `Cidades` (`ID`);
+
+--
+-- Restrições para tabelas `Funcionarios`
+--
+ALTER TABLE `Funcionarios`
+  ADD CONSTRAINT `FK_Funcionarios_ID` FOREIGN KEY (`ID`) REFERENCES `Pessoas` (`ID`);
+
+--
+-- Restrições para tabelas `ItensVendaProduto`
+--
+ALTER TABLE `ItensVendaProduto`
+  ADD CONSTRAINT `FK_ItensVendaProduto_VENDA_ID` FOREIGN KEY (`VENDA_ID`) REFERENCES `Vendas` (`ID`),
+  ADD CONSTRAINT `FK_ItensVendaProduto_PRODUTO_ID` FOREIGN KEY (`PRODUTO_ID`) REFERENCES `Produtos` (`ID`);
+
+--
+-- Restrições para tabelas `ItensVendaServico`
+--
+ALTER TABLE `ItensVendaServico`
+  ADD CONSTRAINT `FK_ItensVendaServico_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`),
+  ADD CONSTRAINT `FK_ItensVendaServico_SERVICO_ID` FOREIGN KEY (`SERVICO_ID`) REFERENCES `Servicos` (`ID`),
+  ADD CONSTRAINT `FK_ItensVendaServico_VENDA_ID` FOREIGN KEY (`VENDA_ID`) REFERENCES `Vendas` (`ID`);
+
+--
+-- Restrições para tabelas `Pessoas`
+--
+ALTER TABLE `Pessoas`
+  ADD CONSTRAINT `FK_Pessoas_ENDERECOCIDADE_ID` FOREIGN KEY (`ENDERECOCIDADE_ID`) REFERENCES `Cidades` (`ID`);
+
+--
+-- Restrições para tabelas `Produtos`
+--
+ALTER TABLE `Produtos`
+  ADD CONSTRAINT `FK_Produtos_FORNECEDOR_ID` FOREIGN KEY (`FORNECEDOR_ID`) REFERENCES `Fornecedores` (`ID`),
+  ADD CONSTRAINT `FK_Produtos_TIPOPRODUTO_ID` FOREIGN KEY (`TIPOPRODUTO_ID`) REFERENCES `TiposProduto` (`ID`);
+
+--
+-- Restrições para tabelas `Retiradas`
+--
+ALTER TABLE `Retiradas`
+  ADD CONSTRAINT `FK_Retiradas_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`),
+  ADD CONSTRAINT `FK_Retiradas_CAIXA_ID` FOREIGN KEY (`CAIXA_ID`) REFERENCES `Caixas` (`ID`);
+
+--
+-- Restrições para tabelas `Usuarios`
+--
+ALTER TABLE `Usuarios`
+  ADD CONSTRAINT `FK_Usuarios_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`);
+
+--
+-- Restrições para tabelas `Vendas`
+--
+ALTER TABLE `Vendas`
+  ADD CONSTRAINT `FK_Vendas_FUNCIONARIO_ID` FOREIGN KEY (`FUNCIONARIO_ID`) REFERENCES `Pessoas` (`ID`),
+  ADD CONSTRAINT `FK_Vendas_CAIXA_ID` FOREIGN KEY (`CAIXA_ID`) REFERENCES `Caixas` (`ID`),
+  ADD CONSTRAINT `FK_Vendas_CLIENTE_ID` FOREIGN KEY (`CLIENTE_ID`) REFERENCES `Pessoas` (`ID`),
+  ADD CONSTRAINT `FK_Vendas_FORMADEPAGAMENTO_ID` FOREIGN KEY (`FORMADEPAGAMENTO_ID`) REFERENCES `FormasDePagamento` (`ID`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
