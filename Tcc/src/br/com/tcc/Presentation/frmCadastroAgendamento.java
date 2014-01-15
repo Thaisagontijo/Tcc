@@ -625,7 +625,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         
         }else {
 
-            if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+            if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
 
 
                 Agendamento agendamento = new Agendamento();
@@ -751,6 +751,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         frmListaServicosParaAgenda janela = new frmListaServicosParaAgenda(null, rootPaneCheckingEnabled, this);
+        janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnAdicionarActionPerformed
 

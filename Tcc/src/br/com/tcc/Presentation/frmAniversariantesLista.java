@@ -31,6 +31,7 @@ public class frmAniversariantesLista extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
         lista = daoCliente.ListarTodos();
         preencheTabela();
+        this.setTitle("Listas de Aniversariantes do Mês");
     }
 
     

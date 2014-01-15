@@ -125,6 +125,7 @@ public class frmListarCompras extends javax.swing.JDialog {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Compras");
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras cadastradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N

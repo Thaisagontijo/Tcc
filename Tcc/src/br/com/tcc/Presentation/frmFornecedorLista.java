@@ -329,7 +329,7 @@ public class frmFornecedorLista extends javax.swing.JDialog {
         /*Botão salvar*/
        frmCadastroFornecedor a = new frmCadastroFornecedor(null,rootPaneCheckingEnabled, this,true,false);
        
-        //JDialog a = new JDialog
+        a.setLocationRelativeTo(null);
        a.setVisible(rootPaneCheckingEnabled);
        
     }//GEN-LAST:event_btnNovoActionPerformed

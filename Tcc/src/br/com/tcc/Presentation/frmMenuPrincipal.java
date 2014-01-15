@@ -300,6 +300,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItemEstoque = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         relatorioAgendamentos = new javax.swing.JMenuItem();
         jMenuItemCompras = new javax.swing.JMenuItem();
@@ -734,6 +735,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem6);
 
+        jMenuItem5.setText("Clientes");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Relatórios");
@@ -1126,6 +1135,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             jasperViewer.setVisible(true);
         }catch(JRException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jMenuItemEstoqueActionPerformed
 
@@ -1192,6 +1202,29 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemAniversariantesActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioClientes.jasper");
+            //Lista a ser exibida no relatorio
+            ClienteDAO clienteDao = new ClienteDAO();
+            List<Cliente> clientes = clienteDao.ListarTodos();
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(clientes);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            jasperViewer.setVisible(true);
+        }catch(JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1233,6 +1266,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemAniversariantes;
     private javax.swing.JMenuItem jMenuItemClientes;
