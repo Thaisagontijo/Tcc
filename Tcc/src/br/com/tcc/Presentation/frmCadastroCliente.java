@@ -568,7 +568,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                         .addComponent(cbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbxAno, 0, 1, Short.MAX_VALUE)))
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -758,7 +758,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                     .addComponent(lblCelular)
                     .addComponent(lblTelefone)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnSalvar.setBackground(new java.awt.Color(239, 239, 239));
@@ -995,6 +995,7 @@ for(char c : cliente.toCharArray())
                     janelaPai.lista = janelaPai.dao.ListarTodos();
                     janelaPai.preencheTabela();
                     janelaPai.objSelecionadoNaTabela = null;
+                    janelaPai.janelaPai.preencheComboClientes();
                     this.dispose();
 
                 }else{

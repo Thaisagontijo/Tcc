@@ -14,6 +14,7 @@ import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Produto;
 import java.awt.Color;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -41,18 +42,19 @@ public class frmListarCompras extends javax.swing.JDialog {
         this.janelaPai = janelaPai;
         this.descricao = descricao;
        
-        CompraDAO dao = new CompraDAO();
-        Compra compra = new Compra();
+        //CompraDAO dao = new CompraDAO();
+        //Compra compra = new Compra();
         
-        listaCompra = dao.ListarTodos();
+        //listaCompra = dao.ListarTodos();
         cbxFiltro.removeAllItems();
-        cbxFiltro.addItem("NENHUM");
-        cbxFiltro.addItem("ID");     
+        cbxFiltro.addItem("Nenhum");
+        cbxFiltro.addItem("Id");     
         
         //cbxFiltro.addItem("DATA");
         txtFiltro.setVisible(true);
+        listaCompra = new LinkedList<>();
         
-        preencheTabela();
+        //preencheTabela();
         
     }
     

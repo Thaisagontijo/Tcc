@@ -32,6 +32,7 @@ public class Agendamento implements Serializable {
     public Agendamento(){
         dataHora = new Date();
         realizado = false;
+        ativo = true;
         
     }
 
@@ -46,6 +47,7 @@ public class Agendamento implements Serializable {
     private Date dataHora;
     private String Observacao;
     private boolean realizado;
+    private boolean ativo;
 
     public boolean isRealizado() {
         return realizado;
@@ -116,6 +118,16 @@ public class Agendamento implements Serializable {
     public void setObservacao(String Observacao) {
         this.Observacao = Observacao;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
 
     @Override
     public int hashCode() {

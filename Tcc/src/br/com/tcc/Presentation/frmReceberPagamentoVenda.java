@@ -7,11 +7,13 @@ package br.com.tcc.Presentation;
 import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.FormaDePagamentoDAO;
 import br.com.tcc.DataAccess.ProdutoDAO;
+import br.com.tcc.DataAccess.RetiradaDAO;
 import br.com.tcc.DataAccess.VendaDAO;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.FormaDePagamento;
 import br.com.tcc.DomainModel.ItemVendaProduto;
 import br.com.tcc.DomainModel.Produto;
+import br.com.tcc.DomainModel.Retirada;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -79,6 +81,7 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Receber Pagamento");
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
 
@@ -152,11 +155,11 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         btnPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/pagamento.png"))); // NOI18N
         btnPagar.setText("Pagar");
         btnPagar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPagarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnPagarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPagarMouseExited(evt);
             }
         });
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
@@ -191,8 +194,8 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(142, 142, 142)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(221, 221, 221))
+                .addComponent(btnCancelar)
+                .addGap(209, 209, 209))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,10 +243,21 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
 
                     daoTmp.Salvar(tmp);
                     janelaPai.caixa.addDeposito(tmp);
+                    /*
+                        RECEBER VALOR DO TROCO E ARMAZENAR :-/
+                    */
+                    Retirada tmpTroco = new Retirada();
+                    RetiradaDAO daoRetirada = new RetiradaDAO();
+                    tmpTroco.setValor((Float.valueOf(txtValor.getText()) - janelaPai.novaVenda.calculaValorTotal()));
+                    tmpTroco.setCaixa(janelaPai.caixa);
+                    tmpTroco.setDescricao("Troco Referente a Venda "+ janelaPai.novaVenda.getDataHora().toString());
+                    tmpTroco.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+                    
+                    daoRetirada.Salvar(tmpTroco);
+                    janelaPai.caixa.addRetirada(tmpTroco);
                     
                     
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Valor do Troco " + (Float.valueOf(txtValor.getText()) - janelaPai.novaVenda.calculaValorTotal()));
+                    JOptionPane.showMessageDialog(rootPane, "Valor do Troco R$ " +tmpTroco.getValor() );
                     
                     JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
                     

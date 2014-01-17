@@ -206,8 +206,8 @@
         <Property name="text" type="java.lang.String" value="Filtrar"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFiltrarMouseExited"/>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFiltrarMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFiltrarMouseExited"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarActionPerformed"/>
       </Events>
     </Component>

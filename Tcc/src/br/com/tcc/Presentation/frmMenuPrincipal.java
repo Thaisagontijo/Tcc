@@ -70,6 +70,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         this.usuarioLogado = usuarioLogado;
         this.getContentPane().setBackground(Color.WHITE);
+        
         //this.setLocationRelativeTo(null);
         /*
          
@@ -93,6 +94,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         listaAgendamentos = daoAgendamento.Buscar(tmpAgendamento);
 
         initComponents();
+        verificaAdmin();//verifica se o usuario logado eh o administrador para mostrar a opcao de cadastrarnovos usuarios
         Color minhaCor = new Color(239, 239, 239);
         this.getContentPane().setBackground(minhaCor);
 
@@ -135,6 +137,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnReceberValorVenda.setEnabled(false);
         btnCancelarVenda.setEnabled(false);
         lblCliente.setEnabled(false);
+    }
+    
+    private void verificaAdmin(){
+        if(usuarioLogado.getId() == 1){
+            jMenuItemUsuarios.setVisible(true);
+        }
     }
 
     protected void preencheComboClientes() {
@@ -287,6 +295,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAgenda = new javax.swing.JTable();
         btnNovoAgendamento = new javax.swing.JButton();
+        btnAgendamentoRealizado = new javax.swing.JButton();
+        btnAgendamentoEditar = new javax.swing.JButton();
+        btnAgendamentoApagar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
@@ -296,7 +307,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemServicos = new javax.swing.JMenuItem();
         jMenuItemProdutos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemUsuarios = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemEstoque = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -432,7 +443,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -548,7 +559,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnExcluirItemVenda)
                                     .addComponent(btnIncluirItemVenda))))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         jPanelVendasLayout.setVerticalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,6 +617,27 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAgendamentoRealizado.setText("Realizado");
+        btnAgendamentoRealizado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendamentoRealizadoActionPerformed(evt);
+            }
+        });
+
+        btnAgendamentoEditar.setText("Editar");
+        btnAgendamentoEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendamentoEditarActionPerformed(evt);
+            }
+        });
+
+        btnAgendamentoApagar.setText("Apagar");
+        btnAgendamentoApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendamentoApagarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -614,7 +646,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAgendamentoRealizado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAgendamentoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAgendamentoApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(252, 252, 252)
                         .addComponent(btnNovoAgendamento)))
@@ -623,11 +660,20 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(btnAgendamentoRealizado)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnAgendamentoEditar)
+                        .addGap(22, 22, 22)
+                        .addComponent(btnAgendamentoApagar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNovoAgendamento)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPanelPrincipal.addTab("Agenda", jPanel1);
@@ -705,14 +751,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/user.png"))); // NOI18N
-        jMenuItem4.setText("Usuários");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/user.png"))); // NOI18N
+        jMenuItemUsuarios.setText("Usuários");
+        jMenuItemUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItemUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(jMenuItemUsuarios);
 
         jMenuBar1.add(jMenu1);
 
@@ -803,8 +849,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210)
+                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -825,7 +871,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
-        frmClienteLista janela = new frmClienteLista(this, rootPaneCheckingEnabled);
+        frmClienteLista janela = new frmClienteLista(this, rootPaneCheckingEnabled, this);
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
@@ -1025,11 +1071,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "BeatuySystem Todos os direitos reservados");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosActionPerformed
         frmUsuarioLista janela = new frmUsuarioLista(this, rootPaneCheckingEnabled);
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMenuItemUsuariosActionPerformed
 
     private void btnReceberValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberValorVendaActionPerformed
         frmReceberPagamentoVenda janela = new frmReceberPagamentoVenda(this, rootPaneCheckingEnabled, this);
@@ -1225,6 +1271,55 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void btnAgendamentoRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendamentoRealizadoActionPerformed
+        if(objetoAgendamentoSelecionadoNaTabela != null){
+            if (JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
+                    + " Marcar como realizado o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+
+                objetoAgendamentoSelecionadoNaTabela.setRealizado(true);
+                AgendamentoDAO daoAgendamento = new AgendamentoDAO();
+
+                daoAgendamento.Salvar(objetoAgendamentoSelecionadoNaTabela);
+
+                listaAgendamentos.clear();
+                listaAgendamentos = daoAgendamento.Buscar(new Agendamento());
+                preencheTabelaAgendamentos();
+                objetoAgendamentoSelecionadoNaTabela = null;
+            }
+            
+            
+            
+        }
+    }//GEN-LAST:event_btnAgendamentoRealizadoActionPerformed
+
+    private void btnAgendamentoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendamentoEditarActionPerformed
+        if(objetoAgendamentoSelecionadoNaTabela != null){
+            frmCadastroAgendamento janela = new frmCadastroAgendamento(this, rootPaneCheckingEnabled, this, false, false);
+            janela.setLocationRelativeTo(null);
+            janela.setVisible(rootPaneCheckingEnabled);
+        }
+        
+        
+    }//GEN-LAST:event_btnAgendamentoEditarActionPerformed
+
+    private void btnAgendamentoApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendamentoApagarActionPerformed
+        if (objetoAgendamentoSelecionadoNaTabela != null) {
+            if (JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
+                + " excluir o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+                AgendamentoDAO dao = new AgendamentoDAO();
+                objetoAgendamentoSelecionadoNaTabela.setRealizado(true);
+                dao.Apagar(objetoAgendamentoSelecionadoNaTabela);
+                listaAgendamentos.clear();
+                listaAgendamentos = dao.Buscar(new Agendamento());
+                preencheTabelaAgendamentos();
+                objetoAgendamentoSelecionadoNaTabela = null;
+                preencheTabelaAgendamentos();
+
+            }
+
+        }
+    }//GEN-LAST:event_btnAgendamentoApagarActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1244,6 +1339,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;
+    private javax.swing.JButton btnAgendamentoApagar;
+    private javax.swing.JButton btnAgendamentoEditar;
+    private javax.swing.JButton btnAgendamentoRealizado;
     private javax.swing.JButton btnCancelarVenda;
     private javax.swing.JButton btnDeposito;
     private javax.swing.JButton btnExcluirItemVenda;
@@ -1265,7 +1363,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemAniversariantes;
@@ -1277,6 +1374,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemFuncionarios;
     private javax.swing.JMenuItem jMenuItemProdutos;
     private javax.swing.JMenuItem jMenuItemServicos;
+    private javax.swing.JMenuItem jMenuItemUsuarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelVendas;

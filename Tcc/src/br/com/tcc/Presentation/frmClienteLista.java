@@ -22,8 +22,11 @@ public class frmClienteLista extends javax.swing.JDialog {
     /**
      * Creates new form frmCadastroServicosLista
      */
-    public frmClienteLista(java.awt.Frame parent, boolean modal) {
+    protected frmMenuPrincipal janelaPai;
+    public frmClienteLista(java.awt.Frame parent, boolean modal, frmMenuPrincipal janelaPai) {
         super(parent, modal);
+        
+        this.janelaPai = janelaPai;
         
         initComponents();
         Color minhaCor = new Color(239,239,239);

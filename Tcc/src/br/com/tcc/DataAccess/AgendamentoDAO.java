@@ -24,7 +24,7 @@ public class AgendamentoDAO extends DAOGenerico<Agendamento>{
         EntityTransaction transacao = manager.getTransaction();
         try {
 
-            String consulta = "Select s from Agendamento s";
+            String consulta = "Select s from Agendamento s where s.realizado = 0 and s.ativo = 1"; 
 
             // A parte where da consulta
             String filtro = "";
@@ -92,6 +92,9 @@ public class AgendamentoDAO extends DAOGenerico<Agendamento>{
              query.executeUpdate();
              
              transacao.commit();
+          
+          
+            
              return true;
         
             

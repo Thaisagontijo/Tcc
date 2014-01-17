@@ -8,7 +8,6 @@ import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DataAccess.FuncionarioDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Cliente;
-import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Servico;
 import java.awt.Color;
 import java.util.Date;
