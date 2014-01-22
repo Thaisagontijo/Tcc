@@ -18,7 +18,6 @@ import java.awt.Color;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -373,7 +372,11 @@ public class frmCadastroCompra extends javax.swing.JDialog {
            mes--;
            dataCompra.setMonth(mes);
            dataCompra.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()));
-            
+           
+           //hora e minutos
+           dataCompra.setHours(new Date().getHours());
+           dataCompra.setMinutes(new Date().getMinutes());
+           
            compra.setDataCompra(dataCompra);
            
            
