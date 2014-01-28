@@ -7,11 +7,7 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.CompraDAO;
-import br.com.tcc.DataAccess.FornecedorDAO;
-import br.com.tcc.DataAccess.ProdutoDAO;
 import br.com.tcc.DomainModel.Compra;
-import br.com.tcc.DomainModel.Fornecedor;
-import br.com.tcc.DomainModel.Produto;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -51,7 +47,6 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
         btnTodos = new javax.swing.JButton();
         btnProduto = new javax.swing.JButton();
         btnFornecedor = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         btnTipoProduto = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -88,8 +83,6 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
             }
         });
 
-        jButton5.setText("Por Funcionario");
-
         btnTipoProduto.setText("Por Tipo deProduto");
         btnTipoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +107,6 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnFornecedor)
-                    .addComponent(jButton5)
                     .addComponent(btnTipoProduto))
                 .addGap(55, 55, 55))
         );
@@ -128,9 +120,7 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
                     .addComponent(jButton1)
                     .addComponent(btnFornecedor))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTodos)
-                    .addComponent(jButton5))
+                .addComponent(btnTodos)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProduto)
@@ -396,7 +386,6 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
     private javax.swing.JButton btnTipoProduto;
     private javax.swing.JButton btnTodos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,7 +6,18 @@
 
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.CompraDAO;
+import br.com.tcc.DomainModel.Compra;
+import java.io.InputStream;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -32,6 +43,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
           * PREENCHE COMBOBOX DO DIA
           
           */
+        cbxDia.removeAllItems();
          cbxDia.addItem("Dia");
          for(int i=1;i<32;i++){
              String tmp;
@@ -49,7 +61,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
           * PREENCHE COMBOBOX DO MES
           
           */
-         
+         cbxMes.removeAllItems();
          cbxMes.addItem("Mês");
          for(int i=1;i<13;i++){
              String tmp;
@@ -67,7 +79,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
           * PREENCHE COMBOBOX DO ANO
           
           */
-         
+         cbxAno.removeAllItems();
          cbxAno.addItem("Ano");
          int data = dataTmp.getYear() + 1900;
          for(int i=data;i<=data+1;i++){
@@ -93,6 +105,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
           * PREENCHE COMBOBOX DO DIA
           
           */
+        cbxDia1.removeAllItems();
          cbxDia1.addItem("Dia");
          for(int i=1;i<32;i++){
              String tmp;
@@ -101,7 +114,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
              }else{
                  tmp = String.valueOf(i);
              }
-             cbxDia.addItem(tmp);
+             cbxDia1.addItem(tmp);
          }
          
          
@@ -110,7 +123,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
           * PREENCHE COMBOBOX DO MES
           
           */
-         
+         cbxMes1.removeAllItems();
          cbxMes1.addItem("Mês");
          for(int i=1;i<13;i++){
              String tmp;
@@ -119,7 +132,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
              }else{
                  tmp = String.valueOf(i);
              }
-             cbxMes.addItem(tmp);
+             cbxMes1.addItem(tmp);
          }
          
          
@@ -128,13 +141,13 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
           * PREENCHE COMBOBOX DO ANO
           
           */
-         
+         cbxAno1.removeAllItems();
          cbxAno1.addItem("Ano");
          int data = dataTmp.getYear() + 1900;
          for(int i=data;i<=data+1;i++){
              String tmp = String.valueOf(i);
              
-             cbxAno.addItem(tmp);
+             cbxAno1.addItem(tmp);
          }
         
          
@@ -238,6 +251,11 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
         );
 
         jButton1.setText("Gerar Relatório");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -279,6 +297,69 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Date data1 = new Date();
+        Date data2 = new Date();
+        
+        /*
+            PEGANDO VALORES DA PRIMERA DATA
+        */
+        data1.setDate(Integer.parseInt(cbxDia.getSelectedItem().toString()));
+        data1.setMonth(Integer.parseInt((cbxMes.getSelectedItem().toString()))- 1);
+        data1.setYear(Integer.parseInt((cbxAno.getSelectedItem().toString())));
+        
+        /*
+            PEGANDO VALORES DA SEGUNDA DATA
+        */
+        data2.setDate(Integer.parseInt(cbxDia1.getSelectedItem().toString()));
+        data2.setMonth(Integer.parseInt((cbxMes1.getSelectedItem().toString()))- 1);
+        data2.setYear(Integer.parseInt((cbxAno1.getSelectedItem().toString())));
+        
+        CompraDAO tmpComprasDAO = new CompraDAO();
+        List<Compra> compras = new LinkedList<>();
+        List<Compra> comprasFiltro = new LinkedList<>();
+        
+        compras = tmpComprasDAO.ListarTodos();
+        
+        for(Compra c : compras){
+            if((c.getDataCompra().before(data2)   && c.getDataCompra().after(data1))) {
+                comprasFiltro.add(c);
+            }
+        }
+        
+        //Gerando relatorio
+        
+                try {
+                      //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioCompras.jasper");
+
+
+            if (!comprasFiltro.isEmpty()) {
+
+                //Fonte de dados
+                JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(comprasFiltro);
+
+                //Gera o Relatorio
+                JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+                //Exibe o Relatorio
+                JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+                this.dispose();
+                jasperViewer.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Nenhuma compra registrada nesse periodo !");
+            }
+
+        } catch (JRException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Id inválido !");
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

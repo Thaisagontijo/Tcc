@@ -195,6 +195,37 @@ public class Caixa implements Serializable {
         return hash;
     }
 
+/*
+    @Override
+    public boolean equals(Object obj) {
+    if (obj == null) {
+    return false;
+    }
+    if (getClass() != obj.getClass()) {
+    return false;
+    }
+    final Caixa other = (Caixa) obj;
+    if (!Objects.equals(this.vendas, other.vendas)) {
+    return false;
+    }
+    if (!Objects.equals(this.dataAbertura, other.dataAbertura)) {
+    return false;
+    }
+    if (!Objects.equals(this.dataFechamento, other.dataFechamento)) {
+    return false;
+    }
+    if (!Objects.equals(this.funcionario, other.funcionario)) {
+    return false;
+    }
+    if (!Objects.equals(this.depositos, other.depositos)) {
+    return false;
+    }
+    if (!Objects.equals(this.retiradas, other.retiradas)) {
+    return false;
+    }
+    return true;
+    }
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -204,27 +235,16 @@ public class Caixa implements Serializable {
             return false;
         }
         final Caixa other = (Caixa) obj;
-        if (!Objects.equals(this.vendas, other.vendas)) {
-            return false;
-        }
         if (!Objects.equals(this.dataAbertura, other.dataAbertura)) {
             return false;
         }
         if (!Objects.equals(this.dataFechamento, other.dataFechamento)) {
             return false;
         }
-        if (!Objects.equals(this.funcionario, other.funcionario)) {
-            return false;
-        }
-        if (!Objects.equals(this.depositos, other.depositos)) {
-            return false;
-        }
-        if (!Objects.equals(this.retiradas, other.retiradas)) {
-            return false;
-        }
         return true;
     }
-
+    
+    
     @Override
     public String toString() {
         return "Caixa{" + "id=" + id + ", vendas=" + vendas + ", dataAbertura=" + dataAbertura + ", dataFechamento=" + dataFechamento + ", funcionario=" + funcionario + ", depositos=" + depositos + ", retiradas=" + retiradas + '}';

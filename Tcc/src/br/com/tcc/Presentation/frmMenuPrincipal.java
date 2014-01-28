@@ -314,6 +314,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         relatorioAgendamentos = new javax.swing.JMenuItem();
         jMenuItemCompras = new javax.swing.JMenuItem();
         jMenuItemAniversariantes = new javax.swing.JMenuItem();
+        jMenuItemRelatorioVendas = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -815,6 +816,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItemAniversariantes);
+
+        jMenuItemRelatorioVendas.setText("Vendas");
+        jMenuItemRelatorioVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRelatorioVendasActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemRelatorioVendas);
 
         jMenuBar1.add(jMenu5);
 
@@ -1323,6 +1332,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgendamentoApagarActionPerformed
 
+    private void jMenuItemRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioVendasActionPerformed
+        frmSelecionarOpcaoRelatorioVendas janela = new frmSelecionarOpcaoRelatorioVendas(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(this);
+        janela.setVisible(rootPaneCheckingEnabled);
+        
+    }//GEN-LAST:event_jMenuItemRelatorioVendasActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1376,6 +1392,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemFornecedores;
     private javax.swing.JMenuItem jMenuItemFuncionarios;
     private javax.swing.JMenuItem jMenuItemProdutos;
+    private javax.swing.JMenuItem jMenuItemRelatorioVendas;
     private javax.swing.JMenuItem jMenuItemServicos;
     private javax.swing.JMenuItem jMenuItemUsuarios;
     private javax.swing.JPanel jPanel1;
