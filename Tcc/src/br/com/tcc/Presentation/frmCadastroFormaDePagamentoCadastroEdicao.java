@@ -71,6 +71,11 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         lblNome.setText("Nome* :");
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelNovoServicoLayout = new javax.swing.GroupLayout(painelNovoServico);
         painelNovoServico.setLayout(painelNovoServicoLayout);
@@ -252,6 +257,18 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         Color minhaCor = new Color(115,183,253);
         this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseEntered
+
+    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+        if(txtNome.getText().length() > 5){
+            JOptionPane.showMessageDialog(rootPane, "Limite Máximo 100 Caracteres !");
+            /*
+            int length = texto.length();  
+            return texto.substring(0, length-1); 
+            */
+            
+            txtNome.setText(txtNome.getText().substring(0, txtNome.getText().length() - 1));
+        }
+    }//GEN-LAST:event_txtNomeKeyPressed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
