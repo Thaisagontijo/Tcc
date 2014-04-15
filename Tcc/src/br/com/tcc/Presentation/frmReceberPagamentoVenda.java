@@ -268,6 +268,7 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                     }
              
                     janelaPai.desativarVenda();
+                    
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda");

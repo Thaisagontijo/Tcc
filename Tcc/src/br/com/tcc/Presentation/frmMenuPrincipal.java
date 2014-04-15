@@ -258,6 +258,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         lblCliente.setEnabled(false);
 
         novaVenda = null;
+        btnNovaVenda.setEnabled(true);
 
     }
 
@@ -288,7 +289,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnExcluirItemVenda = new javax.swing.JButton();
         btnReceberValorVenda = new javax.swing.JButton();
         btnCancelarVenda = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnNovaVenda = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAgenda = new javax.swing.JTable();
@@ -524,11 +525,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("Nova");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnNovaVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNovaVenda.setText("Nova");
+        btnNovaVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnNovaVendaActionPerformed(evt);
             }
         });
 
@@ -540,7 +541,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(btnReceberValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
@@ -580,7 +581,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReceberValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
@@ -1032,7 +1033,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnIncluirItemVendaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaVendaActionPerformed
 
         //Validando venda 
         if (caixa == null) {
@@ -1053,15 +1054,18 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             novaVenda.setFuncionario(usuarioLogado.getFuncionario());
             novaVenda.setCaixa(caixa);
             preencheComboClientes();
+            
+            btnNovaVenda.setEnabled(false);
 
             //  VendaDAO a = new VendaDAO();
             //a.Salvar(novaVenda);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnNovaVendaActionPerformed
 
     private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar a compra?", "Pergunta", JOptionPane.OK_CANCEL_OPTION) == 0) {
             desativarVenda();
+            btnNovaVenda.setEnabled(true);
 
         }
 
@@ -1085,11 +1089,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemUsuariosActionPerformed
 
     private void btnReceberValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberValorVendaActionPerformed
-        frmReceberPagamentoVenda janela = new frmReceberPagamentoVenda(this, rootPaneCheckingEnabled, this);
-        janela.setLocationRelativeTo(null);
-        clienteCOmboVenda = (Cliente) cbxCliente.getSelectedItem();
-        // JOptionPane.showMessageDialog(rootPane, cbxCliente.getSelectedItem());
-        janela.setVisible(rootPaneCheckingEnabled);
+        if(cbxCliente.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Nenhum Cliente Selecionado !");
+        }else if(tblVendas.getRowCount() < 1){
+            JOptionPane.showMessageDialog(rootPane, "Nenhum Item na Compra !");
+        }else{
+            frmReceberPagamentoVenda janela = new frmReceberPagamentoVenda(this, rootPaneCheckingEnabled, this);
+            janela.setLocationRelativeTo(null);
+            clienteCOmboVenda = (Cliente) cbxCliente.getSelectedItem();
+            // JOptionPane.showMessageDialog(rootPane, cbxCliente.getSelectedItem());
+            janela.setVisible(rootPaneCheckingEnabled);
+        }
 
     }//GEN-LAST:event_btnReceberValorVendaActionPerformed
 
@@ -1366,13 +1376,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirItemVenda;
     private javax.swing.JButton btnFecharCaixa;
     private javax.swing.JButton btnIncluirItemVenda;
+    private javax.swing.JButton btnNovaVenda;
     private javax.swing.JButton btnNovoAgendamento;
     private javax.swing.JButton btnReceberValorVenda;
     private javax.swing.JButton btnRetirada;
     private javax.swing.JButton btnSaldoCaixa;
     private javax.swing.JButton btnSaldoCaixaDetalhado;
     private javax.swing.JComboBox cbxCliente;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
