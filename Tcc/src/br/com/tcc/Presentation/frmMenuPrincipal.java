@@ -496,7 +496,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnIncluirItemVenda.setBackground(new java.awt.Color(239, 239, 239));
         btnIncluirItemVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnIncluirItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
-        btnIncluirItemVenda.setText("Incluir");
+        btnIncluirItemVenda.setText("Incluir Item");
         btnIncluirItemVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIncluirItemVendaActionPerformed(evt);
@@ -506,7 +506,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnExcluirItemVenda.setBackground(new java.awt.Color(239, 239, 239));
         btnExcluirItemVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluirItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
-        btnExcluirItemVenda.setText("Excluir");
+        btnExcluirItemVenda.setText("Excluir Item");
 
         btnReceberValorVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnReceberValorVenda.setText("Receber");
@@ -556,10 +556,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                             .addGroup(jPanelVendasLayout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
-                                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnExcluirItemVenda)
-                                    .addComponent(btnIncluirItemVenda))))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnIncluirItemVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnExcluirItemVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanelVendasLayout.setVerticalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

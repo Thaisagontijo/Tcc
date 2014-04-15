@@ -483,15 +483,15 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jScrollPane2" min="-2" pref="545" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnExcluirItemVenda" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnIncluirItemVenda" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="btnIncluirItemVenda" max="32767" attributes="0"/>
+                                          <Component id="btnExcluirItemVenda" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                      <EmptySpace pref="65" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -586,7 +586,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/tcc/Presentation/icones/Novo.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Incluir"/>
+                <Property name="text" type="java.lang.String" value="Incluir Item"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIncluirItemVendaActionPerformed"/>
@@ -603,7 +603,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/br/com/tcc/Presentation/icones/excluir.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Excluir"/>
+                <Property name="text" type="java.lang.String" value="Excluir Item"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnReceberValorVenda">

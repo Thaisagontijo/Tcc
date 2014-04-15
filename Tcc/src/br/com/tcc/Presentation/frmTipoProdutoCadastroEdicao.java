@@ -22,6 +22,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
      * 
      */
     private frmTipoProdutoLista janelaPai;
+    private boolean cadastro;
     public frmTipoProdutoCadastroEdicao(java.awt.Frame parent, boolean modal, frmTipoProdutoLista janelaPai, boolean cadastro) {
        super(parent, modal);
         
@@ -29,6 +30,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
          Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);
         this.janelaPai = janelaPai;
+        this.cadastro = cadastro;
        
         
         if(cadastro ==  true){
@@ -179,8 +181,13 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
        }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Tipo de Produto ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
-                TipoProduto novoTipo= new TipoProduto();
+                TipoProduto novoTipo= null;
 
+                if(cadastro){
+                    novoTipo= new TipoProduto();
+                }else{
+                    novoTipo = janelaPai.objSelecionadoNaTabela;
+                }
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
                         
             
