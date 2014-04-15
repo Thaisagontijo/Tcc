@@ -93,6 +93,11 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
 
         cbxFormaDePagamento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxFormaDePagamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxFormaDePagamento.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxFormaDePagamentoItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Total a Pagar");
@@ -219,8 +224,16 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         if(Float.parseFloat(txtValor.getText()) >= (Float.parseFloat(lblTotalAPagar.getText()))){
             
-            if(cbxFormaDePagamento.getSelectedIndex() != 0){   //se o o objeto selecionado nao for a opcao "selecione"
-            
+            if(cbxFormaDePagamento.getSelectedIndex() ==0 ){   //se o o objeto selecionado nao for a opcao "selecione"
+                txtValor.setEnabled(true);
+                JOptionPane.showMessageDialog(rootPane, "Selecione uma Forma de Pagamento !");
+                
+    
+             }else{
+                txtValor.setEnabled(true);
+                
+                
+                
                 /*
                 
                         Ver as opcoes de à prazo
@@ -273,7 +286,6 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda");
                 }
-    
             }
                     
         }else{
@@ -304,6 +316,14 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         Color minhaCor = new Color(239,239,239);
         this.btnPagar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseExited
+
+    private void cbxFormaDePagamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxFormaDePagamentoItemStateChanged
+        if(cbxFormaDePagamento.getSelectedIndex() ==2){
+                txtValor.setEnabled(false);
+        }else{
+            txtValor.setEnabled(true);
+        }
+    }//GEN-LAST:event_cbxFormaDePagamentoItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
