@@ -35,12 +35,12 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         
         /*   SETANTO TAMNHO MAXIMO DOS CAMPOS*/
         
-        txtNome.setDocument(new FixedLengthDocument(150));
+        txtNome.setDocument(new FixedLengthDocument(100));
         txtRg.setDocument(new FixedLengthDocument(30));
-        txtRua.setDocument(new FixedLengthDocument(150));
+        txtRua.setDocument(new FixedLengthDocument(100));
         txtNumero.setDocument(new FixedLengthDocument(6));
-        txtBairro.setDocument(new FixedLengthDocument(150));
-        txtComplemento.setDocument(new FixedLengthDocument(150));
+        txtBairro.setDocument(new FixedLengthDocument(100));
+        txtComplemento.setDocument(new FixedLengthDocument(100));
         
         /*   SETANTO TAMNHO MAXIMO DOS CAMPOS*/
         
@@ -727,7 +727,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         );
 
         jPanel3.setBackground(new java.awt.Color(228, 228, 228));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos (Preencher pelo menos um contato)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         lblTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefone.setText("Telefone :");

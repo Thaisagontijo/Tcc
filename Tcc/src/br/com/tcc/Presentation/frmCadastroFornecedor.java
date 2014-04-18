@@ -9,6 +9,7 @@ import br.com.tcc.DataAccess.FornecedorDAO;
 import br.com.tcc.DomainModel.Cidade;
 import br.com.tcc.DomainModel.Estado;
 import br.com.tcc.DomainModel.Fornecedor;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import java.util.Date;
 import java.util.LinkedList;
@@ -37,6 +38,23 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         initComponents();
        Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);
+        
+        
+        
+        //SETANDO TAMANHO MAXIMO DO CAMPO
+        
+        txtNome.setDocument(new FixedLengthDocument(100));
+        txtRazaoSocial.setDocument(new FixedLengthDocument(100));
+        txtBairro.setDocument(new FixedLengthDocument(100));
+        txtComplemento1.setDocument(new FixedLengthDocument(100));
+        txtEmail.setDocument(new FixedLengthDocument(100));
+        txtInscricaoEstadual.setDocument(new FixedLengthDocument(100));
+        txtInscricaoMunicipal.setDocument(new FixedLengthDocument(100));
+        txtNumero.setDocument(new FixedLengthDocument(6));
+        txtObservacao.setDocument(new FixedLengthDocument(150));
+        txtSite.setDocument(new FixedLengthDocument(100));
+        
+        //SETANDO TAMANHO MAXIMO DO CAMPO ==============
         
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;

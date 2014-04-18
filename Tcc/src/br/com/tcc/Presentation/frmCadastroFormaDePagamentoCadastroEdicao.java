@@ -5,6 +5,7 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DomainModel.FormaDePagamento;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -31,6 +32,9 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         initComponents();
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
+        
+        //SETANDO TAMANHO MAXIMO DO CAMPO
+        txtNome.setDocument(new FixedLengthDocument(100));
        
         
         if(cadastro){

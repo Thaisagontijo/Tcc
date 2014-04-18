@@ -10,6 +10,7 @@ import br.com.tcc.DataAccess.TipoProdutoDAO;
 import br.com.tcc.DomainModel.Fornecedor;
 import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.TipoProduto;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,6 +41,14 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
         this.descricao = descricao;
+        
+        // SETANDO O TAMANHO DOS CAMPOS
+        
+        txtNome.setDocument(new FixedLengthDocument(100));
+        txtPrecoCusto.setDocument(new FixedLengthDocument(6));
+        txtPrecoVenda.setDocument(new FixedLengthDocument(6));
+        txtQuantidade.setDocument(new FixedLengthDocument(6));
+        txtDescricao.setDocument(new FixedLengthDocument(150));
        
         
         
@@ -57,9 +66,9 @@ public class frmCadastroProduto extends javax.swing.JDialog {
           * 
           */
          Fornecedor tmpFornecedor = new Fornecedor();
-         tmpFornecedor.setNome("Selecione O Fornecedor");
+         tmpFornecedor.setNome("Selecione");
          TipoProduto tmpTipoProduto = new TipoProduto();
-         tmpTipoProduto.setNome("Selecione o Tipo do Produto");
+         tmpTipoProduto.setNome("Selecione");
          
          cbxTipoProduto.addItem(tmpTipoProduto);
          cbxVendedor.addItem(tmpFornecedor);

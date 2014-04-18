@@ -5,6 +5,7 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DomainModel.Deposito;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -26,6 +27,11 @@ public class frmDepositoCaixa extends javax.swing.JDialog {
         Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);
         this.setTitle("NOVO DEPÓSITO");
+        
+        //SETANDO TAMANHO MAXIMO
+        
+        txtDescricao.setDocument(new FixedLengthDocument(100));
+        txtValor.setDocument(new FixedLengthDocument(6));
     }
 
     /**

@@ -12,6 +12,7 @@ import br.com.tcc.DomainModel.ItemVendaProduto;
 import br.com.tcc.DomainModel.ItemVendaServico;
 import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Servico;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -42,6 +43,11 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
         cbxProfissional.setVisible(false);
         txtDesconto.setText("0");
         spnQuantidade.setValue(1);
+        
+        
+        //SETANDO TAMANHO MAXIMO DOS CAMPOS
+        
+        txtDesconto.setDocument(new FixedLengthDocument(2));
         
         if(cadastros){
             this.setTitle("Incluir Item");

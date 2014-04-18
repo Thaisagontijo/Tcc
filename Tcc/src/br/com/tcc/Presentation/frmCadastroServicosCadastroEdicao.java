@@ -6,6 +6,7 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.ServicoDAO;
 import br.com.tcc.DomainModel.Servico;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -34,6 +35,17 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
         this.descricao = descricao;
+        
+        
+         // SETANDO O TAMANHO DOS CAMPOS
+        
+        txtNome.setDocument(new FixedLengthDocument(100));
+        txtValor.setDocument(new FixedLengthDocument(6));
+        txtDesconto.setDocument(new FixedLengthDocument(2));
+        txtDuracao.setDocument(new FixedLengthDocument(6));
+        txtDescricao.setDocument(new FixedLengthDocument(150));
+        txtComissao.setDocument(new FixedLengthDocument(2));
+       
        
         btnSair.setVisible(false);
         if(cadastro){

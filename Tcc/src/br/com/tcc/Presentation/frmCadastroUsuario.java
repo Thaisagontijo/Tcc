@@ -11,6 +11,7 @@ import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import br.com.tcc.utilitarios.CryptographyTripleDES;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 
 /**
  *
@@ -30,6 +31,10 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         Color minhaCor = new Color(239, 239, 239);
         this.getContentPane().setBackground(minhaCor);
         this.cadastro = cadastro;
+        
+        //SETANDO TAMANHO MAXIMO
+        
+        txtUsuario.setDocument(new FixedLengthDocument(100));
 
         cbxFuncionario.removeAllItems();
         daoFuncionario = new FuncionarioDAO();
