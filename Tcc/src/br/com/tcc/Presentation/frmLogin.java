@@ -9,6 +9,7 @@ import br.com.tcc.DomainModel.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import br.com.tcc.utilitarios.CryptographyTripleDES;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -59,16 +60,21 @@ public class frmLogin extends javax.swing.JFrame {
 
         txtSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSenha.setToolTipText("Senha do Usuário");
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
 
         btnlogar.setBackground(new java.awt.Color(239, 239, 239));
         btnlogar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnlogar.setText("Entrar");
         btnlogar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnlogarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnlogarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnlogarMouseEntered(evt);
             }
         });
         btnlogar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +143,7 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnlogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogarActionPerformed
+        
         try {
             
             CryptographyTripleDES criptografia = CryptographyTripleDES.newInstance();
@@ -174,6 +181,17 @@ public class frmLogin extends javax.swing.JFrame {
         Color minhaCor = new Color(239, 239, 239);
         this.btnlogar.setBackground(minhaCor);
     }//GEN-LAST:event_btnlogarMouseExited
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+       //AO PRESSIONAR O ENTER
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){    
+            btnlogarActionPerformed(null);
+        }  
+        
+        
+        
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments

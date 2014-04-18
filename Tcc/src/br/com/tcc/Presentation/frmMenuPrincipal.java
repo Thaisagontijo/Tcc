@@ -213,6 +213,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         };
 
         model.addColumn("ID");
+        model.addColumn("NOME");
         model.addColumn("DESCRIÇÃO");
         model.addColumn("QUANTIDADE");
         model.addColumn("VALOR TOTAL");
@@ -222,9 +223,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             Vector v = new Vector();
 
             v.add(0, i++);
-            v.add(1, "Serviço");
-            v.add(2, "1");
-            v.add(3,s.getValor());
+            v.add(1, s.getServico().getNome());
+            v.add(2, "Serviço");
+            v.add(3, "1");
+            v.add(4,s.getValor());
 
             model.addRow(v);
 
@@ -234,9 +236,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             Vector v = new Vector();
 
             v.add(0, i++);
-            v.add(1, "Produto");
-            v.add(2, p.getQtd());
-            v.add(3, (p.getValor()));
+            v.add(1, p.getProduto().getNome());
+            v.add(2, "Produto");
+            v.add(3, p.getQtd());
+            v.add(4, (p.getValor()));
 
             model.addRow(v);
 
@@ -507,6 +510,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnExcluirItemVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluirItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnExcluirItemVenda.setText("Excluir Item");
+        btnExcluirItemVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirItemVendaActionPerformed(evt);
+            }
+        });
 
         btnReceberValorVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnReceberValorVenda.setText("Receber");
@@ -1329,7 +1337,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             if (JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
                 + " excluir o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
                 AgendamentoDAO dao = new AgendamentoDAO();
-                objetoAgendamentoSelecionadoNaTabela.setRealizado(true);
+                objetoAgendamentoSelecionadoNaTabela.setRealizado(false);
+                objetoAgendamentoSelecionadoNaTabela.setAtivo(false);
                 dao.Apagar(objetoAgendamentoSelecionadoNaTabela);
                 listaAgendamentos.clear();
                 listaAgendamentos = dao.Buscar(new Agendamento());
@@ -1348,6 +1357,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setVisible(rootPaneCheckingEnabled);
         
     }//GEN-LAST:event_jMenuItemRelatorioVendasActionPerformed
+
+    private void btnExcluirItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirItemVendaActionPerformed
+        
+    }//GEN-LAST:event_btnExcluirItemVendaActionPerformed
 
     /*
      *  OUTRAS VARIÁVEIS

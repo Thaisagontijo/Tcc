@@ -12,7 +12,6 @@ import br.com.tcc.DataAccess.VendaDAO;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.FormaDePagamento;
 import br.com.tcc.DomainModel.ItemVendaProduto;
-import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Retirada;
 import java.awt.Color;
 import javax.swing.JOptionPane;
