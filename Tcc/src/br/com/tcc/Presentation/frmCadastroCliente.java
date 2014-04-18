@@ -9,6 +9,7 @@ import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DomainModel.Cidade;
 import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Estado;
+import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import java.util.Date;
 import java.util.LinkedList;
@@ -30,6 +31,19 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     public frmCadastroCliente(java.awt.Frame parent, boolean modal, frmClienteLista janelaPai, boolean cadastro,boolean descricao) {
         super(parent, modal);
         initComponents();
+        
+        
+        /*   SETANTO TAMNHO MAXIMO DOS CAMPOS*/
+        
+        txtNome.setDocument(new FixedLengthDocument(150));
+        txtRg.setDocument(new FixedLengthDocument(30));
+        txtRua.setDocument(new FixedLengthDocument(150));
+        txtNumero.setDocument(new FixedLengthDocument(6));
+        txtBairro.setDocument(new FixedLengthDocument(150));
+        txtComplemento.setDocument(new FixedLengthDocument(150));
+        
+        /*   SETANTO TAMNHO MAXIMO DOS CAMPOS*/
+        
         
         Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);

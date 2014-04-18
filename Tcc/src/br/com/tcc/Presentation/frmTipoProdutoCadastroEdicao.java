@@ -7,6 +7,7 @@ package br.com.tcc.Presentation;
 import br.com.tcc.DomainModel.TipoProduto;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import br.com.tcc.utilitarios.*;
 
 /**
  *
@@ -31,7 +32,7 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
-       
+       txtNome.setDocument(new FixedLengthDocument(50));//TAMANHO MAXIMO DO CAMPO
         
         if(cadastro ==  true){
             this.setTitle("CADASTRO DE TIPO DE PRODUTO");
