@@ -184,48 +184,14 @@ public class Caixa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.vendas);
-        hash = 89 * hash + Objects.hashCode(this.dataAbertura);
-        hash = 89 * hash + Objects.hashCode(this.dataFechamento);
-        hash = 89 * hash + Objects.hashCode(this.funcionario);
-        hash = 89 * hash + Objects.hashCode(this.depositos);
-        hash = 89 * hash + Objects.hashCode(this.retiradas);
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.dataAbertura);
+        hash = 41 * hash + Objects.hashCode(this.dataFechamento);
+        hash = 41 * hash + Objects.hashCode(this.funcionario);
         return hash;
     }
 
-/*
-    @Override
-    public boolean equals(Object obj) {
-    if (obj == null) {
-    return false;
-    }
-    if (getClass() != obj.getClass()) {
-    return false;
-    }
-    final Caixa other = (Caixa) obj;
-    if (!Objects.equals(this.vendas, other.vendas)) {
-    return false;
-    }
-    if (!Objects.equals(this.dataAbertura, other.dataAbertura)) {
-    return false;
-    }
-    if (!Objects.equals(this.dataFechamento, other.dataFechamento)) {
-    return false;
-    }
-    if (!Objects.equals(this.funcionario, other.funcionario)) {
-    return false;
-    }
-    if (!Objects.equals(this.depositos, other.depositos)) {
-    return false;
-    }
-    if (!Objects.equals(this.retiradas, other.retiradas)) {
-    return false;
-    }
-    return true;
-    }
-     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -235,15 +201,22 @@ public class Caixa implements Serializable {
             return false;
         }
         final Caixa other = (Caixa) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.dataAbertura, other.dataAbertura)) {
             return false;
         }
         if (!Objects.equals(this.dataFechamento, other.dataFechamento)) {
             return false;
         }
+        if (!Objects.equals(this.funcionario, other.funcionario)) {
+            return false;
+        }
         return true;
     }
-    
+
+   
     
     @Override
     public String toString() {

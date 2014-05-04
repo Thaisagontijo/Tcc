@@ -30,8 +30,8 @@ public class frmDepositoCaixa extends javax.swing.JDialog {
         
         //SETANDO TAMANHO MAXIMO
         
-        txtDescricao.setDocument(new FixedLengthDocument(100));
-        txtValor.setDocument(new FixedLengthDocument(6));
+       // txtDescricao.setDocument(new FixedLengthDocument(100));
+       // txtValor.setDocument(new FixedLengthDocument(6));
     }
 
     /**

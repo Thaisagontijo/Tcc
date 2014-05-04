@@ -6,6 +6,7 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DataAccess.CaixaDAO;
+import br.com.tcc.DataAccess.CaixaDAO2;
 import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.ProdutoDAO;
@@ -68,6 +69,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         this.usuarioLogado = usuarioLogado;
         this.getContentPane().setBackground(Color.WHITE);
+        
+        /*
+            INICIANDO DAO CAIXA
+        */
+        
+        daoCaixa = new CaixaDAO();
         
         //this.setLocationRelativeTo(null);
         /*
@@ -976,7 +983,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             caixa.addDeposito(depositoEntrada);
             caixa.setFuncionario(usuarioLogado.getFuncionario());
             CaixaDAO daoCaixa = new CaixaDAO();
-            daoCaixa.Salvar(caixa);
+           // caixa.setDataFechamento(new Date());
+//            daoCaixa.Salvar(caixa);  JHDJKASHDJKASHDJK VERIFICAR
+            
+            CaixaDAO2 dao2 = new CaixaDAO2();
+            
+            Long id = dao2.Salvar(caixa);
+            caixa.setId(id);
+            
+            /*ADICIOnANDO DEPOSITO*/
+            DepositoDAO daoDeposito = new DepositoDAO();
+            daoDeposito.Salvar(depositoEntrada);
 
             btnDeposito.setVisible(true);
             btnRetirada.setVisible(true);
@@ -1015,12 +1032,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
 
-        CaixaDAO daoCaixa = new CaixaDAO();
+       // CaixaDAO daoCaixa = new CaixaDAO();
     //    daoDeposito = new DepositoDAO();
 
         caixa.setDataFechamento(new Date());
-        caixa.setFuncionario(usuarioLogado.getFuncionario());
-        if (daoCaixa.Salvar(caixa)) {
+        CaixaDAO2 dao = new CaixaDAO2();
+        dao.atualizarHoraFechamentoCaixa(caixa);
+       // caixa.setFuncionario(usuarioLogado.getFuncionario());
+       // if (daoCaixa.Salvar(caixa)) {
             JOptionPane.showMessageDialog(rootPane, "Caixa Fechado com sucesso!");
 
             btnDeposito.setVisible(false);
@@ -1030,9 +1049,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             btnAbrirCaixa.setVisible(true);
             btnFecharCaixa.setVisible(false);
             caixa = null;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
-        }
+       // } else {
+           // JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
+        //}
     }//GEN-LAST:event_btnFecharCaixaActionPerformed
 
     private void btnIncluirItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirItemVendaActionPerformed
@@ -1378,6 +1397,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     protected Cliente clienteCOmboVenda;
     protected Servico objetoServicoSelecionadoNaTabela;
     protected Produto objetoProdutoSelecionadoNaTabela;
+    protected CaixaDAO daoCaixa;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirCaixa;

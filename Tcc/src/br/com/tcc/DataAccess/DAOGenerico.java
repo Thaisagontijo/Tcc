@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 /**
  *
  * @author Thaisa
+ * @param <T>
  */
 public abstract class DAOGenerico<T> {
     

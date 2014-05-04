@@ -27,6 +27,7 @@ public class Usuario implements Serializable {
     
     public Usuario(){
         this.ativo = true;
+        funcionario = null;
     }
 
     private String nome;
