@@ -6,6 +6,22 @@
 
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.CaixaDAO;
+import br.com.tcc.DataAccess.CompraDAO;
+import br.com.tcc.DataAccess.VendaDAO;
+import br.com.tcc.DomainModel.Caixa;
+import br.com.tcc.DomainModel.Compra;
+import br.com.tcc.DomainModel.Venda;
+import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author anderson
@@ -88,7 +104,36 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodasActionPerformed
-        // TODO add your handling code here:
+        try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
+            //Lista a ser exibida no relatorio
+            CaixaDAO caixaDAO = new CaixaDAO();
+            List<Caixa> caixas = caixaDAO.ListarTodos();
+            
+            List <Venda> vendas = new LinkedList();
+            for(Caixa c : caixas){
+                vendas.addAll(c.getVendas());
+            }
+            System.out.print(vendas.size());
+            
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(vendas);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            this.dispose();
+            jasperViewer.setVisible(true);
+            
+        }catch(JRException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_btnTodasActionPerformed
 
     /**

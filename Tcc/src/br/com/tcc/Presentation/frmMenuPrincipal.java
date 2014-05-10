@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -142,6 +143,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnReceberValorVenda.setEnabled(false);
         btnCancelarVenda.setEnabled(false);
         lblCliente.setEnabled(false);
+        
+        
+        //FULL SCREEN
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     
     private void verificaAdmin(){
@@ -332,8 +337,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPanelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
-
         btnAbrirCaixa.setBackground(new java.awt.Color(239, 239, 239));
         btnAbrirCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAbrirCaixa.setText("Abrir Caixa");
@@ -457,7 +460,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(309, 309, 309)
                         .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -574,7 +577,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnIncluirItemVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnExcluirItemVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         jPanelVendasLayout.setVerticalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -872,8 +875,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
+                .addComponent(jTabbedPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1202,6 +1205,18 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          *      PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
          
          */
+        int id = tblVendas.getSelectedRow();
+       JOptionPane.showMessageDialog(rootPane, tblVendas.getSelectedColumn() + "coluna"); 
+       JOptionPane.showMessageDialog(rootPane, id+" id"); 
+       
+       ItemVendaServico tmp = new ItemVendaServico();
+       
+       novaVenda.removeServico(tmp);
+       
+       preencheTabelaVendas();
+       
+            
+        //    pensar
 
     }//GEN-LAST:event_tblVendasMouseClicked
 
@@ -1384,6 +1399,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     /*
      *  OUTRAS VARIÁVEIS
      */
+    private Servico ObjServicoTabelaVendas;
+    private Produto ObjProdutoTabelaVendas;
     protected Usuario usuarioLogado;
     protected AgendamentoDAO daoAgendamento;
     protected List<Agendamento> listaAgendamentos;

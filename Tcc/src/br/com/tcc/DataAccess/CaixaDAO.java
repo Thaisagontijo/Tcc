@@ -5,6 +5,7 @@
 package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Caixa;
+import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
@@ -36,5 +37,25 @@ public class CaixaDAO extends DAOGenerico<Caixa>{
            transacao.rollback();
             return false;
         }
+    }
+    
+     public List<Caixa> ListarTodos(){
+        EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Select s from Caixa s";
+            
+             Query query = manager.createQuery(consulta);
+             
+             transacao.commit();
+             return query.getResultList();
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return null;
+        }
+    
     }
 }

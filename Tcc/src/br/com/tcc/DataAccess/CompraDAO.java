@@ -25,7 +25,7 @@ public class CompraDAO extends DAOGenerico<Compra>{
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Select c from Compra c where c.id > 0";
+            String consulta = "Select c from Compra c ";
             
              Query query = manager.createQuery(consulta);
              

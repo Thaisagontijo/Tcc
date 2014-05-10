@@ -4,6 +4,7 @@
  */
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.RetiradaDAO;
 import br.com.tcc.DomainModel.Retirada;
 import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
@@ -30,8 +31,8 @@ public class frmRetiradaCaixa extends javax.swing.JDialog {
         
         //SETANDO TAMANHO MAXIMO
         
-        txtDescricao.setDocument(new FixedLengthDocument(100));
-        txtValor.setDocument(new FixedLengthDocument(6));
+      //  txtDescricao.setDocument(new FixedLengthDocument(100));
+       // txtValor.setDocument(new FixedLengthDocument(6));
     }
 
     /**
@@ -173,6 +174,9 @@ public class frmRetiradaCaixa extends javax.swing.JDialog {
                 nova.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
                 nova.setCaixa(janelaPai.caixa);
                 janelaPai.caixa.addRetirada(nova);
+                
+                RetiradaDAO dao = new RetiradaDAO();
+                dao.Salvar(nova);
                 this.dispose();
             
             }catch(NumberFormatException ex){

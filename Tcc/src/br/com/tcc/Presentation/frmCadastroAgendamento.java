@@ -615,8 +615,49 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoCustoActionPerformed
 
+    private boolean validaDataCadastroAgenda(Date d){
+                Date dataTmp1 = new Date();
+
+                dataTmp1.setDate(Integer.parseInt((String) cbxDia.getSelectedItem()));
+                dataTmp1.setHours(Integer.parseInt((String) cbxHora.getSelectedItem()));
+                dataTmp1.setMinutes(Integer.parseInt((String) cbxMinuto.getSelectedItem()));
+
+                //JOptionPane.showMessageDialog(rootPane, cbxMes.getSelectedItem().toString());
+                int mes1 = Integer.parseInt(cbxMes.getSelectedItem().toString());
+                mes1--;
+                dataTmp1.setMonth(mes1);
+                dataTmp1.setYear(Integer.parseInt((String) cbxAno.getSelectedItem()));
+                
+                //ajustando a data
+                d.setYear(d.getYear()+1900);
+                //JOptionPane.showMessageDialog(rootPane, dataTmp1.getYear());
+                //JOptionPane.showMessageDialog(rootPane, dataTmp1.getMonth());
+                //JOptionPane.showMessageDialog(rootPane, dataTmp1.getDate());
+                
+             //   JOptionPane.showMessageDialog(rootPane, d.getHours());
+               // JOptionPane.showMessageDialog(rootPane, d.getMinutes());
+                //JOptionPane.showMessageDialog(rootPane, d.getSeconds());
+                
+               // JOptionPane.showMessageDialog(rootPane, dataTmp1.getHours());
+                //JOptionPane.showMessageDialog(rootPane, dataTmp1.getMinutes());
+               // JOptionPane.showMessageDialog(rootPane, dataTmp1.getSeconds());
+                
+                if(dataTmp1.before(d)){
+                    return true;
+                }else{
+                    return false;
+                }
+                
+                
+                //return true;
+                
+    
+    }
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-      
+                
+        if(validaDataCadastroAgenda(new Date())){
+             JOptionPane.showMessageDialog(rootPane, "A data é anterior ao dia atual");
+        }else
 
         if(cbxAno.getSelectedIndex() == 0  || cbxDia.getSelectedIndex() == 0 || cbxCliente.getSelectedIndex() ==0 ||
                 cbxHora.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0 || cbxMinuto.getSelectedIndex() == 0 || listaServicos.size() == 0){

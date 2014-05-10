@@ -4,6 +4,7 @@
  */
 package br.com.tcc.Presentation;
 
+import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
@@ -173,6 +174,8 @@ public class frmDepositoCaixa extends javax.swing.JDialog {
                 novo.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
                 novo.setCaixa(janelaPai.caixa);
                 janelaPai.caixa.addDeposito(novo);
+                DepositoDAO dao = new DepositoDAO();
+                dao.Salvar(novo);
                 
                 this.dispose();
             

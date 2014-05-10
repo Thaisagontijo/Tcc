@@ -41,13 +41,14 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
         lblServicos.setVisible(false);
         lblProfissional.setVisible(false);
         cbxProfissional.setVisible(false);
+        txtDesconto.setDocument(new FixedLengthDocument(2));
         txtDesconto.setText("0");
         spnQuantidade.setValue(1);
         
         
         //SETANDO TAMANHO MAXIMO DOS CAMPOS
         
-        txtDesconto.setDocument(new FixedLengthDocument(2));
+        
         
         if(cadastros){
             this.setTitle("Incluir Item");

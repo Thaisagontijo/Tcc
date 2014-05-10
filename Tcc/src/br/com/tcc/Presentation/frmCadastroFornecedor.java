@@ -259,7 +259,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         jScrollPane1.setViewportView(txtObservacao);
 
         lblCnpj.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblCnpj.setText("CNPJ:");
+        lblCnpj.setText("CNPJ*:");
 
         try {
             txtCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
