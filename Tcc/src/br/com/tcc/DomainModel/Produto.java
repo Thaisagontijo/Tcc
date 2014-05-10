@@ -171,5 +171,7 @@ public class Produto implements Serializable {
     public String toString() {
         return nome;
     }
-    
+    public String getNomeFornecedor(){
+        return fornecedor.getNome(); //para o relatorio
+    }
 }

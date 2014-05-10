@@ -7,10 +7,10 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.CaixaDAO;
-import br.com.tcc.DataAccess.CompraDAO;
-import br.com.tcc.DataAccess.VendaDAO;
+import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DomainModel.Caixa;
-import br.com.tcc.DomainModel.Compra;
+import br.com.tcc.DomainModel.Cliente;
+import br.com.tcc.DomainModel.ItemVendaProduto;
 import br.com.tcc.DomainModel.Venda;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -54,10 +54,20 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnProduto.setText("Por Produto");
+        btnProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutoActionPerformed(evt);
+            }
+        });
 
         btnServico.setText("Por Serviço");
 
         btnCliente.setText("Por Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
         btnPeriodo.setText("Por Período");
 
@@ -136,6 +146,100 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnTodasActionPerformed
 
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+         try {
+            //Pegando o id do Produto
+
+            String produto = JOptionPane.showInputDialog("Insira o Id do Produto");
+
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
+            //Lista a ser exibida no relatorio
+
+            CaixaDAO caixaDAO = new CaixaDAO();
+            List<Caixa> caixas = caixaDAO.ListarTodos();
+            
+            List <Venda> vendasFiltro = new LinkedList();
+            for(Caixa c : caixas){
+                for(Venda v : c.getVendas()){
+                    for(ItemVendaProduto p: v.getProdutos()){
+                        if(p.getProduto().getId() == Integer.parseInt(produto)){
+                            vendasFiltro.add(v);
+                        }
+                    }
+                }
+                //vendas.addAll(c.getVendas());
+            }
+            
+            
+          
+
+            if (!vendasFiltro.isEmpty()) {
+
+                //Fonte de dados
+                JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(vendasFiltro);
+
+                //Gera o Relatorio
+                JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+                //Exibe o Relatorio
+                JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+                this.dispose();
+                jasperViewer.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Nenhuma venda com este produto !");
+            }
+
+        } catch (JRException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Id inválido !");
+        }
+    }//GEN-LAST:event_btnProdutoActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        try {
+            String clienteId = JOptionPane.showInputDialog("Insira o Id do Cliente");
+            ClienteDAO daoCliente = new ClienteDAO();
+
+            Cliente tmp = daoCliente.Abrir(Long.parseLong(clienteId));
+            if (tmp == null) {
+                JOptionPane.showMessageDialog(rootPane, "Cliente não encontrado !");
+            } else {
+
+                CaixaDAO caixaDAO = new CaixaDAO();
+                List<Caixa> caixas = caixaDAO.ListarTodos();
+
+                List<Venda> vendasFiltro = new LinkedList();
+                for (Caixa c : caixas) {
+                    for (Venda v : c.getVendas()) {
+                        if(v.getCliente().equals(tmp)){
+                            vendasFiltro.add(v);
+                        }
+                    }
+                    //vendas.addAll(c.getVendas());
+                }
+
+                frmListaVendasCliente janela = new frmListaVendasCliente(null, rootPaneCheckingEnabled, vendasFiltro);
+                janela.setLocationRelativeTo(this);
+                janela.setVisible(true);
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Id Inválido");
+        }
+    }//GEN-LAST:event_btnClienteActionPerformed
+
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

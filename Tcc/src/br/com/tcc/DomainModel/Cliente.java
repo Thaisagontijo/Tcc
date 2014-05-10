@@ -61,6 +61,11 @@ public class Cliente extends Pessoa implements Serializable {
         return hash;
     }
 
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
+
     
     
     

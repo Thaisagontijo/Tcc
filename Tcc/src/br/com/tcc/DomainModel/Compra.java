@@ -122,4 +122,8 @@ public class Compra implements Serializable {
         return "br.com.tcc.DomainModel.Compra[ id=" + id + " ]";
     }
     
+    public String getNomeFornecedorProduto(){
+        return produto.getFornecedor().getNome();
+    }
+    
 }

@@ -79,9 +79,10 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{produto}.toString()]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="289" y="0" width="280" height="20" uuid="3b549dc2-dbda-4677-87c2-2251f17d37d8"/>
 				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="569" y="0" width="101" height="20" uuid="1fc42536-04c0-44c8-a0a5-cb22ffdac967"/>
