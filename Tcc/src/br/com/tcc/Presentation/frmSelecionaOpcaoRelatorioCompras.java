@@ -51,7 +51,7 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Relatório de Compras");
+        setTitle("Opções de Relatório");
 
         jButton1.setText("Por Período");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

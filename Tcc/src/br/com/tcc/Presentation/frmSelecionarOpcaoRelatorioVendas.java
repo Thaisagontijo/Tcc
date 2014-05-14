@@ -52,6 +52,7 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         btnTodas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Opções de Relatório");
 
         btnProduto.setText("Por Produto");
         btnProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +222,7 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
                     }
                     //vendas.addAll(c.getVendas());
                 }
-
+                this.dispose();
                 frmListaVendasCliente janela = new frmListaVendasCliente(null, rootPaneCheckingEnabled, vendasFiltro);
                 janela.setLocationRelativeTo(this);
                 janela.setVisible(true);

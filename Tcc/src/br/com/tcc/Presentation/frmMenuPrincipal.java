@@ -95,9 +95,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          *  PREPARANDO OBJETOS PARA SER MOSTRADOS AO INICIAR O PROGRAMA
          
          */
-        Agendamento tmpAgendamento = new Agendamento();
-        tmpAgendamento.setRealizado(false);
-        listaAgendamentos = daoAgendamento.Buscar(tmpAgendamento);
+        //Agendamento tmpAgendamento = new Agendamento();
+        //tmpAgendamento.setRealizado(false);
+        listaAgendamentos = daoAgendamento.Buscar(null);
 
         initComponents();
         verificaAdmin();//verifica se o usuario logado eh o administrador para mostrar a opcao de cadastrarnovos usuarios
@@ -1247,7 +1247,66 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                          
 
     private void relatorioAgendamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioAgendamentosActionPerformed
+try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/agendamentosRealizados.jasper");
+            //Lista a ser exibida no relatorio
+            AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+            
+            Agendamento tmp = new Agendamento();
+            tmp.setRealizado(true);
+            List<Agendamento> agendamentos = agendamentoDAO.Buscar(tmp);
+            
+            
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(agendamentos);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            //this.dispose();
+            jasperViewer.setVisible(true);
+            
+        }catch(JRException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*        
         try {
             //Arquivo do Relatorio
             InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/agendamentos.jasper");
@@ -1274,6 +1333,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        */
         
     }//GEN-LAST:event_relatorioAgendamentosActionPerformed
 

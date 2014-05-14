@@ -24,51 +24,24 @@ public class AgendamentoDAO extends DAOGenerico<Agendamento>{
         EntityTransaction transacao = manager.getTransaction();
         try {
 
-            String consulta = "Select s from Agendamento s where s.realizado = 0 and s.ativo = 1"; 
+            String consulta = "";
+            if(obj == null){
+                consulta = "Select s from Agendamento s where s.realizado = 0 and s.ativo = 1 order by s.dataHora asc"; 
+            }else if (obj.isRealizado()){
+                consulta = "Select s from Agendamento s where s.realizado = 1 and s.ativo = 1 order by s.dataHora asc"; 
+            }
 
             // A parte where da consulta
-            String filtro = "";
+        
 
-            // Guarda a lista de parâmetros da query
-            HashMap<String, Object> parametros = new HashMap<String, Object>();
-
-            // Verifica campo por campo os valores que serão filtrados
-            if (obj.getId() != null) {
-                filtro = " s.id =:id";
-                parametros.put("id", obj.getId());
-            }
-/*
-            if (obj.getNome() != null) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro = " s.nome =:nome";
-                parametros.put("nome", obj.getNome());
-            }
-
-  */          
-            if (obj.isRealizado()) {
-                if(filtro.length() > 0){
-                    filtro = filtro + " and";
-                }
-                filtro = " s.realizado =:realizado";
-                parametros.put("realizado", obj.isRealizado());
-            }
-
-            // Se houver filtros, coloca o "where" na consulta
-            if (filtro.length() > 0) {
-                consulta = consulta + " where " + filtro;
-            }
+            
 
             transacao.begin();
             // Cria a consulta no JPA
             Query query = manager.createQuery(consulta);
 
             // Aplica os parâmetros da consulta
-            for (String par : parametros.keySet()) {
-                query.setParameter(par, parametros.get(par));
-            }
-
+            
             // Executa a consulta
             transacao.commit();
             return query.getResultList();

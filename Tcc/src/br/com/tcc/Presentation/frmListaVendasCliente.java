@@ -6,11 +6,20 @@
 
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DomainModel.Agendamento;
+import br.com.tcc.DataAccess.CaixaDAO;
+import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Venda;
+import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -93,6 +102,7 @@ public class frmListaVendasCliente extends javax.swing.JDialog {
         tblClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Compras Registradas");
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,11 +159,44 @@ public class frmListaVendasCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
-       //criaar um relatorio personalizado para mostrar com detalhes a venda do cliente
+       if(qtdCliques == 2){
+           qtdCliques = 1;
+           gerarRelatorio();
+           this.dispose();
+           
+       }else{
+           qtdCliques++;
+       }
     }//GEN-LAST:event_tblClientesMouseClicked
 
+    public void gerarRelatorio(){
+        try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasCliente.jasper");
+            //Lista a ser exibida no relatorio
+            
 
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(listaVendas);
 
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            this.dispose();
+            jasperViewer.setVisible(true);
+            
+        }catch(JRException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    
+    
+    }
+
+    private int qtdCliques = 1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
