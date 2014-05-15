@@ -6,11 +6,8 @@
 
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DataAccess.CaixaDAO;
-import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Venda;
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;

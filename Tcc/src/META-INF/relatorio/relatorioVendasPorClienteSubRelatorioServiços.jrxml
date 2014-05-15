@@ -3,24 +3,21 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<field name="valorVenda" class="java.lang.Float"/>
-	<field name="dataHora" class="java.util.Date"/>
-	<field name="formaDePagamento" class="java.lang.Object"/>
-	<field name="funcionario" class="java.lang.Object"/>
-	<field name="cliente" class="java.lang.Object"/>
+	<field name="valor" class="java.lang.Float"/>
+	<field name="servico" class="java.lang.Object"/>
 	<background>
 		<band/>
 	</background>
 	<title>
-		<band height="72">
+		<band height="41">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="822" height="92" backcolor="#006699" uuid="942ea037-2d60-4c6c-b7ae-a98db9f7ae86"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="822" height="56" backcolor="#006699" uuid="942ea037-2d60-4c6c-b7ae-a98db9f7ae86"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="5c21ffee-c92f-47a7-933b-ddd30beab544"/>
+					<reportElement x="20" y="20" width="234" height="32" forecolor="#FFFFFF" uuid="5c21ffee-c92f-47a7-933b-ddd30beab544"/>
 					<textElement>
-						<font size="34" isBold="true"/>
+						<font size="24" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Vendas]]></text>
+					<text><![CDATA[Serviços]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -38,35 +35,14 @@
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Valor da Venda]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="289" y="1" width="208" height="20" uuid="a86fcc8a-ba76-43b0-b11c-effa31e1d2f8"/>
-				<textElement textAlignment="Center">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Cliente]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="497" y="1" width="172" height="20" uuid="2ad604bc-080f-4efc-a920-8a1399147b6a"/>
-				<textElement textAlignment="Center">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Funcionário]]></text>
+				<text><![CDATA[VALOR]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="1" width="131" height="20" uuid="5935afb7-aed4-49a1-92df-d35dc2852389"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data da Venda]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="669" y="1" width="131" height="20" uuid="02ffc74d-c69f-4b8f-b5bd-2b3dca8b2373"/>
-				<textElement textAlignment="Center">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Forma de Pagamento]]></text>
+				<text><![CDATA[NOME]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -78,27 +54,12 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="131" y="0" width="158" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{valorVenda}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="289" y="0" width="208" height="20" uuid="3b549dc2-dbda-4677-87c2-2251f17d37d8"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{cliente}.toString()]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="497" y="0" width="173" height="20" uuid="1fc42536-04c0-44c8-a0a5-cb22ffdac967"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{funcionario}.toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="0" width="131" height="20" uuid="ee2a3cc4-3d80-40c5-8481-ceeb42bc5191"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{dataHora}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="670" y="0" width="130" height="20" uuid="d00a61b1-56ae-4af9-bfbd-d965fa8938eb"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{formaDePagamento}.toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{servico}.toString()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -106,21 +67,7 @@
 		<band/>
 	</columnFooter>
 	<pageFooter>
-		<band height="17">
-			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="718" height="13" backcolor="#E6E6E6" uuid="11690135-03af-40c0-8210-bd36ecebfd9e"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="718" y="4" width="60" height="13" backcolor="#E6E6E6" uuid="a1314ea7-62e3-4052-997e-cf36378d4532"/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="21187ef7-ffa9-4859-a933-de00b1bca353"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="17"/>
 	</pageFooter>
 	<summary>
 		<band/>

@@ -21,12 +21,19 @@
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="822" height="92" backcolor="#006699" uuid="942ea037-2d60-4c6c-b7ae-a98db9f7ae86"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="5c21ffee-c92f-47a7-933b-ddd30beab544"/>
+					<reportElement x="20" y="20" width="308" height="43" forecolor="#FFFFFF" uuid="5c21ffee-c92f-47a7-933b-ddd30beab544"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Venda Cliente]]></text>
+					<text><![CDATA[Vendas da Cliente]]></text>
 				</staticText>
+				<textField>
+					<reportElement x="328" y="20" width="362" height="43" forecolor="#FFFFFF" uuid="f51a18bc-b370-47c9-926d-622ca46648f2"/>
+					<textElement verticalAlignment="Top">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cliente}.toString()]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</title>
@@ -101,7 +108,7 @@
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioVendasPorClienteSubRelatorioProdutos.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="0" y="50" width="802" height="70" uuid="b8a642fe-e6a8-492e-8196-3ae3b68d6402"/>
+				<reportElement x="0" y="63" width="800" height="57" uuid="a5c102d0-6737-4ea2-b02f-eca5df721489"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{servicos})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioVendasPorClienteSubRelatorioServiços.jasper"]]></subreportExpression>
 			</subreport>
