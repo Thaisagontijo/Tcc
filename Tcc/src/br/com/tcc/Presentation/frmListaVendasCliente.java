@@ -177,7 +177,7 @@ public class frmListaVendasCliente extends javax.swing.JDialog {
             //Lista a ser exibida no relatorio
             
 
-            //Fonte de dados
+                //Fonte de dados
             JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(listaVendas);
 
             //Gera o Relatorio

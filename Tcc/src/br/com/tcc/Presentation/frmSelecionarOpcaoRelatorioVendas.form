@@ -29,7 +29,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnProduto" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="btnServico" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCliente" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="189" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -37,6 +36,11 @@
                   <Component id="btnTodas" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="btnCliente" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,9 +57,9 @@
                   <Component id="btnServico" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnTodas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="btnCliente" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="82" max="32767" attributes="0"/>
+              <EmptySpace pref="79" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

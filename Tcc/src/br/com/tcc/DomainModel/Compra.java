@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -31,6 +32,9 @@ public class Compra implements Serializable {
     
     @ManyToOne
     private Funcionario funcionario;
+    
+    @Transient
+    private String nomeFornecedor;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCompra;
@@ -96,6 +100,16 @@ public class Compra implements Serializable {
     public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
     }
+
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
+    }
+
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
+    }
+    
+    
     
     @Override
     public int hashCode() {

@@ -179,7 +179,12 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
             InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioCompras.jasper");
             //Lista a ser exibida no relatorio
             CompraDAO compraDao = new CompraDAO();
-            List<Compra> compras = compraDao.ListarTodos();
+            List<Compra> compras = new LinkedList<>();
+            
+            for(Compra c :compraDao.ListarTodos()){
+                c.setNomeFornecedor(c.getProduto().getFornecedor().getNome());
+                compras.add(c);
+            }
             
 
             //Fonte de dados

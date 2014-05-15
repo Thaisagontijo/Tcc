@@ -12,6 +12,7 @@
 	<field name="funcionario" class="java.lang.Object"/>
 	<field name="cliente" class="java.lang.Object"/>
 	<field name="produtos" class="java.util.List"/>
+	<field name="servicos" class="java.util.List"/>
 	<background>
 		<band/>
 	</background>
@@ -24,7 +25,7 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Vendas]]></text>
+					<text><![CDATA[Venda Cliente]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -93,11 +94,16 @@
 				<textFieldExpression><![CDATA[$F{formaDePagamento}.toString()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="50">
+		<band height="120">
 			<subreport>
-				<reportElement x="247" y="0" width="200" height="40" uuid="ea9025a7-f99b-4770-98db-a71972c65c6e"/>
+				<reportElement x="0" y="0" width="800" height="50" uuid="4573efc8-88f1-4dec-b65b-72a2539b5f76"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{produtos})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioVendasCliente_subreportTese.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioVendasPorClienteSubRelatorioProdutos.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="50" width="802" height="70" uuid="b8a642fe-e6a8-492e-8196-3ae3b68d6402"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{servicos})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioVendasPorClienteSubRelatorioServiços.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
