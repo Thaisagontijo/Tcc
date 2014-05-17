@@ -50,6 +50,8 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         btnCliente = new javax.swing.JButton();
         btnPeriodo = new javax.swing.JButton();
         btnTodas = new javax.swing.JButton();
+        btnVendasAPrazo = new javax.swing.JButton();
+        btnVendasAVista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Opções de Relatório");
@@ -79,25 +81,38 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
             }
         });
 
+        btnVendasAPrazo.setText("Vendas à Prazo");
+        btnVendasAPrazo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendasAPrazoActionPerformed(evt);
+            }
+        });
+
+        btnVendasAVista.setText("Vendas à Vista");
+        btnVendasAVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendasAVistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnProduto)
-                            .addComponent(btnServico))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTodas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(97, 97, 97))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCliente)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btnProduto)
+                    .addComponent(btnServico)
+                    .addComponent(btnCliente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVendasAVista)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTodas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVendasAPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,8 +126,12 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
                     .addComponent(btnServico)
                     .addComponent(btnTodas))
                 .addGap(48, 48, 48)
-                .addComponent(btnCliente)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCliente)
+                    .addComponent(btnVendasAPrazo))
+                .addGap(18, 18, 18)
+                .addComponent(btnVendasAVista)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,6 +256,91 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnClienteActionPerformed
 
+    private void btnVendasAPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasAPrazoActionPerformed
+          try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
+            //Lista a ser exibida no relatorio
+            CaixaDAO caixaDAO = new CaixaDAO();
+            List<Caixa> caixas = caixaDAO.ListarTodos();
+            
+            List <Venda> vendas = new LinkedList();
+            for(Caixa c : caixas){
+                //vendas.addAll(c.getVendas());
+                for(Venda v : c.getVendas()){
+                    if(v.getFormaDePagamento().getId().intValue() == 2 ){
+                        vendas.add(v);
+                    
+                    
+                    }
+                }
+            }
+            System.out.print(vendas.size());
+            
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(vendas);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            this.dispose();
+            jasperViewer.setVisible(true);
+            
+        }catch(JRException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnVendasAPrazoActionPerformed
+
+    private void btnVendasAVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasAVistaActionPerformed
+       try {
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
+            //Lista a ser exibida no relatorio
+            CaixaDAO caixaDAO = new CaixaDAO();
+            List<Caixa> caixas = caixaDAO.ListarTodos();
+            
+            List <Venda> vendas = new LinkedList();
+            for(Caixa c : caixas){
+                //vendas.addAll(c.getVendas());
+                for(Venda v : c.getVendas()){
+                    if(v.getFormaDePagamento().getId().intValue() == 1 ){
+                        vendas.add(v);
+                    
+                    
+                    }
+                }
+            }
+            System.out.print(vendas.size());
+            
+
+            //Fonte de dados
+            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(vendas);
+
+            //Gera o Relatorio
+            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+            //Exibe o Relatorio
+            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+            this.dispose();
+            jasperViewer.setVisible(true);
+            
+        }catch(JRException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_btnVendasAVistaActionPerformed
+
     
     
     
@@ -293,5 +397,7 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
     private javax.swing.JButton btnProduto;
     private javax.swing.JButton btnServico;
     private javax.swing.JButton btnTodas;
+    private javax.swing.JButton btnVendasAPrazo;
+    private javax.swing.JButton btnVendasAVista;
     // End of variables declaration//GEN-END:variables
 }
