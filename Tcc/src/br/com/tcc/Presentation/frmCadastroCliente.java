@@ -870,125 +870,105 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-                       
+
         /*Botão salvar*/
-        
-        
-        
-        
-        if(txtBairro.getText().trim().isEmpty()){
+        if (txtBairro.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
-        }else if(txtCep.getText().trim().length() < 9){
+        } else if (txtCep.getText().trim().length() < 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o cep");
-        }else if(txtCpf.getText().trim().length() < 11){
+        } else if (txtCpf.getText().trim().length() < 11) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o cpf");
-        }else if(txtNome.getText().trim().isEmpty()){
+        } else if (txtNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
-        }else if(txtNumero.getText().trim().isEmpty()){
+        } else if (txtNumero.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
-        }else if(txtRg.getText().trim().isEmpty()){
+        } else if (txtRg.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Rg");
-        }else if(txtRua.getText().trim().isEmpty()){
+        } else if (txtRua.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
-        }else if(cbxAno.getSelectedIndex() == 0){
+        } else if (cbxAno.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
-        }else if(cbxEstado.getSelectedIndex() == 0){
+        } else if (cbxEstado.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
-        }else if(cbxDia.getSelectedIndex() == 0){
+        } else if (cbxDia.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Dia");
-        }else if(cbxMes.getSelectedIndex() == 0){
+        } else if (cbxMes.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Mês");
-        }else if((txtCelular.getText().trim().length() <= 9  ) && txtTelefone.getText().trim().length() <= 9){
+        } else if ((txtCelular.getText().trim().length() <= 9) && txtTelefone.getText().trim().length() <= 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
-        }
-        
-        
-        /*
-        if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() ==0 ||
-               cbxAno.getSelectedIndex() == 0||  txtCpf.getText().isEmpty() || txtCelular.getText().isEmpty()||txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
-                txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty() ){
+        } /*
+         if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() ==0 ||
+         cbxAno.getSelectedIndex() == 0||  txtCpf.getText().isEmpty() || txtCelular.getText().isEmpty()||txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
+         txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty() ){
            
-            JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
-       }else if(txtTelefone.getText().isEmpty() && txtCelular.getText().isEmpty()){
+         JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
+         }else if(txtTelefone.getText().isEmpty() && txtCelular.getText().isEmpty()){
          
-           JOptionPane.showMessageDialog(txtComplemento, "Pelo Menos um telefone é requirido");
-       */
-       else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
-               "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
-           
-           Cliente Cliente = null;
-           
-           if(cadastro){
-               Cliente = new Cliente();
-           
-           }else{
-               Cliente = janelaPai.objSelecionadoNaTabela;
-           }
-           
-           
-           janelaPai.dao = new ClienteDAO();
+         JOptionPane.showMessageDialog(txtComplemento, "Pelo Menos um telefone é requirido");
+         */ else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
+                "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+
+            Cliente Cliente = null;
+
+            if (cadastro) {
+                Cliente = new Cliente();
+
+            } else {
+                Cliente = janelaPai.objSelecionadoNaTabela;
+            }
+
+            janelaPai.dao = new ClienteDAO();
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
-            
-            int ok =0; //variavel de validação
-            
-                    
-            
-            try{
+            int ok = 0; //variavel de validação
+
+            try {
                 Cliente.setEnderecoNumero(Integer.parseInt(txtNumero.getText()));
                 ok++;
-            }catch(NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(rootPane, "Número Endereço Inválido!");
             }
-            
-            
-            
-             Cliente.setNome(txtNome.getText());
 
-          
-            
+            Cliente.setNome(txtNome.getText());
+
             /*
-                    só conter letras
+             só conter letras
             
-            String cliente = clienteTextField.getText();  
-for(char c : cliente.toCharArray())  
-{  
-    if (c.isDigit())  
-   {  
-      System.out.println("O campo cliente deve conter somente letras!");  
-   }  
-}  
+             String cliente = clienteTextField.getText();  
+             for(char c : cliente.toCharArray())  
+             {  
+             if (c.isDigit())  
+             {  
+             System.out.println("O campo cliente deve conter somente letras!");  
+             }  
+             }  
             
-            */
-            
+             */
             Date dataCadastro = new Date();
             Date dataNascimento = new Date();
             Cliente.setDataCadastro(dataCadastro);
             Cliente.setObservacao(" ");
-            
-            
-            dataNascimento.setDate(Integer.parseInt((String)cbxDia.getSelectedItem()));
+
+            dataNascimento.setDate(Integer.parseInt((String) cbxDia.getSelectedItem()));
             int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
             mes--;
             dataNascimento.setMonth(mes);
-            dataNascimento.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()));
-            
+            dataNascimento.setYear(Integer.parseInt((String) cbxAno.getSelectedItem().toString()));
+
             Date tmp = dataNascimento;
-            tmp.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()) - 1900);
-            
-            
-            if(tmp.after(new Date())){
+            tmp.setYear(Integer.parseInt((String) cbxAno.getSelectedItem().toString()) - 1900);
+
+            if (tmp.after(new Date())) {
                 JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
-                
-            }else if((tmp.getDate() == new Date().getDate()) && (tmp.getMonth() == new Date().getMonth() && tmp.getYear() == new Date().getYear())){
+
+            } else if ((tmp.getDate() == new Date().getDate()) && (tmp.getMonth() == new Date().getMonth() && tmp.getYear() == new Date().getYear())) {
                 JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
-            }else{
+            } else {
                 ok++;
             }
-            
-            
+
             Cliente.setDataNascimento(dataNascimento);//mudar
-            
+
             Cliente.setEnderecoBairro(txtBairro.getText());
             Cliente.setEnderecoCep(txtCep.getText());
             Cliente.setEnderecoCidade((Cidade) cbxCidade.getSelectedItem());
@@ -999,25 +979,28 @@ for(char c : cliente.toCharArray())
             Cliente.setCelular(txtCelular.getText());
             Cliente.setEnderecoRua(txtRua.getText());
             Cliente.setTelefone(txtTelefone.getText());
-            
-          
-            if(ok == 2){//se a validacao está correta
 
-                if(janelaPai.dao.Salvar(Cliente)){
-                    JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
-                    janelaPai.lista.clear();
-                    janelaPai.lista = janelaPai.dao.ListarTodos();
-                    janelaPai.preencheTabela();
-                    janelaPai.objSelecionadoNaTabela = null;
-                    janelaPai.janelaPai.preencheComboClientes();
-                    this.dispose();
+            if (ok == 2) {//se a validacao está correta
+                if (janelaPai.dao.VefificarExiste(Cliente)) {//se o cliente nao existir
+                    if (janelaPai.dao.Salvar(Cliente)) {
+                        JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
+                        janelaPai.lista.clear();
+                        janelaPai.lista = janelaPai.dao.ListarTodos();
+                        janelaPai.preencheTabela();
+                        janelaPai.objSelecionadoNaTabela = null;
+                        janelaPai.janelaPai.preencheComboClientes();
+                        this.dispose();
 
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Cliente já cadastrado !");
                 }
+
             }
-       
-       }
+
+        }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 

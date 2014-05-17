@@ -5,7 +5,6 @@
 package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Cliente;
-import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -69,6 +68,39 @@ public class ClienteDAO extends DAOGenerico<Cliente>{
             return null;
         }
     }
+    
+    
+    public boolean VefificarExiste(Cliente obj) {
+        // Corpo da consulta
+        EntityTransaction transacao = manager.getTransaction();
+        try {
+
+            String consulta = "";
+            if (obj.getId() != null) {
+                 consulta = "Select s from Cliente s Where s.ativo = 1 and s.cpf like '%" + obj.getCpf() + "%'";
+                 
+             }
+            transacao.begin();
+            // Cria a consulta no JPA
+            Query query = manager.createQuery(consulta);
+
+           
+            transacao.commit();
+            if(query.getResultList().isEmpty()){
+                return true;
+            }else return false;
+            
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+            transacao.rollback();
+
+            return false;
+        }
+    }
+    
+    
+    
 
     @Override
     public boolean Apagar(Cliente obj) {

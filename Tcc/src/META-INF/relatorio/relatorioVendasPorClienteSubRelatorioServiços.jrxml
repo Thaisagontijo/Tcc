@@ -9,21 +9,10 @@
 		<band/>
 	</background>
 	<title>
-		<band height="41">
-			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="822" height="56" backcolor="#006699" uuid="942ea037-2d60-4c6c-b7ae-a98db9f7ae86"/>
-				<staticText>
-					<reportElement x="20" y="20" width="234" height="32" forecolor="#FFFFFF" uuid="5c21ffee-c92f-47a7-933b-ddd30beab544"/>
-					<textElement>
-						<font size="24" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Serviços]]></text>
-				</staticText>
-			</frame>
-		</band>
+		<band height="14"/>
 	</title>
 	<pageHeader>
-		<band height="13"/>
+		<band height="9"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">

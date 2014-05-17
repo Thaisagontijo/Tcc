@@ -620,106 +620,92 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-                       
+
         /*Botão salvar*/
-        
-         if(txtBairro.getText().trim().isEmpty()){
+        if (txtBairro.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
-        }else if(txtCep.getText().trim().length() < 9){
+        } else if (txtCep.getText().trim().length() < 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o cep");
-        }else if(txtCpf.getText().trim().length() < 11){
+        } else if (txtCpf.getText().trim().length() < 11) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o cpf");
-        }else if(txtNome.getText().trim().isEmpty()){
+        } else if (txtNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
-        }else if(txtNumero.getText().trim().isEmpty()){
+        } else if (txtNumero.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
-        }else if(txtRg.getText().trim().isEmpty()){
+        } else if (txtRg.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Rg");
-        }else if(txtRua.getText().trim().isEmpty()){
+        } else if (txtRua.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
-        }else if(cbxAno.getSelectedIndex() == 0){
+        } else if (cbxAno.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
-        }else if(cbxEstado.getSelectedIndex() == 0){
+        } else if (cbxEstado.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
-        }else if(cbxDia.getSelectedIndex() == 0){
+        } else if (cbxDia.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Dia");
-        }else if(cbxMes.getSelectedIndex() == 0){
+        } else if (cbxMes.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Mês");
-        }else if((txtCelular.getText().trim().length() <= 9  ) && txtTelefone.getText().trim().length() <= 9){
+        } else if ((txtCelular.getText().trim().length() <= 9) && txtTelefone.getText().trim().length() <= 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
-        }
-        
-        
-        
-        /*
+        } /*
         
         
         
         
         
-        if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || 
-                cbxMes.getSelectedIndex() ==0 || cbxAno.getSelectedIndex() == 0|| txtCpf.getText().isEmpty() ||
-                txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || txtNumero.getText().isEmpty() ||
-                txtBairro.getText().isEmpty() || txtCep.getText().isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
-       }
-         */
-         else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Funcionário? ",
-               "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
-           
-           
-           
+         if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || 
+         cbxMes.getSelectedIndex() ==0 || cbxAno.getSelectedIndex() == 0|| txtCpf.getText().isEmpty() ||
+         txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || txtNumero.getText().isEmpty() ||
+         txtBairro.getText().isEmpty() || txtCep.getText().isEmpty()){
+         JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
+         }
+         */ else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Funcionário? ",
+                "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+
             Funcionario funcionario = null;
-            
-            if(cadastro){
+
+            if (cadastro) {
                 funcionario = new Funcionario();
-            }else{
+            } else {
                 funcionario = janelaPai.objSelecionadoNaTabela;
             }
-           janelaPai.dao = new FuncionarioDAO();
+            janelaPai.dao = new FuncionarioDAO();
 
             /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
-            
-            int ok =0; //variavel de validação
-            
-                    
-            
-            try{
+            int ok = 0; //variavel de validação
+
+            try {
                 funcionario.setEnderecoNumero(Integer.parseInt(txtNumero.getText()));
                 ok++;
-            }catch(NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(rootPane, "Número Endereço Inválido!");
             }
-            
+
             funcionario.setNome(txtNome.getText());
-           Date dataAdmissao = new Date();
+            Date dataAdmissao = new Date();
             Date dataNascimento = new Date();
             funcionario.setDataAdmissao(dataAdmissao);
             funcionario.setObservacao(" ");
-            
-            
-             dataNascimento.setDate(Integer.parseInt((String)cbxDia.getSelectedItem()));
+
+            dataNascimento.setDate(Integer.parseInt((String) cbxDia.getSelectedItem()));
             int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
             mes--;
             dataNascimento.setMonth(mes);
-            dataNascimento.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()));
-            
-             Date tmp = dataNascimento;
-            tmp.setYear(Integer.parseInt((String)cbxAno.getSelectedItem().toString()) - 1900);
-            
-            if(tmp.after(new Date())){
+            dataNascimento.setYear(Integer.parseInt((String) cbxAno.getSelectedItem().toString()));
+
+            Date tmp = dataNascimento;
+            tmp.setYear(Integer.parseInt((String) cbxAno.getSelectedItem().toString()) - 1900);
+
+            if (tmp.after(new Date())) {
                 JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
-                
-            }else if((tmp.getDate() == new Date().getDate()) && (tmp.getMonth() == new Date().getMonth() && tmp.getYear() == new Date().getYear())){
+
+            } else if ((tmp.getDate() == new Date().getDate()) && (tmp.getMonth() == new Date().getMonth() && tmp.getYear() == new Date().getYear())) {
                 JOptionPane.showMessageDialog(rootPane, "Data Invalida !");
-            }else{
+            } else {
                 ok++;
             }
-            
-            
-            
+
             funcionario.setDataNascimento(dataNascimento);//mudar
-            
+
             funcionario.setEnderecoBairro(txtBairro.getText());
             funcionario.setEnderecoCep(txtCep.getText());
             funcionario.setEnderecoCidade((Cidade) cbxCidade.getSelectedItem());
@@ -730,24 +716,27 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
             funcionario.setCelular(txtCelular.getText());
             funcionario.setEnderecoRua(txtRua.getText());
             funcionario.setTelefone(txtTelefone.getText());
-            
-          
-            if(ok == 2){//se a validacao está correta
 
-                if(janelaPai.dao.Salvar(funcionario)){
-                    JOptionPane.showMessageDialog(rootPane, "Funcionário Salvo com Sucesso!");
-                    janelaPai.objSelecionadoNaTabela = null;
-                    janelaPai.lista.clear();
-                    janelaPai.lista = janelaPai.dao.ListarTodos();
-                    janelaPai.preencheTabela();
-                    this.dispose();
+            if (ok == 2) {//se a validacao está correta
+                if (janelaPai.dao.VefificarExiste(funcionario)) {
+                    if (janelaPai.dao.Salvar(funcionario)) {
+                        JOptionPane.showMessageDialog(rootPane, "Funcionário Salvo com Sucesso!");
+                        janelaPai.objSelecionadoNaTabela = null;
+                        janelaPai.lista.clear();
+                        janelaPai.lista = janelaPai.dao.ListarTodos();
+                        janelaPai.preencheTabela();
+                        this.dispose();
 
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Funcionário!");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Funcionário!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Funcionário já cadastrado!");
                 }
+
             }
-       
-       }
+
+        }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 

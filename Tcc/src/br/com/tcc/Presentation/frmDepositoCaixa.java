@@ -6,7 +6,6 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DomainModel.Deposito;
-import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 

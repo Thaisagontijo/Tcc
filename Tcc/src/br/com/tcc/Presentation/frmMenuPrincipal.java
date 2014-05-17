@@ -10,6 +10,7 @@ import br.com.tcc.DataAccess.CaixaDAO2;
 import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.ProdutoDAO;
+import br.com.tcc.DataAccess.VendaDAO;
 import br.com.tcc.DomainModel.Agendamento;
 import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
@@ -20,19 +21,17 @@ import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
-import com.mysql.jdbc.Connection;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -295,6 +294,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnSaldoCaixa = new javax.swing.JButton();
         btnSaldoCaixaDetalhado = new javax.swing.JButton();
         btnFecharCaixa = new javax.swing.JButton();
+        btnReceberFatura = new javax.swing.JButton();
         jPanelVendas = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
         cbxCliente = new javax.swing.JComboBox();
@@ -334,6 +334,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItemFazerBackup = new javax.swing.JMenuItem();
+        jMenuItemRecuperarBackup = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -439,6 +442,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnReceberFatura.setText("Receber Fatura Cliente");
+        btnReceberFatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReceberFaturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -446,21 +456,23 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(275, 275, 275)
                         .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(309, 309, 309)
-                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                        .addGap(308, 308, 308)
+                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnReceberFatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,9 +487,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addGap(18, 18, 18)
+                .addComponent(btnReceberFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addGap(65, 65, 65))
         );
 
         jTabbedPanelPrincipal.addTab("Caixa", jPanel2);
@@ -864,6 +878,26 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem3);
+
+        jMenu2.setText("Backup");
+
+        jMenuItemFazerBackup.setText("Fazer backup");
+        jMenuItemFazerBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFazerBackupActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemFazerBackup);
+
+        jMenuItemRecuperarBackup.setText("Recuperar Backup");
+        jMenuItemRecuperarBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRecuperarBackupActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemRecuperarBackup);
+
+        jMenu6.add(jMenu2);
 
         jMenuBar1.add(jMenu6);
 
@@ -1457,6 +1491,96 @@ try {
         
     }//GEN-LAST:event_btnExcluirItemVendaActionPerformed
 
+    private void jMenuItemFazerBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFazerBackupActionPerformed
+        
+        JFileChooser pasta = new JFileChooser();
+        pasta.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        pasta.showOpenDialog(this);
+        String caminhoBackup = pasta.getSelectedFile().getPath();
+
+        //CONFIGURANDO A DATA
+        Date data = new Date();
+        int dia = data.getDate();
+        int mes = data.getMonth() + 1;
+        int ano = data.getYear() + 1900;
+
+        File diretorio = new File(caminhoBackup);
+        File bck = new File(caminhoBackup + "/Backup_" + dia + "-" + mes + "-" + ano + ".sql");
+// os zeros é para diferenciar um backup do outro  
+
+        // Cria diretório  
+        if (!diretorio.isDirectory()) {
+            new File(caminhoBackup).mkdir();
+        } else {
+
+        }
+
+        // Cria Arquivo de Backup  
+        
+        try {
+            if (!bck.isFile()) {
+                Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem > " + bck.getAbsoluteFile());
+            } else {
+
+                while (bck.isFile()) {
+
+                    bck = new File(caminhoBackup + "/Backup " + dia + "-" + mes + "-" + ano + ".sql");
+                }
+
+                Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem > " + bck.getAbsoluteFile());
+                JOptionPane.showMessageDialog(rootPane, "Backup realizado com sucesso!");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+             JOptionPane.showMessageDialog(rootPane, "Falha ao criar Backup. \\n Verifique as configurações ou entre em contato com o suporte !");
+        }
+
+
+    }//GEN-LAST:event_jMenuItemFazerBackupActionPerformed
+
+    private void jMenuItemRecuperarBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRecuperarBackupActionPerformed
+        JFileChooser pasta = new JFileChooser();
+        pasta.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        pasta.showOpenDialog(this);
+        String caminhoBackup = pasta.getSelectedFile().getPath();
+       // JOptionPane.showMessageDialog(rootPane, caminhoBackup);
+
+        File diretorio = new File(caminhoBackup);
+        File bck = new File(caminhoBackup);
+// os zeros é para diferenciar um backup do outro  
+
+            // Cria diretório  
+        //  if(!diretorio.isDirectory()) {  
+        //     new File(caminhoBackup).mkdir();  
+        // } else {  
+           // }  
+            // Cria Arquivo de Backup  
+        try {
+            if (!bck.isFile()) {
+                Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < " + bck.getAbsoluteFile());
+            } else {
+
+                  //  while(bck.isFile()) {  
+                //Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < "+bck.getAbsoluteFile());  
+                    //    bck = new File(caminhoBackup+"/Backup "+dia+"_"+mes+"_"+ano+".sql");  
+                //    }  
+                Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < " + bck.getAbsoluteFile());
+                JOptionPane.showMessageDialog(rootPane, "Restauração Evetuada com sucesso!");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItemRecuperarBackupActionPerformed
+
+    private void btnReceberFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberFaturaActionPerformed
+        VendaDAO dao = new VendaDAO();
+        
+        
+        frmPagamentoFaturaCliente janela = new frmPagamentoFaturaCliente(this, rootPaneCheckingEnabled, dao.ListarVendasAPrazo(),this);
+        janela.setLocationRelativeTo(this);
+        janela.setVisible(true);
+    }//GEN-LAST:event_btnReceberFaturaActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1489,6 +1613,7 @@ try {
     private javax.swing.JButton btnIncluirItemVenda;
     private javax.swing.JButton btnNovaVenda;
     private javax.swing.JButton btnNovoAgendamento;
+    private javax.swing.JButton btnReceberFatura;
     private javax.swing.JButton btnReceberValorVenda;
     private javax.swing.JButton btnRetirada;
     private javax.swing.JButton btnSaldoCaixa;
@@ -1496,6 +1621,7 @@ try {
     private javax.swing.JComboBox cbxCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
@@ -1509,10 +1635,12 @@ try {
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemCompras;
     private javax.swing.JMenuItem jMenuItemEstoque;
+    private javax.swing.JMenuItem jMenuItemFazerBackup;
     private javax.swing.JMenuItem jMenuItemFormasDePagamentos;
     private javax.swing.JMenuItem jMenuItemFornecedores;
     private javax.swing.JMenuItem jMenuItemFuncionarios;
     private javax.swing.JMenuItem jMenuItemProdutos;
+    private javax.swing.JMenuItem jMenuItemRecuperarBackup;
     private javax.swing.JMenuItem jMenuItemRelatorioVendas;
     private javax.swing.JMenuItem jMenuItemServicos;
     private javax.swing.JMenuItem jMenuItemUsuarios;

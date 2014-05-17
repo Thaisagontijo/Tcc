@@ -41,7 +41,10 @@ public class Venda implements Serializable {
         this.servicos = new LinkedList<>();
         this.dataHora = new Date();
         this.caixa = new Caixa();
+        this.status = false;//pagou ou nao pagou
     }
+    
+    private boolean status;
 
    
     @ManyToOne
@@ -177,6 +180,14 @@ public class Venda implements Serializable {
         }
     
         return valorTotal;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
     

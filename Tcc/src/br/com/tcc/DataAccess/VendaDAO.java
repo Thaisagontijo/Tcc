@@ -42,8 +42,27 @@ public class VendaDAO extends DAOGenerico<Venda>{
            transacao.rollback();
             return null;
         }
-    
-    }
+        
+   }
+     
+      public List<Venda> ListarVendasAPrazo(){
+        EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Select s from Venda s where s.status = 0";
+            
+             Query query = manager.createQuery(consulta);
+             
+             transacao.commit();
+             return query.getResultList();
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return null;
+        }
+      }
      
       public List<Compra> Buscar(Compra obj) {
         // Corpo da consulta
