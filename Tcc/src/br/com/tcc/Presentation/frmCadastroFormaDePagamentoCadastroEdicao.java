@@ -34,7 +34,7 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
         this.cadastro = cadastro;
         
         //SETANDO TAMANHO MAXIMO DO CAMPO
-        txtNome.setDocument(new FixedLengthDocument(100));
+        txtNome.setDocument(new FixedLengthDocument(30));
        
         
         if(cadastro){
@@ -263,15 +263,16 @@ public class frmCadastroFormaDePagamentoCadastroEdicao extends javax.swing.JDial
     }//GEN-LAST:event_btnCancelarMouseEntered
 
     private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
-        if(txtNome.getText().length() > 5){
+/*        if(txtNome.getText().length() > 5){
             JOptionPane.showMessageDialog(rootPane, "Limite Máximo 100 Caracteres !");
             /*
             int length = texto.length();  
             return texto.substring(0, length-1); 
             */
-            
+      /*      
             txtNome.setText(txtNome.getText().substring(0, txtNome.getText().length() - 1));
         }
+    */
     }//GEN-LAST:event_txtNomeKeyPressed
 
     

@@ -8,6 +8,7 @@ import br.com.tcc.DataAccess.AgendamentoDAO;
 import br.com.tcc.DataAccess.CaixaDAO;
 import br.com.tcc.DataAccess.CaixaDAO2;
 import br.com.tcc.DataAccess.ClienteDAO;
+import br.com.tcc.DataAccess.ConexaoBanco;
 import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.ProdutoDAO;
 import br.com.tcc.DataAccess.VendaDAO;
@@ -21,16 +22,21 @@ import br.com.tcc.DomainModel.Produto;
 import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -114,6 +120,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnSaldoCaixa.setVisible(false);
         btnSaldoCaixaDetalhado.setVisible(false);
         btnFecharCaixa.setVisible(false);
+        btnReceberFatura.setVisible(false);
 
         /*
          * PREPARANDO TELA DE VENDAS
@@ -287,14 +294,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTabbedPanelPrincipal = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        btnAbrirCaixa = new javax.swing.JButton();
-        btnRetirada = new javax.swing.JButton();
-        btnDeposito = new javax.swing.JButton();
-        btnSaldoCaixa = new javax.swing.JButton();
-        btnSaldoCaixaDetalhado = new javax.swing.JButton();
-        btnFecharCaixa = new javax.swing.JButton();
-        btnReceberFatura = new javax.swing.JButton();
         jPanelVendas = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
         cbxCliente = new javax.swing.JComboBox();
@@ -312,6 +311,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnAgendamentoRealizado = new javax.swing.JButton();
         btnAgendamentoEditar = new javax.swing.JButton();
         btnAgendamentoApagar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnAbrirCaixa = new javax.swing.JButton();
+        btnRetirada = new javax.swing.JButton();
+        btnDeposito = new javax.swing.JButton();
+        btnSaldoCaixa = new javax.swing.JButton();
+        btnSaldoCaixaDetalhado = new javax.swing.JButton();
+        btnFecharCaixa = new javax.swing.JButton();
+        btnReceberFatura = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
@@ -339,162 +346,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemRecuperarBackup = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnAbrirCaixa.setBackground(new java.awt.Color(239, 239, 239));
-        btnAbrirCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAbrirCaixa.setText("Abrir Caixa");
-        btnAbrirCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAbrirCaixaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAbrirCaixaMouseExited(evt);
-            }
-        });
-        btnAbrirCaixa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirCaixaActionPerformed(evt);
-            }
-        });
-
-        btnRetirada.setBackground(new java.awt.Color(239, 239, 239));
-        btnRetirada.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRetirada.setText("Retirada");
-        btnRetirada.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRetiradaMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRetiradaMouseEntered(evt);
-            }
-        });
-        btnRetirada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetiradaActionPerformed(evt);
-            }
-        });
-
-        btnDeposito.setBackground(new java.awt.Color(239, 239, 239));
-        btnDeposito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnDeposito.setText("Entrada");
-        btnDeposito.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDepositoMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDepositoMouseEntered(evt);
-            }
-        });
-        btnDeposito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDepositoActionPerformed(evt);
-            }
-        });
-
-        btnSaldoCaixa.setBackground(new java.awt.Color(239, 239, 239));
-        btnSaldoCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSaldoCaixa.setText("Saldo do Caixa");
-        btnSaldoCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSaldoCaixaMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSaldoCaixaMouseEntered(evt);
-            }
-        });
-        btnSaldoCaixa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaldoCaixaActionPerformed(evt);
-            }
-        });
-
-        btnSaldoCaixaDetalhado.setBackground(new java.awt.Color(239, 239, 239));
-        btnSaldoCaixaDetalhado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSaldoCaixaDetalhado.setText("Extrato Caixa");
-        btnSaldoCaixaDetalhado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSaldoCaixaDetalhadoMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSaldoCaixaDetalhadoMouseEntered(evt);
-            }
-        });
-        btnSaldoCaixaDetalhado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaldoCaixaDetalhadoActionPerformed(evt);
-            }
-        });
-
-        btnFecharCaixa.setBackground(new java.awt.Color(239, 239, 239));
-        btnFecharCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnFecharCaixa.setText("Fechar Caixa");
-        btnFecharCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnFecharCaixaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnFecharCaixaMouseExited(evt);
-            }
-        });
-        btnFecharCaixa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFecharCaixaActionPerformed(evt);
-            }
-        });
-
-        btnReceberFatura.setText("Receber Fatura Cliente");
-        btnReceberFatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReceberFaturaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
-                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnReceberFatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(378, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnReceberFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-        );
-
-        jTabbedPanelPrincipal.addTab("Caixa", jPanel2);
 
         lblCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCliente.setText("Cliente*:");
@@ -709,6 +560,163 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         );
 
         jTabbedPanelPrincipal.addTab("Agenda", jPanel1);
+
+        btnAbrirCaixa.setBackground(new java.awt.Color(239, 239, 239));
+        btnAbrirCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAbrirCaixa.setText("Abrir Caixa");
+        btnAbrirCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAbrirCaixaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAbrirCaixaMouseExited(evt);
+            }
+        });
+        btnAbrirCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirCaixaActionPerformed(evt);
+            }
+        });
+
+        btnRetirada.setBackground(new java.awt.Color(239, 239, 239));
+        btnRetirada.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRetirada.setText("Retirada");
+        btnRetirada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRetiradaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRetiradaMouseEntered(evt);
+            }
+        });
+        btnRetirada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiradaActionPerformed(evt);
+            }
+        });
+
+        btnDeposito.setBackground(new java.awt.Color(239, 239, 239));
+        btnDeposito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeposito.setText("Entrada");
+        btnDeposito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDepositoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDepositoMouseExited(evt);
+            }
+        });
+        btnDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositoActionPerformed(evt);
+            }
+        });
+
+        btnSaldoCaixa.setBackground(new java.awt.Color(239, 239, 239));
+        btnSaldoCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSaldoCaixa.setText("Saldo do Caixa");
+        btnSaldoCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaldoCaixaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaldoCaixaMouseExited(evt);
+            }
+        });
+        btnSaldoCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaldoCaixaActionPerformed(evt);
+            }
+        });
+
+        btnSaldoCaixaDetalhado.setBackground(new java.awt.Color(239, 239, 239));
+        btnSaldoCaixaDetalhado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSaldoCaixaDetalhado.setText("Extrato Caixa");
+        btnSaldoCaixaDetalhado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaldoCaixaDetalhadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaldoCaixaDetalhadoMouseExited(evt);
+            }
+        });
+        btnSaldoCaixaDetalhado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaldoCaixaDetalhadoActionPerformed(evt);
+            }
+        });
+
+        btnFecharCaixa.setBackground(new java.awt.Color(239, 239, 239));
+        btnFecharCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnFecharCaixa.setText("Fechar Caixa");
+        btnFecharCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFecharCaixaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFecharCaixaMouseExited(evt);
+            }
+        });
+        btnFecharCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFecharCaixaActionPerformed(evt);
+            }
+        });
+
+        btnReceberFatura.setBackground(new java.awt.Color(239, 239, 239));
+        btnReceberFatura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReceberFatura.setText("Receber Fatura Cliente");
+        btnReceberFatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReceberFaturaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(308, 308, 308)
+                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnReceberFatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(338, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnReceberFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
+        );
+
+        jTabbedPanelPrincipal.addTab("Caixa", jPanel2);
 
         jMenu1.setText("Cadastros");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1038,6 +1046,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             btnSaldoCaixaDetalhado.setVisible(true);
             btnAbrirCaixa.setVisible(false);
             btnFecharCaixa.setVisible(true);
+            btnReceberFatura.setVisible(true);
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "Valor Invalido !");
@@ -1085,6 +1094,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             btnSaldoCaixaDetalhado.setVisible(false);
             btnAbrirCaixa.setVisible(true);
             btnFecharCaixa.setVisible(false);
+            btnReceberFatura.setVisible(false);
             caixa = null;
        // } else {
            // JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
@@ -1516,6 +1526,9 @@ try {
         }
 
         // Cria Arquivo de Backup  
+
+        
+
         
         try {
             if (!bck.isFile()) {
@@ -1554,7 +1567,22 @@ try {
         //     new File(caminhoBackup).mkdir();  
         // } else {  
            // }  
-            // Cria Arquivo de Backup  
+            // Cria Arquivo de Backup 
+        
+        ConexaoBanco conexao = new ConexaoBanco();
+        try {
+            java.sql.Statement stm = conexao.getConexao().createStatement(); 
+            stm.execute("drop database beautysystem");
+            
+            //java.sql.Statement stm = conexao.getConexao().createStatement(); 
+            stm.execute("create database beautysystem");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
         try {
             if (!bck.isFile()) {
                 Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < " + bck.getAbsoluteFile());
@@ -1564,12 +1592,15 @@ try {
                 //Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < "+bck.getAbsoluteFile());  
                     //    bck = new File(caminhoBackup+"/Backup "+dia+"_"+mes+"_"+ano+".sql");  
                 //    }  
-                Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < " + bck.getAbsoluteFile());
+                Runtime.getRuntime().exec("cmd /c mysql -u root  beautysystem < " + bck.getAbsoluteFile());
                 JOptionPane.showMessageDialog(rootPane, "Restauração Evetuada com sucesso!");
+                System.out.print(bck.getAbsoluteFile());
             }
         } catch (IOException ex) {
             ex.printStackTrace();
+            System.out.print("erro");
         }
+        
     }//GEN-LAST:event_jMenuItemRecuperarBackupActionPerformed
 
     private void btnReceberFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberFaturaActionPerformed
