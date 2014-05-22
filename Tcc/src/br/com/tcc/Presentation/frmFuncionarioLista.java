@@ -34,6 +34,10 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
     }
     
     protected void preencheTabela(){
+        if(lista == null){
+            lista = new LinkedList<>();
+            
+        }
         
         /*
          
@@ -375,7 +379,9 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
                 }
             }
          }else{
-             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
+             
+                JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
+             
          }
         
     }//GEN-LAST:event_btnExcluirActionPerformed

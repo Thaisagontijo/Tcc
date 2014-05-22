@@ -38,11 +38,11 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         //SETANDO TAMANHO MAXIMO DO CAMPO
         
         txtNome.setDocument(new FixedLengthDocument(100));
-        txtRg.setDocument(new FixedLengthDocument(30));
-        txtRua.setDocument(new FixedLengthDocument(100));
+        txtRg.setDocument(new FixedLengthDocument(16));
+        txtRua.setDocument(new FixedLengthDocument(60));
         txtNumero.setDocument(new FixedLengthDocument(6));
-        txtBairro.setDocument(new FixedLengthDocument(100));
-        txtComplemento.setDocument(new FixedLengthDocument(100));
+        txtBairro.setDocument(new FixedLengthDocument(30));
+        txtComplemento.setDocument(new FixedLengthDocument(30));
         
         
         this.janelaPai = janelaPai;

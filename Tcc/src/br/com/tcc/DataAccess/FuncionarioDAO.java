@@ -50,10 +50,10 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
                 
                String consulta = "";
             if (obj.getId() != null) {
-                 consulta = "Select s from Fucionario s Where s.ativo = 1 and s.id like '%" + obj.getId() + "%'";
+                 consulta = "Select s from Funcionario s Where s.ativo = 1 and s.id like '%" + obj.getId() + "%'";
                  
              }else if(obj.getNome() != null){
-                 consulta = "Select s from Fucionario s Where s.ativo = 1 and s.nome like '%" + obj.getNome() + "%'";
+                 consulta = "Select s from Funcionario s Where s.ativo = 1 and s.nome like '%" + obj.getNome() + "%'";
              }
                transacao.begin();
                // Cria a consulta no JPA
@@ -74,6 +74,8 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
      
     public boolean VefificarExiste(Funcionario obj) {
         // Corpo da consulta
+        ///faillll
+        /*
         EntityTransaction transacao = manager.getTransaction();
         try {
 
@@ -110,6 +112,8 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
 
             return false;
         }
+                */
+        return true;
     }
 
     @Override
