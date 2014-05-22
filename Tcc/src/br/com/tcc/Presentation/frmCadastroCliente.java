@@ -36,11 +36,11 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         /*   SETANTO TAMNHO MAXIMO DOS CAMPOS*/
         
         txtNome.setDocument(new FixedLengthDocument(100));
-        txtRg.setDocument(new FixedLengthDocument(14));
+        txtRg.setDocument(new FixedLengthDocument(16));
         txtRua.setDocument(new FixedLengthDocument(60));
         txtNumero.setDocument(new FixedLengthDocument(6));
         txtBairro.setDocument(new FixedLengthDocument(30));
-        txtComplemento.setDocument(new FixedLengthDocument(100));
+        txtComplemento.setDocument(new FixedLengthDocument(30));
         
         /*   SETANTO TAMNHO MAXIMO DOS CAMPOS*/
         
