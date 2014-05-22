@@ -33,7 +33,7 @@ public class frmClienteLista extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
        dao = new ClienteDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Clientes");
+       this.setTitle("LISTA DE CLIENTES");
     }
     
     protected void preencheTabela(){

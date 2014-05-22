@@ -579,21 +579,20 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(249, 249, 249)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -604,16 +603,12 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -622,28 +617,30 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         /*Botão salvar*/
-        if (txtBairro.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
-        } else if (txtCep.getText().trim().length() < 9) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o cep");
-        } else if (txtCpf.getText().trim().length() < 11) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o cpf");
-        } else if (txtNome.getText().trim().isEmpty()) {
+         if (txtNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
-        } else if (txtNumero.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
-        } else if (txtRg.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Rg");
-        } else if (txtRua.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
-        } else if (cbxAno.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
-        } else if (cbxEstado.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
+        }   else if (txtCpf.getText().trim().length() < 11) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o CPF");
+        } else if (cbxSexo.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Sexo");
         } else if (cbxDia.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Dia");
         } else if (cbxMes.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Mês");
+        } else if (cbxAno.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
+        } else if (txtRua.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
+        } else if (txtNumero.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
+        } else if (txtBairro.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Bairro");
+        } else if (txtCep.getText().trim().length() < 9) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o CEP");
+        } else if (cbxEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
+        } else if (cbxCidade.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Cidade");
         } else if ((txtCelular.getText().trim().length() <= 9) && txtTelefone.getText().trim().length() <= 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
         } /*
