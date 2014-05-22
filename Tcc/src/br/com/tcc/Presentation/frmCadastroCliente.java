@@ -174,7 +174,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
          }else{
               
              if(descricao){
-                 this.setTitle("DESCRIÇÃO DE CLIENTE");
+                 this.setTitle("DESCRIÇÃO DO CLIENTE");
                  
                  txtBairro.setEditable(false);
                  txtCelular.setEditable(false);
@@ -559,17 +559,16 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblnome)
                     .addComponent(lblRg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(lblCpf)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -663,10 +662,11 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(lblEstado))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -687,7 +687,6 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblEstado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
@@ -842,9 +841,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(149, 149, 149)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237)
+                .addGap(255, 255, 255)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -858,11 +857,10 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -872,28 +870,30 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         /*Botão salvar*/
-        if (txtBairro.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
-        } else if (txtCep.getText().trim().length() < 9) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o cep");
-        } else if (txtCpf.getText().trim().length() < 11) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o cpf");
-        } else if (txtNome.getText().trim().isEmpty()) {
+         if (txtNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
-        } else if (txtNumero.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
-        } else if (txtRg.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Rg");
-        } else if (txtRua.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
-        } else if (cbxAno.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
-        } else if (cbxEstado.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
+        } else if (txtCpf.getText().trim().length() < 11) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o CPF");
+        } else if (cbxSexo.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Sexo");
         } else if (cbxDia.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Dia");
         } else if (cbxMes.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Mês");
+        } else if (cbxAno.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
+        } else if (txtRua.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
+        }  else if (txtNumero.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
+        } else if (txtBairro.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
+        } else if (txtCep.getText().trim().length() < 9) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o CEP");
+        }   else if (cbxEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
+        }   else if (cbxCidade.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Cidade");
         } else if ((txtCelular.getText().trim().length() <= 9) && txtTelefone.getText().trim().length() <= 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
         } /*
