@@ -887,7 +887,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         }  else if (txtNumero.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
         } else if (txtBairro.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o bairro");
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Bairro");
         } else if (txtCep.getText().trim().length() < 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o CEP");
         }   else if (cbxEstado.getSelectedIndex() == 0) {
