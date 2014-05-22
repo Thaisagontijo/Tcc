@@ -103,6 +103,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         listaAgendamentos = daoAgendamento.Buscar(null);
 
         initComponents();
+        
         verificaAdmin();//verifica se o usuario logado eh o administrador para mostrar a opcao de cadastrarnovos usuarios
         Color minhaCor = new Color(239, 239, 239);
         this.getContentPane().setBackground(minhaCor);
@@ -147,6 +148,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnReceberValorVenda.setEnabled(false);
         btnCancelarVenda.setEnabled(false);
         lblCliente.setEnabled(false);
+        jMenuItemFormasDePagamentos.setVisible(false);//nao mostra menu de forma de pagamento
         
         
         //FULL SCREEN
@@ -154,8 +156,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }
     
     private void verificaAdmin(){
-        if(usuarioLogado.getId() == 1){
-            jMenuItemUsuarios.setVisible(true);
+        if(usuarioLogado.getId() != 1){
+            jMenuItemUsuarios.setVisible(false);
         }
     }
 
@@ -318,7 +320,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnAgendamentoEditar = new javax.swing.JButton();
         btnAgendamentoApagar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuCadastros = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
         jMenuItemFuncionarios = new javax.swing.JMenuItem();
         jMenuItemFormasDePagamentos = new javax.swing.JMenuItem();
@@ -716,8 +718,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jTabbedPanelPrincipal.addTab("Agenda", jPanelAgenda);
 
-        jMenu1.setText("Cadastros");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuCadastros.setText("Cadastros");
+        jMenuCadastros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuItemClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItemClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/cliente.png"))); // NOI18N
@@ -727,7 +729,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItemClientesActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemClientes);
+        jMenuCadastros.add(jMenuItemClientes);
 
         jMenuItemFuncionarios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItemFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/funcionario.png"))); // NOI18N
@@ -737,7 +739,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItemFuncionariosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemFuncionarios);
+        jMenuCadastros.add(jMenuItemFuncionarios);
 
         jMenuItemFormasDePagamentos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItemFormasDePagamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/pagamento.png"))); // NOI18N
@@ -747,7 +749,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItemFormasDePagamentosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemFormasDePagamentos);
+        jMenuCadastros.add(jMenuItemFormasDePagamentos);
 
         jMenuItemFornecedores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItemFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/fornecedor.png"))); // NOI18N
@@ -757,7 +759,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItemFornecedoresActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemFornecedores);
+        jMenuCadastros.add(jMenuItemFornecedores);
 
         jMenuItemServicos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItemServicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/servicos.png"))); // NOI18N
@@ -767,7 +769,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItemServicosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemServicos);
+        jMenuCadastros.add(jMenuItemServicos);
 
         jMenuItemProdutos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItemProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/produtos.png"))); // NOI18N
@@ -777,7 +779,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItemProdutosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemProdutos);
+        jMenuCadastros.add(jMenuItemProdutos);
 
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/tiposproduto.png"))); // NOI18N
@@ -787,7 +789,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenuCadastros.add(jMenuItem1);
 
         jMenuItemUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/user.png"))); // NOI18N
         jMenuItemUsuarios.setText("Usuários");
@@ -796,9 +798,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItemUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemUsuarios);
+        jMenuCadastros.add(jMenuItemUsuarios);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuCadastros);
 
         jMenu3.setText("Estoques");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1649,12 +1651,12 @@ try {
     private javax.swing.JButton btnSaldoCaixaDetalhado;
     private javax.swing.JComboBox cbxCliente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
