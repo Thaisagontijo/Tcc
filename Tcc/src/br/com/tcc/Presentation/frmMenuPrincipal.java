@@ -23,9 +23,12 @@ import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -153,6 +156,16 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         //FULL SCREEN
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        
+        
+        
+        
+        
+        // coloca uma figura na barra de título da janela  
+    URL url = this.getClass().getResource("./icones/logo1.png");  
+    Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+    this.setIconImage(imagemTitulo);
     }
     
     private void verificaAdmin(){

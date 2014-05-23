@@ -985,7 +985,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             Cliente.setCelular(txtCelular.getText());
             Cliente.setEnderecoRua(txtRua.getText());
             Cliente.setTelefone(txtTelefone.getText());
-
+/*
             boolean validaVerificacaoIgualCpf = false;
             if (ok == 2) {//se a validacao está correta
                 if (!cadastro) {
@@ -995,6 +995,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                 }
 
                 if (validaVerificacaoIgualCpf) {
+            */
                     if (janelaPai.dao.Salvar(Cliente)) {
                         JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
                         janelaPai.lista.clear();
@@ -1007,7 +1008,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
                     }
-
+/*
                 } else {
                     if (!janelaPai.dao.VefificarExiste(Cliente)) {//se o cliente nao existir
 
@@ -1028,8 +1029,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(rootPane, "Cliente já cadastrado !");
                     }
                 }
+        */
 
-            }
+     //    }
 
         }
 
