@@ -99,6 +99,7 @@ public class frmFornecedorLista extends javax.swing.JDialog {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
         painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fornecedores Cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N

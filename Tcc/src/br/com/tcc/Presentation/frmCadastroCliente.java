@@ -503,7 +503,13 @@ public class frmCadastroCliente extends javax.swing.JDialog {
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Novo Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
@@ -1093,6 +1099,10 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         Color minhaCor = new Color(239,239,239);
         this.btnSair.setBackground(minhaCor);
     }//GEN-LAST:event_btnSairMouseExited
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       //JOptionPane.showMessageDialog(rootPane, "sadsad");
+    }//GEN-LAST:event_formWindowClosing
 
     
     private List<Cidade> listaCidades;

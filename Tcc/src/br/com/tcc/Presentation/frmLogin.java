@@ -48,6 +48,7 @@ public class frmLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autenticação");
+        setResizable(false);
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblUsuario.setText("Usuário");
@@ -70,11 +71,11 @@ public class frmLogin extends javax.swing.JFrame {
         btnlogar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnlogar.setText("Entrar");
         btnlogar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnlogarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnlogarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnlogarMouseExited(evt);
             }
         });
         btnlogar.addActionListener(new java.awt.event.ActionListener() {

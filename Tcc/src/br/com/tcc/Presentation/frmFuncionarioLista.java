@@ -104,9 +104,10 @@ public class frmFuncionarioLista extends javax.swing.JDialog {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
-        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funcionários Cadastrados", 0, 0, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funcionários Cadastrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         tblFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
