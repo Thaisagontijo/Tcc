@@ -93,6 +93,7 @@ public class frmTipoProdutoLista extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Formas de Pagamento");
+        setResizable(false);
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
         painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos Cadastrados"));

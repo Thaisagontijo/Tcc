@@ -332,9 +332,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItemEstoque = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         relatorioAgendamentos = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItemCompras = new javax.swing.JMenuItem();
         jMenuItemAniversariantes = new javax.swing.JMenuItem();
         jMenuItemRelatorioVendas = new javax.swing.JMenuItem();
@@ -821,26 +821,26 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem6);
 
-        jMenuItem5.setText("Clientes");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem5);
-
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Relatórios");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        relatorioAgendamentos.setText("Agendamentos");
+        relatorioAgendamentos.setText("Agendamentos Realizados");
         relatorioAgendamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioAgendamentosActionPerformed(evt);
             }
         });
         jMenu5.add(relatorioAgendamentos);
+
+        jMenuItem5.setText("Clientes");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem5);
 
         jMenuItemCompras.setText("Compras");
         jMenuItemCompras.addActionListener(new java.awt.event.ActionListener() {

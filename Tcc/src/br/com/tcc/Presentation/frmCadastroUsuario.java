@@ -50,7 +50,10 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         cbxFuncionario.addItem(tmp);
 
         for (Funcionario f : daoFuncionario.ListarTodos()) {
-            cbxFuncionario.addItem(f);
+            if(f.getId().intValue()  > 1){
+                cbxFuncionario.addItem(f);
+            }
+            
         }
 
         if (cadastro) {

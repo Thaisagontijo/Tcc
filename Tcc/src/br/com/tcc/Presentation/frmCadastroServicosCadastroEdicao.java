@@ -32,6 +32,9 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         initComponents();
         Color minhaCor = new Color(239,239,239);
         this.getContentPane().setBackground(minhaCor);
+        lblComissaoFuncionario.setVisible(false);
+        lblporcento.setVisible(false);
+        txtComissao.setVisible(false);
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
         this.descricao = descricao;
@@ -104,12 +107,13 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         txtDescricao = new javax.swing.JTextArea();
         lblComissaoFuncionario = new javax.swing.JLabel();
         txtComissao = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblporcento = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
@@ -152,8 +156,8 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
 
         txtComissao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("%");
+        lblporcento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblporcento.setText("%");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("%");
@@ -193,7 +197,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblporcento)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelNovoServicoLayout.setVerticalGroup(
@@ -229,16 +233,14 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                         .addComponent(lblComissaoFuncionario)
                         .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelNovoServicoLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblporcento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(6, 6, 6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(painelNovoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                        .addComponent(lblDescricao)
-                        .addGap(76, 76, 76))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNovoServicoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelNovoServicoLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(lblDescricao)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         btnSalvar.setBackground(new java.awt.Color(239, 239, 239));
@@ -493,7 +495,6 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblComissaoFuncionario;
@@ -502,6 +503,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
     private javax.swing.JLabel lblDuracaoMaxima;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblValor;
+    private javax.swing.JLabel lblporcento;
     private javax.swing.JPanel painelNovoServico;
     private javax.swing.JTextField txtComissao;
     private javax.swing.JTextField txtDesconto;

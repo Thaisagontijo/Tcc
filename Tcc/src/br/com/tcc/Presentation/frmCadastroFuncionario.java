@@ -253,6 +253,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));

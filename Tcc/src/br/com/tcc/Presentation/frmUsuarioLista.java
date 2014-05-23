@@ -92,6 +92,7 @@ public class frmUsuarioLista extends javax.swing.JDialog {
         btnFiltrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         painelServicosCadastrados.setBackground(new java.awt.Color(228, 228, 228));
         painelServicosCadastrados.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuarios Cadastrados"));

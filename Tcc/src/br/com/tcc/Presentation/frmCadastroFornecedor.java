@@ -216,6 +216,7 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         txtTelefone = new javax.swing.JFormattedTextField();
         btnSair = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         painelNovoServico.setBackground(new java.awt.Color(228, 228, 228));
@@ -608,6 +609,9 @@ public class frmCadastroFornecedor extends javax.swing.JDialog {
         estadoSelecionado = cbxEstados.getSelectedIndex();
         
         cbxCidades.removeAllItems();
+        Cidade tmp = new Cidade();
+        tmp.setNome("Selecione");
+        cbxCidades.addItem(tmp);
         for(Cidade c : listaCidades){
              if(c.getIdEstado() == estadoSelecionado)
                 cbxCidades.addItem(c);

@@ -116,7 +116,7 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
         btnReceber = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Lista de Vendas à prazo");
         setResizable(false);
 

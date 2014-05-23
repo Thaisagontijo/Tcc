@@ -79,7 +79,7 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         btnPagar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Receber Pagamento");
         setResizable(false);
 
