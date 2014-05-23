@@ -34,7 +34,10 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         
         //SETANDO TAMANHO MAXIMO
         
-        txtUsuario.setDocument(new FixedLengthDocument(100));
+        txtUsuario.setDocument(new FixedLengthDocument(30));
+        txtSenha1.setDocument(new FixedLengthDocument(15));
+        txtSenha2.setDocument(new FixedLengthDocument(15));
+       
 
         cbxFuncionario.removeAllItems();
         daoFuncionario = new FuncionarioDAO();
@@ -51,7 +54,7 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         }
 
         if (cadastro) {
-            this.setTitle("EDIÇÃO DE USUÁRIO");
+            this.setTitle("CADASTRO DE USUÁRIO");
 
         } else {
 
@@ -164,6 +167,14 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
+            }
+        });
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -174,6 +185,17 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseExited(evt);
+            }
+        });
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -187,14 +209,14 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
+                        .addGap(144, 144, 144)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
+                        .addGap(68, 68, 68)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,6 +284,30 @@ public class frmCadastroUsuario extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnSalvar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSalvarMouseEntered
+
+    private void btnSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseExited
+       Color minhaCor = new Color(239,239,239);
+        this.btnSalvar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSalvarMouseExited
+
+    private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnCancelar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnCancelarMouseEntered
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
+       Color minhaCor = new Color(239,239,239);
+        this.btnCancelar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnCancelarMouseExited
 
     FuncionarioDAO daoFuncionario;
     UsuarioDAO daoUsuario;

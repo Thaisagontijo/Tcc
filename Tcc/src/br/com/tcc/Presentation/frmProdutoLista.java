@@ -30,7 +30,7 @@ public class frmProdutoLista extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
        dao = new ProdutoDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Produtos");
+       this.setTitle("LISTA DE PRODUTOS");
     }
     
     protected void preencheTabela(){

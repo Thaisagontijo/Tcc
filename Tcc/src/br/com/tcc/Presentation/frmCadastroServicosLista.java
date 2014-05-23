@@ -30,7 +30,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
        dao = new ServicoDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Serviços");
+       this.setTitle("LISTA DE SERVIÇOS");
     }
     
     protected void preencheTabela(){

@@ -150,11 +150,11 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
          btnSair.setVisible(false);
          
          if(cadastro){
-              this.setTitle("CADASTRO DE FUNCIONÁRIOS");
+              this.setTitle("CADASTRO DE FUNCIONÁRIO");
          }else{
              
              if(descricao){
-                 this.setTitle("DESCRIÇÃO DE FUNCIONÁRIOS");
+                 this.setTitle("DESCRIÇÃO DO FUNCIONÁRIO");
                  
                  txtBairro.setEditable(false);
                  txtCelular.setEditable(false);
@@ -177,7 +177,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                  btnSair.setVisible(true);
                  
              }else{
-              this.setTitle("EDIÇÃO DE FUNCIONÁRIOS");
+              this.setTitle("EDIÇÃO DO FUNCIONÁRIO");
              }
              
               

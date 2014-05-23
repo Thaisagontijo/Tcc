@@ -49,12 +49,12 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
        
         btnSair.setVisible(false);
         if(cadastro){
-            this.setTitle("CADASTRO DE SERVICO");
+            this.setTitle("CADASTRO DE SERVIÇO");
             System.out.println("verdade");
         }else{
             
             if(descricao){
-                this.setTitle("DESCRIÇÃO DE SERVICO");
+                this.setTitle("DESCRIÇÃO DO SERVIÇO");
                 txtComissao.setEditable(false);
                 txtDesconto.setEditable(false);
                 txtDescricao.setEditable(false);
@@ -65,7 +65,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
                 btnSalvar.setVisible(false);
                 btnSair.setVisible(true);
             }else{
-                this.setTitle("EDIÇÃO DE SERVICO");
+                this.setTitle("EDIÇÃO DO SERVIÇO");
             }
             
             System.out.println("false");
@@ -125,10 +125,10 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         lblDuracaoMaxima.setText("Duração Máxima* :");
 
         lblDescontoMaximo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDescontoMaximo.setText("Desconto Máximo* :");
+        lblDescontoMaximo.setText("Desconto Máximo :");
 
         lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDescricao.setText("Descrição* :");
+        lblDescricao.setText("Descrição:");
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -148,7 +148,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         jScrollPane1.setViewportView(txtDescricao);
 
         lblComissaoFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblComissaoFuncionario.setText("Comissão*:");
+        lblComissaoFuncionario.setText("Comissão:");
 
         txtComissao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -311,13 +311,13 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
+                .addGap(89, 89, 89)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
+                .addGap(230, 230, 230)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -326,11 +326,15 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -345,11 +349,16 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
       
                
         /*Botão salvar*/
+     if (txtNome.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
+        }   else if(txtDuracao.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Duração");
+        } else if(txtValor.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Valor");
+        } 
         
-        if(txtDesconto.getText().isEmpty() || txtDescricao.getText().isEmpty() 
-               || txtDuracao.getText().isEmpty() || txtNome.getText().isEmpty() || txtValor.getText().isEmpty() || txtComissao.getText().isEmpty()){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos!");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o serviço?",
+        
+        else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o serviço?",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
             Servico servico = null;

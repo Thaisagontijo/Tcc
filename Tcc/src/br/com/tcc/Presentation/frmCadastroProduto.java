@@ -105,7 +105,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         }else{
             
             if(descricao){
-                this.setTitle("DESCRIÇÃO DE PRODUTO");
+                this.setTitle("DESCRIÇÃO DO PRODUTO");
                 txtDescricao.setEditable(false);
                 txtNome.setEditable(false);
                 txtPrecoCusto.setEditable(false);
@@ -117,7 +117,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                 btnSair.setVisible(true);
                 btnSalvar.setVisible(false);
             }else{
-                this.setTitle("EDIÇÃO DE PRODUTO");
+                this.setTitle("EDIÇÃO DO PRODUTO");
             }
             
             //System.out.println("false");
@@ -189,7 +189,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         painelNovoServico.add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
 
         lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDescricao.setText("Descrição* :");
+        lblDescricao.setText("Descrição :");
         painelNovoServico.add(lblDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -216,7 +216,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         painelNovoServico.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 159, 650, 120));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Vendedor* :");
+        jLabel1.setText("Fornecedor* :");
         painelNovoServico.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -295,36 +295,40 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                 btnSairMouseExited(evt);
             }
         });
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(painelNovoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -339,15 +343,34 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                
         /*Botão salvar*/
         
-        if(txtQuantidade.getText().isEmpty() || txtDescricao.getText().isEmpty() 
-               || txtPrecoVenda.getText().isEmpty() || txtNome.getText().isEmpty() || 
-                txtPrecoCusto.getText().isEmpty() || (cbxTipoProduto.getSelectedIndex() == 0) || (cbxVendedor.getSelectedIndex() == 0) ){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos!");
-       }else if (Float.parseFloat(txtPrecoCusto.getText()) > Float.parseFloat(txtPrecoVenda.getText())){
+      
+        if (txtNome.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
+        }   else if (txtPrecoCusto.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Preço de Custo");
+        } else if (txtPrecoVenda.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Preço de Venda");
+        } else if (txtQuantidade.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Quantidade");
+        } else if (cbxVendedor.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Vendedor");
+        } else if (cbxTipoProduto.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Tipo do Produto");
+        } 
+        
+        
+        
+        
+        
+        else if (Float.parseFloat(txtPrecoCusto.getText()) > Float.parseFloat(txtPrecoVenda.getText())){
            
            JOptionPane.showMessageDialog(rootPane, "O preço de venda não pode ser menor que o preço de custo !");
            
-       }else if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Produto",
+       }
+       
+       
+       
+       else if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Produto",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
             Produto produto = null;
@@ -467,13 +490,17 @@ public class frmCadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairMouseEntered
 
     private void btnSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseExited
-         Color minhaCor = new Color(115,183,253);
-        this.btnCancelar.setBackground(minhaCor);
+          Color minhaCor = new Color(239,239,239);
+       this.btnSair.setBackground(minhaCor);
     }//GEN-LAST:event_btnSairMouseExited
 
     private void cbxVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxVendedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxVendedorActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /*
      *  OUTRAS VARIAVEIS

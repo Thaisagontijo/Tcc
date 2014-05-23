@@ -238,17 +238,17 @@ public class frmTipoProdutoCadastroEdicao extends javax.swing.JDialog {
 
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
         Color minhaCor = new Color(239,239,239);
-        this.btnSalvar.setBackground(minhaCor);
+        this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseEntered
         Color minhaCor = new Color(115,183,253);
-        this.btnCancelar.setBackground(minhaCor);
+        this.btnSalvar.setBackground(minhaCor);
     }//GEN-LAST:event_btnSalvarMouseEntered
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
         Color minhaCor = new Color(115,183,253);
-        this.btnSalvar.setBackground(minhaCor);
+        this.btnCancelar.setBackground(minhaCor);
     }//GEN-LAST:event_btnCancelarMouseEntered
 
     
