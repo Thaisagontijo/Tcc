@@ -42,7 +42,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         
          // SETANDO O TAMANHO DOS CAMPOS
         
-        txtNome.setDocument(new FixedLengthDocument(100));
+        txtNome.setDocument(new FixedLengthDocument(50));
         txtValor.setDocument(new FixedLengthDocument(6));
         txtDesconto.setDocument(new FixedLengthDocument(2));
         txtDuracao.setDocument(new FixedLengthDocument(6));

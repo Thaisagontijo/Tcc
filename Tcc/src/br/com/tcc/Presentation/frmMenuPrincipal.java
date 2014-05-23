@@ -162,10 +162,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         
         
-        // coloca uma figura na barra de título da janela  
+        /* coloca uma figura na barra de título da janela  
     URL url = this.getClass().getResource("./icones/logo1.png");  
     Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
     this.setIconImage(imagemTitulo);
+        */
     }
     
     private void verificaAdmin(){

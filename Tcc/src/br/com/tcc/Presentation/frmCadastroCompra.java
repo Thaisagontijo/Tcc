@@ -174,7 +174,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setTitle("Lançamento de Compra");
+        setTitle("LANÇAMENTO DE COMPRA");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
@@ -210,7 +210,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
         cbxAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblValorVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblValorVenda.setText("Valor da Venda* :");
+        lblValorVenda.setText("Valor da Compra* :");
 
         txtVenda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -229,20 +229,17 @@ public class frmCadastroCompra extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblQuantidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addGap(48, 48, 48)
                         .addComponent(lblValorVenda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(22, 22, 22)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cbxCompraPagamento, 0, 189, Short.MAX_VALUE)
                             .addComponent(cbxCompraFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -256,7 +253,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
                                 .addComponent(cbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cbxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 73, Short.MAX_VALUE))
+                                .addGap(0, 20, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,25 +313,25 @@ public class frmCadastroCompra extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
+                        .addGap(244, 244, 244)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
+                        .addGap(82, 82, 82)
                         .addComponent(btnCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -342,10 +339,26 @@ public class frmCadastroCompra extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        if(txtQuantidade.getText().isEmpty() || (cbxCompraFuncionario.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || 
-                cbxMes.getSelectedIndex() ==0 || cbxAno.getSelectedIndex() == 0|| txtVenda.getText().isEmpty() || cbxCompraProduto.getSelectedIndex() == 0){
-                JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar a Compra? ",
+        
+        if (cbxCompraFuncionario.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Funcionário");
+        } else if (cbxCompraProduto.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Produto");
+        } else if (cbxCompraPagamento.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Forma de Pagamento");
+        } else if (cbxDia.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Dia");
+        } else if (cbxMes.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Mês");
+        } else if (cbxAno.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
+        } else if (txtQuantidade.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Quantidade");
+        } else if (txtVenda.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o Valor da Compra");
+        }
+        
+        else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar a Compra? ",
                "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
            
            Compra compra = new Compra();

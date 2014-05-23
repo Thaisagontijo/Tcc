@@ -44,7 +44,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         
         // SETANDO O TAMANHO DOS CAMPOS
         
-        txtNome.setDocument(new FixedLengthDocument(100));
+        txtNome.setDocument(new FixedLengthDocument(50));
         txtPrecoCusto.setDocument(new FixedLengthDocument(6));
         txtPrecoVenda.setDocument(new FixedLengthDocument(6));
         txtQuantidade.setDocument(new FixedLengthDocument(6));
