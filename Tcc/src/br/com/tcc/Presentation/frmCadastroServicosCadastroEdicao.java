@@ -117,7 +117,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         lblValor.setText("Valor* :");
 
         lblDuracaoMaxima.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDuracaoMaxima.setText("Duração Máxima* :");
+        lblDuracaoMaxima.setText("Duração Máxima (min)* :");
 
         lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDescricao.setText("Descrição:");
