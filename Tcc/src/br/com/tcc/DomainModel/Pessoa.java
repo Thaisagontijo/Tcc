@@ -172,26 +172,14 @@ public class Pessoa implements Serializable {
     public void setEnderecoCidade(Cidade enderecoCidade) {
         this.enderecoCidade = enderecoCidade;
     }
-    
-    
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.rg);
-        hash = 89 * hash + Objects.hashCode(this.cpf);
-        hash = 89 * hash + Objects.hashCode(this.observacao);
-        hash = 89 * hash + Objects.hashCode(this.telefone);
-        hash = 89 * hash + Objects.hashCode(this.celular);
-        hash = 89 * hash + Objects.hashCode(this.enderecoRua);
-        hash = 89 * hash + this.enderecoNumero;
-        hash = 89 * hash + Objects.hashCode(this.enderecoBairro);
-        hash = 89 * hash + Objects.hashCode(this.enderecoComplemento);
-        hash = 89 * hash + Objects.hashCode(this.enderecoCep);
-        hash = 89 * hash + this.sexo;
-        hash = 89 * hash + Objects.hashCode(this.dataNascimento);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.rg);
+        hash = 67 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -204,6 +192,9 @@ public class Pessoa implements Serializable {
             return false;
         }
         final Pessoa other = (Pessoa) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -215,6 +206,8 @@ public class Pessoa implements Serializable {
         }
         return true;
     }
+    
+    
 
     @Override
     public String toString() {

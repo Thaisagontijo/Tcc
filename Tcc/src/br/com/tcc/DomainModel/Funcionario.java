@@ -56,33 +56,6 @@ public class Funcionario extends Pessoa implements Serializable {
     
 
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.dataAdmissao);
-
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Funcionario other = (Funcionario) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataAdmissao, other.dataAdmissao)) {
-            return false;
-        }
-        
-        return true;
-    }
 
     @Override
     public String toString() {

@@ -27,7 +27,7 @@ public class frmUsuarioLista extends javax.swing.JDialog {
         this.getContentPane().setBackground(minhaCor);
        dao = new UsuarioDAO();
        lista = new LinkedList<>();
-       this.setTitle("Lista de Produtos");
+       this.setTitle("LISTA DE USUÁRIOS");
     }
     
     protected void preencheTabela(){
@@ -300,7 +300,7 @@ public class frmUsuarioLista extends javax.swing.JDialog {
         if(idSelecionadoTabela == tblServicos.getSelectedRow()){ //se está clicando na mesma linha
             qtdCliques++;
             if(qtdCliques == 2){
-                JOptionPane.showMessageDialog(rootPane, "chama a descricao");
+                //JOptionPane.showMessageDialog(rootPane, "chama a descricao");
                 qtdCliques =0;
             }
         }else {
