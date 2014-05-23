@@ -174,6 +174,7 @@ public class frmCadastroCompra extends javax.swing.JDialog {
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("LANÇAMENTO DE COMPRA");
         setResizable(false);
 
