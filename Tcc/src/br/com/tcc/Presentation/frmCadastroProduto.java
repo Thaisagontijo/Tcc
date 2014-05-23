@@ -41,14 +41,14 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
         this.descricao = descricao;
-        txtQuantidade.setVisible(false);
+     
         
         // SETANDO O TAMANHO DOS CAMPOS
         
         txtNome.setDocument(new FixedLengthDocument(50));
         txtPrecoCusto.setDocument(new FixedLengthDocument(6));
         txtPrecoVenda.setDocument(new FixedLengthDocument(6));
-        txtQuantidade.setDocument(new FixedLengthDocument(6));
+     
         txtDescricao.setDocument(new FixedLengthDocument(150));
        
         
@@ -111,7 +111,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
                 txtNome.setEditable(false);
                 txtPrecoCusto.setEditable(false);
                 txtPrecoVenda.setEditable(false);
-                txtQuantidade.setEditable(false);
+     
                 cbxTipoProduto.setEnabled(false);
                 cbxVendedor.setEnabled(false);
                 btnCancelar.setVisible(false);
@@ -124,7 +124,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             //System.out.println("false");
             /*setando valores recebidos da janela pai aos campos*/
             
-            txtQuantidade.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getQtdEstoque()));
+     
             txtDescricao.setText(janelaPai.objSelecionadoNaTabela.getDescricao());
             txtPrecoVenda.setText(String.valueOf(janelaPai.objSelecionadoNaTabela.getPrecoVenda()));
             txtNome.setText(janelaPai.objSelecionadoNaTabela.getNome());
@@ -155,7 +155,6 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         txtNome = new javax.swing.JTextField();
         txtPrecoVenda = new javax.swing.JTextField();
         txtPrecoCusto = new javax.swing.JTextField();
-        txtQuantidade = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
@@ -202,9 +201,6 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             }
         });
         painelNovoServico.add(txtPrecoCusto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 100, 30));
-
-        txtQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        painelNovoServico.add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 100, 30));
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(5);
@@ -347,8 +343,8 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Preço de Custo");
         } else if (txtPrecoVenda.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Preço de Venda");
-        } else if (txtQuantidade.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha a Quantidade");
+     
+     
         } else if (cbxVendedor.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Vendedor");
         } else if (cbxTipoProduto.getSelectedIndex() == 0) {
@@ -385,13 +381,6 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             
             produto.setDescricao(txtDescricao.getText());
             
-            try{
-                produto.setQtdEstoque(Integer.parseInt(txtQuantidade.getText()));
-                ok++;
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Quantidade Inválida!");
-            }
-            
             
             try{
                 produto.setPrecoVenda(Float.parseFloat(txtPrecoVenda.getText()));
@@ -423,11 +412,11 @@ public class frmCadastroProduto extends javax.swing.JDialog {
             produto.setFornecedor(fornecedor);
             produto.setTipoProduto(tipoProduto);
             
-            if(ok == 3){//se a validacao está correta
+            if(ok == 2){//se a validacao está correta
 
                 if(janelaPai.dao.Salvar(produto)){
                     JOptionPane.showMessageDialog(rootPane, "Produto Salvo com Sucesso!");
-                    txtQuantidade.setText(""); txtDescricao.setText("");
+            
                     txtPrecoVenda.setText(""); txtNome.setText(""); txtPrecoCusto.setText("");
                     janelaPai.lista.clear();
                     janelaPai.lista = janelaPai.dao.ListarTodos();
@@ -527,6 +516,5 @@ public class frmCadastroProduto extends javax.swing.JDialog {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPrecoCusto;
     private javax.swing.JTextField txtPrecoVenda;
-    private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
 }

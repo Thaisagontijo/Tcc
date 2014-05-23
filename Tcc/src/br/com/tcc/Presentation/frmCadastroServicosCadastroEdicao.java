@@ -336,7 +336,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
 
             servico.setNome(txtNome.getText());
 
-            if (ok == 4) {//se a validacao está correta
+            if (ok == 2) {//se a validacao está correta
 
                 if (janelaPai.dao.Salvar(servico)) {
                     JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso!");
