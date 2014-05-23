@@ -26,7 +26,8 @@ public class Servico implements Serializable {
 
     public Servico(){
         this.ativo = true;
-        this.comissao = 0;
+        this.comissao = 0;//retirar
+        this.descontoMaximo = 0;//retirar
     }
     private String nome;
     private int duracaoAproximada; // em minutos
