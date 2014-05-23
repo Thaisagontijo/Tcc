@@ -41,6 +41,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         this.janelaPai = janelaPai;
         this.cadastro = cadastro;
         this.descricao = descricao;
+        txtQuantidade.setVisible(false);
         
         // SETANDO O TAMANHO DOS CAMPOS
         
@@ -150,7 +151,6 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         lblNome = new javax.swing.JLabel();
         lblPrecoCusto = new javax.swing.JLabel();
         lblPrecoVenda = new javax.swing.JLabel();
-        lblQuantidade = new javax.swing.JLabel();
         lblDescricao = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtPrecoVenda = new javax.swing.JTextField();
@@ -183,11 +183,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
 
         lblPrecoVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPrecoVenda.setText("Preço Venda* :");
-        painelNovoServico.add(lblPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
-
-        lblQuantidade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblQuantidade.setText("Quantidade* :");
-        painelNovoServico.add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
+        painelNovoServico.add(lblPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
 
         lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDescricao.setText("Descrição :");
@@ -197,7 +193,7 @@ public class frmCadastroProduto extends javax.swing.JDialog {
         painelNovoServico.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 650, 30));
 
         txtPrecoVenda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        painelNovoServico.add(txtPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 100, 30));
+        painelNovoServico.add(txtPrecoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 100, 30));
 
         txtPrecoCusto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPrecoCusto.addActionListener(new java.awt.event.ActionListener() {
@@ -526,7 +522,6 @@ public class frmCadastroProduto extends javax.swing.JDialog {
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPrecoCusto;
     private javax.swing.JLabel lblPrecoVenda;
-    private javax.swing.JLabel lblQuantidade;
     private javax.swing.JPanel painelNovoServico;
     private javax.swing.JTextArea txtDescricao;
     private javax.swing.JTextField txtNome;

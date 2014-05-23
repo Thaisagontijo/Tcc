@@ -29,6 +29,7 @@ public class Produto implements Serializable {
         tipoProduto = new TipoProduto();
         fornecedor = new Fornecedor();
         ativo = true;
+        qtdEstoque = 0;
     }
     
     private String nome;
