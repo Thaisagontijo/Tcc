@@ -870,7 +870,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         /*Botão salvar*/
-         if (txtNome.getText().trim().isEmpty()) {
+        if (txtNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Nome");
         } else if (txtCpf.getText().trim().length() < 11) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o CPF");
@@ -884,15 +884,15 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Ano");
         } else if (txtRua.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha a Rua");
-        }  else if (txtNumero.getText().trim().isEmpty()) {
+        } else if (txtNumero.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Número");
         } else if (txtBairro.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Bairro");
         } else if (txtCep.getText().trim().length() < 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o CEP");
-        }   else if (cbxEstado.getSelectedIndex() == 0) {
+        } else if (cbxEstado.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Estado");
-        }   else if (cbxCidade.getSelectedIndex() == 0) {
+        } else if (cbxCidade.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Preencha a Cidade");
         } else if ((txtCelular.getText().trim().length() <= 9) && txtTelefone.getText().trim().length() <= 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
@@ -980,8 +980,15 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             Cliente.setEnderecoRua(txtRua.getText());
             Cliente.setTelefone(txtTelefone.getText());
 
+            boolean validaVerificacaoIgualCpf = false;
             if (ok == 2) {//se a validacao está correta
-                if (janelaPai.dao.VefificarExiste(Cliente)) {//se o cliente nao existir
+                if (!cadastro) {
+                    if (janelaPai.objSelecionadoNaTabela.getCpf().equals(Cliente.getCpf())) {
+                        validaVerificacaoIgualCpf = true;//mesmo cliente sinal q ta editando
+                    }
+                }
+
+                if (validaVerificacaoIgualCpf) {
                     if (janelaPai.dao.Salvar(Cliente)) {
                         JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
                         janelaPai.lista.clear();
@@ -994,8 +1001,26 @@ public class frmCadastroCliente extends javax.swing.JDialog {
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
                     }
+
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Cliente já cadastrado !");
+                    if (!janelaPai.dao.VefificarExiste(Cliente)) {//se o cliente nao existir
+
+                        if (janelaPai.dao.Salvar(Cliente)) {
+                            JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
+                            janelaPai.lista.clear();
+                            janelaPai.lista = janelaPai.dao.ListarTodos();
+                            janelaPai.preencheTabela();
+                            janelaPai.objSelecionadoNaTabela = null;
+                            janelaPai.janelaPai.preencheComboClientes();
+                            this.dispose();
+
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Cliente já cadastrado !");
+                    }
                 }
 
             }
@@ -1012,6 +1037,11 @@ public class frmCadastroCliente extends javax.swing.JDialog {
         estadoSelecionado = cbxEstado.getSelectedIndex();
         
         cbxCidade.removeAllItems();
+            Cidade tmp = new Cidade();
+            tmp.setNome("Selecione a Cidade");
+            //tmp.set
+            cbxCidade.addItem(tmp);
+
         for(Cidade c : listaCidades){
              if(c.getIdEstado() == estadoSelecionado)
                 cbxCidade.addItem(c);

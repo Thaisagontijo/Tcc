@@ -75,21 +75,19 @@ public class ClienteDAO extends DAOGenerico<Cliente>{
         EntityTransaction transacao = manager.getTransaction();
         try {
 
-            String consulta = "";
-            if (obj.getId() != null) {
-                 consulta = "Select s from Cliente s Where s.ativo = 1 and s.cpf like '%" + obj.getCpf() + "%'";
-                 
-             }
+            String consulta = "Select s from Cliente s Where s.ativo = 1 and s.cpf like '%" + obj.getCpf() + "%'";
+
             transacao.begin();
             // Cria a consulta no JPA
             Query query = manager.createQuery(consulta);
 
-           
             transacao.commit();
-            if(query.getResultList().isEmpty()){
+            if (query.getResultList().isEmpty()) {
+                return false;
+            } else {
                 return true;
-            }else return false;
-            
+            }
+
         } catch (Exception ex) {
 
             ex.printStackTrace();

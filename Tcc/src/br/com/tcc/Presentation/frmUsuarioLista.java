@@ -317,23 +317,30 @@ public class frmUsuarioLista extends javax.swing.JDialog {
     }//GEN-LAST:event_tblServicosMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         if(objSelecionadoNaTabela != null){
-              if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
-                    + " excluir o Usuário?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+         
+        if (objSelecionadoNaTabela != null) {
+            if (objSelecionadoNaTabela.getId().intValue() == 1) {
+                JOptionPane.showMessageDialog(rootPane, "Não é possivel apagar o usuário Administrador do sistema!");
+            } else {
 
-                if(dao.Apagar(objSelecionadoNaTabela)){
-                    JOptionPane.showMessageDialog(rootPane, "Usuário excluído com sucesso !");
-                    lista.clear();
-                    lista = dao.ListarTodos();
-                    preencheTabela();
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Usuário");
+                if (JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
+                        + " excluir o Usuário?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+
+                    if (dao.Apagar(objSelecionadoNaTabela)) {
+                        JOptionPane.showMessageDialog(rootPane, "Usuário excluído com sucesso !");
+                        lista.clear();
+                        lista = dao.ListarTodos();
+                        preencheTabela();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Usuário");
+                    }
                 }
             }
-         }else{
-             JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
-         }
-        
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
+        }
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
