@@ -101,6 +101,7 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("LISTA DE SERVIÇOS ");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
@@ -264,12 +265,12 @@ public class frmListaServicosParaAgenda extends javax.swing.JDialog {
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
          Color minhaCor = new Color(115,183,253);
-        this.btnCancelar.setBackground(minhaCor);
+        this.jButton1.setBackground(minhaCor);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
         Color minhaCor = new Color(239,239,239);
-        this.btnCancelar.setBackground(minhaCor);
+        this.jButton1.setBackground(minhaCor);
     }//GEN-LAST:event_jButton1MouseExited
 
     private ServicoDAO dao;

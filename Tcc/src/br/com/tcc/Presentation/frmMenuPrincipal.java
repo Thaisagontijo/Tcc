@@ -363,7 +363,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         btnAbrirCaixa.setBackground(new java.awt.Color(239, 239, 239));
         btnAbrirCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAbrirCaixa.setText("Abrir Caixa");
+        btnAbrirCaixa.setText("ABRIR CAIXA");
         btnAbrirCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAbrirCaixaMouseEntered(evt);
@@ -466,6 +466,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnReceberFatura.setBackground(new java.awt.Color(239, 239, 239));
         btnReceberFatura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnReceberFatura.setText("Receber Fatura Cliente");
+        btnReceberFatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReceberFaturaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReceberFaturaMouseExited(evt);
+            }
+        });
         btnReceberFatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReceberFaturaActionPerformed(evt);
@@ -477,43 +485,40 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jPanelCaixaLayout.setHorizontalGroup(
             jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCaixaLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(121, 121, 121)
                 .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCaixaLayout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelCaixaLayout.createSequentialGroup()
-                        .addGap(308, 308, 308)
-                        .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelCaixaLayout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnReceberFatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(338, Short.MAX_VALUE))
+                    .addComponent(btnDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReceberFatura)
+                    .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74))
+            .addGroup(jPanelCaixaLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCaixaLayout.setVerticalGroup(
             jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCaixaLayout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(btnAbrirCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnReceberFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReceberFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanelCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSaldoCaixaDetalhado, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaldoCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         jTabbedPanelPrincipal.addTab("Caixa", jPanelCaixa);
@@ -665,6 +670,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnNovoAgendamento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovoAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnNovoAgendamento.setText("Novo Agendamento");
+        btnNovoAgendamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNovoAgendamentoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNovoAgendamentoMouseExited(evt);
+            }
+        });
         btnNovoAgendamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoAgendamentoActionPerformed(evt);
@@ -672,6 +685,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
 
         btnAgendamentoRealizado.setText("Realizado");
+        btnAgendamentoRealizado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgendamentoRealizadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgendamentoRealizadoMouseExited(evt);
+            }
+        });
         btnAgendamentoRealizado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendamentoRealizadoActionPerformed(evt);
@@ -679,6 +700,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
 
         btnAgendamentoEditar.setText("Editar");
+        btnAgendamentoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgendamentoEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgendamentoEditarMouseExited(evt);
+            }
+        });
         btnAgendamentoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendamentoEditarActionPerformed(evt);
@@ -686,6 +715,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
 
         btnAgendamentoApagar.setText("Apagar");
+        btnAgendamentoApagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgendamentoApagarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgendamentoApagarMouseExited(evt);
+            }
+        });
         btnAgendamentoApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendamentoApagarActionPerformed(evt);
@@ -703,7 +740,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanelAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgendamentoRealizado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAgendamentoRealizado)
                             .addComponent(btnAgendamentoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAgendamentoApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanelAgendaLayout.createSequentialGroup()
@@ -719,15 +756,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelAgendaLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(84, 84, 84)
                         .addComponent(btnAgendamentoRealizado)
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAgendamentoEditar)
                         .addGap(22, 22, 22)
                         .addComponent(btnAgendamentoApagar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNovoAgendamento)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jTabbedPanelPrincipal.addTab("Agenda", jPanelAgenda);
@@ -1625,6 +1662,56 @@ try {
         janela.setLocationRelativeTo(this);
         janela.setVisible(true);
     }//GEN-LAST:event_btnReceberFaturaActionPerformed
+
+    private void btnReceberFaturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceberFaturaMouseEntered
+         Color minhaCor = new Color(115, 183, 253);
+        this.btnReceberFatura.setBackground(minhaCor);
+    }//GEN-LAST:event_btnReceberFaturaMouseEntered
+
+    private void btnReceberFaturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceberFaturaMouseExited
+        Color minhaCor = new Color(239, 239, 239);
+        this.btnReceberFatura.setBackground(minhaCor);
+    }//GEN-LAST:event_btnReceberFaturaMouseExited
+
+    private void btnNovoAgendamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoAgendamentoMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnNovoAgendamento.setBackground(minhaCor);
+    }//GEN-LAST:event_btnNovoAgendamentoMouseEntered
+
+    private void btnNovoAgendamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoAgendamentoMouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.btnNovoAgendamento.setBackground(minhaCor);
+    }//GEN-LAST:event_btnNovoAgendamentoMouseExited
+
+    private void btnAgendamentoRealizadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendamentoRealizadoMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnAgendamentoRealizado.setBackground(minhaCor);
+    }//GEN-LAST:event_btnAgendamentoRealizadoMouseEntered
+
+    private void btnAgendamentoRealizadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendamentoRealizadoMouseExited
+        Color minhaCor = new Color(239,239,239);
+        this.btnAgendamentoRealizado.setBackground(minhaCor);
+    }//GEN-LAST:event_btnAgendamentoRealizadoMouseExited
+
+    private void btnAgendamentoEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendamentoEditarMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnAgendamentoEditar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnAgendamentoEditarMouseEntered
+
+    private void btnAgendamentoEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendamentoEditarMouseExited
+          Color minhaCor = new Color(239,239,239);
+        this.btnAgendamentoEditar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnAgendamentoEditarMouseExited
+
+    private void btnAgendamentoApagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendamentoApagarMouseEntered
+         Color minhaCor = new Color(115,183,253);
+        this.btnAgendamentoApagar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnAgendamentoApagarMouseEntered
+
+    private void btnAgendamentoApagarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendamentoApagarMouseExited
+          Color minhaCor = new Color(239,239,239);
+        this.btnAgendamentoApagar.setBackground(minhaCor);
+    }//GEN-LAST:event_btnAgendamentoApagarMouseExited
 
     /*
      *  OUTRAS VARIÁVEIS

@@ -122,7 +122,7 @@ public class frmExtratoCaixa extends javax.swing.JDialog {
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Extrato do Caixa");
+        setTitle("EXTRATO DO CAIXA");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));

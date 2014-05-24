@@ -117,7 +117,7 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         lblValor.setText("Valor* :");
 
         lblDuracaoMaxima.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDuracaoMaxima.setText("Duração Máxima (min)* :");
+        lblDuracaoMaxima.setText("Duração Máxima (minutos)* :");
 
         lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDescricao.setText("Descrição:");
@@ -194,11 +194,11 @@ public class frmCadastroServicosCadastroEdicao extends javax.swing.JDialog {
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseExited(evt);
             }
         });
         btnSalvar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
