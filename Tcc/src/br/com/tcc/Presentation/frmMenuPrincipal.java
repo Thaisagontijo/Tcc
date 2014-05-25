@@ -23,12 +23,9 @@ import br.com.tcc.DomainModel.Servico;
 import br.com.tcc.DomainModel.Usuario;
 import br.com.tcc.DomainModel.Venda;
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -225,6 +222,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         tblAgenda.setModel(model);
         tblAgenda.repaint();
+        
+        if(listaAgendamentos.isEmpty()){
+            btnAgendamentoApagar.setEnabled(false);
+            btnAgendamentoEditar.setEnabled(false);
+            btnAgendamentoRealizado.setEnabled(false);
+        }
 
     }
 
@@ -349,6 +352,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         relatorioAgendamentos = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItemRelatorioCaixas = new javax.swing.JMenuItem();
         jMenuItemCompras = new javax.swing.JMenuItem();
         jMenuItemAniversariantes = new javax.swing.JMenuItem();
         jMenuItemRelatorioVendas = new javax.swing.JMenuItem();
@@ -892,6 +896,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem5);
+
+        jMenuItemRelatorioCaixas.setText("Caixas");
+        jMenuItemRelatorioCaixas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRelatorioCaixasActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemRelatorioCaixas);
 
         jMenuItemCompras.setText("Compras");
         jMenuItemCompras.addActionListener(new java.awt.event.ActionListener() {
@@ -1502,7 +1514,7 @@ try {
                 daoAgendamento.Salvar(objetoAgendamentoSelecionadoNaTabela);
 
                 listaAgendamentos.clear();
-                listaAgendamentos = daoAgendamento.Buscar(new Agendamento());
+                listaAgendamentos = daoAgendamento.Buscar(null);
                 preencheTabelaAgendamentos();
                 objetoAgendamentoSelecionadoNaTabela = null;
             }
@@ -1713,6 +1725,10 @@ try {
         this.btnAgendamentoApagar.setBackground(minhaCor);
     }//GEN-LAST:event_btnAgendamentoApagarMouseExited
 
+    private void jMenuItemRelatorioCaixasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioCaixasActionPerformed
+        
+    }//GEN-LAST:event_jMenuItemRelatorioCaixasActionPerformed
+
     /*
      *  OUTRAS VARIÁVEIS
      */
@@ -1773,6 +1789,7 @@ try {
     private javax.swing.JMenuItem jMenuItemFuncionarios;
     private javax.swing.JMenuItem jMenuItemProdutos;
     private javax.swing.JMenuItem jMenuItemRecuperarBackup;
+    private javax.swing.JMenuItem jMenuItemRelatorioCaixas;
     private javax.swing.JMenuItem jMenuItemRelatorioVendas;
     private javax.swing.JMenuItem jMenuItemServicos;
     private javax.swing.JMenuItem jMenuItemUsuarios;

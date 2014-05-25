@@ -55,7 +55,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
         model.addColumn("NOME");
         model.addColumn("VALOR (R$)");
         model.addColumn("DURAÇÃO MÁXIMA (Minutos)");
-        model.addColumn("DESCONTO MÁXIMO ");
+    
        
         
         for(Servico s : lista){
@@ -64,7 +64,7 @@ public class frmCadastroServicosLista extends javax.swing.JDialog {
             v.add(1,s.getNome());
             v.add(2,s.getValor());
             v.add(3,s.getDuracaoAproximada());
-            v.add(4,s.getDescontoMaximo() + "%");
+    
                    
             model.addRow(v);
         

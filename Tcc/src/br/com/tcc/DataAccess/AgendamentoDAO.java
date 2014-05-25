@@ -5,7 +5,6 @@
 package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Agendamento;
-import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;

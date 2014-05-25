@@ -36,6 +36,10 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
          listaVendas = vendas;
         vendasAPrazo();
         preencheTabelaCliente();
+        
+        if(listaVendas.size() == 0){
+            btnReceber.setEnabled(false);
+        }
     }
     
     public void vendasAPrazo(){
