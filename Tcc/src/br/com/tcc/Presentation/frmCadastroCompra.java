@@ -345,7 +345,28 @@ public class frmCadastroCompra extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private boolean validaDataCadastroAgenda(Date d){
+                Date dataTmp1 = new Date();
 
+                dataTmp1.setDate(Integer.parseInt((String) cbxDia.getSelectedItem()));
+                //dataTmp1.setHours(Integer.parseInt((String) cbxHora.getSelectedItem()));
+               // dataTmp1.setMinutes(Integer.parseInt((String) cbxMinuto.getSelectedItem()));
+
+                //JOptionPane.showMessageDialog(rootPane, cbxMes.getSelectedItem().toString());
+                int mes1 = Integer.parseInt(cbxMes.getSelectedItem().toString());
+                mes1--;
+                dataTmp1.setMonth(mes1);
+                dataTmp1.setYear(Integer.parseInt((String) cbxAno.getSelectedItem()));
+                
+                //ajustando a data
+                d.setYear(d.getYear()+1900);
+                //JOptionPane.showMessageDialog(rootPane, dataTmp1.getYear());
+                //JOptionPane.showMessageDialog(rootPane, dataTmp1.getMonth());
+                //JOptionPane.showMessageDialog(rootPane, dataTmp1.getDate());
+        return dataTmp1.after(d);
+                
+    
+    }
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         
@@ -365,6 +386,10 @@ public class frmCadastroCompra extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Preencha a Quantidade");
         } else if (txtVenda.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Valor da Compra");
+        }
+        
+        else if(validaDataCadastroAgenda(new Date())){
+             JOptionPane.showMessageDialog(rootPane, "Não é possível cadastrar compra com data superior à atual");
         }
         
         else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar a Compra? ",

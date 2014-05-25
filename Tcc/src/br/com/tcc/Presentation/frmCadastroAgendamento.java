@@ -11,6 +11,7 @@ import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.Servico;
 import java.awt.Color;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -223,6 +224,167 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
           
          
         }
+    }
+    
+    public void preencheDiaCombo(int valorMes){
+        if (valorMes == 0) {//JANEIRO
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 1) {//Fevereiro
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 2) {//Marco
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 3) {//Abril
+            for (int i = 1; i < 31; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 4) {//Maio
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 5) {//junho
+            for (int i = 1; i < 31; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 6) {//JULHO
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 7) {//Agosto
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 8) {//Setembro
+            for (int i = 1; i < 31; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 9) {//Outubro
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 10) {//Novembro
+            for (int i = 1; i < 31; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }else if (valorMes == 11) {//Dezembro
+            for (int i = 1; i < 32; i++) {
+                String tmp;
+                if (i <= 9) {
+                    tmp = "0" + i;
+                } else {
+                    tmp = String.valueOf(i);
+                }
+                cbxDia.addItem(tmp);
+            }
+        }
+    }
+    
+    /**
+     *
+     * @param valorMes
+     * @return
+     */
+    public boolean verificaData(int valorMes){
+        if (valorMes == 2) { //Fevereiro
+            boolean leapYear = new GregorianCalendar().isLeapYear(new Date().getYear() + 1900);
+            if((!leapYear) && cbxDia.getSelectedIndex() >=29){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Fevereiro só possui 28 dias !");
+                return true;
+            }
+            
+        }else if (valorMes == 4 ) {//Abril
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Abril só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 6) {//junho
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Junho só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 9) {//Setembro
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Setembro só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 11) {//Novembro
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Novembro só possui 30 dias !");
+                return true;
+            }
+        }
+        return false;
     }
     
     
@@ -669,131 +831,49 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
     
     }
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-                
-        if(validaDataCadastroAgenda(new Date())){
-             JOptionPane.showMessageDialog(rootPane, "Não é possível o agendamento comm Data/Hora retroativas à atual");
-        }else
 
-        if(cbxAno.getSelectedIndex() == 0  || cbxDia.getSelectedIndex() == 0 || cbxCliente.getSelectedIndex() ==0 ||
-                cbxHora.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0 || cbxMinuto.getSelectedIndex() == 0 || listaServicos.size() == 0){
+        if (cbxAno.getSelectedIndex() == 0 || cbxDia.getSelectedIndex() == 0 || cbxCliente.getSelectedIndex() == 0
+                || cbxHora.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0 || cbxMinuto.getSelectedIndex() == 0 || listaServicos.size() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Todos Os campos devem ser preenchidos!");
-        
-        }else {
 
-            if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
+        } else if (verificaData(cbxMes.getSelectedIndex())) {
+            //nao faz nada
 
+        } else if (validaDataCadastroAgenda(new Date())) {
+            JOptionPane.showMessageDialog(rootPane, "Não é possível o agendamento com Data/Hora retroativas à atual");
+        } else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
 
-                Agendamento agendamento = new Agendamento();
-                agendamento.setCliente((Cliente) cbxCliente.getSelectedItem());
-                agendamento.setObservacao(txtObservacao.getText());
-                agendamento.setServicos(listaServicos);
+            Agendamento agendamento = new Agendamento();
+            agendamento.setCliente((Cliente) cbxCliente.getSelectedItem());
+            agendamento.setObservacao(txtObservacao.getText());
+            agendamento.setServicos(listaServicos);
 
-                Date dataTmp = new Date();
+            Date dataTmp = new Date();
 
-                dataTmp.setDate(Integer.parseInt((String) cbxDia.getSelectedItem()));
-                dataTmp.setHours(Integer.parseInt((String) cbxHora.getSelectedItem()));
-                dataTmp.setMinutes(Integer.parseInt((String) cbxMinuto.getSelectedItem()));
+            dataTmp.setDate(Integer.parseInt((String) cbxDia.getSelectedItem()));
+            dataTmp.setHours(Integer.parseInt((String) cbxHora.getSelectedItem()));
+            dataTmp.setMinutes(Integer.parseInt((String) cbxMinuto.getSelectedItem()));
 
-                //JOptionPane.showMessageDialog(rootPane, cbxMes.getSelectedItem().toString());
-                int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
-                mes--;
-                dataTmp.setMonth(mes);
-                dataTmp.setYear(Integer.parseInt((String) cbxAno.getSelectedItem()));
+            //JOptionPane.showMessageDialog(rootPane, cbxMes.getSelectedItem().toString());
+            int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
+            mes--;
+            dataTmp.setMonth(mes);
+            dataTmp.setYear(Integer.parseInt((String) cbxAno.getSelectedItem()));
 
-                agendamento.setDataHora(dataTmp);
-                agendamento.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
-                //  agendamento.setRealizado(false);
-                if (janelaPai.daoAgendamento.Salvar(agendamento)) {
-                    JOptionPane.showMessageDialog(rootPane, "Agendamento cadastrado com sucesso !");
-                    //janelaPai.listaAgendamentos = janelaPai.daoAgendamento.Buscar(agendamento);
-                    janelaPai.listaAgendamentos.add(agendamento);
-                    janelaPai.preencheTabelaAgendamentos();
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar agendamento !");
-                }
+            agendamento.setDataHora(dataTmp);
+            agendamento.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+            //  agendamento.setRealizado(false);
+            if (janelaPai.daoAgendamento.Salvar(agendamento)) {
+                JOptionPane.showMessageDialog(rootPane, "Agendamento cadastrado com sucesso !");
+                //janelaPai.listaAgendamentos = janelaPai.daoAgendamento.Buscar(agendamento);
+                janelaPai.listaAgendamentos.add(agendamento);
+                janelaPai.preencheTabelaAgendamentos();
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar agendamento !");
             }
-
         }
-        
-        
-        
-        //JOptionPane.showMessageDialog(rootPane, "mes "+mes);
-        //JOptionPane.showMessageDialog(rootPane, "ano "+ano);
-/*               
-        /*Botão salvar
-        
-        if(txtQuantidade.getText().isEmpty() || txtDescricao.getText().isEmpty() 
-              ||  txtNome.getText().isEmpty() || 
-                txtPrecoCusto.getText().isEmpty() || (cbxTipoProduto.getSelectedIndex() == 0) || (cbxCliente.getSelectedIndex() == 0) ){
-           JOptionPane.showMessageDialog(rootPane, "Todos os Campos devem ser Preenchidos !");
-       }else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Produto ",
-               "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
-           
-            Produto produto = new Produto();
-            janelaPai.dao = new ProdutoDAO();
 
-            /*CAPTURANDO ENTRADA DE DADOS DO JDIALOG E VALIDANDO*/
-            
-        /*
-            int ok =0; //variavel de validação
-            
-            produto.setDescricao(txtDescricao.getText());
-            
-            try{
-                produto.setQtdEstoque(Integer.parseInt(txtQuantidade.getText()));
-                ok++;
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Quantidade Inválida !");
-            }
-            
-            
-          
-            
-            try{
-                produto.setPrecoCusto(Float.parseFloat(txtPrecoCusto.getText()));
-                ok++;
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, "Preço de Custo Inválido !");
-            }
-            
-            produto.setNome(txtNome.getText());
-            
-            /*
-             
-             * falta pegar  vendedor e o tipo de produto
-             
-             
-        
-            Fornecedor fornecedor;
-            fornecedor = (Fornecedor) cbxCliente.getSelectedItem();
-            
-            TipoProduto tipoProduto;
-            tipoProduto = (TipoProduto) cbxTipoProduto.getSelectedItem();
-            
-            produto.setFornecedor(fornecedor);
-            produto.setTipoProduto(tipoProduto);
-            
-            if(ok == 3){//se a validacao está correta
-
-                if(janelaPai.dao.Salvar(produto)){
-                    JOptionPane.showMessageDialog(rootPane, "Serviço Salvo com Sucesso !");
-                    txtQuantidade.setText(""); txtDescricao.setText("");
-                  txtNome.setText(""); txtPrecoCusto.setText("");
-                    janelaPai.lista.clear();
-                    janelaPai.lista = janelaPai.dao.ListarTodos();
-                    janelaPai.preencheTabela();
-                    this.dispose();
-
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o serviço !");
-                }
-            }
-       
-       }
-       */
-  
-        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

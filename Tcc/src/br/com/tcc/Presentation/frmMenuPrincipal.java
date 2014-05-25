@@ -222,11 +222,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         tblAgenda.setModel(model);
         tblAgenda.repaint();
-        
-        if(listaAgendamentos.isEmpty()){
+
+        if (listaAgendamentos.isEmpty()) {
             btnAgendamentoApagar.setEnabled(false);
             btnAgendamentoEditar.setEnabled(false);
             btnAgendamentoRealizado.setEnabled(false);
+        } else {
+            btnAgendamentoApagar.setEnabled(true);
+            btnAgendamentoEditar.setEnabled(true);
+            btnAgendamentoRealizado.setEnabled(true);
         }
 
     }
