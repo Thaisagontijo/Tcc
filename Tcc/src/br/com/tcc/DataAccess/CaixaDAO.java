@@ -42,9 +42,12 @@ public class CaixaDAO extends DAOGenerico<Caixa>{
      public List<Caixa> ListarTodos(){
         EntityTransaction transacao = manager.getTransaction();
         try{
+           
             transacao.begin();
+           //  manager.flush();
             String consulta = "Select s from Caixa s";
             
+                        
              Query query = manager.createQuery(consulta);
              
              transacao.commit();

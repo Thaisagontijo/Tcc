@@ -33,9 +33,12 @@ public abstract class DAOGenerico<T> {
          EntityTransaction transacao = manager.getTransaction();
         try{
             //salva o objeto
+          // manager.flush(); 
             transacao.begin();
             manager.merge(obj);
+             
             transacao.commit();
+           
         //    manager.flush();
             return true;
         }catch (Exception ex){
@@ -44,6 +47,11 @@ public abstract class DAOGenerico<T> {
             
         return false;
         }
+    }
+    
+    public void sincronizar(){
+        manager.flush();
+        
     }
     
           

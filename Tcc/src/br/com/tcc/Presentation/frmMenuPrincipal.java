@@ -1145,7 +1145,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
 
-       // CaixaDAO daoCaixa = new CaixaDAO();
+//       CaixaDAO daoCaixa = new CaixaDAO();
+  //     daoCaixa.sincronizar();//verificar
     //    daoDeposito = new DepositoDAO();
 
         caixa.setDataFechamento(new Date());
@@ -1730,7 +1731,9 @@ try {
     }//GEN-LAST:event_btnAgendamentoApagarMouseExited
 
     private void jMenuItemRelatorioCaixasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioCaixasActionPerformed
-        
+        frmSelecionaOpcaoRelatorioCaixa janela = new frmSelecionaOpcaoRelatorioCaixa(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(this);
+        janela.setVisible(true);
     }//GEN-LAST:event_jMenuItemRelatorioCaixasActionPerformed
 
     /*

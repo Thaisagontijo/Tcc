@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -61,6 +62,9 @@ public class Caixa implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "caixa",targetEntity = Retirada.class)
     private List<Retirada> retiradas;
+    
+    @Transient
+    private float valorTotal;
 
     public Long getId() {
         return id;
@@ -181,6 +185,16 @@ public class Caixa implements Serializable {
        */
         return valor;
     }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+    
+    
 
     @Override
     public int hashCode() {

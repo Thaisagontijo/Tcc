@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  *
@@ -81,6 +80,10 @@ public class CaixaDAO2 {
             comando.setLong(2, obj.getId());
             
             comando.execute();
+            
+            //conexao.
+//            comando.getConnection().commit();
+            conexao.fechar();//verificar
             
         }catch(SQLException ex){
             ex.printStackTrace();
