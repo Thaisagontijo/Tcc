@@ -16,6 +16,7 @@ import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Produto;
 import java.awt.Color;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -146,6 +147,45 @@ public class frmCadastroCompra extends javax.swing.JDialog {
          cbxAno.setSelectedIndex(1);
          
         
+    }
+    
+    
+    
+    /**
+     *
+     * @param valorMes
+     * @return
+     */
+    public boolean verificaData(int valorMes){
+        if (valorMes == 2) { //Fevereiro
+            boolean leapYear = new GregorianCalendar().isLeapYear(new Date().getYear() + 1900);
+            if((!leapYear) && cbxDia.getSelectedIndex() >=29){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Fevereiro só possui 28 dias !");
+                return true;
+            }
+            
+        }else if (valorMes == 4 ) {//Abril
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Abril só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 6) {//junho
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Junho só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 9) {//Setembro
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Setembro só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 11) {//Novembro
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Novembro só possui 30 dias !");
+                return true;
+            }
+        }
+        return false;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -386,6 +426,8 @@ private boolean validaDataCadastroAgenda(Date d){
             JOptionPane.showMessageDialog(rootPane, "Preencha a Quantidade");
         } else if (txtVenda.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Valor da Compra");
+        }else if (verificaData(cbxMes.getSelectedIndex())){
+            //nao faz nada
         }
         
         else if(validaDataCadastroAgenda(new Date())){

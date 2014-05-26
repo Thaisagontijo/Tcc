@@ -12,6 +12,7 @@ import br.com.tcc.DomainModel.Estado;
 import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -443,7 +444,37 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     }
     
     
-    
+    public boolean verificaData(int valorMes){
+        if (valorMes == 2) { //Fevereiro
+            boolean leapYear = new GregorianCalendar().isLeapYear(new Date().getYear() + 1900);
+            if((!leapYear) && cbxDia.getSelectedIndex() >=29){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Fevereiro só possui 28 dias !");
+                return true;
+            }
+            
+        }else if (valorMes == 4 ) {//Abril
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Abril só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 6) {//junho
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Junho só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 9) {//Setembro
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Setembro só possui 30 dias !");
+                return true;
+            }
+        }else if (valorMes == 11) {//Novembro
+            if(cbxDia.getSelectedIndex() >= 31){
+                JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Novembro só possui 30 dias !");
+                return true;
+            }
+        }
+        return false;
+    }
     
     
     
@@ -919,7 +950,15 @@ public class frmCadastroCliente extends javax.swing.JDialog {
          }else if(txtTelefone.getText().isEmpty() && txtCelular.getText().isEmpty()){
          
          JOptionPane.showMessageDialog(txtComplemento, "Pelo Menos um telefone é requirido");
-         */ else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
+         */ 
+        
+        else if (verificaData(cbxMes.getSelectedIndex())){
+            //nao faz nada
+        }
+        
+        
+        
+        else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
                 "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
 
             Cliente Cliente = null;
