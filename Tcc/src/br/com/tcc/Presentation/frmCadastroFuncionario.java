@@ -797,6 +797,9 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         estadoSelecionado = cbxEstado.getSelectedIndex();
         
         cbxCidade.removeAllItems();
+        Cidade tmp = new Cidade();
+        tmp.setNome("Selecione");
+        cbxCidade.addItem(tmp);
         for(Cidade c : listaCidades){
              if(c.getIdEstado() == estadoSelecionado)
                 cbxCidade.addItem(c);

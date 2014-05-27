@@ -11,7 +11,7 @@ package br.com.tcc.DomainModel;
 public class Estado {
     
     public Estado(){
-        this.estados = new String[]{"Selecione o Estado", "Acre", "Alagoas", "Amazonas", "Amapa", "Bahia",
+        this.estados = new String[]{"Selecione", "Acre", "Alagoas", "Amazonas", "Amapa", "Bahia",
             "Ceara", "Distrito Federal", "Espirito Santo", "Goias", "Maranhao", "Minas Gerais", 
             "Mato Grosso do Sul", "Mato Grosso", "Para", "Paraiba", "Pernambuco", "Piaui", "Parana", 
             "Rio de Janeiro", "Rio Grande do Norte", "Rondonia", "Roraima", "Rio Grande do Sul", "Santa Catarina", 

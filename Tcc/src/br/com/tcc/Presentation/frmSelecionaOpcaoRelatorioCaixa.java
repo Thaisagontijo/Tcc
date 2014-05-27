@@ -47,9 +47,7 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnTodos = new javax.swing.JButton();
-        btnProduto = new javax.swing.JButton();
         btnFornecedor = new javax.swing.JButton();
-        btnTipoProduto = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -71,24 +69,10 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
             }
         });
 
-        btnProduto.setText("Por Produto");
-        btnProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProdutoActionPerformed(evt);
-            }
-        });
-
         btnFornecedor.setText("Por Funcionário");
         btnFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFornecedorActionPerformed(evt);
-            }
-        });
-
-        btnTipoProduto.setText("Por Tipo deProduto");
-        btnTipoProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTipoProdutoActionPerformed(evt);
             }
         });
 
@@ -100,34 +84,29 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnProduto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFornecedor)
-                    .addComponent(btnTipoProduto))
-                .addGap(55, 55, 55))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(btnFornecedor))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(204, 204, 204)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(btnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(73, 209, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnFornecedor))
-                .addGap(31, 31, 31)
+                .addGap(66, 66, 66)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(btnTodos)
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProduto)
-                    .addComponent(btnTipoProduto))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnFornecedor)
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("Cancelar");
@@ -206,52 +185,6 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnTodosActionPerformed
 
-    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-
-        try {
-            //Pegando o id do Produto
-
-            String produto = JOptionPane.showInputDialog("Insira o Id do Produto");
-
-            //Arquivo do Relatorio
-            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioCompras.jasper");
-            //Lista a ser exibida no relatorio
-
-            CompraDAO compraDao = new CompraDAO();
-
-            List<Compra> compras = compraDao.ListarTodos();
-            List<Compra> comprasFiltro = new LinkedList<>();
-            for (Compra c : compras) {
-                if (c.getProduto().getId() == Long.parseLong(produto)) {
-                    comprasFiltro.add(c);
-                }
-            }
-
-            if (!comprasFiltro.isEmpty()) {
-
-                //Fonte de dados
-                JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(comprasFiltro);
-
-                //Gera o Relatorio
-                JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
-
-                //Exibe o Relatorio
-                JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
-                this.dispose();
-                jasperViewer.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Produto não encontrado !");
-            }
-
-        } catch (JRException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(rootPane, "Id inválido !");
-        }
-    }//GEN-LAST:event_btnProdutoActionPerformed
-
     private void btnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorActionPerformed
 
         try {
@@ -300,51 +233,6 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnFornecedorActionPerformed
 
-    private void btnTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipoProdutoActionPerformed
-         try {
-//Pegando o id do Produto
-
-            String fornecedor = JOptionPane.showInputDialog("Insira o Id do Tipo de Produto");
-
-            //Arquivo do Relatorio
-            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioCompras.jasper");
-            //Lista a ser exibida no relatorio
-
-            CompraDAO comprasDAO = new CompraDAO();
-
-            List<Compra> compras = comprasDAO.ListarTodos();
-            List<Compra> comprasFiltro = new LinkedList<>();
-            for (Compra c : compras) {
-                if (c.getProduto().getTipoProduto().getId() == Long.parseLong(fornecedor)) {
-                    comprasFiltro.add(c);
-                }
-            }
-
-            if (!comprasFiltro.isEmpty()) {
-
-                //Fonte de dados
-                JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(comprasFiltro);
-
-                //Gera o Relatorio
-                JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
-
-                //Exibe o Relatorio
-                JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
-                this.dispose();
-                jasperViewer.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Tipo de Produto não encontrado !");
-            }
-
-        } catch (JRException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(rootPane, "Id inválido !");
-        }
-    }//GEN-LAST:event_btnTipoProdutoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -390,8 +278,6 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnFornecedor;
-    private javax.swing.JButton btnProduto;
-    private javax.swing.JButton btnTipoProduto;
     private javax.swing.JButton btnTodos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
