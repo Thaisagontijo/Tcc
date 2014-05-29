@@ -396,7 +396,7 @@ private boolean validaDataCadastroAgenda(Date d){
                 int mes1 = Integer.parseInt(cbxMes.getSelectedItem().toString());
                 mes1--;
                 dataTmp1.setMonth(mes1);
-                dataTmp1.setYear(Integer.parseInt((String) cbxAno.getSelectedItem()));
+                dataTmp1.setYear( cbxAno.getSelectedIndex());
                 
                 //ajustando a data
                 d.setYear(d.getYear()+1900);
@@ -407,6 +407,7 @@ private boolean validaDataCadastroAgenda(Date d){
                 
     
     }
+
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         
@@ -473,7 +474,7 @@ private boolean validaDataCadastroAgenda(Date d){
                     ProdutoDAO daoProduto = new ProdutoDAO();
                     daoProduto.AtualizarEstoque(produto, compra.getQuantidade());
                     JOptionPane.showMessageDialog(rootPane,"Compra Salvo com Sucesso!");
-                    
+                    janelaPai.listaCompra = dao.ListarTodos();
                     janelaPai.preencheTabela();
                     this.dispose();
                     

@@ -1221,7 +1221,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "BeatuySystem Todos os direitos reservados");
+        JOptionPane.showMessageDialog(rootPane, "BeatuySystem 1.0 © Todos os direitos reservados ");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosActionPerformed
@@ -1661,7 +1661,7 @@ try {
                     //    bck = new File(caminhoBackup+"/Backup "+dia+"_"+mes+"_"+ano+".sql");  
                 //    }  
                 Runtime.getRuntime().exec("cmd /c mysql -u root  beautysystem < " + bck.getAbsoluteFile());
-                JOptionPane.showMessageDialog(rootPane, "Restauração Evetuada com sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Restauração Efetuada com sucesso!");
                 System.out.print(bck.getAbsoluteFile());
             }
         } catch (IOException ex) {

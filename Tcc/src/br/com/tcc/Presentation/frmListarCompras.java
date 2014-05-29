@@ -32,7 +32,7 @@ public class frmListarCompras extends javax.swing.JDialog {
      */
     private frmMenuPrincipal janelaPai;
     private boolean descricao;
-    private List<Compra> listaCompra;
+    protected List<Compra> listaCompra;
     public frmListarCompras(java.awt.Frame parent, boolean modal, frmMenuPrincipal janelaPai, boolean descricao) {
         super(parent, modal);
         initComponents();

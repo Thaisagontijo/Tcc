@@ -941,24 +941,9 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Preencha a Cidade");
         } else if ((txtCelular.getText().trim().length() <= 9) && txtTelefone.getText().trim().length() <= 9) {
             JOptionPane.showMessageDialog(rootPane, "Preencha pelo menos um telefone");
-        } /*
-         if(txtNome.getText().isEmpty() || (cbxSexo.getSelectedIndex()== 0) || cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() ==0 ||
-         cbxAno.getSelectedIndex() == 0||  txtCpf.getText().isEmpty() || txtCelular.getText().isEmpty()||txtRg.getText().isEmpty() || txtRua.getText().isEmpty() || 
-         txtNumero.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCep.getText().isEmpty() ){
-           
-         JOptionPane.showMessageDialog(rootPane, "Todos os Campos obrigatórios devem ser Preenchidos!");
-         }else if(txtTelefone.getText().isEmpty() && txtCelular.getText().isEmpty()){
-         
-         JOptionPane.showMessageDialog(txtComplemento, "Pelo Menos um telefone é requirido");
-         */ 
-        
-        else if (verificaData(cbxMes.getSelectedIndex())){
+        } else if (verificaData(cbxMes.getSelectedIndex())) {
             //nao faz nada
-        }
-        
-        
-        
-        else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
+        } else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente?",
                 "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
 
             Cliente Cliente = null;
@@ -984,19 +969,6 @@ public class frmCadastroCliente extends javax.swing.JDialog {
 
             Cliente.setNome(txtNome.getText());
 
-            /*
-             só conter letras
-            
-             String cliente = clienteTextField.getText();  
-             for(char c : cliente.toCharArray())  
-             {  
-             if (c.isDigit())  
-             {  
-             System.out.println("O campo cliente deve conter somente letras!");  
-             }  
-             }  
-            
-             */
             Date dataCadastro = new Date();
             Date dataNascimento = new Date();
             Cliente.setDataCadastro(dataCadastro);
@@ -1032,53 +1004,22 @@ public class frmCadastroCliente extends javax.swing.JDialog {
             Cliente.setCelular(txtCelular.getText());
             Cliente.setEnderecoRua(txtRua.getText());
             Cliente.setTelefone(txtTelefone.getText());
-/*
-            boolean validaVerificacaoIgualCpf = false;
-            if (ok == 2) {//se a validacao está correta
-                if (!cadastro) {
-                    if (janelaPai.objSelecionadoNaTabela.getCpf().equals(Cliente.getCpf())) {
-                        validaVerificacaoIgualCpf = true;//mesmo cliente sinal q ta editando
-                    }
-                }
 
-                if (validaVerificacaoIgualCpf) {
-            */
-                    if (janelaPai.dao.Salvar(Cliente)) {
-                        JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
-                        janelaPai.lista.clear();
-                        janelaPai.lista = janelaPai.dao.ListarTodos();
-                        janelaPai.preencheTabela();
-                        janelaPai.objSelecionadoNaTabela = null;
-                        janelaPai.janelaPai.preencheComboClientes();
-                        this.dispose();
+            if(ok == 2){
+                if (janelaPai.dao.Salvar(Cliente)) {
+                JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
+                janelaPai.lista.clear();
+                janelaPai.lista = janelaPai.dao.ListarTodos();
+                janelaPai.preencheTabela();
+                janelaPai.objSelecionadoNaTabela = null;
+                janelaPai.janelaPai.preencheComboClientes();
+                this.dispose();
 
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
-                    }
-/*
-                } else {
-                    if (!janelaPai.dao.VefificarExiste(Cliente)) {//se o cliente nao existir
-
-                        if (janelaPai.dao.Salvar(Cliente)) {
-                            JOptionPane.showMessageDialog(rootPane, "Cliente Salvo com Sucesso!");
-                            janelaPai.lista.clear();
-                            janelaPai.lista = janelaPai.dao.ListarTodos();
-                            janelaPai.preencheTabela();
-                            janelaPai.objSelecionadoNaTabela = null;
-                            janelaPai.janelaPai.preencheComboClientes();
-                            this.dispose();
-
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
-                        }
-
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Cliente já cadastrado !");
-                    }
-                }
-        */
-
-     //    }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao salvar o Cliente!");
+            }
+            }
+            
 
         }
 

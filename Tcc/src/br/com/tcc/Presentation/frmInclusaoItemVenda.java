@@ -402,73 +402,87 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxProdutosServicosItemStateChanged
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-       if(opcaoRadioButton == 1){
-            ItemVendaServico servico = new ItemVendaServico();
-            servico.setFuncionario((Funcionario)cbxProfissional.getSelectedItem());
+        if (opcaoRadioButton == 1) {
+           if (cbxProdutosServicos.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione o serviço!");
+            } else if (cbxProfissional.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione o Profissional do serviço!");
+            } else {
+                ItemVendaServico servico = new ItemVendaServico();
+                servico.setFuncionario((Funcionario) cbxProfissional.getSelectedItem());
+
+                //calculando o valor do desconto
+                try {
+                    float valor = 0;
+
+                    if (Float.parseFloat(txtDesconto.getText()) > 0) {
+                        valor = tmpServico.getValor() * (Float.parseFloat(txtDesconto.getText()) / 100);
+                        valor = tmpServico.getValor() - valor;
+                    } else {
+                        valor = tmpServico.getValor();
+                    }
+
+                    servico.setValor(valor);
+
+                    servico.setServico(tmpServico);
+                    //conferir
+                    servico.setVenda(janelaPai.novaVenda);
+
+                    janelaPai.novaVenda.addServico(servico);
+                    janelaPai.preencheTabelaVendas();
+                    this.dispose();
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
+                    txtDesconto.setText("0");
+                }
+
+            }
+
+            // this.dispose();
+        } else if (opcaoRadioButton == 2) {
             
-            
-            
-            //calculando o valor do desconto
-           try {
-               float valor = 0;
-               
-               if(Float.parseFloat(txtDesconto.getText()) > 0){
-                   valor = tmpServico.getValor() * (Float.parseFloat(txtDesconto.getText()) / 100);
-                   valor = tmpServico.getValor() - valor;
-               }else{
-                   valor = tmpServico.getValor();
-               }
-              
-               servico.setValor(valor);
-
-               servico.setServico(tmpServico);
-               //conferir
-               servico.setVenda(janelaPai.novaVenda);
-
-               janelaPai.novaVenda.addServico(servico);
-               janelaPai.preencheTabelaVendas();
-
-           } catch (NumberFormatException ex) {
-               JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
-           }
-            
-           this.dispose();
-       }else if(opcaoRadioButton == 2){
-           
-           //Verificando disponibilidade no estoque
-           
-           if (tmpProduto.getQtdEstoque() < Integer.parseInt(spnQuantidade.getValue().toString())) {
-               JOptionPane.showMessageDialog(rootPane, "A quantidade do produto é maior do que o valor de estque !");
-
-           }else if(Integer.parseInt(spnQuantidade.getValue().toString()) < 1){
-               JOptionPane.showMessageDialog(rootPane, "A quantidade do produto tem que ser maior que um !");
-           } else {
-               
-               ItemVendaProduto produto = new ItemVendaProduto();
-               float valor = 0;
-               float valorTotal = 0;
-               
-               
-               
-               
-               valorTotal = Integer.parseInt(spnQuantidade.getValue().toString()) * tmpProduto.getPrecoVenda();
-               
-               if(Float.parseFloat(txtDesconto.getText()) > 0){
-                   valor = valorTotal * (Float.parseFloat(txtDesconto.getText()) / 100);
-                   valorTotal = valorTotal - valor;
-               }
-               
-               
-              produto.setValor(valorTotal);
-               produto.setProduto(tmpProduto);
-               produto.setVenda(janelaPai.novaVenda);
-
-               produto.setQtd(Integer.parseInt(spnQuantidade.getValue().toString()));
-               janelaPai.novaVenda.addProduto(produto);
-               janelaPai.preencheTabelaVendas();
-               this.dispose();
-           }
-       }
+            if (cbxProdutosServicos.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Selecione o produto!");
+            } else if (tmpProduto.getQtdEstoque() < Integer.parseInt(spnQuantidade.getValue().toString())) { //Verificando disponibilidade no estoque
+                JOptionPane.showMessageDialog(rootPane, "A quantidade do produto é maior do que o valor de estque !");
+                
+            } else if (Integer.parseInt(spnQuantidade.getValue().toString()) < 1) {
+                JOptionPane.showMessageDialog(rootPane, "A quantidade do produto tem que ser maior que um !");
+            } else {
+                
+                ItemVendaProduto produto = new ItemVendaProduto();
+                float valor = 0;
+                float valorTotal = 0;
+                
+                try {
+                    valorTotal = Integer.parseInt(spnQuantidade.getValue().toString()) * tmpProduto.getPrecoVenda();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Quantidade Inválido !");
+                    spnQuantidade.setValue(new Integer(1));
+                }
+                
+                try {
+                    if (Float.parseFloat(txtDesconto.getText()) > 0) {
+                        valor = valorTotal * (Float.parseFloat(txtDesconto.getText()) / 100);
+                        valorTotal = valorTotal - valor;
+                    }
+                    
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Desconto Inválido !");
+                    txtDesconto.setText("0");
+                }
+                
+                produto.setValor(valorTotal);
+                produto.setProduto(tmpProduto);
+                produto.setVenda(janelaPai.novaVenda);
+                
+                produto.setQtd(Integer.parseInt(spnQuantidade.getValue().toString()));
+                janelaPai.novaVenda.addProduto(produto);
+                janelaPai.preencheTabelaVendas();
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
