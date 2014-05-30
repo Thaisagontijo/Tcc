@@ -816,7 +816,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAgendamentoApagar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Apagar"/>
+                <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAgendamentoApagarMouseEntered"/>

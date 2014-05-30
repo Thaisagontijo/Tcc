@@ -33,6 +33,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
      */
     private frmMenuPrincipal janelaPai;
     private boolean descricao;
+    private boolean cadastro;
     public frmCadastroAgendamento(java.awt.Frame parent, boolean modal, frmMenuPrincipal janelaPai, boolean cadastro,boolean descricao) {
        super(parent, modal);
         
@@ -43,6 +44,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
        
         this.janelaPai = janelaPai;
         this.descricao = descricao;
+        this.cadastro = cadastro;
         
         Date dataTmp = new Date();
         listaClientes = new LinkedList<>();
@@ -215,7 +217,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
             cbxAno.setSelectedItem((janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getYear()) );
             
             cbxCliente.setSelectedItem(janelaPai.objetoAgendamentoSelecionadoNaTabela.getCliente());
-            cbxHora.setSelectedItem("0"+String.valueOf(janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getHours()));
+            cbxHora.setSelectedItem(String.valueOf(janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getHours()));
             cbxMinuto.setSelectedItem(String.valueOf(janelaPai.objetoAgendamentoSelecionadoNaTabela.getDataHora().getMinutes()));
             
             listaServicos = janelaPai.objetoAgendamentoSelecionadoNaTabela.getServicos();
@@ -843,7 +845,13 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Não é possível o agendamento com Data/Hora retroativas à atual");
         } else if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
 
-            Agendamento agendamento = new Agendamento();
+            Agendamento agendamento = null;
+            
+            if(cadastro){
+                agendamento = new Agendamento();
+            }else{
+                agendamento = janelaPai.objetoAgendamentoSelecionadoNaTabela;
+            }
             agendamento.setCliente((Cliente) cbxCliente.getSelectedItem());
             agendamento.setObservacao(txtObservacao.getText());
             agendamento.setServicos(listaServicos);
@@ -866,7 +874,7 @@ public class frmCadastroAgendamento extends javax.swing.JDialog {
             if (janelaPai.daoAgendamento.Salvar(agendamento)) {
                 JOptionPane.showMessageDialog(rootPane, "Agendamento cadastrado com sucesso !");
                 //janelaPai.listaAgendamentos = janelaPai.daoAgendamento.Buscar(agendamento);
-                janelaPai.listaAgendamentos.add(agendamento);
+                janelaPai.listaAgendamentos = janelaPai.daoAgendamento.Buscar(null);
                 janelaPai.preencheTabelaAgendamentos();
                 this.dispose();
             } else {

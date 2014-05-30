@@ -50,7 +50,7 @@ public abstract class DAOGenerico<T> {
     }
     
     public void sincronizar(){
-        manager.flush();
+      //  manager.flush();
         
     }
     

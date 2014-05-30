@@ -722,7 +722,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnAgendamentoApagar.setText("Apagar");
+        btnAgendamentoApagar.setText("Excluir");
         btnAgendamentoApagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAgendamentoApagarMouseEntered(evt);
@@ -1514,12 +1514,12 @@ try {
                     + " Marcar como realizado o Agendamento?", "Confirmação", JOptionPane.OK_CANCEL_OPTION) == 0) {
 
                 objetoAgendamentoSelecionadoNaTabela.setRealizado(true);
-                AgendamentoDAO daoAgendamento = new AgendamentoDAO();
+                AgendamentoDAO dao = new AgendamentoDAO();
 
-                daoAgendamento.Salvar(objetoAgendamentoSelecionadoNaTabela);
+                dao.Salvar(objetoAgendamentoSelecionadoNaTabela);
 
                 listaAgendamentos.clear();
-                listaAgendamentos = daoAgendamento.Buscar(null);
+                listaAgendamentos = dao.Buscar(null);
                 preencheTabelaAgendamentos();
                 objetoAgendamentoSelecionadoNaTabela = null;
             }
@@ -1548,8 +1548,8 @@ try {
                 objetoAgendamentoSelecionadoNaTabela.setAtivo(false);
                 dao.Apagar(objetoAgendamentoSelecionadoNaTabela);
                 listaAgendamentos.clear();
-                listaAgendamentos = dao.Buscar(new Agendamento());
-                preencheTabelaAgendamentos();
+                listaAgendamentos = dao.Buscar(null);
+                //preencheTabelaAgendamentos();
                 objetoAgendamentoSelecionadoNaTabela = null;
                 preencheTabelaAgendamentos();
 

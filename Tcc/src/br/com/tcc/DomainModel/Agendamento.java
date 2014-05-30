@@ -126,18 +126,15 @@ public class Agendamento implements Serializable {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.cliente);
-        hash = 31 * hash + Objects.hashCode(this.funcionario);
-        hash = 31 * hash + Objects.hashCode(this.servicos);
-        hash = 31 * hash + Objects.hashCode(this.dataHora);
-        hash = 31 * hash + Objects.hashCode(this.Observacao);
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.cliente);
+        hash = 37 * hash + Objects.hashCode(this.funcionario);
+        hash = 37 * hash + (this.realizado ? 1 : 0);
+        hash = 37 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -150,23 +147,29 @@ public class Agendamento implements Serializable {
             return false;
         }
         final Agendamento other = (Agendamento) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
         if (!Objects.equals(this.funcionario, other.funcionario)) {
             return false;
         }
-        if (!Objects.equals(this.servicos, other.servicos)) {
+        if (this.realizado != other.realizado) {
             return false;
         }
-        if (!Objects.equals(this.dataHora, other.dataHora)) {
-            return false;
-        }
-        if (!Objects.equals(this.Observacao, other.Observacao)) {
+        if (this.ativo != other.ativo) {
             return false;
         }
         return true;
     }
+
+  
+    
+    
+
+    
 
     @Override
     public String toString() {

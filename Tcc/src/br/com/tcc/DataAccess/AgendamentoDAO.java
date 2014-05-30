@@ -58,6 +58,7 @@ public class AgendamentoDAO extends DAOGenerico<Agendamento>{
        EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
+             //String consulta = "Update Cliente s set s.ativo = 0 WHERE s.id ="+obj.getId();
             String consulta = "Update Agendamento s set s.ativo = 0 WHERE s.id ="+obj.getId();
             
              Query query = manager.createQuery(consulta);

@@ -306,19 +306,19 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
         /*
             PEGANDO VALORES DA PRIMERA DATA
         */
-        data1.setDate(Integer.parseInt(cbxDia.getSelectedItem().toString()));
-        data1.setMonth(Integer.parseInt((cbxMes.getSelectedItem().toString()))- 1);
-        data1.setYear(Integer.parseInt((cbxAno.getSelectedItem().toString())));
+        data1.setDate(cbxDia.getSelectedIndex());
+        data1.setMonth(cbxMes.getSelectedIndex() - 1);
+        data1.setYear(Integer.parseInt(cbxAno.getSelectedItem().toString()));
         
         /*
             PEGANDO VALORES DA SEGUNDA DATA
         */
-        data2.setDate(Integer.parseInt(cbxDia1.getSelectedItem().toString()));
-        data2.setMonth(Integer.parseInt((cbxMes1.getSelectedItem().toString()))- 1);
-        data2.setYear(Integer.parseInt((cbxAno1.getSelectedItem().toString())));
+        data2.setDate(cbxDia1.getSelectedIndex());
+        data2.setMonth(cbxMes1.getSelectedIndex()- 1);
+        data2.setYear(Integer.parseInt(cbxAno1.getSelectedItem().toString() ));
         
         CompraDAO tmpComprasDAO = new CompraDAO();
-        List<Compra> compras = new LinkedList<>();
+        List<Compra> compras;
         List<Compra> comprasFiltro = new LinkedList<>();
         
         compras = tmpComprasDAO.ListarTodos();
@@ -328,6 +328,10 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
                 comprasFiltro.add(c);
             }
         }
+        JOptionPane.showMessageDialog(rootPane, "ano sistema "+new Date().getYear());
+        JOptionPane.showMessageDialog(rootPane, "mes sistema "+new Date().getMonth());
+        JOptionPane.showMessageDialog(rootPane, "ano  "+data2.getYear());
+        JOptionPane.showMessageDialog(rootPane, "mes  "+data2.getMonth());
         
         //Gerando relatorio
         
