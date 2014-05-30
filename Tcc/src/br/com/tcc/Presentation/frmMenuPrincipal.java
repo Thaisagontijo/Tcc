@@ -73,13 +73,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         this.usuarioLogado = usuarioLogado;
         this.getContentPane().setBackground(Color.WHITE);
-        
+
         /*
-            INICIANDO DAO CAIXA
-        */
-        
+         INICIANDO DAO CAIXA
+         */
         daoCaixa = new CaixaDAO();
-        
+
         //this.setLocationRelativeTo(null);
         /*
          
@@ -88,7 +87,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          * 1) Tabela de agendamentos
          * 2) Tabela de Caixa ou não
          */
-
         daoAgendamento = new AgendamentoDAO();
         listaAgendamentos = new LinkedList<>();
         objetoAgendamentoSelecionadoNaTabela = new Agendamento();
@@ -103,7 +101,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         listaAgendamentos = daoAgendamento.Buscar(null);
 
         initComponents();
-        
+
         verificaAdmin();//verifica se o usuario logado eh o administrador para mostrar a opcao de cadastrarnovos usuarios
         Color minhaCor = new Color(239, 239, 239);
         this.getContentPane().setBackground(minhaCor);
@@ -143,27 +141,21 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         cbxCliente.setEnabled(false);
         tblVendas.setEnabled(false);
         btnIncluirItemVenda.setEnabled(false);
-       
+
         btnExcluirItemVenda.setEnabled(false);
         btnReceberValorVenda.setEnabled(false);
         btnCancelarVenda.setEnabled(false);
         lblCliente.setEnabled(false);
         jMenuItemFormasDePagamentos.setVisible(false);//nao mostra menu de forma de pagamento
-        
-        
+
         //FULL SCREEN
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        
-        
-        
-        
-        
+
         /* coloca uma figura na barra de título da janela  
-    URL url = this.getClass().getResource("./icones/logo1.png");  
-    Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
-    this.setIconImage(imagemTitulo);
-        */
+         URL url = this.getClass().getResource("./icones/logo1.png");  
+         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+         this.setIconImage(imagemTitulo);
+         */
     }
     
     private void verificaAdmin(){
@@ -265,7 +257,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             v.add(1, s.getServico().getNome());
             v.add(2, "Serviço");
             v.add(3, "1");
-            v.add(4,s.getValor());
+            v.add(4, s.getValor());
 
             model.addRow(v);
 
@@ -361,13 +353,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemAniversariantes = new javax.swing.JMenuItem();
         jMenuItemRelatorioVendas = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItemFazerBackup = new javax.swing.JMenuItem();
         jMenuItemRecuperarBackup = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItemSair = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         btnAbrirCaixa.setBackground(new java.awt.Color(239, 239, 239));
         btnAbrirCaixa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -938,14 +931,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu6.setText("Sistema");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jMenuItem2.setText("Sair");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem2);
-
         jMenuItem3.setText("Sobre");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -973,6 +958,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItemRecuperarBackup);
 
         jMenu6.add(jMenu2);
+        jMenu6.add(jSeparator1);
+
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSairActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItemSair);
 
         jMenuBar1.add(jMenu6);
 
@@ -1144,11 +1138,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaldoCaixaDetalhadoActionPerformed
 
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
-
-//       CaixaDAO daoCaixa = new CaixaDAO();
-  //     daoCaixa.sincronizar();//verificar
-    //    daoDeposito = new DepositoDAO();
-
         caixa.setDataFechamento(new Date());
         CaixaDAO2 dao = new CaixaDAO2();
         dao.atualizarHoraFechamentoCaixa(caixa);
@@ -1185,7 +1174,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             cbxCliente.setEnabled(true);
             tblVendas.setEnabled(true);
             btnIncluirItemVenda.setEnabled(true);
-            
+
             btnExcluirItemVenda.setEnabled(true);
             btnReceberValorVenda.setEnabled(true);
             btnCancelarVenda.setEnabled(true);
@@ -1196,7 +1185,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             novaVenda.setFuncionario(usuarioLogado.getFuncionario());
             novaVenda.setCaixa(caixa);
             preencheComboClientes();
-            
+
             btnNovaVenda.setEnabled(false);
 
             //  VendaDAO a = new VendaDAO();
@@ -1213,12 +1202,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        this.dispose();
-        frmLogin janela = new frmLogin();
-        janela.setLocationRelativeTo(null);
-        janela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
+        if (caixa != null) {
+            JOptionPane.showMessageDialog(rootPane, "O caixa deve ser fechado antes de sair !");
+        } else {
+            this.dispose();
+            frmLogin janela = new frmLogin();
+            janela.setLocationRelativeTo(null);
+            janela.setVisible(true);
+        }
+
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         JOptionPane.showMessageDialog(rootPane, "BeatuySystem 1.0 © Todos os direitos reservados ");
@@ -1356,21 +1350,18 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemEstoqueActionPerformed
 
-                                         
-
+                                     
     private void relatorioAgendamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioAgendamentosActionPerformed
-try {
+        try {
             //Arquivo do Relatorio
             //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
             InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/agendamentosRealizados.jasper");
             //Lista a ser exibida no relatorio
             AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
-            
+
             Agendamento tmp = new Agendamento();
             tmp.setRealizado(true);
             List<Agendamento> agendamentos = agendamentoDAO.Buscar(tmp);
-            
-            
 
             //Fonte de dados
             JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(agendamentos);
@@ -1382,72 +1373,12 @@ try {
             JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
             //this.dispose();
             jasperViewer.setVisible(true);
-            
-        }catch(JRException e){
+
+        } catch (JRException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /*        
-        try {
-            //Arquivo do Relatorio
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/agendamentos.jasper");
-            //Lista a ser exibida no relatorio
-//            ProdutoDAO produtoDAO = new ProdutoDAO();
-//            List<Produto> produtos = produtoDAO.ListarTodos();
 
-            //Fonte de dados
-//            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(produtos);
-
-            //Gera o Relatorio
-            //JasperPrint relatorioGerado = JasperFillManager.;
-
-            //Exibe o Relatorio
-            Connection con;
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/beautySystem","root","");
-            
-            JasperPrint rel = JasperFillManager.fillReport(relatorio, null, con);
-            
-            JasperViewer jasperViewer = new JasperViewer(rel, false);
-            jasperViewer.setVisible(true);
-        }catch(JRException e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        } catch (SQLException ex) {
-            Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        */
-        
     }//GEN-LAST:event_relatorioAgendamentosActionPerformed
 
     private void jMenuItemComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComprasActionPerformed
@@ -1570,7 +1501,7 @@ try {
     }//GEN-LAST:event_btnExcluirItemVendaActionPerformed
 
     private void jMenuItemFazerBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFazerBackupActionPerformed
-        
+  
         JFileChooser pasta = new JFileChooser();
         pasta.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         pasta.showOpenDialog(this);
@@ -1594,10 +1525,6 @@ try {
         }
 
         // Cria Arquivo de Backup  
-
-        
-
-        
         try {
             if (!bck.isFile()) {
                 Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem > " + bck.getAbsoluteFile());
@@ -1613,7 +1540,7 @@ try {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-             JOptionPane.showMessageDialog(rootPane, "Falha ao criar Backup. \\n Verifique as configurações ou entre em contato com o suporte !");
+            JOptionPane.showMessageDialog(rootPane, "Falha ao criar Backup. \\n Verifique as configurações ou entre em contato com o suporte !");
         }
 
 
@@ -1624,7 +1551,7 @@ try {
         pasta.setFileSelectionMode(JFileChooser.FILES_ONLY);
         pasta.showOpenDialog(this);
         String caminhoBackup = pasta.getSelectedFile().getPath();
-       // JOptionPane.showMessageDialog(rootPane, caminhoBackup);
+        // JOptionPane.showMessageDialog(rootPane, caminhoBackup);
 
         File diretorio = new File(caminhoBackup);
         File bck = new File(caminhoBackup);
@@ -1634,23 +1561,20 @@ try {
         //  if(!diretorio.isDirectory()) {  
         //     new File(caminhoBackup).mkdir();  
         // } else {  
-           // }  
-            // Cria Arquivo de Backup 
-        
+        // }  
+        // Cria Arquivo de Backup 
         ConexaoBanco conexao = new ConexaoBanco();
         try {
-            java.sql.Statement stm = conexao.getConexao().createStatement(); 
+            java.sql.Statement stm = conexao.getConexao().createStatement();
             stm.execute("drop database beautysystem");
-            
+
             //java.sql.Statement stm = conexao.getConexao().createStatement(); 
             stm.execute("create database beautysystem");
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         try {
             if (!bck.isFile()) {
                 Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < " + bck.getAbsoluteFile());
@@ -1658,7 +1582,7 @@ try {
 
                   //  while(bck.isFile()) {  
                 //Runtime.getRuntime().exec("cmd /c mysqldump -u root  beautysystem < "+bck.getAbsoluteFile());  
-                    //    bck = new File(caminhoBackup+"/Backup "+dia+"_"+mes+"_"+ano+".sql");  
+                //    bck = new File(caminhoBackup+"/Backup "+dia+"_"+mes+"_"+ano+".sql");  
                 //    }  
                 Runtime.getRuntime().exec("cmd /c mysql -u root  beautysystem < " + bck.getAbsoluteFile());
                 JOptionPane.showMessageDialog(rootPane, "Restauração Efetuada com sucesso!");
@@ -1668,20 +1592,18 @@ try {
             ex.printStackTrace();
             System.out.print("erro");
         }
-        
+ 
     }//GEN-LAST:event_jMenuItemRecuperarBackupActionPerformed
 
     private void btnReceberFaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberFaturaActionPerformed
         VendaDAO dao = new VendaDAO();
-        
-        
-        frmPagamentoFaturaCliente janela = new frmPagamentoFaturaCliente(this, rootPaneCheckingEnabled, dao.ListarVendasAPrazo(),this);
+        frmPagamentoFaturaCliente janela = new frmPagamentoFaturaCliente(this, rootPaneCheckingEnabled, dao.ListarVendasAPrazo(), this);
         janela.setLocationRelativeTo(this);
         janela.setVisible(true);
     }//GEN-LAST:event_btnReceberFaturaActionPerformed
 
     private void btnReceberFaturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceberFaturaMouseEntered
-         Color minhaCor = new Color(115, 183, 253);
+        Color minhaCor = new Color(115, 183, 253);
         this.btnReceberFatura.setBackground(minhaCor);
     }//GEN-LAST:event_btnReceberFaturaMouseEntered
 
@@ -1782,7 +1704,6 @@ try {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -1798,6 +1719,7 @@ try {
     private javax.swing.JMenuItem jMenuItemRecuperarBackup;
     private javax.swing.JMenuItem jMenuItemRelatorioCaixas;
     private javax.swing.JMenuItem jMenuItemRelatorioVendas;
+    private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemServicos;
     private javax.swing.JMenuItem jMenuItemUsuarios;
     private javax.swing.JPanel jPanelAgenda;
@@ -1805,6 +1727,7 @@ try {
     private javax.swing.JPanel jPanelVendas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JMenuItem relatorioAgendamentos;

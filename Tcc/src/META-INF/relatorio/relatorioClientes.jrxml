@@ -6,6 +6,7 @@
 	<field name="nome" class="java.lang.String"/>
 	<field name="cpf" class="java.lang.String"/>
 	<field name="sexo" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Long"/>
 	<background>
 		<band/>
 	</background>
@@ -32,19 +33,32 @@
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="45d9f4a2-be72-4311-9b00-4f000c23463c"/>
 			</line>
 			<staticText>
-				<reportElement x="16" y="1" width="158" height="20" uuid="47d45156-172e-480c-b350-7c9c8a399e83"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="60" y="1" width="174" height="20" uuid="47d45156-172e-480c-b350-7c9c8a399e83"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="174" y="1" width="280" height="20" uuid="a86fcc8a-ba76-43b0-b11c-effa31e1d2f8"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="234" y="1" width="220" height="20" uuid="a86fcc8a-ba76-43b0-b11c-effa31e1d2f8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[CPF]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="454" y="1" width="100" height="20" uuid="2ad604bc-080f-4efc-a920-8a1399147b6a"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[SEXO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="1" width="60" height="20" uuid="5740bbde-b0ac-4a6f-b309-d16f01ea8868"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -54,12 +68,12 @@
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="fad99750-544e-4451-ab3c-b311df228ff2"/>
 			</line>
 			<textField>
-				<reportElement x="16" y="0" width="158" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
+				<reportElement x="60" y="0" width="174" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="174" y="0" width="280" height="20" uuid="3b549dc2-dbda-4677-87c2-2251f17d37d8"/>
+				<reportElement x="234" y="0" width="220" height="20" uuid="3b549dc2-dbda-4677-87c2-2251f17d37d8"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
@@ -67,6 +81,11 @@
 				<reportElement x="454" y="0" width="101" height="20" uuid="1fc42536-04c0-44c8-a0a5-cb22ffdac967"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[( $F{sexo} == 1 ? "Masculino" : "Feminino" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="59" height="20" uuid="2df7c6c4-6164-42b4-8a12-35e0d61b5b40"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
