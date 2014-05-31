@@ -233,76 +233,100 @@ public class frmReceberPagamentoVenda extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        if(Float.parseFloat(txtValor.getText()) >= (Float.parseFloat(lblTotalAPagar.getText()))){
-            
-            if(cbxFormaDePagamento.getSelectedIndex() ==0 ){   //se o o objeto selecionado nao for a opcao "selecione"
-                txtValor.setEnabled(true);
-                JOptionPane.showMessageDialog(rootPane, "Selecione uma Forma de Pagamento !");
-                
     
-             }else{
-                txtValor.setEnabled(true);
-                
-                
-                
-                /*
-                
-                        Ver as opcoes de à prazo
-                */
-                
-                VendaDAO daoVenda = new VendaDAO();
-                janelaPai.novaVenda.setCaixa(janelaPai.caixa);
-                janelaPai.novaVenda.setFormaDePagamento((FormaDePagamento) cbxFormaDePagamento.getSelectedItem());
-                janelaPai.novaVenda.setValorVenda(Float.parseFloat(txtValor.getText()));
-                janelaPai.novaVenda.setCliente(janelaPai.clienteCOmboVenda);
+    
+    public void atualizarEstoquesProdutos() {
+        ProdutoDAO tmpP = new ProdutoDAO();
 
-                if (daoVenda.Salvar(janelaPai.novaVenda)) {
-                    
-                    Deposito tmp = new Deposito();
-                    DepositoDAO daoTmp = new DepositoDAO();
-                    tmp.setCaixa(janelaPai.caixa);
-                    tmp.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
-                    tmp.setValor(janelaPai.novaVenda.getValorVenda());//teste
-                    tmp.setObservacao("Pagamento de venda ");
-
-                    daoTmp.Salvar(tmp);
-                    janelaPai.caixa.addDeposito(tmp);
-                    /*
-                        RECEBER VALOR DO TROCO E ARMAZENAR :-/
-                    */
-                    Retirada tmpTroco = new Retirada();
-                    RetiradaDAO daoRetirada = new RetiradaDAO();
-                    tmpTroco.setValor((Float.valueOf(txtValor.getText()) - janelaPai.novaVenda.calculaValorTotal()));
-                    tmpTroco.setCaixa(janelaPai.caixa);
-                    tmpTroco.setDescricao("Troco Referente a Venda "+ janelaPai.novaVenda.getDataHora().toString());
-                    tmpTroco.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
-                    
-                    daoRetirada.Salvar(tmpTroco);
-                    janelaPai.caixa.addRetirada(tmpTroco);
-                    
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Valor do Troco R$ " +tmpTroco.getValor() );
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
-                    
-                    ProdutoDAO tmpP = new ProdutoDAO();
-                    
-                    for(ItemVendaProduto p :janelaPai.novaVenda.getProdutos()){
-                        tmpP.AtualizarEstoqueVenda(p.getProduto(), p.getQtd());
-                    }
-             
-                    janelaPai.desativarVenda();
-                    
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda");
-                }
-            }
-                    
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "O valor pago é menor que o valor da venda !");
+        for (ItemVendaProduto p : janelaPai.novaVenda.getProdutos()) {
+            tmpP.AtualizarEstoqueVenda(p.getProduto(), p.getQtd());
         }
+
+    }
+    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        if (cbxFormaDePagamento.getSelectedIndex() == 0) {   //se o o objeto selecionado nao for a opcao "selecione"
+            // txtValor.setEnabled(true);
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma Forma de Pagamento !");
+
+        } else if (cbxFormaDePagamento.getSelectedIndex() == 1) {//se for a vista
+            txtValor.setEnabled(true);
+
+            try {
+                if (Float.parseFloat(txtValor.getText()) >= (Float.parseFloat(lblTotalAPagar.getText()))) {
+
+                    VendaDAO daoVenda = new VendaDAO();
+                    janelaPai.novaVenda.setCaixa(janelaPai.caixa);
+                    janelaPai.novaVenda.setFormaDePagamento((FormaDePagamento) cbxFormaDePagamento.getSelectedItem());
+
+                    janelaPai.novaVenda.setValorVenda(janelaPai.novaVenda.calculaValorTotal());
+                    janelaPai.novaVenda.setCliente(janelaPai.clienteCOmboVenda);
+
+                    if (daoVenda.Salvar(janelaPai.novaVenda)) {
+
+                        Deposito tmp = new Deposito();
+                        DepositoDAO daoTmp = new DepositoDAO();
+                        tmp.setCaixa(janelaPai.caixa);
+                        tmp.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+                        tmp.setValor(janelaPai.novaVenda.getValorVenda());//teste
+                        tmp.setObservacao("Pagamento de venda ");
+
+                        daoTmp.Salvar(tmp);
+                        janelaPai.caixa.addDeposito(tmp);
+                        /*
+                         RECEBER VALOR DO TROCO E ARMAZENAR :-/
+                         */
+                        Retirada tmpTroco = new Retirada();
+                        RetiradaDAO daoRetirada = new RetiradaDAO();
+                        tmpTroco.setValor((Float.valueOf(txtValor.getText()) - janelaPai.novaVenda.calculaValorTotal()));
+                        tmpTroco.setCaixa(janelaPai.caixa);
+                        tmpTroco.setDescricao("Troco Referente a Venda ID: " + janelaPai.novaVenda.getDataHora().toString());
+                        tmpTroco.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
+
+                        daoRetirada.Salvar(tmpTroco);
+                        janelaPai.caixa.addRetirada(tmpTroco);
+
+                        JOptionPane.showMessageDialog(rootPane, "Valor do Troco R$ " + tmpTroco.getValor());
+
+                        JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
+
+                        atualizarEstoquesProdutos();
+
+                        janelaPai.desativarVenda();
+
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "O valor pago é menor que o valor da venda !");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Valor Inválido !");
+                txtValor.setText("0");
+            }
+
+        } else if (cbxFormaDePagamento.getSelectedIndex() == 2) {//se for a prazo
+            txtValor.setEnabled(false);
+
+            VendaDAO daoVenda = new VendaDAO();
+            janelaPai.novaVenda.setCaixa(janelaPai.caixa);
+            janelaPai.novaVenda.setFormaDePagamento((FormaDePagamento) cbxFormaDePagamento.getSelectedItem());
+
+            janelaPai.novaVenda.setValorVenda(janelaPai.novaVenda.calculaValorTotal());
+            janelaPai.novaVenda.setCliente(janelaPai.clienteCOmboVenda);
+
+            if (daoVenda.Salvar(janelaPai.novaVenda)) {
+                atualizarEstoquesProdutos();
+                JOptionPane.showMessageDialog(rootPane, "Venda Salva com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda");
+            }
+            janelaPai.desativarVenda();
+            this.dispose();
+
+        }
+
+
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

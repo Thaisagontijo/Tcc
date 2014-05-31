@@ -76,7 +76,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="77">
+		<band height="35">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="800" height="1" uuid="fad99750-544e-4451-ab3c-b311df228ff2"/>
 			</line>
@@ -100,28 +100,6 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{formaDePagamento}.toString()]]></textFieldExpression>
 			</textField>
-		</band>
-		<band height="210">
-			<subreport>
-				<reportElement x="0" y="51" width="800" height="50" uuid="4573efc8-88f1-4dec-b65b-72a2539b5f76"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{produtos})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioVendasPorClienteSubRelatorioProdutos.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement x="0" y="106" width="800" height="57" uuid="a5c102d0-6737-4ea2-b02f-eca5df721489"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{servicos})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioVendasPorClienteSubRelatorioServiços.jasper"]]></subreportExpression>
-			</subreport>
-			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="802" height="43" backcolor="#006699" uuid="99f70be2-3136-495e-ac23-58daa8e1195e"/>
-				<staticText>
-					<reportElement x="13" y="10" width="209" height="28" forecolor="#FFFFFF" uuid="ef42f7cf-c351-43db-a068-e5d9cf18ea70"/>
-					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font size="20" isBold="true"/>
-					</textElement>
-					<text><![CDATA[PRODUTOS]]></text>
-				</staticText>
-			</frame>
 		</band>
 	</detail>
 	<columnFooter>

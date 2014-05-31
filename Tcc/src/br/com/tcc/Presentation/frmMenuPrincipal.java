@@ -1138,11 +1138,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaldoCaixaDetalhadoActionPerformed
 
     private void btnFecharCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCaixaActionPerformed
-        caixa.setDataFechamento(new Date());
-        CaixaDAO2 dao = new CaixaDAO2();
-        dao.atualizarHoraFechamentoCaixa(caixa);
-       // caixa.setFuncionario(usuarioLogado.getFuncionario());
-       // if (daoCaixa.Salvar(caixa)) {
+        if (novaVenda == null) {
+            caixa.setDataFechamento(new Date());
+            CaixaDAO2 dao = new CaixaDAO2();
+            dao.atualizarHoraFechamentoCaixa(caixa);
+            // caixa.setFuncionario(usuarioLogado.getFuncionario());
+            // if (daoCaixa.Salvar(caixa)) {
             JOptionPane.showMessageDialog(rootPane, "Caixa Fechado com sucesso!");
 
             btnDeposito.setVisible(false);
@@ -1153,9 +1154,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             btnFecharCaixa.setVisible(false);
             btnReceberFatura.setVisible(false);
             caixa = null;
-       // } else {
-           // JOptionPane.showMessageDialog(rootPane, "Erro ao fechar o caixa!");
-        //}
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não foi possivel fechar o caixa porque existe uma venda ativa!");
+        }
     }//GEN-LAST:event_btnFecharCaixaActionPerformed
 
     private void btnIncluirItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirItemVendaActionPerformed
@@ -1311,15 +1312,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          *      PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
          
          */
-        int id = tblVendas.getSelectedRow();
+       int id = tblVendas.getSelectedRow();
        JOptionPane.showMessageDialog(rootPane, tblVendas.getSelectedColumn() + "coluna"); 
        JOptionPane.showMessageDialog(rootPane, id+" id"); 
        
-       ItemVendaServico tmp = new ItemVendaServico();
+       int qtdItens = novaVenda.getServicos().size() + novaVenda.getProdutos().size();
        
-       novaVenda.removeServico(tmp);
+       //ItemVendaServico tmp = new ItemVendaServico();
        
-       preencheTabelaVendas();
+      // novaVenda.removeServico(tmp);
+       
+       //preencheTabelaVendas();
        
             
         //    pensar
