@@ -21,7 +21,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author anderson
+ * @author Thaisa
  */
 public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
 
