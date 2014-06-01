@@ -829,6 +829,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         btnAgendamentoEditar.setBackground(java.awt.Color.lightGray);
         btnAgendamentoEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgendamentoEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/alterar.png"))); // NOI18N
         btnAgendamentoEditar.setText("Editar");
         btnAgendamentoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -902,7 +903,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jTabbedPanelPrincipal.addTab("Agenda", jPanelAgenda);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/logo350px.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/logo350px.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jMenuCadastros.setText("Cadastros");

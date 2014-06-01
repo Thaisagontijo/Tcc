@@ -69,6 +69,7 @@
 			</line>
 			<textField>
 				<reportElement x="60" y="0" width="174" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
