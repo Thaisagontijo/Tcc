@@ -192,7 +192,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
         jPanel1.setToolTipText("Criar relatório de Compras");
 
         lblMensagem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMensagem.setText("Selecione o Período para criar o relatório de compras");
+        lblMensagem.setText("Selecione o período para criar o relatório de compras");
 
         lblData.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblData.setText("Data:");
@@ -264,6 +264,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
+        jButton1.setBackground(new java.awt.Color(239, 239, 239));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Gerar Relatório");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -280,6 +281,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(239, 239, 239));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         jButton2.setText("Cancelar");

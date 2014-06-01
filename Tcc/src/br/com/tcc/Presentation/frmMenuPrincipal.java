@@ -585,6 +585,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnReceberValorVenda.setBackground(new java.awt.Color(239, 239, 239));
         btnReceberValorVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnReceberValorVenda.setText("Receber");
         btnReceberValorVenda.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -601,6 +602,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCancelarVenda.setBackground(new java.awt.Color(239, 239, 239));
         btnCancelarVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelarVenda.setText("Cancelar");
@@ -618,6 +620,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnNovaVenda.setBackground(new java.awt.Color(239, 239, 239));
         btnNovaVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovaVenda.setText("Nova");
         btnNovaVenda.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -708,7 +711,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblAgenda);
 
-        btnNovoAgendamento.setBackground(new java.awt.Color(239, 239, 239));
+        btnNovoAgendamento.setBackground(java.awt.Color.lightGray);
         btnNovoAgendamento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovoAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnNovoAgendamento.setText("Novo Agendamento");
@@ -726,6 +729,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAgendamentoRealizado.setBackground(java.awt.Color.lightGray);
         btnAgendamentoRealizado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgendamentoRealizado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnAgendamentoRealizado.setText("Realizado");
@@ -743,8 +747,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAgendamentoEditar.setBackground(java.awt.Color.lightGray);
         btnAgendamentoEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgendamentoEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thaisa Gontijo\\Documents\\NetBeansProjects\\Novo TCC\\Tcc\\Tcc\\src\\br\\com\\tcc\\Presentation\\icones\\alterar.png")); // NOI18N
         btnAgendamentoEditar.setText("Editar");
         btnAgendamentoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -760,6 +764,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAgendamentoApagar.setBackground(java.awt.Color.lightGray);
         btnAgendamentoApagar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgendamentoApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnAgendamentoApagar.setText("Excluir");
