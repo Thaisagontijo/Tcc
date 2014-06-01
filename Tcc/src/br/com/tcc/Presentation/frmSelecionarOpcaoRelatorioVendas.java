@@ -33,10 +33,10 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
      * Creates new form frmSelecionarOpcaoRelatorioVendas
      */
     frmMenuPrincipal janelaPai;
-    public frmSelecionarOpcaoRelatorioVendas(java.awt.Frame parent, boolean modal) {
+    public frmSelecionarOpcaoRelatorioVendas(java.awt.Frame parent, boolean modal,frmMenuPrincipal janelaPai) {
         super(parent, modal);
         initComponents();
-        //this.janelaPai = parent;
+        this.janelaPai = janelaPai;
     }
 
     /**
@@ -401,7 +401,7 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeriodoActionPerformed
-       frmFiltroRelatorioVendas janela = new frmFiltroRelatorioVendas(null, rootPaneCheckingEnabled);
+       frmFiltroRelatorioVendas janela = new frmFiltroRelatorioVendas(null, rootPaneCheckingEnabled, this);
        janela.setLocationRelativeTo(this);
        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnPeriodoActionPerformed

@@ -30,11 +30,13 @@ public class frmFiltroRelatorioVendas extends javax.swing.JDialog {
     /**
      * Creates new form frmFiltroRelatorioCompras
      */
-    frmFiltroRelatorioVendas(java.awt.Frame parent, boolean modal) {
+    frmSelecionarOpcaoRelatorioVendas janelaPai;
+    frmFiltroRelatorioVendas(java.awt.Frame parent, boolean modal, frmSelecionarOpcaoRelatorioVendas janelaPai) {
         super(parent, modal);
         initComponents();
         adicionarDatasCBX1();
         adicionarDatasCBX2();
+        this.janelaPai = janelaPai;
     }
     
     
@@ -304,53 +306,34 @@ public class frmFiltroRelatorioVendas extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Date data1 = new Date();
         Date data2 = new Date();
-        
+
         /*
-            PEGANDO VALORES DA PRIMERA DATA
-        */
+         PEGANDO VALORES DA PRIMERA DATA
+         */
         data1.setDate(cbxDia.getSelectedIndex());
         data1.setMonth(cbxMes.getSelectedIndex() - 1);
         data1.setYear(Integer.parseInt(cbxAno.getSelectedItem().toString()));
-        
+
         /*
-            PEGANDO VALORES DA SEGUNDA DATA
-        */
+         PEGANDO VALORES DA SEGUNDA DATA
+         */
         data2.setDate(cbxDia1.getSelectedIndex());
-        data2.setMonth(cbxMes1.getSelectedIndex()- 1);
-        data2.setYear(Integer.parseInt(cbxAno1.getSelectedItem().toString() ));
-        
+        data2.setMonth(cbxMes1.getSelectedIndex() - 1);
+        data2.setYear(Integer.parseInt(cbxAno1.getSelectedItem().toString()));
+
         VendaDAO tmpVendaDAO = new VendaDAO();
         List<Venda> vendas;
-        List<Venda> vendasFiltro = new LinkedList<>();
-        
+
         data1.setYear(data1.getYear() - 1900);
         data2.setYear(data2.getYear() - 1900);
         tmpVendaDAO.ListarTodos();
         vendas = tmpVendaDAO.ListarVendasEntreDatas(data1, data2);
-        
-       /* 
-        for(Venda c : vendas){
-            
-            c.getDataHora().setYear(c.getDataHora().getYear() + 1900);
-            //System.out.print(c.getDataHora().getYear()+" \n");
-            if((c.getDataHora().before(data2)   && c.getDataHora().after(data1))) {
-                vendasFiltro.add(c);
-                
-            }else{
-                System.out.print(data1+ "\n");
-            }
-        }
-        */
-      
-        
-       
+
         //Gerando relatorio
-        
-                try {
-                      //Arquivo do Relatorio
+        try {
+            //Arquivo do Relatorio
             //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
             InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
-
 
             if (!vendas.isEmpty()) {
 
@@ -362,6 +345,7 @@ public class frmFiltroRelatorioVendas extends javax.swing.JDialog {
 
                 //Exibe o Relatorio
                 JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+                janelaPai.dispose();
                 this.dispose();
                 jasperViewer.setVisible(true);
             } else {
@@ -374,7 +358,7 @@ public class frmFiltroRelatorioVendas extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Id inválido !");
         }
-        
+  
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
