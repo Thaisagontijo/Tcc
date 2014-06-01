@@ -55,7 +55,6 @@
 			</line>
 			<textField>
 				<reportElement x="16" y="0" width="158" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
-				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>

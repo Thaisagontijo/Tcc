@@ -429,7 +429,7 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
                     servico.setVenda(janelaPai.novaVenda);
 
                     janelaPai.novaVenda.addServico(servico);
-                    janelaPai.preencheTabelaVendas();
+                    janelaPai.preencheTabelaVendasServicos();
                     this.dispose();
 
                 } catch (NumberFormatException ex) {
@@ -479,7 +479,9 @@ public class frmInclusaoItemVenda extends javax.swing.JDialog {
                 
                 produto.setQtd(Integer.parseInt(spnQuantidade.getValue().toString()));
                 janelaPai.novaVenda.addProduto(produto);
-                janelaPai.preencheTabelaVendas();
+                
+                
+                janelaPai.preencheTabelaVendasProduto();
                 this.dispose();
             }
         }

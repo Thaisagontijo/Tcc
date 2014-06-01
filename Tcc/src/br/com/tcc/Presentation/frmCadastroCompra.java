@@ -460,7 +460,7 @@ private boolean validaDataCadastroAgenda(Date d){
            Compra compra = new Compra();
            Funcionario funcionario = new Funcionario();
            Produto produto = new Produto();
-           FormaDePagamento pagamento = new FormaDePagamento();
+          // FormaDePagamento pagamento = new FormaDePagamento();
            
            CompraDAO dao = new CompraDAO();
           
@@ -469,7 +469,7 @@ private boolean validaDataCadastroAgenda(Date d){
            
            compra.setFuncionario(funcionario);
            compra.setProduto(produto);
-           compra.setFormaDePagamento(pagamento);
+           compra.setFormaDePagamento((FormaDePagamento) cbxCompraPagamento.getSelectedItem());
            
            compra.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
            compra.setValor(Double.parseDouble(txtVenda.getText()));

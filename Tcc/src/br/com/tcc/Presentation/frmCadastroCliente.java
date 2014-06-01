@@ -446,7 +446,7 @@ public class frmCadastroCliente extends javax.swing.JDialog {
     
     public boolean verificaData(int valorMes){
         if (valorMes == 2) { //Fevereiro
-            boolean leapYear = new GregorianCalendar().isLeapYear(new Date().getYear() + 1900);
+            boolean leapYear = new GregorianCalendar().isLeapYear(Integer.parseInt(cbxAno.getSelectedItem().toString()));
             if((!leapYear) && cbxDia.getSelectedIndex() >=29){
                 JOptionPane.showMessageDialog(rootPane, "Data inválida, o mês de Fevereiro só possui 28 dias !");
                 return true;

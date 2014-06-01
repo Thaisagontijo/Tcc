@@ -11,6 +11,7 @@ import br.com.tcc.DataAccess.ClienteDAO;
 import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.ItemVendaProduto;
+import br.com.tcc.DomainModel.ItemVendaServico;
 import br.com.tcc.DomainModel.Venda;
 import java.awt.Color;
 import java.io.InputStream;
@@ -129,6 +130,11 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnServicoMousePressed(evt);
+            }
+        });
+        btnServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServicoActionPerformed(evt);
             }
         });
 
@@ -577,6 +583,56 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
          Color minhaCor = new Color(239,239,239);
         this.jButton1.setBackground(minhaCor);
     }//GEN-LAST:event_jButton1MouseExited
+
+    private void btnServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicoActionPerformed
+        try {
+            //Pegando o id do Produto
+
+            String servico = JOptionPane.showInputDialog("Insira o Id do Serviço");
+
+            //Arquivo do Relatorio
+            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
+            //Lista a ser exibida no relatorio
+
+            CaixaDAO caixaDAO = new CaixaDAO();
+            List<Caixa> caixas = caixaDAO.ListarTodos();
+
+            List<Venda> vendasFiltro = new LinkedList();
+            for (Caixa c : caixas) {
+                for (Venda v : c.getVendas()) {
+                    for (ItemVendaServico p : v.getServicos()) {
+                        if (p.getServico().getId() == Integer.parseInt(servico)) {
+                            vendasFiltro.add(v);
+                        }
+                    }
+                }
+                //vendas.addAll(c.getVendas());
+            }
+
+            if (!vendasFiltro.isEmpty()) {
+
+                //Fonte de dados
+                JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(vendasFiltro);
+
+                //Gera o Relatorio
+                JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
+
+                //Exibe o Relatorio
+                JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+                this.dispose();
+                jasperViewer.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Nenhuma venda com este produto !");
+            }
+
+        } catch (JRException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Id inválido !");
+        }        
+    }//GEN-LAST:event_btnServicoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCliente;
