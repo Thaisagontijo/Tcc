@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author Anderson
+ * @author Thaisa
  */
 public class CaixaDAO2 {
  

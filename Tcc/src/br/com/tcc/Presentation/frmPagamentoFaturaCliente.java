@@ -37,21 +37,21 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
         vendasAPrazo();
         preencheTabelaCliente();
         
-        if(listaVendas.size() == 0){
+        if(listaVendas.isEmpty()){
             btnReceber.setEnabled(false);
         }
     }
     
-    public void vendasAPrazo(){
-        List <Venda> tmp = new LinkedList<>();
-        for(Venda v:listaVendas){
-            if(v.getFormaDePagamento().getId().intValue() == 2){
+    public void vendasAPrazo() {
+        List<Venda> tmp = new LinkedList<>();
+        for (Venda v : listaVendas) {
+            if (v.getFormaDePagamento().getId().intValue() == 2) {
                 tmp.add(v);
             }
         }
-        
+
         listaVendas = tmp;
-    
+
     }
     
     
@@ -215,12 +215,7 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberActionPerformed
-        try {
-            float valorRecebido = Float.parseFloat(JOptionPane.showInputDialog("Informe o valor:"));
-            if (valorRecebido < objetoSelecionadoNaTabela.getValorVenda()) {
-                JOptionPane.showMessageDialog(rootPane, "Valor Inferior ao valor de compra !");
-
-            } else {
+        try {                       
                 VendaDAO daoVendastmp = new VendaDAO();
                 Deposito novo = new Deposito();
                 DepositoDAO daoDeposito = new DepositoDAO();
@@ -229,18 +224,22 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
                 novo.setDataHora(new Date());
                 novo.setFuncionario(janelaPai.usuarioLogado.getFuncionario());
                 novo.setObservacao("Recebimento relativo a venda id= " + objetoSelecionadoNaTabela.getId());
-                novo.setValor(valorRecebido);
+                novo.setValor(objetoSelecionadoNaTabela.calculaValorTotal());
                 janelaPai.caixa.addDeposito(novo);
 
                 //novo.set
                 objetoSelecionadoNaTabela.setStatus(true);
                 if (daoVendastmp.Salvar(objetoSelecionadoNaTabela) && daoDeposito.Salvar(novo)) {
                     JOptionPane.showMessageDialog(rootPane, "Venda recebida com sucesso! ");
+                    listaVendas = daoVendastmp.ListarVendasAPrazo();
+                    vendasAPrazo();
+                    preencheTabelaCliente();
+                    
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda! ");
                 }
 
-            }
+            
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "Valor Inválido!");
