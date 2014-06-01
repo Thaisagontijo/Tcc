@@ -9,6 +9,7 @@ package br.com.tcc.Presentation;
 import br.com.tcc.DomainModel.ItemVendaProduto;
 import br.com.tcc.DomainModel.ItemVendaServico;
 import br.com.tcc.DomainModel.Venda;
+import java.awt.Color;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -178,8 +179,10 @@ public class frmDetalheVendaCliente extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tblServicos);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("TABELA DE PRODUTOS");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("TABELA DE SERVIÇOS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -209,7 +212,16 @@ public class frmDetalheVendaCliente extends javax.swing.JDialog {
                 .addGap(144, 144, 144))
         );
 
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
+        btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSairMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSairMouseExited(evt);
+            }
+        });
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
@@ -225,8 +237,8 @@ public class frmDetalheVendaCliente extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(304, 304, 304)
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(300, 300, 300)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -249,6 +261,18 @@ public class frmDetalheVendaCliente extends javax.swing.JDialog {
     private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
       
     }//GEN-LAST:event_tblProdutosMouseClicked
+
+    private void btnSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnSair.setBackground(minhaCor);
+                                       
+       // TODO add your handling code here:
+    }//GEN-LAST:event_btnSairMouseEntered
+
+    private void btnSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseExited
+        Color minhaCor = new Color(239,239,239);
+        this.btnSair.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSairMouseExited
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSair;

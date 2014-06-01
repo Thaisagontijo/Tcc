@@ -553,6 +553,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnIncluirItemVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnIncluirItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnIncluirItemVenda.setText("Incluir Item");
+        btnIncluirItemVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnIncluirItemVendaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnIncluirItemVendaMouseExited(evt);
+            }
+        });
         btnIncluirItemVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIncluirItemVendaActionPerformed(evt);
@@ -563,6 +571,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnExcluirItemVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluirItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnExcluirItemVenda.setText("Excluir Item");
+        btnExcluirItemVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExcluirItemVendaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExcluirItemVendaMouseExited(evt);
+            }
+        });
         btnExcluirItemVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirItemVendaActionPerformed(evt);
@@ -571,6 +587,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         btnReceberValorVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnReceberValorVenda.setText("Receber");
+        btnReceberValorVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReceberValorVendaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReceberValorVendaMouseExited(evt);
+            }
+        });
         btnReceberValorVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReceberValorVendaActionPerformed(evt);
@@ -580,6 +604,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnCancelarVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Fechar.png"))); // NOI18N
         btnCancelarVenda.setText("Cancelar");
+        btnCancelarVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarVendaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarVendaMouseExited(evt);
+            }
+        });
         btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarVendaActionPerformed(evt);
@@ -588,6 +620,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         btnNovaVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovaVenda.setText("Nova");
+        btnNovaVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnNovaVendaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNovaVendaMouseExited(evt);
+            }
+        });
         btnNovaVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovaVendaActionPerformed(evt);
@@ -601,11 +641,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelVendasLayout.createSequentialGroup()
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
-                        .addGap(132, 132, 132)
+                        .addGap(117, 117, 117)
                         .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(46, 46, 46)
                         .addComponent(btnReceberValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
+                        .addGap(44, 44, 44)
                         .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
@@ -686,6 +726,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAgendamentoRealizado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgendamentoRealizado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/salvar.png"))); // NOI18N
         btnAgendamentoRealizado.setText("Realizado");
         btnAgendamentoRealizado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -701,6 +743,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAgendamentoEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgendamentoEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Thaisa Gontijo\\Documents\\NetBeansProjects\\Novo TCC\\Tcc\\Tcc\\src\\br\\com\\tcc\\Presentation\\icones\\alterar.png")); // NOI18N
         btnAgendamentoEditar.setText("Editar");
         btnAgendamentoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -716,6 +760,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAgendamentoApagar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgendamentoApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/excluir.png"))); // NOI18N
         btnAgendamentoApagar.setText("Excluir");
         btnAgendamentoApagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -742,7 +788,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanelAgendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgendamentoRealizado)
+                            .addComponent(btnAgendamentoRealizado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAgendamentoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAgendamentoApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanelAgendaLayout.createSequentialGroup()
@@ -759,11 +805,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelAgendaLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(btnAgendamentoRealizado)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgendamentoEditar)
-                        .addGap(22, 22, 22)
-                        .addComponent(btnAgendamentoApagar)))
+                        .addComponent(btnAgendamentoRealizado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnAgendamentoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnAgendamentoApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNovoAgendamento)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -1671,6 +1717,56 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setLocationRelativeTo(this);
         janela.setVisible(true);
     }//GEN-LAST:event_jMenuItemRelatorioCaixasActionPerformed
+
+    private void btnNovaVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovaVendaMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnNovaVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnNovaVendaMouseEntered
+
+    private void btnNovaVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovaVendaMouseExited
+          Color minhaCor = new Color(239,239,239);
+        this.btnNovaVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnNovaVendaMouseExited
+
+    private void btnReceberValorVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceberValorVendaMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnReceberValorVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnReceberValorVendaMouseEntered
+
+    private void btnReceberValorVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceberValorVendaMouseExited
+           Color minhaCor = new Color(239,239,239);
+        this.btnReceberValorVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnReceberValorVendaMouseExited
+
+    private void btnCancelarVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarVendaMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnCancelarVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnCancelarVendaMouseEntered
+
+    private void btnCancelarVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarVendaMouseExited
+          Color minhaCor = new Color(239,239,239);
+        this.btnCancelarVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnCancelarVendaMouseExited
+
+    private void btnIncluirItemVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIncluirItemVendaMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnIncluirItemVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnIncluirItemVendaMouseEntered
+
+    private void btnExcluirItemVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirItemVendaMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnExcluirItemVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnExcluirItemVendaMouseEntered
+
+    private void btnIncluirItemVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIncluirItemVendaMouseExited
+          Color minhaCor = new Color(239,239,239);
+        this.btnIncluirItemVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnIncluirItemVendaMouseExited
+
+    private void btnExcluirItemVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirItemVendaMouseExited
+           Color minhaCor = new Color(239,239,239);
+        this.btnExcluirItemVenda.setBackground(minhaCor);
+    }//GEN-LAST:event_btnExcluirItemVendaMouseExited
 
     /*
      *  OUTRAS VARIÁVEIS
