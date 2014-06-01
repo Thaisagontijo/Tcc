@@ -7,16 +7,9 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DomainModel.Venda;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -159,7 +152,13 @@ public class frmListaVendasCliente extends javax.swing.JDialog {
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
        if(qtdCliques == 2){
            qtdCliques = 1;
-           gerarRelatorio();
+           //gerarRelatorio();
+           
+           objetoselecionadoNaTabela = listaVendas.get(tblClientes.getSelectedRow());
+           //JOptionPane.showMessageDialog(rootPane, objetoselecionadoNaTabela.getId().intValue());
+           frmDetalheVendaCliente janela = new frmDetalheVendaCliente(null, rootPaneCheckingEnabled, objetoselecionadoNaTabela);
+           janela.setLocationRelativeTo(this);
+           janela.setVisible(rootPaneCheckingEnabled);
            this.dispose();
            
        }else{
@@ -167,33 +166,8 @@ public class frmListaVendasCliente extends javax.swing.JDialog {
        }
     }//GEN-LAST:event_tblClientesMouseClicked
 
-    public void gerarRelatorio(){
-        try {
-            //Arquivo do Relatorio
-            //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasCliente.jasper");
-            //Lista a ser exibida no relatorio
-            
-
-                //Fonte de dados
-            JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(listaVendas);
-
-            //Gera o Relatorio
-            JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
-
-            //Exibe o Relatorio
-            JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
-            this.dispose();
-            jasperViewer.setVisible(true);
-            
-        }catch(JRException e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    
-    
-    }
-
+   
+    private Venda objetoselecionadoNaTabela;
     private int qtdCliques = 1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
