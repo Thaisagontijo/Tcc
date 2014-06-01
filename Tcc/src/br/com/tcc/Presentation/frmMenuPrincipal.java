@@ -139,7 +139,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          
          */
         cbxCliente.setEnabled(false);
-        tblVendas.setEnabled(false);
+        tblVendaServicos.setEnabled(false);
         btnIncluirItemVenda.setEnabled(false);
 
         btnExcluirItemVenda.setEnabled(false);
@@ -227,7 +227,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     }
 
-    protected void preencheTabelaVendas() {
+    protected void preencheTabelaVendasServicos() {
         /*
          
          * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
@@ -245,8 +245,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         model.addColumn("ID");
         model.addColumn("NOME");
-        model.addColumn("DESCRIÇÃO");
-        model.addColumn("QUANTIDADE");
+        model.addColumn("FUNCIONARIO");
         model.addColumn("VALOR TOTAL");
 
         int i = 1;
@@ -255,35 +254,70 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
             v.add(0, i++);
             v.add(1, s.getServico().getNome());
-            v.add(2, "Serviço");
-            v.add(3, "1");
-            v.add(4, s.getValor());
+            v.add(2, s.getFuncionario().getNome());
+            v.add(3, s.getValor());
 
             model.addRow(v);
 
         }
+
+        
+
+        tblVendaServicos.setModel(model);
+        tblVendaServicos.repaint();
+
+    }
+    
+    protected void preencheTabelaVendasProduto() {
+        /*
+         
+         * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
+         * 
+         * http://www.guj.com.br/java/44193-jtable-nao-editavel
+         
+         */
+
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
+
+        model.addColumn("ID");
+        model.addColumn("NOME");
+       model.addColumn("QUANTIDADE");
+        model.addColumn("VALOR TOTAL");
+
+        int i = 1;
+     
 
         for (ItemVendaProduto p : novaVenda.getProdutos()) {
             Vector v = new Vector();
 
             v.add(0, i++);
             v.add(1, p.getProduto().getNome());
-            v.add(2, "Produto");
-            v.add(3, p.getQtd());
-            v.add(4, (p.getValor()));
+            v.add(2, p.getQtd());
+            v.add(3, (p.getValor()));
 
             model.addRow(v);
 
         }
 
-        tblVendas.setModel(model);
-        tblVendas.repaint();
+        tblVendaProdutos.setModel(model);
+        tblVendaProdutos.repaint();
 
     }
 
     protected void desativarVenda() {
+        novaVenda.getServicos().clear();
+        novaVenda.getProdutos().clear();
+        preencheTabelaVendasProduto();
+        preencheTabelaVendasServicos();
+        
+        
         cbxCliente.setEnabled(false);
-        tblVendas.setEnabled(false);
+        tblVendaServicos.setEnabled(false);
         btnIncluirItemVenda.setEnabled(false);
     
         btnExcluirItemVenda.setEnabled(false);
@@ -319,12 +353,16 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         lblCliente = new javax.swing.JLabel();
         cbxCliente = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblVendas = new javax.swing.JTable();
+        tblVendaServicos = new javax.swing.JTable();
         btnIncluirItemVenda = new javax.swing.JButton();
         btnExcluirItemVenda = new javax.swing.JButton();
         btnReceberValorVenda = new javax.swing.JButton();
         btnCancelarVenda = new javax.swing.JButton();
         btnNovaVenda = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblVendaProdutos = new javax.swing.JTable();
         jPanelAgenda = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAgenda = new javax.swing.JTable();
@@ -531,7 +569,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         cbxCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbxCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        tblVendas.setModel(new javax.swing.table.DefaultTableModel(
+        tblVendaServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -542,12 +580,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
             }
         ));
-        tblVendas.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblVendaServicos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblVendasMouseClicked(evt);
+                tblVendaServicosMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tblVendas);
+        jScrollPane2.setViewportView(tblVendaServicos);
 
         btnIncluirItemVenda.setBackground(new java.awt.Color(239, 239, 239));
         btnIncluirItemVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -637,19 +675,34 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Tabela de Produtos");
+
+        jLabel4.setText("Tabela de Serviços");
+
+        tblVendaProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblVendaProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVendaProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblVendaProdutos);
+
         javax.swing.GroupLayout jPanelVendasLayout = new javax.swing.GroupLayout(jPanelVendas);
         jPanelVendas.setLayout(jPanelVendasLayout);
         jPanelVendasLayout.setHorizontalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVendasLayout.createSequentialGroup()
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelVendasLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnReceberValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -658,12 +711,29 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelVendasLayout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
+                                .addGap(571, 571, 571)
                                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnIncluirItemVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnExcluirItemVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(btnExcluirItemVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(jPanelVendasLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnReceberValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelVendasLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))))
                 .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelVendasLayout.createSequentialGroup()
+                    .addGap(70, 70, 70)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(257, Short.MAX_VALUE)))
         );
         jPanelVendasLayout.setVerticalGroup(
             jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -672,21 +742,31 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(btnIncluirItemVenda)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExcluirItemVenda))
+                        .addComponent(btnExcluirItemVenda)
+                        .addGap(19, 19, 19))
                     .addGroup(jPanelVendasLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(10, 10, 10)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReceberValorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(jPanelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelVendasLayout.createSequentialGroup()
+                    .addGap(118, 118, 118)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(265, Short.MAX_VALUE)))
         );
 
         jTabbedPanelPrincipal.addTab("Vendas", jPanelVendas);
@@ -1235,7 +1315,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         } else {
 
             cbxCliente.setEnabled(true);
-            tblVendas.setEnabled(true);
+            tblVendaServicos.setEnabled(true);
             btnIncluirItemVenda.setEnabled(true);
 
             btnExcluirItemVenda.setEnabled(true);
@@ -1244,7 +1324,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             lblCliente.setEnabled(true);
 
             novaVenda = new Venda();
-            preencheTabelaVendas();
+            //preencheTabelaVendas();
             novaVenda.setFuncionario(usuarioLogado.getFuncionario());
             novaVenda.setCaixa(caixa);
             preencheComboClientes();
@@ -1290,7 +1370,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void btnReceberValorVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceberValorVendaActionPerformed
         if(cbxCliente.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Nenhum Cliente Selecionado !");
-        }else if(tblVendas.getRowCount() < 1){
+        }else if(tblVendaServicos.getRowCount() < 1){
             JOptionPane.showMessageDialog(rootPane, "Nenhum Item na Compra !");
         }else{
             frmReceberPagamentoVenda janela = new frmReceberPagamentoVenda(this, rootPaneCheckingEnabled, this);
@@ -1368,28 +1448,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void tblVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendasMouseClicked
+    private void tblVendaServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendaServicosMouseClicked
 
         /*
          *      PEGANDO O OBJETO SELECIONADO NA TABELA COM 1 CLIQUE
          
          */
-       int id = tblVendas.getSelectedRow();
-       JOptionPane.showMessageDialog(rootPane, tblVendas.getSelectedColumn() + "coluna"); 
-       JOptionPane.showMessageDialog(rootPane, id+" id"); 
-       
-       int qtdItens = novaVenda.getServicos().size() + novaVenda.getProdutos().size();
-       
-       //ItemVendaServico tmp = new ItemVendaServico();
-       
-      // novaVenda.removeServico(tmp);
-       
-       //preencheTabelaVendas();
-       
-            
-        //    pensar
-
-    }//GEN-LAST:event_tblVendasMouseClicked
+        selecionadoTabelaVendaServicos = true;
+       idObjetoTabelaVendas = tblVendaServicos.getSelectedRow();
+       selecionadoTabelaVendaProdutos = false;
+      
+    }//GEN-LAST:event_tblVendaServicosMouseClicked
 
     private void jMenuItemEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstoqueActionPerformed
        try {
@@ -1562,7 +1631,32 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemRelatorioVendasActionPerformed
 
     private void btnExcluirItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirItemVendaActionPerformed
+        if(selecionadoTabelaVendaProdutos){
+            novaVenda.getProdutos().remove(idObjetoTabelaVendas);
+            idObjetoTabelaVendas = 0;
+            preencheTabelaVendasProduto();
+           tblVendaProdutos.clearSelection();
+        }else if(selecionadoTabelaVendaServicos){
+            novaVenda.getServicos().remove(idObjetoTabelaVendas);
+            preencheTabelaVendasServicos();
+            tblVendaServicos.clearSelection();
+        }
         
+        
+        /*    
+        if(idObjetoTabelaVendas >= novaVenda.getServicos().size()){
+            //ObjServicoTabelaVendas = novaVenda.getServicos().get(idObjetoTabelaVendas);
+            novaVenda.getServicos().remove(idObjetoTabelaVendas);
+    //        JOptionPane.showMessageDialog(rootPane, ObjServicoTabelaVendas.getServico().getNome());
+           // preencheTabelaVendas();
+        }else{
+            novaVenda.getProdutos().remove(idObjetoTabelaVendas);
+            //preencheTabelaVendas();
+        }
+  */
+        //preencheTabelaVendasProduto();
+       
+        tblVendaServicos.clearSelection();
     }//GEN-LAST:event_btnExcluirItemVendaActionPerformed
 
     private void jMenuItemFazerBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFazerBackupActionPerformed
@@ -1773,11 +1867,21 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         this.btnExcluirItemVenda.setBackground(minhaCor);
     }//GEN-LAST:event_btnExcluirItemVendaMouseExited
 
+    private void tblVendaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendaProdutosMouseClicked
+        selecionadoTabelaVendaProdutos =  true;
+        idObjetoTabelaVendas = tblVendaProdutos.getSelectedRow();
+        
+        selecionadoTabelaVendaServicos = false;
+    }//GEN-LAST:event_tblVendaProdutosMouseClicked
+
     /*
      *  OUTRAS VARIÁVEIS
      */
-    private Servico ObjServicoTabelaVendas;
-    private Produto ObjProdutoTabelaVendas;
+    private boolean selecionadoTabelaVendaProdutos;
+    private boolean selecionadoTabelaVendaServicos;
+    private int idObjetoTabelaVendas;
+    private ItemVendaServico ObjServicoTabelaVendas;
+    private ItemVendaProduto ObjProdutoTabelaVendas;
     protected Usuario usuarioLogado;
     protected AgendamentoDAO daoAgendamento;
     protected List<Agendamento> listaAgendamentos;
@@ -1813,6 +1917,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox cbxCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
@@ -1843,11 +1949,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelVendas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPanelPrincipal;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JMenuItem relatorioAgendamentos;
     private javax.swing.JTable tblAgenda;
-    private javax.swing.JTable tblVendas;
+    private javax.swing.JTable tblVendaProdutos;
+    private javax.swing.JTable tblVendaServicos;
     // End of variables declaration//GEN-END:variables
 }
