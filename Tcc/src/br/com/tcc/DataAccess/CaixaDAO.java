@@ -5,6 +5,7 @@
 package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Caixa;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -61,4 +62,27 @@ public class CaixaDAO extends DAOGenerico<Caixa>{
         }
     
     }
+     
+     public List<Caixa> ListarCaixasEntreDatas(Date inicio, Date fim){
+        EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Select s from Caixa s where s.dataAbertura between :inicio and :fim";
+            
+            
+             Query query = manager.createQuery(consulta);
+             
+             query.setParameter("inicio", inicio);       
+             query.setParameter("fim", fim);
+             
+             transacao.commit();
+             return query.getResultList();
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return null;
+        }
+      }
 }

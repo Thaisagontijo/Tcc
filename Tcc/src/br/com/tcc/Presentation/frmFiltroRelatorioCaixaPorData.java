@@ -6,8 +6,8 @@
 
 package br.com.tcc.Presentation;
 
-import br.com.tcc.DataAccess.CompraDAO;
-import br.com.tcc.DomainModel.Compra;
+import br.com.tcc.DataAccess.CaixaDAO;
+import br.com.tcc.DomainModel.Caixa;
 import java.awt.Color;
 import java.io.InputStream;
 import java.util.Date;
@@ -24,13 +24,13 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Thaisa
  */
-public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
+public class frmFiltroRelatorioCaixaPorData extends javax.swing.JDialog {
 
     /**
      * Creates new form frmFiltroRelatorioCompras
      */
-    frmSelecionaOpcaoRelatorioCompras janelaPai;
-    frmFiltroRelatorioComprasPorData(java.awt.Frame parent, boolean modal, frmSelecionaOpcaoRelatorioCompras janelaPai) {
+    frmSelecionaOpcaoRelatorioCaixa janelaPai;
+    frmFiltroRelatorioCaixaPorData(java.awt.Frame parent, boolean modal, frmSelecionaOpcaoRelatorioCaixa janelaPai) {
         super(parent, modal);
         initComponents();
         adicionarDatasCBX1();
@@ -349,41 +349,33 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
         data2.setMonth(cbxMes1.getSelectedIndex() - 1);
         data2.setYear(Integer.parseInt(cbxAno1.getSelectedItem().toString()));
 
-        CompraDAO tmpComprasDAO = new CompraDAO();
-        List<Compra> compras;
-        List<Compra> comprasFiltro = new LinkedList<>();
+        CaixaDAO tmpCaixaDAO = new CaixaDAO();
+        List<Caixa> caixas;
+        List<Caixa> caixasFiltro = new LinkedList<>();
+        data1.setYear(data1.getYear() - 1900);
+        data2.setYear(data2.getYear() - 1900);
 
-        compras = tmpComprasDAO.ListarComprasEntreDatas(data1, data2);
+        caixas = tmpCaixaDAO.ListarCaixasEntreDatas(data1, data2);
         
-        if(!compras.isEmpty()){
-            for(Compra c :compras){
-                c.setNomeFornecedor(c.getProduto().getFornecedor().getNome());
-                comprasFiltro.add(c);
+        if(caixas != null){
+            for(Caixa c :caixas){
+                c.setValorTotal(c.calcularTotalCaixa());
+                caixasFiltro.add(c);
             }
         }
         
-
-        /*
-         for(Compra c : compras){
-         if((c.getDataCompra().before(data2)   && c.getDataCompra().after(data1))) {
-         comprasFiltro.add(c);
-         }
-         }
-         JOptionPane.showMessageDialog(rootPane, "ano sistema "+new Date().getYear());
-         JOptionPane.showMessageDialog(rootPane, "mes sistema "+new Date().getMonth());
-         JOptionPane.showMessageDialog(rootPane, "ano  "+data2.getYear());
-         JOptionPane.showMessageDialog(rootPane, "mes  "+data2.getMonth());
-         */
+        
+    
         //Gerando relatorio
         try {
             //Arquivo do Relatorio
             //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioCompras.jasper");
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioCaixa.jasper");
 
-            if (!comprasFiltro.isEmpty()) {
+            if (!caixasFiltro.isEmpty()) {
 
                 //Fonte de dados
-                JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(comprasFiltro);
+                JRBeanCollectionDataSource fonteDados = new JRBeanCollectionDataSource(caixasFiltro);
 
                 //Gera o Relatorio
                 JasperPrint relatorioGerado = JasperFillManager.fillReport(relatorio, null, fonteDados);
