@@ -50,7 +50,7 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Opções de Relatório");
+        setTitle("OPÇÕES DO RELATÓRIO");
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
 

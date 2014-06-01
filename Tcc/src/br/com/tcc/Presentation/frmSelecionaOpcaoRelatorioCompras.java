@@ -52,7 +52,7 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Opções de Relatório");
+        setTitle("OPÇÕES DO RELATÓRIO");
 
         jPanel1.setBackground(new java.awt.Color(228, 228, 228));
 
@@ -143,10 +143,6 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(139, 139, 139))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -157,10 +153,15 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
                     .addComponent(btnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(btnTipoProduto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(139, 139, 139))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnTipoProduto)
+                        .addGap(196, 196, 196))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,9 +176,9 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(39, 39, 39)
                 .addComponent(btnTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -298,14 +299,14 @@ public class frmSelecionaOpcaoRelatorioCompras extends javax.swing.JDialog {
                 this.dispose();
                 jasperViewer.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Produto não encontrado !");
+                JOptionPane.showMessageDialog(rootPane, "Produto não encontrado!");
             }
 
         } catch (JRException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(rootPane, "Id inválido !");
+            JOptionPane.showMessageDialog(rootPane, "Id inválido!");
         }
     }//GEN-LAST:event_btnProdutoActionPerformed
 

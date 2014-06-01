@@ -517,11 +517,11 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="btnNovaVenda" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Component id="btnReceberValorVenda" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="btnCancelarVenda" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -641,6 +641,8 @@
                 <Property name="text" type="java.lang.String" value="Incluir Item"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnIncluirItemVendaMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnIncluirItemVendaMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIncluirItemVendaActionPerformed"/>
               </Events>
             </Component>
@@ -658,6 +660,8 @@
                 <Property name="text" type="java.lang.String" value="Excluir Item"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnExcluirItemVendaMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnExcluirItemVendaMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirItemVendaActionPerformed"/>
               </Events>
             </Component>
@@ -669,6 +673,8 @@
                 <Property name="text" type="java.lang.String" value="Receber"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnReceberValorVendaMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnReceberValorVendaMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReceberValorVendaActionPerformed"/>
               </Events>
             </Component>
@@ -683,6 +689,8 @@
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelarVendaMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelarVendaMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarVendaActionPerformed"/>
               </Events>
             </Component>
@@ -694,6 +702,8 @@
                 <Property name="text" type="java.lang.String" value="Nova"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnNovaVendaMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnNovaVendaMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovaVendaActionPerformed"/>
               </Events>
             </Component>
@@ -723,7 +733,7 @@
                               <Component id="jScrollPane1" min="-2" pref="691" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnAgendamentoRealizado" max="-2" attributes="0"/>
+                                  <Component id="btnAgendamentoRealizado" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="btnAgendamentoEditar" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnAgendamentoApagar" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -747,11 +757,11 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="btnAgendamentoRealizado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnAgendamentoEditar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="btnAgendamentoApagar" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAgendamentoRealizado" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="btnAgendamentoEditar" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="btnAgendamentoApagar" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -808,6 +818,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAgendamentoRealizado">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/tcc/Presentation/icones/salvar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Realizado"/>
               </Properties>
               <Events>
@@ -818,6 +834,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAgendamentoEditar">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\Thaisa Gontijo\Documents\NetBeansProjects\Novo TCC\Tcc\Tcc\src\br\com\tcc\Presentation\icones\alterar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
               <Events>
@@ -828,6 +850,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAgendamentoApagar">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/tcc/Presentation/icones/excluir.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
               <Events>
