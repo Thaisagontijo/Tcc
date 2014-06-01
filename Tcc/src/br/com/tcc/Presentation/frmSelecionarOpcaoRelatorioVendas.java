@@ -12,6 +12,7 @@ import br.com.tcc.DomainModel.Caixa;
 import br.com.tcc.DomainModel.Cliente;
 import br.com.tcc.DomainModel.ItemVendaProduto;
 import br.com.tcc.DomainModel.Venda;
+import java.awt.Color;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,53 +61,129 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Opções de Relatório");
+        setTitle("OPÇÕES DO RELATÓRIO");
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(228, 228, 228));
+
+        btnProduto.setBackground(new java.awt.Color(239, 239, 239));
+        btnProduto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnProduto.setText("Por Produto");
+        btnProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnProdutoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnProdutoMouseExited(evt);
+            }
+        });
         btnProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProdutoActionPerformed(evt);
             }
         });
 
+        btnPeriodo.setBackground(new java.awt.Color(239, 239, 239));
+        btnPeriodo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPeriodo.setText("Por Período");
+        btnPeriodo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPeriodoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPeriodoMouseExited(evt);
+            }
+        });
         btnPeriodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPeriodoActionPerformed(evt);
             }
         });
 
+        btnTodas.setBackground(new java.awt.Color(239, 239, 239));
+        btnTodas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTodas.setText("Todas");
+        btnTodas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTodasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTodasMouseExited(evt);
+            }
+        });
         btnTodas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTodasActionPerformed(evt);
             }
         });
 
+        btnServico.setBackground(new java.awt.Color(239, 239, 239));
+        btnServico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnServico.setText("Por Serviço");
+        btnServico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnServicoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnServicoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnServicoMousePressed(evt);
+            }
+        });
 
+        btnCliente.setBackground(new java.awt.Color(239, 239, 239));
+        btnCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCliente.setText("Por Cliente");
+        btnCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClienteMouseExited(evt);
+            }
+        });
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClienteActionPerformed(evt);
             }
         });
 
+        btnVendasAVista.setBackground(new java.awt.Color(239, 239, 239));
+        btnVendasAVista.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnVendasAVista.setText("Vendas à Vista");
+        btnVendasAVista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendasAVistaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendasAVistaMouseExited(evt);
+            }
+        });
         btnVendasAVista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVendasAVistaActionPerformed(evt);
             }
         });
 
+        btnVendasAPrazo.setBackground(new java.awt.Color(239, 239, 239));
+        btnVendasAPrazo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnVendasAPrazo.setText("Vendas à Prazo");
+        btnVendasAPrazo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendasAPrazoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendasAPrazoMouseExited(evt);
+            }
+        });
         btnVendasAPrazo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVendasAPrazoActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Selecione a opção para gerar o relatório");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -114,51 +191,64 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(btnProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                    .addComponent(btnPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnServico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(199, 199, 199)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnVendasAPrazo)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(btnCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnVendasAVista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addComponent(btnTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1))
-                .addGap(0, 47, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnVendasAPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVendasAVista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel1)
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProduto)
-                    .addComponent(btnCliente))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnVendasAVista)
-                            .addComponent(btnPeriodo))
-                        .addGap(36, 36, 36)
-                        .addComponent(btnVendasAPrazo))
+                        .addGap(49, 49, 49)
+                        .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(btnServico)))
+                        .addGap(50, 50, 50)
+                        .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(btnTodas)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVendasAVista, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnServico, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVendasAPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnTodas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Cancelar");
+        jButton1.setBackground(new java.awt.Color(239, 239, 239));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Sair");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -170,22 +260,19 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -405,6 +492,91 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
        janela.setLocationRelativeTo(this);
        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnPeriodoActionPerformed
+
+    private void btnProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutoMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnProduto.setBackground(minhaCor);
+    }//GEN-LAST:event_btnProdutoMouseEntered
+
+    private void btnProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutoMouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.btnProduto.setBackground(minhaCor);
+    }//GEN-LAST:event_btnProdutoMouseExited
+
+    private void btnPeriodoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPeriodoMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnPeriodo.setBackground(minhaCor);
+    }//GEN-LAST:event_btnPeriodoMouseEntered
+
+    private void btnPeriodoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPeriodoMouseExited
+       Color minhaCor = new Color(239,239,239);
+        this.btnPeriodo.setBackground(minhaCor);
+    }//GEN-LAST:event_btnPeriodoMouseExited
+
+    private void btnServicoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServicoMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnServico.setBackground(minhaCor);
+    }//GEN-LAST:event_btnServicoMouseEntered
+
+    private void btnServicoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServicoMousePressed
+        Color minhaCor = new Color(239,239,239);
+        this.btnServico.setBackground(minhaCor);
+    }//GEN-LAST:event_btnServicoMousePressed
+
+    private void btnServicoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServicoMouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.btnServico.setBackground(minhaCor);
+    }//GEN-LAST:event_btnServicoMouseExited
+
+    private void btnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnCliente.setBackground(minhaCor);
+    }//GEN-LAST:event_btnClienteMouseEntered
+
+    private void btnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.btnCliente.setBackground(minhaCor);
+    }//GEN-LAST:event_btnClienteMouseExited
+
+    private void btnVendasAVistaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasAVistaMouseEntered
+       Color minhaCor = new Color(115,183,253);
+        this.btnVendasAVista.setBackground(minhaCor);
+    }//GEN-LAST:event_btnVendasAVistaMouseEntered
+
+    private void btnVendasAVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasAVistaMouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.btnVendasAVista.setBackground(minhaCor);
+    }//GEN-LAST:event_btnVendasAVistaMouseExited
+
+    private void btnVendasAPrazoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasAPrazoMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnVendasAPrazo.setBackground(minhaCor);
+    }//GEN-LAST:event_btnVendasAPrazoMouseEntered
+
+    private void btnVendasAPrazoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasAPrazoMouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.btnVendasAPrazo.setBackground(minhaCor);
+    }//GEN-LAST:event_btnVendasAPrazoMouseExited
+
+    private void btnTodasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTodasMouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.btnTodas.setBackground(minhaCor);
+    }//GEN-LAST:event_btnTodasMouseEntered
+
+    private void btnTodasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTodasMouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.btnTodas.setBackground(minhaCor);
+    }//GEN-LAST:event_btnTodasMouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        Color minhaCor = new Color(115,183,253);
+        this.jButton1.setBackground(minhaCor);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+         Color minhaCor = new Color(239,239,239);
+        this.jButton1.setBackground(minhaCor);
+    }//GEN-LAST:event_jButton1MouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCliente;
