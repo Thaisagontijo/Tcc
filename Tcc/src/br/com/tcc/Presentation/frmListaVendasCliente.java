@@ -115,7 +115,7 @@ public class frmListaVendasCliente extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tblClientes);
 
         lblDetalheVenda.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
-        lblDetalheVenda.setText("Dê um clique duplo para detalhar a venda");
+        lblDetalheVenda.setText("Dê um duplo  clique  para detalhar a venda");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -99,7 +99,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="11" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="D&#xea; um clique duplo para detalhar a venda"/>
+            <Property name="text" type="java.lang.String" value="D&#xea; um duplo  clique  para detalhar a venda"/>
           </Properties>
         </Component>
       </SubComponents>

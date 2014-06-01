@@ -167,15 +167,16 @@ public class frmListarCompras extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        btnNovo.setBackground(new java.awt.Color(239, 239, 239));
         btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/Novo.png"))); // NOI18N
         btnNovo.setText("Novo");
         btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNovoMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnNovoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNovoMouseExited(evt);
             }
         });
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +185,7 @@ public class frmListarCompras extends javax.swing.JDialog {
             }
         });
 
+        btnSair.setBackground(new java.awt.Color(239, 239, 239));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
         btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,6 +210,7 @@ public class frmListarCompras extends javax.swing.JDialog {
         cbxFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnFiltrar.setBackground(new java.awt.Color(239, 239, 239));
         btnFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/filtro.png"))); // NOI18N
         btnFiltrar.setText("Filtrar");
