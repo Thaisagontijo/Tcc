@@ -15,6 +15,7 @@ import br.com.tcc.DomainModel.Venda;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -31,9 +32,11 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
     /**
      * Creates new form frmSelecionarOpcaoRelatorioVendas
      */
-    public frmSelecionarOpcaoRelatorioVendas(java.awt.Frame parent, boolean modal) {
+    frmMenuPrincipal janelaPai;
+    public frmSelecionarOpcaoRelatorioVendas(java.awt.Frame parent, boolean modal,frmMenuPrincipal janelaPai) {
         super(parent, modal);
         initComponents();
+        this.janelaPai = janelaPai;
     }
 
     /**
@@ -68,6 +71,11 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
         });
 
         btnPeriodo.setText("Por Período");
+        btnPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPeriodoActionPerformed(evt);
+            }
+        });
 
         btnTodas.setText("Todas");
         btnTodas.addActionListener(new java.awt.event.ActionListener() {
@@ -391,6 +399,12 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeriodoActionPerformed
+       frmFiltroRelatorioVendas janela = new frmFiltroRelatorioVendas(null, rootPaneCheckingEnabled, this);
+       janela.setLocationRelativeTo(this);
+       janela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnPeriodoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCliente;

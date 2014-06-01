@@ -132,6 +132,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Por Per&#xed;odo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPeriodoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnTodas">
           <Properties>

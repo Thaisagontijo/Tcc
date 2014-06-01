@@ -1550,7 +1550,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgendamentoApagarActionPerformed
 
     private void jMenuItemRelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioVendasActionPerformed
-        frmSelecionarOpcaoRelatorioVendas janela = new frmSelecionarOpcaoRelatorioVendas(this, rootPaneCheckingEnabled);
+        frmSelecionarOpcaoRelatorioVendas janela = new frmSelecionarOpcaoRelatorioVendas(this, rootPaneCheckingEnabled,this);
         janela.setLocationRelativeTo(this);
         janela.setVisible(rootPaneCheckingEnabled);
         
