@@ -307,7 +307,7 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
           try {
             //Arquivo do Relatorio
             //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasAPrazo.jasper");
             //Lista a ser exibida no relatorio
             CaixaDAO caixaDAO = new CaixaDAO();
             List<Caixa> caixas = caixaDAO.ListarTodos();
@@ -350,7 +350,7 @@ public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
        try {
             //Arquivo do Relatorio
             //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
-            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasTodas.jasper");
+            InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioVendasAVista.jasper");
             //Lista a ser exibida no relatorio
             CaixaDAO caixaDAO = new CaixaDAO();
             List<Caixa> caixas = caixaDAO.ListarTodos();

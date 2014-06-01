@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Compras" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e7daf6b-32f6-49b2-8ce3-5d95f3f28819">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="13"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="valorVenda" class="java.lang.Float"/>
 	<field name="dataHora" class="java.util.Date"/>
@@ -21,7 +21,7 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Vendas à Prazo]]></text>
+					<text><![CDATA[Vendas à Vista]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -35,39 +35,32 @@
 				<reportElement x="0" y="20" width="802" height="1" forecolor="#666666" uuid="45d9f4a2-be72-4311-9b00-4f000c23463c"/>
 			</line>
 			<staticText>
-				<reportElement x="131" y="1" width="158" height="20" uuid="47d45156-172e-480c-b350-7c9c8a399e83"/>
+				<reportElement x="154" y="1" width="158" height="20" uuid="47d45156-172e-480c-b350-7c9c8a399e83"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Valor da Venda]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="289" y="1" width="208" height="20" uuid="a86fcc8a-ba76-43b0-b11c-effa31e1d2f8"/>
+				<reportElement x="329" y="1" width="240" height="20" uuid="a86fcc8a-ba76-43b0-b11c-effa31e1d2f8"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="497" y="1" width="172" height="20" uuid="2ad604bc-080f-4efc-a920-8a1399147b6a"/>
+				<reportElement x="597" y="1" width="196" height="20" uuid="2ad604bc-080f-4efc-a920-8a1399147b6a"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Funcionário]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="1" width="131" height="20" uuid="5935afb7-aed4-49a1-92df-d35dc2852389"/>
+				<reportElement x="12" y="1" width="131" height="20" uuid="5935afb7-aed4-49a1-92df-d35dc2852389"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data da Venda]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="669" y="1" width="131" height="20" uuid="02ffc74d-c69f-4b8f-b5bd-2b3dca8b2373"/>
-				<textElement textAlignment="Center">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Situação]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -77,29 +70,24 @@
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="800" height="1" uuid="fad99750-544e-4451-ab3c-b311df228ff2"/>
 			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement x="131" y="0" width="158" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
+				<reportElement x="154" y="0" width="158" height="20" uuid="faaa7106-56e2-4951-a2d8-0191c866d4d9"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{valorVenda}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="289" y="0" width="208" height="20" uuid="3b549dc2-dbda-4677-87c2-2251f17d37d8"/>
+				<reportElement x="329" y="0" width="240" height="20" uuid="3b549dc2-dbda-4677-87c2-2251f17d37d8"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{cliente}.toString()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="497" y="0" width="173" height="20" uuid="1fc42536-04c0-44c8-a0a5-cb22ffdac967"/>
+				<reportElement x="597" y="0" width="196" height="20" uuid="1fc42536-04c0-44c8-a0a5-cb22ffdac967"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{funcionario}.toString()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="131" height="20" uuid="ee2a3cc4-3d80-40c5-8481-ceeb42bc5191"/>
+				<reportElement x="12" y="0" width="131" height="20" uuid="ee2a3cc4-3d80-40c5-8481-ceeb42bc5191"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{dataHora}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="670" y="0" width="130" height="20" uuid="d00a61b1-56ae-4af9-bfbd-d965fa8938eb"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[( $F{status} == true ? "Pago" : "À Receber" )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

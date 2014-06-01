@@ -886,7 +886,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(relatorioAgendamentos);
 
-        jMenuItem5.setText("Clientes");
+        jMenuItem5.setText("Clientes Cadastrados");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
