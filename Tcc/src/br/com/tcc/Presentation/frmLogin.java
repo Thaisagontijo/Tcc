@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 public class frmLogin extends javax.swing.JFrame {
 

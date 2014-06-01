@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 public class frmListaServicosParaAgenda extends javax.swing.JDialog {
 

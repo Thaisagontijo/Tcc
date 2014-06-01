@@ -7,9 +7,7 @@
 package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.CaixaDAO;
-import br.com.tcc.DataAccess.CompraDAO;
 import br.com.tcc.DomainModel.Caixa;
-import br.com.tcc.DomainModel.Compra;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +20,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author anderson
+ * @author Thaisa
  */
 public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
 

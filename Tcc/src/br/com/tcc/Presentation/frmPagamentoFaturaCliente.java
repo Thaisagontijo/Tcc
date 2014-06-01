@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Anderson
+ * @author Thaisa
  */
 public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
 

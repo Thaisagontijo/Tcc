@@ -13,7 +13,6 @@ import br.com.tcc.DomainModel.Compra;
 import br.com.tcc.DomainModel.Funcionario;
 import br.com.tcc.DomainModel.Produto;
 import java.awt.Color;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;

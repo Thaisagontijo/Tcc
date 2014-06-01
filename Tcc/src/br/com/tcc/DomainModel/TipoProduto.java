@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Modric
+ * @author Thaisa
  */
 @Entity
 @Table(name="TiposProduto")

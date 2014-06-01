@@ -5,8 +5,6 @@
 package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Fornecedor;
-import br.com.tcc.DomainModel.Produto;
-import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;

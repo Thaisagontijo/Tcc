@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Anderson
+ * @author Thaisa
  */
 public class frmAniversariantesLista extends javax.swing.JDialog {
 

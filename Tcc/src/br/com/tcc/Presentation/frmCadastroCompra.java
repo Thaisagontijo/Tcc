@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Home
+ * @author Thaisa
  */
 public class frmCadastroCompra extends javax.swing.JDialog {
 

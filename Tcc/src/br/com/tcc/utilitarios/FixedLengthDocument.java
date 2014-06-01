@@ -2,7 +2,6 @@ package br.com.tcc.utilitarios;
 
 
 
-import javax.swing.*;
 import javax.swing.text.*;
 
 public class FixedLengthDocument extends PlainDocument

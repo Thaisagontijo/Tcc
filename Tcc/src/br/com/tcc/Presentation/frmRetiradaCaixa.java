@@ -6,7 +6,6 @@ package br.com.tcc.Presentation;
 
 import br.com.tcc.DataAccess.RetiradaDAO;
 import br.com.tcc.DomainModel.Retirada;
-import br.com.tcc.utilitarios.FixedLengthDocument;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 

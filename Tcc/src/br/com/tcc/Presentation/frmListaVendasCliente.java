@@ -20,7 +20,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author Anderson
+ * @author Thaisa
  */
 public class frmListaVendasCliente extends javax.swing.JDialog {
 

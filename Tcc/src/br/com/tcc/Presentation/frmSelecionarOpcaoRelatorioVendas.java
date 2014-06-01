@@ -24,7 +24,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author anderson
+ * @author Thaisa
  */
 public class frmSelecionarOpcaoRelatorioVendas extends javax.swing.JDialog {
 
