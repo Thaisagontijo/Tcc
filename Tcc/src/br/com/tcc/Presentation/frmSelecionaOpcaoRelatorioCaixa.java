@@ -182,9 +182,9 @@ public class frmSelecionaOpcaoRelatorioCaixa extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       // frmFiltroRelatorioComprasPorData janela = new frmFiltroRelatorioComprasPorData(null, rootPaneCheckingEnabled, this);
-        //janela.setLocationRelativeTo(null);
-        //janela.setVisible(rootPaneCheckingEnabled);
+       frmFiltroRelatorioCaixaPorData janela = new frmFiltroRelatorioCaixaPorData(null, rootPaneCheckingEnabled, this);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
