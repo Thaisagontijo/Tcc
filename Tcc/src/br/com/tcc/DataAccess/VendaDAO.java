@@ -6,6 +6,7 @@ package br.com.tcc.DataAccess;
 
 import br.com.tcc.DomainModel.Compra;
 import br.com.tcc.DomainModel.Venda;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -52,6 +53,29 @@ public class VendaDAO extends DAOGenerico<Venda>{
             String consulta = "Select s from Venda s where s.status = 0";
             
              Query query = manager.createQuery(consulta);
+             
+             transacao.commit();
+             return query.getResultList();
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return null;
+        }
+      }
+      
+      public List<Venda> ListarVendasEntreDatas(Date inicio, Date fim){
+        EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Select s from Venda s where s.dataHora between :inicio and :fim";
+            
+            
+             Query query = manager.createQuery(consulta);
+             
+             query.setParameter("inicio", inicio);       
+             query.setParameter("fim", fim);
              
              transacao.commit();
              return query.getResultList();
