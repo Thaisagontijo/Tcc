@@ -29,11 +29,13 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
     /**
      * Creates new form frmFiltroRelatorioCompras
      */
-    frmFiltroRelatorioComprasPorData(java.awt.Frame parent, boolean modal) {
+    frmSelecionaOpcaoRelatorioCompras janelaPai;
+    frmFiltroRelatorioComprasPorData(java.awt.Frame parent, boolean modal, frmSelecionaOpcaoRelatorioCompras janelaPai) {
         super(parent, modal);
         initComponents();
         adicionarDatasCBX1();
         adicionarDatasCBX2();
+        this.janelaPai =janelaPai;
     }
     
     
@@ -332,44 +334,51 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Date data1 = new Date();
         Date data2 = new Date();
-        
+
         /*
-            PEGANDO VALORES DA PRIMERA DATA
-        */
+         PEGANDO VALORES DA PRIMERA DATA
+         */
         data1.setDate(cbxDia.getSelectedIndex());
         data1.setMonth(cbxMes.getSelectedIndex() - 1);
         data1.setYear(Integer.parseInt(cbxAno.getSelectedItem().toString()));
-        
+
         /*
-            PEGANDO VALORES DA SEGUNDA DATA
-        */
+         PEGANDO VALORES DA SEGUNDA DATA
+         */
         data2.setDate(cbxDia1.getSelectedIndex());
-        data2.setMonth(cbxMes1.getSelectedIndex()- 1);
-        data2.setYear(Integer.parseInt(cbxAno1.getSelectedItem().toString() ));
-        
+        data2.setMonth(cbxMes1.getSelectedIndex() - 1);
+        data2.setYear(Integer.parseInt(cbxAno1.getSelectedItem().toString()));
+
         CompraDAO tmpComprasDAO = new CompraDAO();
         List<Compra> compras;
         List<Compra> comprasFiltro = new LinkedList<>();
+
+        compras = tmpComprasDAO.ListarComprasEntreDatas(data1, data2);
         
-        compras = tmpComprasDAO.ListarTodos();
-        
-        for(Compra c : compras){
-            if((c.getDataCompra().before(data2)   && c.getDataCompra().after(data1))) {
+        if(!compras.isEmpty()){
+            for(Compra c :compras){
+                c.setNomeFornecedor(c.getProduto().getFornecedor().getNome());
                 comprasFiltro.add(c);
             }
         }
-        JOptionPane.showMessageDialog(rootPane, "ano sistema "+new Date().getYear());
-        JOptionPane.showMessageDialog(rootPane, "mes sistema "+new Date().getMonth());
-        JOptionPane.showMessageDialog(rootPane, "ano  "+data2.getYear());
-        JOptionPane.showMessageDialog(rootPane, "mes  "+data2.getMonth());
         
+
+        /*
+         for(Compra c : compras){
+         if((c.getDataCompra().before(data2)   && c.getDataCompra().after(data1))) {
+         comprasFiltro.add(c);
+         }
+         }
+         JOptionPane.showMessageDialog(rootPane, "ano sistema "+new Date().getYear());
+         JOptionPane.showMessageDialog(rootPane, "mes sistema "+new Date().getMonth());
+         JOptionPane.showMessageDialog(rootPane, "ano  "+data2.getYear());
+         JOptionPane.showMessageDialog(rootPane, "mes  "+data2.getMonth());
+         */
         //Gerando relatorio
-        
-                try {
-                      //Arquivo do Relatorio
+        try {
+            //Arquivo do Relatorio
             //String relatorio = "/META-INF/relatorio/relatorioEstoque.jasper";
             InputStream relatorio = this.getClass().getClassLoader().getResourceAsStream("META-INF/relatorio/relatorioCompras.jasper");
-
 
             if (!comprasFiltro.isEmpty()) {
 
@@ -381,6 +390,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
 
                 //Exibe o Relatorio
                 JasperViewer jasperViewer = new JasperViewer(relatorioGerado, false);
+                janelaPai.dispose();
                 this.dispose();
                 jasperViewer.setVisible(true);
             } else {
@@ -393,7 +403,7 @@ public class frmFiltroRelatorioComprasPorData extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Id inválido !");
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
