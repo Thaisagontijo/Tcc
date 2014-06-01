@@ -10,6 +10,7 @@ import br.com.tcc.DataAccess.DepositoDAO;
 import br.com.tcc.DataAccess.VendaDAO;
 import br.com.tcc.DomainModel.Deposito;
 import br.com.tcc.DomainModel.Venda;
+import java.awt.Color;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -124,6 +125,7 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
         setTitle("Lista de Vendas à prazo");
         setResizable(false);
 
+        tblClientes.setBackground(new java.awt.Color(228, 228, 228));
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -142,14 +144,35 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblClientes);
 
+        btnReceber.setBackground(new java.awt.Color(228, 228, 228));
+        btnReceber.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/tcc/Presentation/icones/pagamento.png"))); // NOI18N
         btnReceber.setText("Receber");
+        btnReceber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReceberMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReceberMouseExited(evt);
+            }
+        });
         btnReceber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReceberActionPerformed(evt);
             }
         });
 
+        btnSair.setBackground(new java.awt.Color(228, 228, 228));
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSair.setText("Sair");
+        btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSairMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSairMouseExited(evt);
+            }
+        });
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
@@ -167,9 +190,9 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(202, 202, 202)
-                        .addComponent(btnReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReceber, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(84, 84, 84)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -245,6 +268,26 @@ public class frmPagamentoFaturaCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Valor Inválido!");
         }
     }//GEN-LAST:event_btnReceberActionPerformed
+
+    private void btnReceberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceberMouseEntered
+        Color minhaCor = new Color(115,183,253);
+          this.btnReceber.setBackground(minhaCor);
+    }//GEN-LAST:event_btnReceberMouseEntered
+
+    private void btnReceberMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceberMouseExited
+        Color minhaCor = new Color (239,239,239);
+        this.btnReceber.setBackground(minhaCor);
+    }//GEN-LAST:event_btnReceberMouseExited
+
+    private void btnSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseEntered
+         Color minhaCor = new Color(115,183,253);
+          this.btnSair.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSairMouseEntered
+
+    private void btnSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseExited
+        Color minhaCor = new Color (239,239,239);
+        this.btnSair.setBackground(minhaCor);
+    }//GEN-LAST:event_btnSairMouseExited
 
     private Venda objetoSelecionadoNaTabela;
     // Variables declaration - do not modify//GEN-BEGIN:variables
